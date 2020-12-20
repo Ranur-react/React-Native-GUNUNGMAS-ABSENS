@@ -101,6 +101,7 @@ onScrollLayout=(e)=>{
                 <Text style={styles.TextBody}>
                 Jl.Adinegoro No.9,</Text>
                 <Text style={styles.TextBody}>Tabing,Kec.Koto Tangah,Kota Padang</Text>
+
                 <View key="123" style={styles.IconBox}>
                     <Svgicon name="User" />
               </View>
@@ -115,6 +116,12 @@ onScrollLayout=(e)=>{
                   <MenuLoop />
               </View>
           </View>
+          <View style={styles.container}>
+                <Text onPress={testCall} style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
+                <View style={styles.menuContainer}>
+                    <MenuLoop />
+                </View>
+            </View>
         </View>
         </ScrollView>
       </View>
@@ -129,11 +136,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1,
     top:20,
     width:WIDTH-30,
     alignItems:'flex-start',
-    height:300
+    // // backgroundColor:'grey',
+    // borderColor:'black',
+    // borderWidth:1,
   },
   Textcontainer:{
     width:'100%',
@@ -189,9 +197,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     flexWrap:'wrap',
     marginTop:40,
-    // backgroundColor:'grey',
+    // backgroundColor:'yellow',
     width:'100%',
-    height:300,
     justifyContent:'center',
   },
   menuCard:{
@@ -220,7 +227,7 @@ const styles = StyleSheet.create({
   labelIcon:{
     textAlign:'center',
     fontFamily:'Raleway-Bold',
-    fontSize: 15,
+    fontSize: 12,
     color:'rgba(255,255,255,1)'
   }
 });

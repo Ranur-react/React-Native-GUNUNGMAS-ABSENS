@@ -7,12 +7,13 @@ import {
   StyleSheet,
 } from 'react-native';
 import Login from './View/Login';
+import Home from './View/Home';
 
 export default class MyComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Login />
+        <Home />
       </View>
     );
   }
