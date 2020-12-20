@@ -1,0 +1,16 @@
+1. Install SVG Icon
+
+    - npm install react-native-svg
+
+2. Install fonts asset folder
+
+    - Create file on base project folder with name "react-native.config.js"
+    - include that command on file :
+      -----------------------------------------
+      |    module.exports = {                 |
+      |      assets: ["./assets/fonts"],      |
+      |    };                                 |
+      |----------------------------------------
+    - type this command on powerShell/terminal with the right path project "npx react-native link"
+
+  3. 
