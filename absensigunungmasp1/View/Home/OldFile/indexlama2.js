@@ -17,9 +17,8 @@ import {
 } from 'react-native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
-import Deskripsiabsen from './TitleDesk';
 import Menuabsen from './Menu';
-import HistoryAbsen from './History';
+import Deskripsiabsen from './TitleDesk';
 
 
 const {width:WIDTH} =Dimensions.get('window');
@@ -60,13 +59,24 @@ onScrollLayout=(e)=>{
       }
 }
   render() {
+        let testCall=()=>{
+          console.log("Bisa..");
+        }
 
 
     return (
       <View style={styles.Backcontainer}>
       <View  style={styles.container}>
         <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
-              <Deskripsiabsen />
+                <Text onPress={testCall} style={styles.TextTitle}>Absensi Hari Ini:</Text>
+                <Text style={styles.TextBody}>Sabtu,07 November 2020</Text>
+                <Text style={styles.TextBody}>Jam Masuk: 08.00 - 09.00</Text>
+                <Text style={styles.TextBody}>Jam Pulang: 16.00 - 20.00</Text>
+                <Text style={styles.TextTitle}>Lokasi Absensi: </Text>
+                <Text style={styles.TextBody}>
+                Jl.Adinegoro No.9,</Text>
+                <Text style={styles.TextBody}>Tabing,Kec.Koto Tangah,Kota Padang</Text>
+                <Deskripsiabsen />
                 <View key="123" style={styles.IconBox}>
                     <Svgicon name="User" />
               </View>
@@ -76,15 +86,15 @@ onScrollLayout=(e)=>{
 
         <View   style={[styles.Frontcontainer,{top:this.state.tinggiHEAD}]}>
         <View style={styles.container}>
-              <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
+              <Text onPress={testCall} style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
               <View style={styles.menuContainer}>
                 <Menuabsen />
               </View>
           </View>
           <View style={styles.container}>
-                <Text  style={styles.TextTitleWhite}>History Absen</Text>
+                <Text onPress={testCall} style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
                 <View style={styles.menuContainer}>
-                      <HistoryAbsen />
+                      <Menuabsen />
                 </View>
             </View>
         </View>
