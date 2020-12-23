@@ -43,11 +43,11 @@ let MenuLoop=(props)=>{
           ];
   let code=[];
     for (var i = 0; i < cek.length; i++) {
-      code.push(
-        <View>
-          <Menu icon='Enter' color='#f18f01' label={cek[i]} />
-        </View>
-        )
+        code.push(
+          <View>
+            <Menu icon='Enter' color='#f18f01' label={cek[i]} />
+          </View>
+          )
     }
     return code;
 }

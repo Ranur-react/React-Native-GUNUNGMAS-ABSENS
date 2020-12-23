@@ -13,4 +13,5 @@
       |----------------------------------------
     - type this command on powerShell/terminal with the right path project "npx react-native link"
 
-  3. 
+  3. Install Date Picker
+    - npm install react-native-datepicker --save

@@ -12,7 +12,9 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-svg": "^12.1.0"
+    "react-native-datepicker": "^1.7.2",
+    "react-native-svg": "^12.1.0",
+    "react-native-ui-xg": "0.0.6"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",

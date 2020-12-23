@@ -48,14 +48,15 @@ class ClassHIstory extends Component{
 
 
 let HistoryLoop=()=>{
-  for (var i = 0; i < array.length; i++) {
-    array[i]
+let code=[];
+  for (var i = 0; i < 10; i++) {
+    code.push(<ClassHIstory />)
   }
-  return()
+  return code;
 }
 
 
-export default ClassHIstory;
+export default HistoryLoop;
 
 const styles = StyleSheet.create({
   HistoryCard:{
