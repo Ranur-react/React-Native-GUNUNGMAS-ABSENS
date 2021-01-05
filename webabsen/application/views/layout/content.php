@@ -40,17 +40,7 @@
 <?php $urls = $this->uri->segment(2) ?>
 <div class="row">
 	<div class="col-md-12">
-		<!-- <div class="box box-default">
-			<div class="box-header with-border">
-				<h3 class="box-title">Level User Login <i class="fa fa-angle-double-right"></i> <?= $urls == null ? 'admin' : $urls ?></h3>
-			</div>
-			<div class="box-body">
-				<a href="<?= site_url() ?>" class="btn btn-success">Admin</a>
-				<a href="<?= site_url('welcome/walas') ?>" class="btn btn-info">Wali Kelas</a>
-				<a href="<?= site_url('welcome/guru') ?>" class="btn btn-primary">Guru</a>
-				<a href="<?= site_url('welcome/siswa') ?>" class="btn btn-danger">Siswa</a>
-			</div>
-		</div> -->
+		
 		<div class="alert alert-success alert-dark m-b-1">
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<strong>Hei <?= user() ?></strong>, selamat datang kembali.

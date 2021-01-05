@@ -12,8 +12,8 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown messages-menu">
 					<a href="#" style="padding-top: 5px; padding-bottom: 0px; text-align: right">
-						Tahun Ajaran : [ <?= tahun_aktif() ?> ]<br>
-						<?= (level() == '1' or level() == '2') ? role() : 'Kelas:' ?>
+						Level Akses : <br> [ 						<?= (level() == '1' or level() == '2') ? role() : 'Kelas:' ?> ]
+
 					</a>
 				</li>
 				<li class="dropdown messages-menu" style="border-left: 1px solid #0aabcc">

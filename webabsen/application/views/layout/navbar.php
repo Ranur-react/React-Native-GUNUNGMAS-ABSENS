@@ -3,6 +3,7 @@
 	<ul class="nav navbar-nav">
 		<li class="<?= $urls == "welcome" ? "active" : null ?>"><a href="<?= site_url('welcome') ?>"><i class="icon-home4"></i> Home</a></li>
 		<?php if (level() == 1) { ?>
+			
 			<li class="dropdown <?= $urls == "tahun-ajaran" || $urls == "jr" || $urls == "kel" || $urls == "mp" || $urls == "siw" || $urls == "gr" || $urls == "user" ? "active" : null ?>">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack2"></i> Master Data <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
@@ -30,6 +31,7 @@
 					</li>
 				</ul>
 			</li>
+
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-database-menu"></i> Rombel <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
@@ -38,7 +40,8 @@
 					<li><a href="#">Rombel Siswa</a></li>
 				</ul>
 			</li>
-			<li class="dropdown">
+			
+			<!-- <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-archive"></i> Pembelajaran<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="#">Materi</a></li>
@@ -73,6 +76,6 @@
 				<li><a href="#">Profil</a></li>
 				<li><a href="#">Ganti Password</a></li>
 			</ul>
-		</li>
+		</li> -->
 	</ul>
 </div>
