@@ -5,6 +5,8 @@ import Enter from './../../assets/icons/enter';
 import Mata from './../../assets/icons/show';
 import Back from './../../assets/icons/back';
 import Camera from './../../assets/icons/Camera';
+import Calenders from './../../assets/icons/Calenders';
+import Upload from './../../assets/icons/Upload';
 
 let Svgicon=(prop)=>{
   let ikon=[];
@@ -18,6 +20,10 @@ let Svgicon=(prop)=>{
         ikon.push(<Back Color={prop.color}  />)
       }else if(prop.name == 'Camera'){
         ikon.push(<Camera Color={prop.color}  />)
+      }else if(prop.name == 'Kalender'){
+        ikon.push(<Calenders Color={prop.color}  />)
+      }else if(prop.name == 'Upload'){
+        ikon.push(<Upload Color={prop.color}  />)
       }
   return ikon;
 }

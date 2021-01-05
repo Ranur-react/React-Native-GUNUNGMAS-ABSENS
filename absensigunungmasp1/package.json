@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.0.8",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-datepicker": "^1.7.2",
+    "react-native-document-picker": "^4.2.0",
     "react-native-svg": "^12.1.0",
     "react-native-ui-xg": "0.0.6"
   },

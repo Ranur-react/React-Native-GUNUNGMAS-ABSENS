@@ -7,7 +7,7 @@ function Camera(props) {
     width={60}
     height={60}
     viewBox="0 0 60 60"
-    fill="none"
+    fill={props.Color}
     xmlns="http://www.w3.org/2000/svg"
   >
     <G clipPath="url(#prefix__clip0)" fill="#fff">

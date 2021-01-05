@@ -20,15 +20,22 @@ import Svgicon from './../../assets/icons/Svgicon';
 import Deskripsiabsen from './TitleDesk';
 import Camera from './Camera';
 import DatePicker from 'react-native-datepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DocumentPicker from 'react-native-document-picker';
 
 const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
+
+
 export default class Sakit extends Component {
   constructor(props){
+    var a=new Date();
+
   super(props)
-  this.state = {date:"2016-05-15"}
+  this.state = {date:a.toISOString().slice(0,10)}
 }
   render() {
+
     return (
       <View style={styles.Backcontainer}>
         <View   style={styles.container}>
@@ -39,49 +46,59 @@ export default class Sakit extends Component {
               </View>
 
               <View  style={styles.FormBox}>
-                  <View style={styles.Form}>
-                      <Text style={styles.Label}>Tanggal</Text>
-                        <DatePicker style={styles.FormInput}
-                        customStyles={{
-                                       dateIcon: {
-                                         position: 'absolute',
-                                         left: 0,
-                                         top: 4,
-                                         marginLeft: 0
-                                       },
-                                       dateInput: {
-                                         marginLeft: 0,
-                                         fontFamily: 'Raleway-Medium',
-                                         borderWidth:0,
-                                       },
-                                       fontSize:98
-                                       // ... You can check the source to find the other keys.
-                                     }}
-                         placeholder="select date"
-                        date={this.state.date}
-                        format="YYYY-MM-DD"
-                        minDate="2020-12-01"
-                        maxDate="2021-12-31"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        onDateChange={(date) => {this.setState({date: date})}}
-                         />
 
-                         <Text style={styles.NotofikasiInput}>
-                     </Text>
-                   </View>
-                   <View style={styles.Form}>
-                       <Text style={styles.Label}>Username</Text>
-                          <TextInput style={styles.FormInput}  placeholder="E-mail "/>
-                          <Text style={styles.NotofikasiInput}>
-                      </Text>
-                    </View>
                     <View style={styles.Form}>
-                        <Text style={styles.Label}>Username</Text>
-                           <TextInput style={styles.FormInput}  placeholder="E-mail "/>
+                        <Text style={styles.Label}>Tanggal</Text>
+                        <DatePicker
+                          style={styles.FormInput}
+                          date={this.state.date}
+                          mode="date"
+                          placeholder="select date"
+                          format="YYYY-MM-DD"
+                          minDate="2018-01-01"
+                          maxDate="2022-12-31"
+                          confirmBtnText="Confirm"
+                          cancelBtnText="Cancel"
+                          customStyles={{
+                           dateIcon: {
+                             position: 'absolute',
+                             left: 0,
+                             top: 4,
+                             marginLeft: 0,
+                           },
+                           dateInput: {
+                             marginLeft: 36,
+                             marginRight:240,
+                             borderWidth:0,
+                             top:0
+                           },
+                           dateText:{
+                             fontFamily:'Raleway-Medium',
+                             fontSize:16,
+                           }
+                          }}
+                          onDateChange={(date) => {this.setState({date: date})}}
+                          />
                            <Text style={styles.NotofikasiInput}>
                        </Text>
                      </View>
+                     <View style={styles.Form}>
+                         <Text style={styles.Label}>Keterangan</Text>
+                         <TextInput style={styles.FormInput}  placeholder="Tulis keterangan sakit mu disini "/>
+                            <Text style={styles.NotofikasiInput}>
+                        </Text>
+                      </View>
+                      <View style={styles.Form}>
+                          <Text style={styles.Label}>Upload Surat</Text>
+                          <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]} onPress={(e)=>console.log("Klik Upload")}  > Klik Untuk Upload Dokumen Bukti </Text>
+                             <Text style={styles.NotofikasiInput}>
+                         </Text>
+                         <View style={[styles.Icon]}>
+                         {
+                           <Svgicon  name="Upload" key="1"    />
+                         }
+                         </View>
+                       </View>
                      <TouchableOpacity
                        style={styles.FormButton} >
                         <Text style={styles.FormButtonLable}>Login</Text>
@@ -103,6 +120,11 @@ const styles = StyleSheet.create({
   Backcontainer: {
     flex: 1,
     alignItems: 'center',
+  },
+  Icon:{
+    position: 'absolute',
+    top:26,
+    left:24
   },
   container: {
     top:20,
@@ -133,13 +155,14 @@ const styles = StyleSheet.create({
     top:230,
     flex:1,
     flexDirection:'column'
-  },Form:{
+  },
+//
+  Form:{
     flex:1,
     width:'100%',
     marginBottom:15,
   },Label:{
     fontFamily: 'Raleway-Medium',
-    fontWeight:"400",
     fontSize: 12,
     lineHeight: 11.74,
     paddingLeft:20,
@@ -157,6 +180,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderStyle:'solid'
   },
+  //
   FormButton:{
     height:50,
     width:'100%',
