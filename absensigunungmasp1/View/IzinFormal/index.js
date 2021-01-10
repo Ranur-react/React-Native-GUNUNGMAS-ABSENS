@@ -43,7 +43,7 @@ export default class Sakit extends Component {
 
               <Svgicon  name="Back" color="black" />
               <View style={styles.Title}>
-                <Text onPress={() => Keyboard.dismiss()} style={styles.JudulBld}>Izin Sakit</Text>
+                <Text onPress={() => Keyboard.dismiss()} style={styles.JudulBld}>Izin Formal</Text>
               </View>
 
               <View  style={styles.FormBox}>
