@@ -7,6 +7,8 @@
 <!-- datepicker -->
 <link rel="stylesheet" href="<?= theme() ?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="<?= theme() ?>bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="<?= theme() ?>bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
 <!-- select2 library  -->
 <link rel="stylesheet" href="<?= theme() ?>bower_components/select2/dist/css/select2.min.css">
 <!-- DataTables -->
@@ -20,6 +22,7 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?= theme() ?>dist/css/skins/_all-skins.min.css">
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -30,8 +33,10 @@
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+
+
 <!-- jQuery 3 -->
-<script src="<?= theme() ?>bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?= theme() ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
@@ -39,6 +44,8 @@
 <!-- datepicker -->
 <script src="<?= theme() ?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?= theme() ?>bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?= theme() ?>bower_components/moment/min/moment.min.js"></script>
+<script src="<?= theme() ?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
   <!-- Select2 -->
 <script src="<?= theme() ?>bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- DataTables -->
@@ -52,6 +59,8 @@
 <script src="<?= theme() ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= theme() ?>dist/js/demo.js"></script>
+
+
 <script>
 	$(function() {
 		$('.data-tabel').DataTable({

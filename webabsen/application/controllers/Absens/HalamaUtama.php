@@ -17,13 +17,14 @@ class HalamaUtama extends CI_Controller
 
 
 
+
 	public function index()
 	{
 		$data = [
-			'title' => 'Guru',
-			'page'  => 'Guru',
-			'small' => 'List data guru',
-			'urls'  => '<li class="active">Guru</li>',
+			'title' => 'Home',
+			'page'  => 'Home Page',
+			'small' => '',
+			'urls'  => '<li class="active">Home</li>',
 			'data'  => ''
 		];
 		$this->template->display('Absens/Home/index', $data);

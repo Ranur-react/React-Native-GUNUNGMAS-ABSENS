@@ -1,43 +1,51 @@
 <?php $urls = $this->uri->segment(1) ?>
 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
 	<ul class="nav navbar-nav">
-		<li class="<?= $urls == "welcome" ? "active" : null ?>"><a href="<?= site_url('welcome') ?>"><i class="icon-home4"></i> Home</a></li>
+		<li class="<?= $urls == "welcome" ? "active" : null ?>"><a href="<?= site_url('Home') ?>"><i class="icon-home4"></i> Home</a></li>
 		<?php if (level() == 1) { ?>
 			
-			<li class="dropdown <?= $urls == "tahun-ajaran" || $urls == "jr" || $urls == "kel" || $urls == "mp" || $urls == "siw" || $urls == "gr" || $urls == "user" ? "active" : null ?>">
+			<li class="dropdown <?= $urls == "wa" || $urls == "jr" || $urls == "kel" || $urls == "mp" || $urls == "siw" || $urls == "gr" || $urls == "user" ? "active" : null ?>">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack2"></i> Master Data <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li class="<?= $urls == "tahun-ajaran" ? "active" : null ?>">
-						<a href="<?= site_url('tahun-ajaran') ?>">Tahun Ajaran</a>
+					<li class="<?= $urls == "wa" ? "active" : null ?>">
+						<a href="<?= site_url('wa') ?>">Set Waktu Absensi</a>
 					</li>
 					<li class="<?= $urls == "jr" ? "active" : null ?>">
-						<a href="<?= site_url('jr') ?>">Jurusan</a>
+						<a href="<?= site_url('la') ?>">Set Lokasi Absensi</a>
 					</li>
 					<li class="<?= $urls == "kel" ? "active" : null ?>">
-						<a href="<?= site_url('kel') ?>">Tingkatan Kelas</a>
+						<a href="<?= site_url('dk') ?>">Data Karyawan</a>
 					</li>
-					<li class="<?= $urls == "mp" ? "active" : null ?>">
-						<a href="<?= site_url('mp') ?>">Mata Pelajaran</a>
+					<li class="<?= $urls == "kel" ? "active" : null ?>">
+						<a href="<?= site_url('jak') ?>">Set Jadwal Absensi Karyawan</a>
 					</li>
-					<li class="<?= $urls == "siw" ? "active" : null ?>">
-						<a href="<?= site_url('siw') ?>">Siswa</a>
+					
+					
+				</ul>
+			</li>
+
+			<li class="dropdown <?= $urls == "am" || $urls == "ap" || $urls == "kel" || $urls == "mp" || $urls == "siw" || $urls == "gr" || $urls == "user" ? "active" : null ?>">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-archive"></i> Data Absensi <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li class="<?= $urls == "am" ? "active" : null ?>">
+						<a href="<?= site_url('am') ?>">Data Absensi Masuk</a>
 					</li>
-					<li class="<?= $urls == "gr" ? "active" : null ?>">
-						<a href="<?= site_url('gr') ?>">Guru</a>
+					<li class="<?= $urls == "ap" ? "active" : null ?>">
+						<a href="<?= site_url('ap') ?>">Data Absensi Pulang</a>
 					</li>
-					<li class="divider"></li>
-					<li class="<?= $urls == "user" ? "active" : null ?>">
-						<a href="<?= site_url('user') ?>">Akun</a>
-					</li>
+					
+					
 				</ul>
 			</li>
 
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-database-menu"></i> Rombel <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-database-menu"></i> Laporan <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">Wali Kelas</a></li>
-					<li><a href="#">Rombel Guru</a></li>
-					<li><a href="#">Rombel Siswa</a></li>
+					<li><a href="<?= site_url('lah') ?>">Laporan Absensi Harian</a></li>
+					<li><a href="<?= site_url('lam') ?>">Laporan Absensi Mingguan</a></li>
+					<li><a href="#">Laporan Absensi Bulanan</a></li>
+					<li><a href="#">Laporan Absensi Tahunan</a></li>
+					<li><a href="#">Laporan Data Karyawan</a></li>
 				</ul>
 			</li>
 			

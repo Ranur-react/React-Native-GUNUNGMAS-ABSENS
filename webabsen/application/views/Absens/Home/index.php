@@ -1,6 +1,182 @@
 <div class="row">
-	<div class="col-xs-12">
-		
-	</div>
-</div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>.</h3>
 
+              <p>Set Waktu Absensi</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-clock"></i>
+            </div>
+            <a href="<?= site_url('wa') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Set Lokasi Absensi</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-map"></i>
+            </div>
+            <a href="<?= site_url('la') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Data Karyawan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="<?= site_url('dk') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Set Jadwal Absensi Karyawan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="<?= site_url('jak') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Data Absensi Masuk</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-text-o"></i>
+            </div>
+            <a href="<?= site_url('am') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Data Absensi Pulang</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-text-o"></i>
+            </div>
+            <a href="<?= site_url('ap') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Laporan Absensi Harian</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-o"></i>
+            </div>
+            <a href="<?= site_url('lah') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Laporan Absensi Mingguan</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-o"></i>
+            </div>
+            <a href="<?= site_url('lam') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Laporan Absensi Bulanan</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Laporan Absensi Tahunan</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>.</h3>
+
+              <p>Laporan Data Karyawan</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-file-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+      </div>

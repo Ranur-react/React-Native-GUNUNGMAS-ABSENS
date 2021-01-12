@@ -1,7 +1,7 @@
 <header class="main-header">
 	<nav class="navbar navbar-static-top">
 		<div class="navbar-header">
-			<a href="<?= site_url() ?>" class="navbar-brand"><b>E-Learning</b> SMA 2</a>
+			<a href="<?= site_url() ?>" class="navbar-brand"><b>Sistem Absensi</b> Konter Gunung Mas</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 				<i class="fa fa-bars"></i>
 			</button>
