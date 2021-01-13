@@ -4,7 +4,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-
 export default class App extends React.Component {
 
   constructor(props) {

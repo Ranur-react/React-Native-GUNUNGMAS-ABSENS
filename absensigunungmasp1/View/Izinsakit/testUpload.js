@@ -1,6 +1,5 @@
 // Example of File Picker in React Native
 // https://aboutreact.com/file-picker-in-react-native/
-
 // Import React
 import React, {useState} from 'react';
 // Import required components

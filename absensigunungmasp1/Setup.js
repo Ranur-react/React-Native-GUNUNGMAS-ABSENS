@@ -8,14 +8,16 @@ import {
 } from 'react-native';
 import Login from './View/Login';
 import Home from './View/Home';
-import Capture from './View/Capture/tesCapture';
+import Capture from './View/Capture';
+import AfterCapture from './View/AfterCapture';
 import Sakit from './View/Izinsakit';
+import Navigasi from './View/Navigasi';
 
 export default class MyComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Capture />
+        <Navigasi />
       </View>
     );
   }

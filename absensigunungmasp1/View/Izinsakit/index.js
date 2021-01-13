@@ -40,8 +40,9 @@ export default class Sakit extends Component {
     return (
       <View style={styles.Backcontainer}>
         <View   style={styles.container}>
-
-              <Svgicon  name="Back" color="black" />
+          <TouchableOpacity style={styles.backButton} onPress={() =>console.log("muaaa")} >
+          <Svgicon    name="Back" color="black" />
+          </TouchableOpacity>
               <View style={styles.Title}>
                 <Text onPress={() => Keyboard.dismiss()} style={styles.JudulBld}>Izin Sakit</Text>
               </View>
@@ -111,7 +112,16 @@ const styles = StyleSheet.create({
   Backcontainer: {
     flex: 1,
     alignItems: 'center',
-  },
+  },backButton:{
+      backgroundColor:'rgba(50,50,50,0)',
+      borderRadius:50,
+      top:-15,
+      left:-15,
+      width:70,
+      height:70,
+      alignItems:'center',
+      justifyContent:'center',
+    },
   Icon:{
     position: 'absolute',
     top:26,
