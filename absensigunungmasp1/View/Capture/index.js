@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 //library
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //asset
 import Svgicon from './../../assets/icons/Svgicon';
 import User from './../../assets/icons/user';
@@ -31,21 +31,42 @@ import Camera from './Camera';
 //var/data declarated
 const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
-//end-declarated
+
+
+const storeDataString = async (key,value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    Alert.alert(e);
+  }
+}
+const storeDataJson = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('Json_Storage', value);
+  } catch (e) {
+    Alert.alert(e);
+  }
+}
 export default class MyComponent extends Component {
   constructor(props) {
     super(props);
   }
+
   selectFile = () => {
     var options = {
       mediaType: 'photo',
-      maxWidth:1000,
-      maxHeight:1000,
+      maxWidth:500,
+      maxHeight:500,
       saveToPhotos:true
     };
   launchCamera(options, res => {
       console.log('Response = ', res);
       if (!res.didCancel){
+
+        storeDataString('Ft',res.uri);
+        // storeDataJson(res);
+
         this.props.navigation.navigate('AfterCapture');
       }
     });

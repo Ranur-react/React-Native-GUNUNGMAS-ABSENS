@@ -1,0 +1,9 @@
+Absensi-SIMPAN-FIREBASE
+    * Simpan Gambar
+    * Simpan kordinat terkini
+    * Simpan jarak Terkini
+    * Simpan 
+CRUD-FIREBASE
+    * Simpan Izin Sakit
+    * Simpan Izin Formal
+    

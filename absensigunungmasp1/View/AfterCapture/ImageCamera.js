@@ -17,24 +17,40 @@ import {
   ScrollView,
   Button
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 /* @flow */
-
 const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
 export default class MyComponent extends Component {
-
+  constructor (props) {
+    super(props)
+    this.state = {
+      Foto:'null'
+    }
+  }
   render() {
-
+const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('Ft')
+      if(value !== null) {
+        this.setState({Foto:value})
+      }else {
+        this.setState({Foto:"https://billatowing.com/wp-content/uploads/2016/06/team-1.jpg"})
+      }
+    } catch(e) {
+      Alert.alert(e);
+    }
+  }
     return (
-        <View style={styles.CameraBox}>
+        <TouchableOpacity onLayout={getData} style={styles.CameraBox}>
         <Image style={styles.Image}
-        source={{uri: 'https://billatowing.com/wp-content/uploads/2016/06/team-1.jpg'}}
+        source={{uri: this.state.Foto}}
 
           />
         <Text style={styles.TextBody}> Foto berhasil diambil</Text>
-        </View>
+        </TouchableOpacity>
     );
   }
 }
@@ -55,7 +71,7 @@ const styles = StyleSheet.create({
 Image:{
   marginTop:20,
   width: WIDTH-40,
-  height: 560,
+  height: 500,
   borderRadius:30,
   backgroundColor:'rgba(255,255,255,1)',
 
