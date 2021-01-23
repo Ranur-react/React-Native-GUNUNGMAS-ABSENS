@@ -15,6 +15,7 @@ import {
   ScrollView,
   Button
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 import Deskripsiabsen from './TitleDesk';
@@ -36,28 +37,49 @@ export default class MyComponent extends Component {
     }
 
 InserttoSQL=()=>{
-  // fetch("http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/USERTRIGER/tambah.php", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       data: this.state.datareact,
-  //     })
-  //   }).then(response => response.json()).then(responseJson => {
-  //       // Alert.alert(responseJson);
-  //       console.log(responseJson);
-  //     }).catch(error => {
-  //       console.error(error);
-  //     });
+
+  console.log('mulai upload');
+  console.log('Data');
+  console.log('Uri:'+this.state.dataImage.uri);
+  console.log('name:'+this.state.dataImage.fileName);
+    this.setState  ({loading : true })
+    const data = new FormData();
+    data.append('fileToUpload', {
+      uri: this.state.dataImage.uri,
+      type: 'image/jpeg',
+        name: this.state.dataImage.fileName,
+    });
+    const url= "http://114.7.96.242/eror/POLDA/Data-Analisis/USERTRIGER/tambah2.php"
+    fetch(url, {
+      method: 'post',
+      body: data
+    })
+    .then((response) => response.json())
+    .then((responseJson) =>
+      {
+        console.log("Data Dari Server");
+        console.log(responseJson);
+        this.setState  ({
+            loading : false
+           })
+      });
 
 }
   render() {
-
+    const getDataJson = async () => {
+      try {
+          const jsonValue = await AsyncStorage.getItem('Json_Storage');
+           const data =JSON.parse(jsonValue);
+           console.log("Cetak value tersebut");
+           this.setState({dataImage:data})
+           console.log(this.state.dataImage);
+        } catch(e) {
+          Alert.alert(e);
+        }
+      }
 
     return (
-      <View style={styles.Backcontainer}>
+      <View onLayout={getDataJson} style={styles.Backcontainer}>
         <View  style={styles.container}>
         <View  style={styles.Textcontainer}>
             <TouchableOpacity style={styles.backButton} onPress={() =>this.props.navigation.goBack()} >

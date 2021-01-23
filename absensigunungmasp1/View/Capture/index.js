@@ -42,7 +42,6 @@ const storeDataString = async (key,value) => {
 }
 const storeDataJson = async (value) => {
   try {
-    const jsonValue = JSON.stringify(value)
     await AsyncStorage.setItem('Json_Storage', value);
   } catch (e) {
     Alert.alert(e);
@@ -61,11 +60,12 @@ export default class MyComponent extends Component {
       saveToPhotos:true
     };
   launchCamera(options, res => {
-      console.log('Response = ', res);
+      // console.log('Response = ', res);
       if (!res.didCancel){
 
         storeDataString('Ft',res.uri);
-        // storeDataJson(res);
+        const jsonValue = JSON.stringify(res);
+        storeDataJson(jsonValue);
 
         this.props.navigation.navigate('AfterCapture');
       }
