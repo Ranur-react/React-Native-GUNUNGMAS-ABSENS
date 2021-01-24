@@ -16,6 +16,8 @@ import {
   Button
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNFetchBlob from 'rn-fetch-blob'
+
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 import Deskripsiabsen from './TitleDesk';
@@ -35,36 +37,45 @@ export default class MyComponent extends Component {
           dataImage:''
         })
     }
+    InserttoSQL= async()=>{
 
-InserttoSQL=()=>{
+      console.log('mulai  upload');
+        const data = new FormData();
+        data.append('fileToUpload', {
+          uri: this.state.dataImage.uri,
+          type: 'image/jpeg',
+            name: this.state.dataImage.fileName,
+        });
+        console.log("Isi Data");
+        console.log(data);
+        const locakurl="http://192.168.18.13/POLDA/Data-Analisis/USERTRIGER/tambah3.php"
+        const url= "http://114.7.96.242/eror/POLDA/Data-Analisis/USERTRIGER/tambah3.php"
+      await  RNFetchBlob.fetch('POST', locakurl, {
+          Authorization: "Bearer access-token",
+          otherHeader: "foo",
+          'Content-Type': 'multipart/form-data',
+        }, [
+            // { name: 'image', uri: this.state.dataImage.uri, type: 'image/jpeg', name: this.state.dataImage.fileName },
+            { name: 'imagos', filename: this.state.dataImage.fileName, type: 'image/jpeg', data: this.state.dataImage.base64 },
+            { name: 'image_tag', data: this.state.dataImage.uri },
 
-  console.log('mulai upload');
-  console.log('Data');
-  console.log('Uri:'+this.state.dataImage.uri);
-  console.log('name:'+this.state.dataImage.fileName);
-    this.setState  ({loading : true })
-    const data = new FormData();
-    data.append('fileToUpload', {
-      uri: this.state.dataImage.uri,
-      type: 'image/jpeg',
-        name: this.state.dataImage.fileName,
-    });
-    const url= "http://114.7.96.242/eror/POLDA/Data-Analisis/USERTRIGER/tambah2.php"
-    fetch(url, {
-      method: 'post',
-      body: data
-    })
-    .then((response) => response.json())
-    .then((responseJson) =>
-      {
-        console.log("Data Dari Server");
-        console.log(responseJson);
-        this.setState  ({
-            loading : false
-           })
-      });
+          ]).then((resp) => {
+            console.log("Data Respon");
+            console.log(resp);
+            // var tempMSG = resp.data;
+            // tempMSG = tempMSG.replace(/^"|"$/g, '');
+            // Alert.alert(tempMSG);
 
-}
+          }).catch((e) => {
+            console.log("Erorrrr");
+            console.log(e);
+          })
+
+
+
+
+    }
+
   render() {
     const getDataJson = async () => {
       try {

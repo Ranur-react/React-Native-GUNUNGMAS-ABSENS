@@ -55,9 +55,10 @@ export default class MyComponent extends Component {
   selectFile = () => {
     var options = {
       mediaType: 'photo',
-      maxWidth:500,
-      maxHeight:500,
-      saveToPhotos:true
+      maxWidth:1000,
+      maxHeight:1000,
+      saveToPhotos:true,
+      includeBase64:true
     };
   launchCamera(options, res => {
       // console.log('Response = ', res);
