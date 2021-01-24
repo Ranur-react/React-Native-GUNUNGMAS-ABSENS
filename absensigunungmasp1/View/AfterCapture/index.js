@@ -15,8 +15,10 @@ import {
   ScrollView,
   Button
 } from 'react-native';
+
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RNFetchBlob from 'rn-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'; //Libarary Untuk mengirim File dengan API
 
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
@@ -37,43 +39,30 @@ export default class MyComponent extends Component {
           dataImage:''
         })
     }
-    InserttoSQL= async()=>{
 
+    InserttoSQL= async()=>{
       console.log('mulai  upload');
-        const data = new FormData();
-        data.append('fileToUpload', {
-          uri: this.state.dataImage.uri,
-          type: 'image/jpeg',
-            name: this.state.dataImage.fileName,
-        });
-        console.log("Isi Data");
-        console.log(data);
-        const locakurl="http://192.168.18.13/POLDA/Data-Analisis/USERTRIGER/tambah3.php"
-        const url= "http://114.7.96.242/eror/POLDA/Data-Analisis/USERTRIGER/tambah3.php"
-      await  RNFetchBlob.fetch('POST', locakurl, {
-          Authorization: "Bearer access-token",
-          otherHeader: "foo",
-          'Content-Type': 'multipart/form-data',
+      const data = new FormData();
+      const locaLurl="http://192.168.18.13/POLDA/Data-Analisis/USERTRIGER/FotoAbsensiUpload.php"
+
+      await  RNFetchBlob.fetch('POST', locaLurl, {
+            Authorization: "Bearer access-token",
+            otherHeader: "foo",
+            'Content-Type': 'multipart/form-data',
         }, [
-            // { name: 'image', uri: this.state.dataImage.uri, type: 'image/jpeg', name: this.state.dataImage.fileName },
-            { name: 'imagos', filename: this.state.dataImage.fileName, type: 'image/jpeg', data: this.state.dataImage.base64 },
+            { name: 'imagos', filename: this.state.dataImage.fileName, type: 'image/jpeg', data: this.state.dataImage.base64 }, //PPOST FILE dengan "name" sebagai variabel utama
             { name: 'image_tag', data: this.state.dataImage.uri },
 
           ]).then((resp) => {
             console.log("Data Respon");
             console.log(resp);
-            // var tempMSG = resp.data;
-            // tempMSG = tempMSG.replace(/^"|"$/g, '');
-            // Alert.alert(tempMSG);
-
           }).catch((e) => {
-            console.log("Erorrrr");
+            console.log("Terjadi Eror");
             console.log(e);
           })
-
-
-
-
+    }
+    GoBackAndReClickCamera=async()=>{
+       this.props.navigation.goBack();
     }
 
   render() {
@@ -81,9 +70,7 @@ export default class MyComponent extends Component {
       try {
           const jsonValue = await AsyncStorage.getItem('Json_Storage');
            const data =JSON.parse(jsonValue);
-           console.log("Cetak value tersebut");
            this.setState({dataImage:data})
-           console.log(this.state.dataImage);
         } catch(e) {
           Alert.alert(e);
         }
@@ -106,7 +93,7 @@ export default class MyComponent extends Component {
                 style={styles.FormButton} >
                  <Text style={styles.FormButtonLable}>Simpan</Text>
              </TouchableOpacity>
-             <TouchableOpacity
+             <TouchableOpacity  onPress={this.GoBackAndReClickCamera}
                style={styles.FormButtonChancel} >
                 <Text style={styles.FormButtonLableChancel}>Ulangi</Text>
             </TouchableOpacity>

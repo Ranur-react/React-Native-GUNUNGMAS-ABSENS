@@ -4,12 +4,12 @@ import React, { Component } from 'react';
 import { View, Text,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 //page-----------
 import AfterCapture from './../AfterCapture';
 import Capture from './../Capture';
 ///class
-
-/* @flow */
 
 function HomeScreen({ navigation }) {
   return (
@@ -38,6 +38,7 @@ function Details({ navigation }) {
 const Stack = createStackNavigator();
 
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Capture">

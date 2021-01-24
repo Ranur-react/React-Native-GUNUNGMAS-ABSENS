@@ -18,6 +18,9 @@ import {
 //library
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Geolocation from '@react-native-community/geolocation';
+import {getDistance, getPreciseDistance} from 'geolib';
+
 //asset
 import Svgicon from './../../assets/icons/Svgicon';
 import User from './../../assets/icons/user';
@@ -47,11 +50,56 @@ const storeDataJson = async (value) => {
     Alert.alert(e);
   }
 }
+
+
+
+let lokasibaca=()=>{
+console.log("Cetak Lokasi");
+Geolocation.getCurrentPosition(info =>{
+              console.log(info.coords)
+              var dis = getDistance(
+                {latitude: info.coords.latitude, longitude: info.coords.longitude},
+                {latitude: -0.9119737374720464, longitude:   100.36146126462073},
+
+              );
+
+              console.log("Jarak: ");
+              console.log(dis);
+              console.log("Meter");
+
+
+              var dis = getPreciseDistance(
+                {latitude: info.coords.latitude, longitude: info.coords.longitude},
+                {latitude: -0.9119737374720464, longitude:   100.36146126462073},
+              );
+
+              console.log("Presisi Jarak: ");
+              console.log(dis);
+              console.log("Meter");
+  } );
+
+
+}
+
+
 export default class MyComponent extends Component {
   constructor(props) {
     super(props);
   }
-
+  // componentDidMount() {
+  //   if(hasLocationPermission) {
+  //     Geolocation.getCurrentPosition(
+  //         (position) => {
+  //           console.log(position);
+  //         },
+  //         (error) => {
+  //           // See error code charts below.
+  //           console.log(error.code, error.message);
+  //         },
+  //         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+  //     );
+  //   }
+  // }
   selectFile = () => {
     var options = {
       mediaType: 'photo',
@@ -61,22 +109,19 @@ export default class MyComponent extends Component {
       includeBase64:true
     };
   launchCamera(options, res => {
-      // console.log('Response = ', res);
       if (!res.didCancel){
-
         storeDataString('Ft',res.uri);
         const jsonValue = JSON.stringify(res);
         storeDataJson(jsonValue);
-
         this.props.navigation.navigate('AfterCapture');
       }
     });
   };
 
   render() {
-
+    lokasibaca();
     return (
-      <View style={styles.Backcontainer}>
+      <View  style={styles.Backcontainer}>
         <View  style={styles.container}>
         <View  style={styles.Textcontainer}>
             <TouchableOpacity style={styles.backButton} onPress={() =>this.props.navigation.goBack()} >
