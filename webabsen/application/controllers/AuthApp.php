@@ -56,16 +56,13 @@ class AuthApp extends CI_Controller
            if ($this->Mauth->check_pass($usrname, $password)->num_rows() !=0 ) {
                  $data=$this->Mauth->check_pass($usrname, $password)->row_array();
                  $dk=$this->Mdata_karyawan->shows($data['kode_user']);
-                 if (!$dk==null) $json['DataKARRRRYWAN'] = "Ada karyawan"; 
-                    else $json['DataKARRRRYWAN'] = "GAK Ada karyawan";
-
+                
                                 $json['Data'] = $data;
                                 $json['IDkaryawan'] = $data['kode_user'];
-                                $json['namakaryawan'] = "Admin";
+                                 if (!$dk==null) $json['namakaryawan'] = $dk['nama_karyawan']; 
+                                    else $json['namakaryawan'] = "Admin";
                                 $json['levelakses'] = $data['level_user'];
                                 $json['status'] = $data['status_user'];
-                
-
             $json['pesan'] = "Passowrd benar";
             } else {
                 $json['status'] = FALSE;
