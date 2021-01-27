@@ -2,6 +2,7 @@
 class Mdata_karyawan extends CI_Model
 {
 	protected $tabel = 'karyawan';
+	protected $tabeluser = 'user';
 	public function getall()
 	{
 		$this->db->from($this->tabel);
@@ -47,6 +48,9 @@ class Mdata_karyawan extends CI_Model
 	}
 	public function destroy($kode)
 	{
+		 $this->db->simple_query("DELETE FROM " . $this->tabeluser . " WHERE kode_user='$kode'");
+
 		return $this->db->simple_query("DELETE FROM " . $this->tabel . " WHERE id_karyawan='$kode'");
+	
 	}
 }

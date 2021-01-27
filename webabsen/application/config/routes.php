@@ -18,3 +18,4 @@ $route['ap'] = 'Absens/AbsenPulang';
 $route['jak'] = 'Absens/JadwalAbsenKaryawan';
 $route['lah'] = 'Absens/LaporanAbsenHarian';
 $route['lam'] = 'Absens/LaporanAbsenMingguan';
+$route['tmp'] = 'Absens/TmpKaryawan';
