@@ -88,7 +88,11 @@
                             $('.passwordform').addClass('has-error');
                             $('.password').html("uncorrect password <i class='text-red fa fa-close'></i>");
                         }
-                    }
+                    },
+                        fail: function(xhr, textStatus, errorThrown){
+                           console.log(xhr, textStatus, errorThrown);
+                           alert('request failed');
+                        }
 
                 });
             });
