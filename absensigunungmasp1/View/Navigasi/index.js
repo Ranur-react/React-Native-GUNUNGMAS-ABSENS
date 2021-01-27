@@ -9,6 +9,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //page-----------
 import AfterCapture from './../AfterCapture';
 import Capture from './../Capture';
+import Home from './../Home';
+import Login from './../Login';
+import Sakit from './../Izinsakit';
 ///class
 
 function HomeScreen({ navigation }) {
@@ -41,10 +44,12 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Capture">
+      <Stack.Navigator initialRouteName="Home">
       <Stack.Screen   options={{ headerShown:false, }}  name="HomeScreen" component={HomeScreen} />
       <Stack.Screen   options={{ headerShown:false, }}  name="AfterCapture" component={AfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Capture" component={Capture} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="Home" component={Home} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

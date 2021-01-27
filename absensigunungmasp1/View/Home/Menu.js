@@ -16,17 +16,34 @@ import {
   Button
 } from 'react-native';
 
-
+import { CommonActions } from '@react-navigation/native';
 
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 
 let Menu=(props)=>{
+
   let code=[];
+  let opasisi=1;
+  let disable=false;
+  const Navigation=props.props.props.navigation;
+    let buttonactions=()=>{
+          Navigation.dispatch(
+            CommonActions.navigate(
+              {
+                name:props.Destinations,
+                params:{
+                  titlee:'xxxxx'
+              }
+            })
+            )
+
+    }
+  if (props.status) {disable=false;opasisi="1";}else{disable=true;opasisi="0.5"}
   code.push(
-    <TouchableOpacity style={styles.menuCard}>
+    <TouchableOpacity disabled={disable} style={styles.menuCard} onPress={buttonactions}>
         <View style={styles.icon}>
-        <Svgicon name={props.icon} color={props.color} />
+        <Svgicon key={2} name={props.icon} color={props.color} opacity={opasisi} />
         <Text style={styles.labelIcon}>{props.label}</Text>
         </View>
     </TouchableOpacity >
@@ -34,24 +51,32 @@ let Menu=(props)=>{
   return code;
 }
 
-let MenuLoop=(props)=>{
-  let    cek=[
-          'Absen Masuk',
-          'Absen Pulang',
-          'Surat Sakit',
-          'Surat Izin'
-          ];
+let MenuLoop=(subprops)=>{
+  // console.log(subprops.props.navigation);
+// subprops.props.navigation.navigate('Capture');
+  let Fungtes=()=>{
+    console.log(props.nama);
+    console.log("Bisa..");
+  }
   let code=[];
-    for (var i = 0; i < cek.length; i++) {
-        code.push(
-          <View>
-            <Menu icon='Enter' color='#f18f01' label={cek[i]} />
-          </View>
-          )
+  const listOBJ ={
+    0:{nama:'Absen Masuk',icon:'Enter',status:true,color:'',dest:"Capture"},
+    1:{nama:'Absen Pulang',icon:'Exit',status:true,color:'',dest:"AfterCapture"},
+    2:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
+    3:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
+  };
+
+  for (var key in listOBJ) {
+    if (listOBJ.hasOwnProperty(key)) {
+      code.push(
+        <View>
+          <Menu key={key} props={subprops} Destinations={listOBJ[key].dest}  icon={listOBJ[key].icon} label={listOBJ[key].nama} status={listOBJ[key].status} klik={listOBJ[key].exex}  />
+        </View>
+        )
     }
+  }
     return code;
 }
-
 export default MenuLoop;
 
 const styles = StyleSheet.create({

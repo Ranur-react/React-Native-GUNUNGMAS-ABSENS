@@ -86,21 +86,9 @@ export default class MyComponent extends Component {
   constructor(props) {
     super(props);
   }
-  // componentDidMount() {
-  //   if(hasLocationPermission) {
-  //     Geolocation.getCurrentPosition(
-  //         (position) => {
-  //           console.log(position);
-  //         },
-  //         (error) => {
-  //           // See error code charts below.
-  //           console.log(error.code, error.message);
-  //         },
-  //         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-  //     );
-  //   }
-  // }
   selectFile = () => {
+    console.log(this.props.navigation);
+
     var options = {
       mediaType: 'photo',
       maxWidth:1000,
@@ -119,7 +107,8 @@ export default class MyComponent extends Component {
   };
 
   render() {
-    lokasibaca();
+    // lokasibaca();
+
     return (
       <View  style={styles.Backcontainer}>
         <View  style={styles.container}>

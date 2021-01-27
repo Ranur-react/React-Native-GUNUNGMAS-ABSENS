@@ -22,6 +22,7 @@ import Menuabsen from './Menu';
 import HistoryAbsen from './History';
 
 
+
 const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
 
@@ -34,7 +35,10 @@ export default class Home extends Component {
     this.state = {
       data:undefined,
       TpScroll:'',
-      arrayytest:['1','2']
+      arrayytest:['1','2'],
+      Jarak:'',
+      Pjarak:'',
+      tes:300
     }
   }
 
@@ -59,16 +63,18 @@ onScrollLayout=(e)=>{
           this.setState({TpScroll:'rgba(255,255,255,0)'})
       }
 }
+
   render() {
-
-
+console.disableYellowBox = true;
     return (
-      <View style={styles.Backcontainer}>
+      <View  style={styles.Backcontainer}>
       <View  style={styles.container}>
         <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
-              <Deskripsiabsen />
-                <View key="123" style={styles.IconBox}>
-                    <Svgicon name="User" />
+              {
+               // <Deskripsiabsen   />
+              }
+                <View  style={styles.IconBox}>
+                    <Svgicon key={1} name="User" />
               </View>
           </View>
         </View>
@@ -78,13 +84,13 @@ onScrollLayout=(e)=>{
         <View style={styles.container}>
               <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
               <View style={styles.menuContainer}>
-                <Menuabsen />
+                <Menuabsen key={2} props={this.props} />
               </View>
           </View>
           <View style={styles.container}>
                 <Text  style={styles.TextTitleWhite}>History Absen</Text>
                 <View style={styles.menuContainer}>
-                      <HistoryAbsen />
+                      <HistoryAbsen key={3} />
                 </View>
             </View>
         </View>

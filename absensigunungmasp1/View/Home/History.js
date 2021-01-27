@@ -50,7 +50,7 @@ class ClassHIstory extends Component{
 let HistoryLoop=()=>{
 let code=[];
   for (var i = 0; i < 10; i++) {
-    code.push(<ClassHIstory />)
+    code.push(<ClassHIstory key={i} />)
   }
   return code;
 }
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(92,177,255,1)',
     width:370,
     height:91,
-    margin:20,
+    // margin:20,
+    marginBottom:10,
     padding:15.5,
     borderRadius:20,
     shadowColor: "rgba(0,0,0,0.05)",

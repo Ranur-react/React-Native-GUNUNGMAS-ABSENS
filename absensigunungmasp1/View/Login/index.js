@@ -15,26 +15,33 @@ import {
 } from 'react-native';
 import SvgComponent from './../../assets/icons/show';
 const {width:WIDTH} =Dimensions.get('window');
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const storeDataString = async (key,value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    Alert.alert(e);
+  }
+}
 
 export default class Login extends Component {
-  state={
-    email:'',
-    paswd:'',
-    showPassword:true,
-    mailNotifikasi:'',
-    paswdNotifikasi:'',
 
-  }
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props);
+    this.state={
+        email:'',
+        paswd:'',
+        showPassword:true,
+        mailNotifikasi:'',
+        paswdNotifikasi:'',
+
+      }
   }
   render() {
-    let onPress=()=>{
-     a=32
-   }
-//Password Hidden Toggle
+
+
    let PasswordShowTougle=()=>{
      if(this.state.showPassword == true){
         this.setState({showPassword:false})
@@ -44,8 +51,6 @@ export default class Login extends Component {
      }
 
    };
-
-//Input E-mail validasi Toogle
 let EmailInputTougle=()=>{
   if(this.state.email.includes("@")){
     this.setState({mailNotifikasi:""})
@@ -55,14 +60,13 @@ let EmailInputTougle=()=>{
   }
 }
 
-//Input Password validasi Toogle
 
 let paswdInputTougle=()=>{
   setInterval(()=>{ this.setState({showPassword:true})
     },30000);
 var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); //Angka , Simbol dan Huruf
 var passw=  /^[A-Za-z]\w{7,14}$/;  //Angka dan Huruf
-alph=  /^[A-Za-z]+$/; //Angka kecil dan Besar
+// alph=  /^[A-Za-z]+$/; //Angka kecil dan Besar
 a=this.state.paswd.length;
 pas=this.state.paswd;
       if(a >= 8){
@@ -77,8 +81,38 @@ pas=this.state.paswd;
       }
 }
 
-//hide/show keyboard kompone
+let onPressLogin=()=>{
+ InserttoSQL();
+}
+let InserttoSQL=()=>{
+  fetch("http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/Passwordcek", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.email,
+        password: this.state.paswd,
+      })
+    }).then(response => response.json()).then(responseJson => {
+        console.log(responseJson);
+        console.log(responseJson.status);
+        if (responseJson.status) {
+          this.props.navigation.navigate('Home');
+          storeDataString('username',this.state.email);
+          storeDataString('password',this.state.paswd);
+        }else{
+          console.log("Gagal");
+          this.setState({paswdNotifikasi:responseJson.pesan});
+          this.setState({mailNotifikasi:'Pastikan kamu terdaftar'})
 
+        }
+      }).catch(error => {
+        console.error(error);
+      });
+
+}
     return (
       <TouchableWithoutFeedback   onPress={() => Keyboard.dismiss()}>
           <View  style={styles.container}>
@@ -106,7 +140,7 @@ pas=this.state.paswd;
                      </View>
                        <TouchableOpacity
                          style={styles.FormButton}
-                         onPress={onPress}>
+                         onPress={onPressLogin}>
                           <Text style={styles.FormButtonLable}>Login</Text>
                       </TouchableOpacity>
              </View>
@@ -157,7 +191,7 @@ const styles = StyleSheet.create({
   paddingLeft:20,
   borderColor: 'rgba(0,0,0,0.5)',
   borderRadius:50,
-  fontFamily:'Raleway',
+  fontFamily:'Raleway-Medium',
   fontSize:16,
   borderWidth:1,
   borderStyle:'solid'
@@ -192,7 +226,7 @@ shadowOffset : { width: 1, height: 13},
   color:'#FE4102',
   paddingLeft:20
 },Label:{
-  fontFamily: 'Raleway',
+  fontFamily: 'Raleway-Medium',
   fontSize: 10,
   lineHeight: 11.74,
   paddingLeft:20,
