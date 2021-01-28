@@ -15,9 +15,10 @@ class TmpKaryawan extends CI_Controller
 		 $obj = json_decode($js,true);
 		 $i=count($obj);
 		for ($r=0; $r < $i ; $r++) { 
-			echo $obj[$r];
 				$this->Mtmp_karyawan->store($obj[$r]);
 		}
+		$data['pesan']="BIsa";
+		echo json_encode($data);
 	}
 
 	

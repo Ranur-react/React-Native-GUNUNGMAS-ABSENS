@@ -1,27 +1,34 @@
 <script>
-let datakaryawan={};
-let i=0
-			function centang(e) {
-				datakaryawan[i]=e;
-				i++;
-				console.log(datakaryawan);
+var datakaryawan={};
+var i=0
+	function centang(e) {
+		datakaryawan[i]=e;
+		i++;
+		console.log(datakaryawan);
+			
+	}
+	$( document ).ready(function() {
+					$(document).on('click', '.btntambahTMP', function(e) {
+					$.ajax({
+						type: "post",
+						url: "<?= site_url('Absens/TmpKaryawan') ?>",
+						data: JSON.stringify(datakaryawan),
+						dataType: "json",
+						cache: true,
+						success: function(response) {
+								console.log(response);
+								console.log("Berhasil");
+								IsiTabel();
+								datakaryawan=[];
+								//reset
+								// for (var i in datakaryawan) delete datakaryawan[i];
+								console.log(datakaryawan);
+						},
+					});
 					
-			}
-
-
-		$(document).on('click', '.btntambahTMP', function(e) {
-		$.ajax({
-			type: "post",
-			url: "<?= site_url('Absens/TmpKaryawan') ?>",
-			data: JSON.stringify(datakaryawan),
-			dataType: "json",
-			cache: false,
-			success: function(response) {
-
-			},
-		});
-		
+				});		
 	});
+
 </script>
 <div class="modal fade" id="modal_tambah">
 	<div class="modal-dialog">
@@ -76,7 +83,7 @@ let i=0
 				
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btntambahTMP" onclick="IsiTabel()"><i class="icon-plus-circle2"></i> Tambah</button>
+				<button type="button" class="btn btn-primary btntambahTMP"><i class="icon-plus-circle2"></i> Tambah</button>
 				<button type="button" class="btn btn-danger"  onclick="IsiTabel()" data-dismiss="modal"><i class="icon-cross2"></i> Close</button>
 			</div>
 		</div>

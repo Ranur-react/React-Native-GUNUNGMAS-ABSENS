@@ -17,6 +17,9 @@
 	// });
 </script>
 <script>
+// 	let datakaryawan={};
+// let i=0;
+
 		$(document).on('click', '.btnback', function(e) {
 		window.location=("<?= site_url('Absens/jadwalabsenkaryawan/index') ?>")
 	});
