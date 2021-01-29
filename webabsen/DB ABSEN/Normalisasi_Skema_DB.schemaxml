@@ -13,6 +13,7 @@
 <sql_create_table>CREATE TABLE `detail_jadwal` (
   `id_jadwal_detail` char(50) DEFAULT NULL,
   `id_karyawan_detail` char(50) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
   `status_kehadiran` enum('1','0','i','s') DEFAULT NULL,
   `status_displin` enum('0','1') DEFAULT NULL,
   KEY `id_jadwal_detail` (`id_jadwal_detail`),
@@ -28,11 +29,9 @@
 <height>180</height>
 <sql_create_table>CREATE TABLE `jadwal_absen_karyawan` (
   `id_jadwal` char(30) NOT NULL,
-  `tanggal_akhir` date DEFAULT NULL,
-  `tanggal_awal` date DEFAULT NULL,
+  `rentangSet` varchar(250) DEFAULT NULL,
   `id_shift_absensi` char(30) DEFAULT NULL,
   `id_lokasi_absensi` varchar(250) DEFAULT NULL,
-  `id_karyawan_absensi` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_jadwal`),
   KEY `id_lokasi_absensi` (`id_lokasi_absensi`),
   KEY `id_shift_absensi` (`id_shift_absensi`),
@@ -71,7 +70,7 @@
 <left>1</left>
 <top>-4</top>
 <width>164</width>
-<height>194</height>
+<height>203</height>
 <sql_create_table>CREATE TABLE `absen_keluar` (
   `id_absen_keluar` char(30) NOT NULL,
   `id_karyawan_keluar` char(30) DEFAULT NULL,

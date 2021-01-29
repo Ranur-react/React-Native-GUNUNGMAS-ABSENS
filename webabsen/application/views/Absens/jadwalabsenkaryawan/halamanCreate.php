@@ -62,7 +62,7 @@ IsiTabel() ;
 						$('.' + i).text(m);
 					});
 				} else {
-					window.location.href = "<?= site_url('jak') ?>";
+					// window.location.href = "<?= site_url('jak') ?>";
 				}
 			},
 			complete: function() {
@@ -102,13 +102,11 @@ IsiTabel() ;
 					                  <div class="input-group-addon">
 					                    <i class="fa fa-calendar"></i>
 					                  </div>
-					                  <input type="text" class="form-control pull-right" id="reservation">
+					                  <input type="text"  name="rentang" class="form-control pull-right" id="reservation">
 					                </div>
 					                <!-- /.input group -->
 				                </div>
 				              <!-- /.form group -->
-
-							
 							
 					</div>
 					<div class="col-xs-4">
