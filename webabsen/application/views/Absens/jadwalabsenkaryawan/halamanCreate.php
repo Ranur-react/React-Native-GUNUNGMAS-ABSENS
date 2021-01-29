@@ -62,7 +62,7 @@ IsiTabel() ;
 						$('.' + i).text(m);
 					});
 				} else {
-					// window.location.href = "<?= site_url('jak') ?>";
+					window.location.href = "<?= site_url('jak') ?>";
 				}
 			},
 			complete: function() {

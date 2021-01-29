@@ -79,8 +79,8 @@ public function getCustome($p)
 							$this->db->insert("detail_jadwal", $dataDetail);
 						}
 					}
+$this->db->query("DELETE FROM `tmp_karyawan`");
 
-$this->db->query("SELECT * FROM `tmp_karyawan`");
 		
 	}
 
