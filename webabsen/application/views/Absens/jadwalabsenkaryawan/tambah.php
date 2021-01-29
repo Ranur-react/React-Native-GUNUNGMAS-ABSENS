@@ -1,13 +1,34 @@
 <script>
-	$(function() {
-		$('.datepicker').datepicker({
-			autoclose: true
-		});
-		$('input[type="radio"].minimal').iCheck({
-			checkboxClass: 'icheckbox_minimal-blue',
-			radioClass: 'iradio_minimal-blue'
-		})
+var datakaryawan={};
+var i=0
+	function centang(e) {
+		datakaryawan[i]=e;
+		i++;
+		console.log(datakaryawan);
+			
+	}
+	$( document ).ready(function() {
+					$(document).on('click', '.btntambahTMP', function(e) {
+					$.ajax({
+						type: "post",
+						url: "<?= site_url('Absens/TmpKaryawan') ?>",
+						data: JSON.stringify(datakaryawan),
+						dataType: "json",
+						cache: true,
+						success: function(response) {
+								console.log(response);
+								console.log("Berhasil");
+								IsiTabel();
+								datakaryawan=[];
+								//reset
+								// for (var i in datakaryawan) delete datakaryawan[i];
+								console.log(datakaryawan);
+						},
+					});
+					
+				});		
 	});
+
 </script>
 <div class="modal fade" id="modal_tambah">
 	<div class="modal-dialog">
@@ -17,15 +38,13 @@
 					<span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">Pilih Karyawan</h4>
 			</div>
-			<?= form_open('Absens/DataKaryawan/store', ['class' => 'form_create']) ?>
 			<div class="modal-body">
-
 				<div class="row">
 	<div class="col-xs-50">
 		<div class="box">
 			<div class="box-body table-responsive">
 				<?= $this->session->flashdata('pesan'); ?>
-				<table class="table table-bordered table-striped data-tabel">
+				<table class="table table-bordered table-striped ">
 					<thead>
 						<tr>
 							<th class="text-center">No.</th>
@@ -42,7 +61,7 @@
 						foreach ($data as $d) { ?>
 							<tr>
 								<td class="text-center" width="80px"><?= $no . '.'; ?></td>
-								<td><input type="checkbox"></td>
+								<td><input type="checkbox"  onclick="centang('<?= $d['id_karyawan']   ?>')" /></td>
 								<td><?= $d['id_karyawan'] ?></td>
 								<td><?= $d['nama_karyawan'] ?></td>
 								<td><?= $d['email'] ?></td>
@@ -64,10 +83,9 @@
 				
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary btnStore"><i class="icon-floppy-disk"></i> Simpan</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon-cross2"></i> Close</button>
+				<button type="button" class="btn btn-primary btntambahTMP"><i class="icon-plus-circle2"></i> Tambah</button>
+				<button type="button" class="btn btn-danger"  onclick="IsiTabel()" data-dismiss="modal"><i class="icon-cross2"></i> Close</button>
 			</div>
-			<?= form_close() ?>
 		</div>
 	</div>
 </div>

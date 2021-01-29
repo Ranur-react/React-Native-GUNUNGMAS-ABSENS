@@ -2,6 +2,7 @@
 class Mdata_karyawan extends CI_Model
 {
 	protected $tabel = 'karyawan';
+	protected $tabeluser = 'user';
 	public function getall()
 	{
 		$this->db->from($this->tabel);
@@ -16,7 +17,18 @@ class Mdata_karyawan extends CI_Model
 			'nohp' => $params['nohp'],
 			'alamat' => $params['alamat'],
 		];
-		return $this->db->insert($this->tabel, $data);
+		$karyawan= $this->db->insert($this->tabel, $data);
+
+		$data_user = [
+			'kode_user' => $params['idkaryawan'],
+			'email' => $params['email'],
+			'password' => md5('123'),
+			'level_user' => '2',
+			'status_user' => '1',
+		];
+		$this->db->set('created_at', 'NOW()', FALSE);
+		$user= $this->db->insert('user',$data_user);
+		return array($karyawan,$user);
 	}
 	public function shows($kode)
 	{
@@ -36,6 +48,9 @@ class Mdata_karyawan extends CI_Model
 	}
 	public function destroy($kode)
 	{
+		 $this->db->simple_query("DELETE FROM " . $this->tabeluser . " WHERE kode_user='$kode'");
+
 		return $this->db->simple_query("DELETE FROM " . $this->tabel . " WHERE id_karyawan='$kode'");
+	
 	}
 }

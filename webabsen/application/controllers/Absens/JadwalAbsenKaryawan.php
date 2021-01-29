@@ -13,6 +13,7 @@ class JadwalAbsenKaryawan extends CI_Controller
 		$this->load->model('Absens/Mjadwal_absen_karyawan');
 		$this->load->model('Absens/Mwaktu_absensi');
 		$this->load->model('Absens/Mlokasi_absensi');
+		$this->load->model('Absens/Mtmp_karyawan');
 		$this->load->model('Absens/Mdata_karyawan');
 	}
 	public function index()
@@ -22,6 +23,7 @@ class JadwalAbsenKaryawan extends CI_Controller
 			'page'  => 'Jadwal Absensi Karyawan',
 			'small' => 'List data Jadwal Absensi Karyawan',
 			'urls'  => '<li class="active">Jadwal Absensi Karyawan</li>',
+			'dlokasi' => $this->Mlokasi_absensi->getall(),
 			'data'  => $this->Mjadwal_absen_karyawan->getall()
 		];
 		$this->template->display('Absens/jadwalabsenkaryawan/index', $data);
@@ -46,10 +48,23 @@ class JadwalAbsenKaryawan extends CI_Controller
 		
 		$data['dwaktu'] = $this->Mwaktu_absensi->getall();
 		$data['dlokasi'] = $this->Mlokasi_absensi->getall();
-		$data['dkaryawan'] = $this->Mdata_karyawan->getall();
+		$data['Tmpkaryawan'] = $this->Mtmp_karyawan->getall();
 		$this->template->display('Absens/jadwalabsenkaryawan/halamanCreate', $data);
 	}
 
+	public function TabelTMP()
+	{
+		$data['Tmpkaryawan'] = $this->Mtmp_karyawan->getall();
+		$this->load->view('Absens/jadwalabsenkaryawan/tabel',$data);
+		
+	}
+	public function TabelJadwal()
+	{
+				$all = $this->input->post(null, TRUE);
+		$data['dataJadwal'] = $this->Mjadwal_absen_karyawan->getCustome($all);
+		$this->load->view('Absens/jadwalabsenkaryawan/tabelJdwal',$data);
+		
+	}
 	public function tambah()
 	{
 		$data = [
@@ -59,11 +74,15 @@ class JadwalAbsenKaryawan extends CI_Controller
 			'urls'  => '<li class="active">Data Karyawan</li>',
 			'data'  => $this->Mdata_karyawan->getall()
 		];
-		$this->template->display('Absens/datakaryawan/index', $data);
 
-		$this->load->view('Absens/jadwalabsenkaryawan/tambah','');
+		$this->load->view('Absens/jadwalabsenkaryawan/tambah',$data);
 	}
-
+	// public function tambah_KARTMP()
+	// {
+	// 			$all = $this->input->post(null, TRUE);
+	// 			echo $all;
+	// 			// $this->Mjadwal_absen_karyawan->store($all);
+	// }
 
 
 
@@ -72,18 +91,19 @@ class JadwalAbsenKaryawan extends CI_Controller
 	public function store()
 	{
 		if ($this->input->is_ajax_request() == TRUE) {
-			$this->form_validation->set_rules('idjadwal', 'Id Jadwal', 'required|is_unique[jadwal_absen_karyawan.id_jawal]');
+			$this->form_validation->set_rules('idjadwal', 'Id Jadwal', 'required|is_unique[jadwal_absen_karyawan.id_jadwal]');
 			$this->form_validation->set_rules('rentang', 'Rentang Tanggal', 'required');
 			$this->form_validation->set_rules('shift', 'Shift', 'required');
 			$this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
-			$this->form_validation->set_rules('karyawan', 'Karyawan', 'required');
 			$this->form_validation->set_message('required', '%s tidak boleh kosong.');
 			$this->form_validation->set_message('is_unique', '%s sudah digunakan.');
 			if ($this->form_validation->run() == TRUE) {
 				$all = $this->input->post(null, TRUE);
-				$this->Mjadwal_absen_karyawan->store($all);
+
+				 $this->Mjadwal_absen_karyawan->storerange($all);
 				$json['status'] = true;
 				$this->session->set_flashdata('pesan', sukses('Data absensi karyawan berhasil tersimpan.'));
+
 			} else {
 				$json['status'] = false;
 				$json['pesan']  = $this->form_validation->error_array();

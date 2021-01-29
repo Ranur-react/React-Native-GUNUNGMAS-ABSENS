@@ -3,6 +3,39 @@
 		<div class="box">
 			<div class="box-header with-border">
 				<button class="btn bg-olive btntambah"><i class="icon-plus3"></i> Tambah Data</button>
+				<div class="row">
+					<div class="col-xs-8">
+					</div>
+					<div class="col-xs-2">
+						<div class="form-group">
+									<label>Lokasi Absensi</label>
+									<select onchange="IsiTabel()" class="form-control pilLokasi" name="lokasi">
+										<?php foreach ($dlokasi as $d) : ?>
+											<option  value="<?php echo $d['id_set_lokasi']; ?>"><?php echo $d['lokasi']; ?></option>
+										<?php endforeach; ?>
+									</select>
+									<span class="error lokasi text-red"></span>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						
+
+						<div class="form-group">
+							<label>Bulan</label>
+							<select onchange="IsiTabel()" class="form-control pilBulan">
+								<?php 
+								$i = 0; 
+								$months = array( "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+								for($i = 0; $i <= 11; $i++){?>
+								<option value="<?= $i+1 ?>" <?= date('m')== $i+1 ? "selected" : null ?> ><?= $months[$i] . "\n" ?></option>
+								<?php  } ?>
+
+							</select>
+						</div>
+
+					</div>
+
+				</div>
 			</div>
 			<div class="box-body table-responsive">
 				<?= $this->session->flashdata('pesan'); ?>
@@ -11,30 +44,15 @@
 						<tr>
 							<th class="text-center">No.</th>
 							<th>Id Jadwal</th>
-							<th>Rentang Tanggal</th>
+							<th>Tanggal</th>
 							<th>Shift Karyawan</th>
 							<th>Lokasi Absensi</th>
 							<th>Nama Karyawan</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
-					<tbody>
-						<?php $no = 1;
-						foreach ($data as $d) { ?>
-							<tr>
-								<td class="text-center" width="40px"><?= $no . '.'; ?></td>
-								<td><?= $d['id_jadwal'] ?></td>
-								<td><?= $d['rentang_tanggal'] ?></td>
-								<td><?= $d['id_shift_absensi'] ?></td>
-								<td><?= $d['id_lokasi_absensi'] ?></td>
-								<td><?= $d['id_karyawan_absensi'] ?></td>
-								<td class="text-center" width="60px">
-									<a href="javascript:void(0)" onclick="edit('<?= $d['id_jadwal'] ?>')"><i class="icon-pencil7 text-green" data-toggle="tooltip" data-original-title="Edit Data"></i></a>
-									<a href="<?= site_url('Absens/JadwalAbsenKaryawan/destroy/' . $d['id_jadwal']) ?>" onclick="return confirm('Yakin akan hapus data ini ?');"><i class="icon-trash text-red" data-toggle="tooltip" data-original-title="Hapus Data"></i></a>
-								</td>
-							</tr>
-						<?php $no++;
-						} ?>
+					<tbody class="isiTabel">
+
 					</tbody>
 				</table>
 			</div>
@@ -43,6 +61,19 @@
 </div>
 <div id="tampil_modal"></div>
 <script>
+	function IsiTabel() {
+			$.ajax({
+			type: "post",
+			url: "<?= site_url('Absens/JadwalAbsenKaryawan/TabelJadwal') ?>",
+			data: "&PilBulan="+ $('.pilBulan').val()+"&pilLokasi=" + $('.pilLokasi').val(),
+			cache: false,
+			success: function(data) {
+				$('.isiTabel').html(data);
+
+			}
+		});
+}
+IsiTabel();
 	$(document).on('click', '.btntambah', function(e) {
 		window.location=("<?= site_url('Absens/JadwalAbsenKaryawan/HalamanCreate') ?>")
 	});

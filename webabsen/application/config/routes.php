@@ -5,7 +5,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'auth/logout';
 $route['login'] = 'auth/validate';
-$route['user'] = 'master/User';
+$route['user'] = 'Absens/User';
 $route['Usernamecek'] = 'auth/Usernamecek';
 $route['Passwordcek'] = 'auth/Passwordcek';
 
@@ -18,3 +18,4 @@ $route['ap'] = 'Absens/AbsenPulang';
 $route['jak'] = 'Absens/JadwalAbsenKaryawan';
 $route['lah'] = 'Absens/LaporanAbsenHarian';
 $route['lam'] = 'Absens/LaporanAbsenMingguan';
+$route['tmp'] = 'Absens/TmpKaryawan';
