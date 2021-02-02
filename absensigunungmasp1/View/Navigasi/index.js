@@ -44,7 +44,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
       <Stack.Screen   options={{ headerShown:false, }}  name="HomeScreen" component={HomeScreen} />
       <Stack.Screen   options={{ headerShown:false, }}  name="AfterCapture" component={AfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Capture" component={Capture} />

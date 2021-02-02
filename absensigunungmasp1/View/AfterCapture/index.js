@@ -36,14 +36,18 @@ export default class MyComponent extends Component {
       super(props);
       this.state=({
           datareact:86,
-          dataImage:''
+          dataImage:'',
+          user:''
         })
     }
 
     InserttoSQL= async()=>{
       console.log('mulai  upload');
+      console.log('mulai  cek session');
+
+      console.log(this.state.user);
       const data = new FormData();
-      const locaLurl="http://192.168.18.13/POLDA/Data-Analisis/USERTRIGER/FotoAbsensiUpload.php"
+      const locaLurl="http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/"
 
       await  RNFetchBlob.fetch('POST', locaLurl, {
             Authorization: "Bearer access-token",
@@ -51,11 +55,13 @@ export default class MyComponent extends Component {
             'Content-Type': 'multipart/form-data',
         }, [
             { name: 'imagos', filename: this.state.dataImage.fileName, type: 'image/jpeg', data: this.state.dataImage.base64 }, //PPOST FILE dengan "name" sebagai variabel utama
-            { name: 'image_tag', data: this.state.dataImage.uri },
+            { name: 'ID', data: this.state.user.IDkaryawan },
+            { name: 'NamaKaryawan', data: this.state.user.namakaryawan },
+            { name: 'StatusAbsen', data: "Masuk" },
 
           ]).then((resp) => {
-            console.log("Data Respon");
-            console.log(resp);
+            console.log("Data Respon-->");
+            console.log(resp.data);
           }).catch((e) => {
             console.log("Terjadi Eror");
             console.log(e);
@@ -75,6 +81,16 @@ export default class MyComponent extends Component {
           Alert.alert(e);
         }
       }
+      const getDataLoginJson = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('Json_Login');
+             const data =JSON.parse(jsonValue);
+             this.setState({user:data})
+          } catch(e) {
+            Alert.alert(e);
+          }
+        }
+getDataLoginJson();
 
     return (
       <View onLayout={getDataJson} style={styles.Backcontainer}>

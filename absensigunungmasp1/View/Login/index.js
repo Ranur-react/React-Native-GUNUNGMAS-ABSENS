@@ -16,7 +16,8 @@ import {
 import SvgComponent from './../../assets/icons/show';
 const {width:WIDTH} =Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+const IPSERVER="http://192.168.18.13";
+const URI="/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/Passwordcek";
 const storeDataString = async (key,value) => {
   try {
     await AsyncStorage.setItem(key, value);
@@ -24,6 +25,14 @@ const storeDataString = async (key,value) => {
     Alert.alert(e);
   }
 }
+  const storeDataJson = async (e) => {
+    try {
+      await AsyncStorage.setItem('Json_Login', e);
+    } catch (e) {
+      Alert.alert(e);
+    }
+  }
+
 
 export default class Login extends Component {
 
@@ -67,8 +76,8 @@ let paswdInputTougle=()=>{
 var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"); //Angka , Simbol dan Huruf
 var passw=  /^[A-Za-z]\w{7,14}$/;  //Angka dan Huruf
 // alph=  /^[A-Za-z]+$/; //Angka kecil dan Besar
-a=this.state.paswd.length;
-pas=this.state.paswd;
+let a=this.state.paswd.length;
+let pas=this.state.paswd;
       if(a >= 8){
         if(strongRegex.test(pas)){
           this.setState({paswdNotifikasi:"bisaa"})
@@ -85,7 +94,8 @@ let onPressLogin=()=>{
  InserttoSQL();
 }
 let InserttoSQL=()=>{
-  fetch("http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/Passwordcek", {
+  storeDataString('IPSERVER',IPSERVER);
+  fetch(IPSERVER+URI, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -99,19 +109,24 @@ let InserttoSQL=()=>{
         console.log(responseJson);
         console.log(responseJson.status);
         if (responseJson.status) {
+          const jsonValue = JSON.stringify(responseJson);
+          setTimeout(()=>storeDataJson(jsonValue),1000);
           this.props.navigation.navigate('Home');
-          storeDataString('username',this.state.email);
-          storeDataString('password',this.state.paswd);
+          // storeDataString('ID',responseJson.IDkaryawan);
+          // storeDataString('NamaKaryawan',responseJson.namakaryawan);
+          // storeDataString('username',this.state.email);
+          // storeDataString('password',this.state.paswd);
+          // storeDataString('level',responseJson.levelakses);
+          // storeDataString('status',responseJson.status);
         }else{
           console.log("Gagal");
           this.setState({paswdNotifikasi:responseJson.pesan});
-          this.setState({mailNotifikasi:'Pastikan kamu terdaftar'})
+          this.setState({mailNotifikasi:'Pastikan kamu terdaftar'});
 
         }
       }).catch(error => {
         console.error(error);
       });
-
 }
     return (
       <TouchableWithoutFeedback   onPress={() => Keyboard.dismiss()}>

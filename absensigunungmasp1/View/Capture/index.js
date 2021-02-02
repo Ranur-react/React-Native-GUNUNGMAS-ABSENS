@@ -87,8 +87,6 @@ export default class MyComponent extends Component {
     super(props);
   }
   selectFile = () => {
-    console.log(this.props.navigation);
-
     var options = {
       mediaType: 'photo',
       maxWidth:1000,

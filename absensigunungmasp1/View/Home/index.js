@@ -43,7 +43,8 @@ export default class Home extends Component {
   }
 
 onLayoutHEAD = event => {
-    this.setState({tinggiHEAD:event.nativeEvent.layout.height+20})
+    this.setState({tinggiHEAD:event.nativeEvent.layout.height+20});
+
   }
 onScrollLayout=(e)=>{
         let y=e.nativeEvent.contentOffset.y;
@@ -66,12 +67,13 @@ onScrollLayout=(e)=>{
 
   render() {
 console.disableYellowBox = true;
+
     return (
       <View  style={styles.Backcontainer}>
       <View  style={styles.container}>
         <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
               {
-               // <Deskripsiabsen   />
+               <Deskripsiabsen   />
               }
                 <View  style={styles.IconBox}>
                     <Svgicon key={1} name="User" />
