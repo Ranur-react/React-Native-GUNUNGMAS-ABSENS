@@ -23,10 +23,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment-timezone';
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance, getPreciseDistance} from 'geolib';
+
   var IPSERVER ="---";
+
 const storeDataJadwalJson = async (e) => {
   try {
     await AsyncStorage.setItem('Json_Jadwal', e);
+  } catch (e) {
+    Alert.alert(e);
+  }
+}
+const storeJson = async (v,e) => {
+  try {
+    await AsyncStorage.setItem(v, e);
   } catch (e) {
     Alert.alert(e);
   }
@@ -44,6 +53,8 @@ const getData = async (e) => {
       Alert.alert(e);
     }
   }
+
+
 export default class MyComponent extends Component {
   constructor (props) {
     super(props)
@@ -62,6 +73,7 @@ export default class MyComponent extends Component {
       JpulangEnd:'',
       jamNow:'',
       jamData:'',
+      MasukState:'',
 
 
     }
@@ -83,6 +95,7 @@ export default class MyComponent extends Component {
                         this.setState({Pjarak:disP});
             } );
       }
+
     const tanggalSekarang=()=>{
             var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
@@ -105,7 +118,7 @@ export default class MyComponent extends Component {
      let M_now=0;
      H_now=this.state.jamNow.split(":")[0];
      M_now=this.state.jamNow.split(":")[1];
-
+//From Base------
            let Get_timefrombase =moment(e, 'hh:mm:ss', false).tz("Asia/Jakarta").format('HH:mm');
            this.setState({jamData: JSON.stringify(Get_timefrombase)});
            let H_Get=0;
@@ -118,58 +131,56 @@ export default class MyComponent extends Component {
                console.log("Jam sama"+H_Get);
                  if (M_now < M_Get) return true;
                      else return false;
-
              }else{
                return true;
-
              }
            }
-           // else if(H_now == H_Get){
-           //   console.log("Jam sama");
-           //   if (M_now < M_Get) return true;
-           //   //   else return false;
-           // }
            else{
              return false;
            }
 
     }
+
     const Formula_Jadwal_masuk=()=>{
       let masuk=this.state.JmasukState;
       let masukEnd=this.state.JmasukEndState;
       let toler=this.state.ToleransiState;
       let val="Log";
-      console.log("Toler state");
-      console.log(toler);
-
             if(masuk){
-                      val="jam Absen belum Masuk ";
-                      console.log(val);
-                      this.setState({jamEqual: val});
-
-
+                      val="Jam Absen Belum Masuk ";
+                      this.setState({MasukState:{
+                            pesan:val,
+                            state: false
+                        }});
             }else{
                     if(masukEnd){
-                      val="Silahkan ambil absen masuk pada jam ini";
-                      console.log(val);
-                      this.setState({jamEqual: val});
+                      val="Silahkan Ambil Absen Masuk Pada Jam Ini";
+                      this.setState({MasukState:{
+                            pesan:val,
+                            state: true
+                        }});
 
                     }else{
                             if(toler){
-                              val="Jam Terlambat";
-                              console.log(val);
-                              this.setState({jamEqual: val});
+                              val="Terlambat";
+                              this.setState({MasukState:{
+                                    pesan:val,
+                                    state: true
+                                }});
                             }else{
-                              val="Terlambat Terlalu lama GAK USAH MASUK AJA LAGI ya";
-                              console.log(val);
-                              this.setState({jamEqual: val});
+                              val="Anda Masuk Diluar Jam Ketentuan";
+                              this.setState({MasukState:{
+                                    pesan:val,
+                                    state: false
+                                }});
                             }
-                    //   val="Tidak bisa Masuk anda diluar jam ketentuan";
-                    //   console.log(val);
-                    //   this.setState({jamEqual: val});
-                    //
+
                     }
             }
+            const jsonValue = JSON.stringify(this.state.MasukState);
+            setTimeout(()=>storeJson('MasukState',jsonValue),0);
+
+
 
     }
 
@@ -231,13 +242,14 @@ export default class MyComponent extends Component {
           Alert.alert(e);
         }
       }
+
       setTimeout(()=>{
         console.log("Call-----");
         getDataLoginJson();
         getData('IPSERVER');
-        // console.log(IPSERVER);
         },5000);
     }
+
   render() {
 
     return (
@@ -260,7 +272,7 @@ export default class MyComponent extends Component {
           <Text style={styles.TextBody}>------------Time Logik-------------</Text>
           <Text style={styles.TextBody}>Jamsekarng :{this.state.jamNow}</Text>
           <Text style={styles.TextBody}>Jam Jadwal :{this.state.jamData}</Text>
-          <Text style={styles.TextBody}>Kondisi:{this.state.jamEqual}</Text>
+          <Text style={styles.TextBody}>Kondisi:{this.state.MasukState.pesan}</Text>
         </View>
     );
   }

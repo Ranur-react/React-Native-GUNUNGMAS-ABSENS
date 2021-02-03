@@ -20,6 +20,9 @@ import { CommonActions } from '@react-navigation/native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 let Menu=(props)=>{
     let code=[];
     let opasisi=1;
@@ -44,20 +47,35 @@ let Menu=(props)=>{
 
 
 let MenuLoop= (subprops)=>{
-  const [state, setState] = React.useState({sss:''});
+  const [state, setState] = React.useState(
+    {
+    Sessions:{
+    MasukState:{
+      pesan:'',
+      state:false
+          },
 
-  async () => {
-    try {
-        const jsonValue = await AsyncStorage.getItem('Json_Jadwal');
-         const data =JSON.parse(jsonValue);
-         console.log(data);
-         setState({sss:data});
-      } catch(e) {
-        Alert.alert(e);
-      }
+          KeluarState:{
+            pesan:'',
+            state:false
+                },
+      },
     }
+);
+const panggil=async (v) => {
+  try {
+      const jsonValue = await AsyncStorage.getItem(v);
+       const data =JSON.parse(jsonValue);
+       setState({Sessions:{MasukState:data}});
+    } catch(e) {
+      Alert.alert(e);
+    }
+  }
+  // setTimeout(()=>panggil('Json_Jadwal'),6000);
+  setTimeout(()=>panggil('MasukState'),6000);
+// console.log(state.Sessions);
 
-
+console.log(state.Sessions.MasukState);
 
     // console.log(state.Jadwal.waktu_mulai_masuk < state.Jadwal.waktu_selesai_masuk);
     // if (state.Jadwal.waktu_mulai_masuk < state.Jadwal.waktu_selesai_masuk) {
@@ -70,12 +88,13 @@ let MenuLoop= (subprops)=>{
     // }
 
       let Fungtes=()=>{
-        console.log(props.sss);
-        console.log("Bisa..");
+        // console.log(state.sss);
+        console.log("Bisa.X.");
       }
+      Fungtes();
       let code=[];
       const listOBJ ={
-        0:{nama:'Absen Masuk',icon:'Enter',status:true,color:'',dest:"Capture"},
+        0:{nama:'Absen Masuk',icon:'Enter',status: state.Sessions.MasukState.state,color:'',dest:"Capture"},
         1:{nama:'Absen Pulang',icon:'Exit',status:true,color:'',dest:"AfterCapture"},
         2:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
         3:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
