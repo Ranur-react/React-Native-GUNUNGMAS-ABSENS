@@ -51,12 +51,18 @@ export default class MyComponent extends Component {
       Jarak:'',
       Pjarak:'',
       tanggal:'',
+
       Jmasuk:'',
+        JmasukState:'',
       JmasukEnd:'',
+        JmasukEndState:'',
+      Toleransi:'',
+        ToleransiState:'',
       Jpulang:'',
       JpulangEnd:'',
       jamNow:'',
       jamData:'',
+
 
     }
   }
@@ -77,7 +83,6 @@ export default class MyComponent extends Component {
                         this.setState({Pjarak:disP});
             } );
       }
-
     const tanggalSekarang=()=>{
             var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
@@ -92,16 +97,85 @@ export default class MyComponent extends Component {
             this.setState({TanggalNow: tgl});
     }
 
-    const HitungdariJamSekarang= async(e)=>{
-           let now=moment().tz("Asia/Jakarta").format('HH:mm');
-           this.setState({jamNow: JSON.stringify(now)});
-           let example =moment(e, 'hh:mm:ss', false).tz("Asia/Jakarta").format('HH:mm');
-           this.setState({jamData: JSON.stringify(example)});
+    const Formula_Jam=(e)=>{
+//NOW------
+     let now=moment().tz("Asia/Jakarta").format('HH:mm');
+     this.setState({jamNow: JSON.stringify(now)});
+     let H_now=0;
+     let M_now=0;
+     H_now=this.state.jamNow.split(":")[0];
+     M_now=this.state.jamNow.split(":")[1];
+
+           let Get_timefrombase =moment(e, 'hh:mm:ss', false).tz("Asia/Jakarta").format('HH:mm');
+           this.setState({jamData: JSON.stringify(Get_timefrombase)});
+           let H_Get=0;
+           let M_Get=0;
+           H_Get=this.state.jamData.split(":")[0];
+           M_Get=this.state.jamData.split(":")[1];
+
+           if (H_now <= H_Get) {
+             if(H_now == H_Get){
+               console.log("Jam sama"+H_Get);
+                 if (M_now < M_Get) return true;
+                     else return false;
+
+             }else{
+               return true;
+
+             }
+           }
+           // else if(H_now == H_Get){
+           //   console.log("Jam sama");
+           //   if (M_now < M_Get) return true;
+           //   //   else return false;
+           // }
+           else{
+             return false;
+           }
+
     }
+    const Formula_Jadwal_masuk=()=>{
+      let masuk=this.state.JmasukState;
+      let masukEnd=this.state.JmasukEndState;
+      let toler=this.state.ToleransiState;
+      let val="Log";
+      console.log("Toler state");
+      console.log(toler);
+
+            if(masuk){
+                      val="jam Absen belum Masuk ";
+                      console.log(val);
+                      this.setState({jamEqual: val});
+
+
+            }else{
+                    if(masukEnd){
+                      val="Silahkan ambil absen masuk pada jam ini";
+                      console.log(val);
+                      this.setState({jamEqual: val});
+
+                    }else{
+                            if(toler){
+                              val="Jam Terlambat";
+                              console.log(val);
+                              this.setState({jamEqual: val});
+                            }else{
+                              val="Terlambat Terlalu lama GAK USAH MASUK AJA LAGI ya";
+                              console.log(val);
+                              this.setState({jamEqual: val});
+                            }
+                    //   val="Tidak bisa Masuk anda diluar jam ketentuan";
+                    //   console.log(val);
+                    //   this.setState({jamEqual: val});
+                    //
+                    }
+            }
+
+    }
+
+
     let GetDataFromDB=()=>{
         getDataLoginJson();
-        // console.log("ID Pengguna");
-        // console.log(this.state.user.IDkaryawan);
         fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
             method: "POST",
             headers: {
@@ -113,31 +187,35 @@ export default class MyComponent extends Component {
             })
           }).then(response => response.json()).then(responseJson => {
               if (responseJson.respond) {
-                this.setState({jadwalJSON:responseJson.data});
-                this.setState({Jsift:responseJson.data.ket_waktu});
-                this.setState({Jlokasi:responseJson.data.lokasi});
-                this.setState({JKordinat:{
-                                la:responseJson.data.latitude,
-                                lo:responseJson.data.longitude,
-                                }
-                            });
-                tanggalSekarang();
-                Getlokas();
+                this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
+                this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});tanggalSekarang();Getlokas();
+                //---Masuk
                 this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
+
+                    this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
+              //---Berakhirmasuk
                 this.setState({JmasukEnd:responseJson.data.waktu_selesai_masuk});
+
+                    this.setState({JmasukEndState: Formula_Jam(responseJson.data.waktu_selesai_masuk)});
+              //---BatasTerlambat
+                this.setState({Toleransi:responseJson.data.toleransi});
+
+                    this.setState({ToleransiState: Formula_Jam(responseJson.data.toleransi)});
+                    Formula_Jadwal_masuk();
+
+
                 this.setState({Jpulang:responseJson.data.waktu_mulai_keluar});
                 this.setState({JpulangEnd:responseJson.data.waktu_selesai_keluar});
 
                 const jsonValue = JSON.stringify(responseJson.data);
                 setTimeout(()=>storeDataJadwalJson(jsonValue),0);
                 }else{
-                  console.log("Gagal cek jadwal !!!!");}
-                  // console.log(responseJson);
-
-
-            }).catch(error => {console.error(error);});
-            HitungdariJamSekarang('20:00:00');
-
+                  console.log("Jadwal Anda Belum di SET");
+                }
+            }).catch(error => {
+              console.log("Gagal cek jadwal !!!!")
+              console.error(error);
+              });
       }
     const getDataLoginJson = async () => {
       try {
@@ -179,8 +257,10 @@ export default class MyComponent extends Component {
           {this.state.Jlokasi}</Text>
           <Text style={styles.TextBody}>Jarak :{this.state.Jarak}  m lagi</Text>
           <Text style={styles.TextBody}>Server :{IPSERVER}</Text>
+          <Text style={styles.TextBody}>------------Time Logik-------------</Text>
           <Text style={styles.TextBody}>Jamsekarng :{this.state.jamNow}</Text>
           <Text style={styles.TextBody}>Jam Jadwal :{this.state.jamData}</Text>
+          <Text style={styles.TextBody}>Kondisi:{this.state.jamEqual}</Text>
         </View>
     );
   }
