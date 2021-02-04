@@ -69,11 +69,17 @@ export default class MyComponent extends Component {
         JmasukEndState:'',
       Toleransi:'',
         ToleransiState:'',
+
       Jpulang:'',
+        JpulangState:'',
+
       JpulangEnd:'',
+        JpulangEndState:'',
+
       jamNow:'',
       jamData:'',
       MasukState:'',
+      PulangState:'',
 
 
     }
@@ -128,7 +134,7 @@ export default class MyComponent extends Component {
 
            if (H_now <= H_Get) {
              if(H_now == H_Get){
-               console.log("Jam sama"+H_Get);
+               // console.log("Jam sama"+H_Get);
                  if (M_now < M_Get) return true;
                      else return false;
              }else{
@@ -177,11 +183,41 @@ export default class MyComponent extends Component {
 
                     }
             }
-            const jsonValue = JSON.stringify(this.state.MasukState);
-            setTimeout(()=>storeJson('MasukState',jsonValue),0);
 
+            Formula_Jadwal_Pulang();
 
+    }
 
+    const Formula_Jadwal_Pulang=()=>{
+      let pulang=this.state.JpulangState;
+      let pulangEnd=this.state.JpulangEndState;
+      let val="Log";
+            if(pulang){
+                      val="Jam Absen Belum Pulang ";
+                      this.setState({PulangState:{
+                            pesan:val,
+                            state: false
+                        }});
+            }else{
+                    if(pulangEnd){
+                      val="Silahkan Ambil Absen PULANG Pada Jam Ini";
+                      this.setState({PulangState:{
+                            pesan:val,
+                            state: true
+                        }});
+
+                    }else{
+                              val="Anda Pulang Diluar Jam Ketentuan";
+                              this.setState({PulangState:{
+                                    pesan:val,
+                                    state: false
+                                }});
+                    }
+            }
+            // const jsonValuePulang = JSON.stringify(this.state.PulangState);
+            // setTimeout(()=>storeJson('PulangState',jsonValue),0);
+            const jsonValue = JSON.stringify({MasukState:this.state.MasukState,PulangState:this.state.PulangState});
+            setTimeout(()=>storeJson('TombolState',jsonValue),0);
     }
 
 
@@ -202,24 +238,24 @@ export default class MyComponent extends Component {
                 this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});tanggalSekarang();Getlokas();
                 //---Masuk
                 this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
-
                     this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
               //---Berakhirmasuk
                 this.setState({JmasukEnd:responseJson.data.waktu_selesai_masuk});
-
                     this.setState({JmasukEndState: Formula_Jam(responseJson.data.waktu_selesai_masuk)});
               //---BatasTerlambat
                 this.setState({Toleransi:responseJson.data.toleransi});
-
                     this.setState({ToleransiState: Formula_Jam(responseJson.data.toleransi)});
-                    Formula_Jadwal_masuk();
-
 
                 this.setState({Jpulang:responseJson.data.waktu_mulai_keluar});
-                this.setState({JpulangEnd:responseJson.data.waktu_selesai_keluar});
+                    this.setState({JpulangState: Formula_Jam(responseJson.data.waktu_mulai_keluar)});
 
+                this.setState({JpulangEnd:responseJson.data.waktu_selesai_keluar});
+                    this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
+                // Formula_Jadwal_Pulang();
                 const jsonValue = JSON.stringify(responseJson.data);
                 setTimeout(()=>storeDataJadwalJson(jsonValue),0);
+                Formula_Jadwal_masuk();
+
                 }else{
                   console.log("Jadwal Anda Belum di SET");
                 }
@@ -227,6 +263,7 @@ export default class MyComponent extends Component {
               console.log("Gagal cek jadwal !!!!")
               console.error(error);
               });
+
       }
     const getDataLoginJson = async () => {
       try {
@@ -261,18 +298,17 @@ export default class MyComponent extends Component {
           </Text>
 
           <Text style={styles.TextBody}>{ this.state.TanggalNow }</Text>
-          <Text style={styles.TextBody} >Jam Masuk: {this.state.Jmasuk} s/d {this.state.JmasukEnd}</Text>
-          <Text style={styles.TextBody}>Jam Pulang: {this.state.Jpulang} - {this.state.JpulangEnd}</Text>
-          <Text style={styles.TextBody}>Jarak Jam Pulang: {this.state.HourNow} </Text>
-          <Text style={styles.TextTitle}>Lokasi Absensi: </Text>
+          <Text style={styles.TextBody} >Jam Masuk   : {this.state.Jmasuk} s/d {this.state.JmasukEnd}</Text>
+          <Text style={styles.TextBody}>Jam Pulang   : {this.state.Jpulang} - {this.state.JpulangEnd}</Text>
+          <Text style={styles.TextTitle}>Lokasi Absensi : </Text>
           <Text style={styles.TextBody}>
           {this.state.Jlokasi}</Text>
+          <Text style={styles.TextBody}>
+          </Text>
           <Text style={styles.TextBody}>Jarak :{this.state.Jarak}  m lagi</Text>
-          <Text style={styles.TextBody}>Server :{IPSERVER}</Text>
-          <Text style={styles.TextBody}>------------Time Logik-------------</Text>
-          <Text style={styles.TextBody}>Jamsekarng :{this.state.jamNow}</Text>
-          <Text style={styles.TextBody}>Jam Jadwal :{this.state.jamData}</Text>
-          <Text style={styles.TextBody}>Kondisi:{this.state.MasukState.pesan}</Text>
+          <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>
+          <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: {this.state.MasukState.pesan}</Text>
+          <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: {this.state.PulangState.pesan}</Text>
         </View>
     );
   }
