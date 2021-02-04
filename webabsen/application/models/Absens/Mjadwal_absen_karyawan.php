@@ -19,11 +19,9 @@ JOIN  `set_waktu_absens` ON `set_waktu_absens`.`id_waktu` = `jadwal_absen_karyaw
 JOIN `set_lokasi` ON `set_lokasi`.`id_set_lokasi` = `jadwal_absen_karyawan`.`id_lokasi_absensi`
 JOIN `karyawan` ON `karyawan`.`id_karyawan`=`detail_jadwal`.`id_karyawan_detail`")->result_array();
 }
+
 public function getCustome($p)
 {
-
-	
-	
 	$v=$p['PilBulan'];
 	$a=$v.' month';
 	$date = date_create('2020-12-01');
@@ -32,8 +30,23 @@ public function getCustome($p)
 	$lok=$p['pilLokasi'];
 	
 	$qry=$this->db->query("SELECT * FROM `jadwal_absen_karyawan` JOIN `detail_jadwal` ON `detail_jadwal`.`id_jadwal_detail`=`jadwal_absen_karyawan`.`id_jadwal` JOIN  `set_waktu_absens` ON `set_waktu_absens`.`id_waktu` = `jadwal_absen_karyawan`.`id_shift_absensi` JOIN `set_lokasi` ON `set_lokasi`.`id_set_lokasi` = `jadwal_absen_karyawan`.`id_lokasi_absensi` JOIN `karyawan` ON `karyawan`.`id_karyawan`=`detail_jadwal`.`id_karyawan_detail` WHERE `detail_jadwal`.`tanggal` LIKE '%$d%' AND id_set_lokasi LIKE '$lok' ORDER BY `detail_jadwal`.`tanggal` ASC")->result_array();
-
 	 return $qry;
+}
+
+public function getCustomeID($p)
+{
+date_default_timezone_set('Asia/Jakarta');
+	
+	$d=date("Y-m-d");
+	// echo "Tanggal";
+	// echo $d;
+	
+	 return $this->db->query("SELECT * FROM `jadwal_absen_karyawan` 
+JOIN `detail_jadwal` ON `detail_jadwal`.`id_jadwal_detail`=`jadwal_absen_karyawan`.`id_jadwal` 
+JOIN  `set_waktu_absens` ON `set_waktu_absens`.`id_waktu` = `jadwal_absen_karyawan`.`id_shift_absensi` 
+JOIN `set_lokasi` ON `set_lokasi`.`id_set_lokasi` = `jadwal_absen_karyawan`.`id_lokasi_absensi` 
+JOIN `karyawan` ON `karyawan`.`id_karyawan`=`detail_jadwal`.`id_karyawan_detail` 
+WHERE `detail_jadwal`.`tanggal`='$d' AND `detail_jadwal`.`id_karyawan_detail` LIKE '$p' ORDER BY `detail_jadwal`.`tanggal` ASC");
 }
 
 	// public function store($params)

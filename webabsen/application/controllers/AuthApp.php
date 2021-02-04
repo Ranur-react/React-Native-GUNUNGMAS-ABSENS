@@ -8,6 +8,7 @@ class AuthApp extends CI_Controller
         parent::__construct();
         $this->load->model('Mauth');
         $this->load->model('Absens/Mdata_karyawan');
+        $this->load->model('Absens/Mjadwal_absen_karyawan');
     }
     public function index()
     {
@@ -63,6 +64,26 @@ class AuthApp extends CI_Controller
 
 
         echo json_encode($json);
+    }
+    public function JadwalCek()
+    {
+         $js = file_get_contents('php://input');
+         $obj = json_decode($js,true);
+         $ID = $obj['IDkaryawan'];
+        $qry= $this->Mjadwal_absen_karyawan->getCustomeID($ID);
+        $dj= $qry->row_array();
+        $json['Request--->'] = $ID;
+                if ($qry->num_rows() !=0) {
+                    $json['respond'] = true;
+                    $json['data'] = $dj;
+                }else{
+                    $json['respond'] = false;
+                    $json['data'] = null;
+                    $json['Jumlah Rows'] = $qry->num_rows();
+
+                }
+        echo json_encode($json);
+        
     }
 
     public function logout()

@@ -24,7 +24,7 @@ class Absen extends CI_Controller
             if (!file_exists($target_dir)) {
                 mkdir($target_dir,777,true);
             }
-                if(move_uploaded_file($_FILES['imagos']['tmp_name'], $target_dir."/".rand()."_".time().".jpeg")){
+                if(move_uploaded_file($_FILES['imagos']['tmp_name'], $target_dir."/".rand()."-".$_POST['StatusAbsen']."_".date('Y-m-d').".jpeg")){
                     $MESSAGE['Pesan']="Sukses !! Upload Foto Berhasil";
                     $MESSAGE['URLFOLDER']=$target_dir."/".rand()."_".time().".jpeg";
                     $MESSAGE['kode']=1;

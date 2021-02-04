@@ -6,7 +6,7 @@ $MESSAGE['Respon-------------FILES>']=$_FILES;
 		if (!file_exists($target_dir)) {
 		mkdir($target_dir,777,true);
 	}
-		if(move_uploaded_file($_FILES['imagos']['tmp_name'], $target_dir."/".rand()."_".time().".jpeg")){
+		if(move_uploaded_file($_FILES['imagos']['tmp_name'], $target_dir."/".rand()."_".date().".jpeg")){
 			$MESSAGE['Pesan']="Sukses !! Upload Foto Berhasil";
 			$MESSAGE['kode']=1;
 
