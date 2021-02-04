@@ -18,6 +18,8 @@ import {
 } from 'react-native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
+
+
 /* @flow */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment-timezone';
@@ -44,7 +46,7 @@ const getData = async (e) => {
     try {
       const value = await AsyncStorage.getItem(e)
       if(value !== null) {
-        console.log("Ip Server addresss--->");
+        console.log("Ip Server addresss--->"+IPSERVER);
         IPSERVER=value;
       }else {
         console.log("Ip Null");
@@ -216,8 +218,8 @@ export default class MyComponent extends Component {
             }
             // const jsonValuePulang = JSON.stringify(this.state.PulangState);
             // setTimeout(()=>storeJson('PulangState',jsonValue),0);
-            const jsonValue = JSON.stringify({MasukState:this.state.MasukState,PulangState:this.state.PulangState});
-            setTimeout(()=>storeJson('TombolState',jsonValue),0);
+            // const jsonValue = JSON.stringify({MasukState:this.state.MasukState,PulangState:this.state.PulangState});
+            // setTimeout(()=>storeJson('TombolState',jsonValue),0);
     }
 
 
@@ -253,7 +255,7 @@ export default class MyComponent extends Component {
                     this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
                 // Formula_Jadwal_Pulang();
                 const jsonValue = JSON.stringify(responseJson.data);
-                setTimeout(()=>storeDataJadwalJson(jsonValue),0);
+                // setTimeout(()=>storeDataJadwalJson(jsonValue),0);
                 Formula_Jadwal_masuk();
 
                 }else{
@@ -274,7 +276,7 @@ export default class MyComponent extends Component {
            setTimeout(()=>{
            GetDataFromDB();
 
-             },5000);
+             },500);
         } catch(e) {
           Alert.alert(e);
         }
@@ -284,17 +286,17 @@ export default class MyComponent extends Component {
         console.log("Call-----");
         getDataLoginJson();
         getData('IPSERVER');
-        },5000);
+        },500);
     }
 
   render() {
 
     return (
         <View>
-        <TouchableOpacity   style={styles.SmallNotif} >
+        <TouchableOpacity onPress={()=>console.log(Triger("xxxx"))}  style={styles.SmallNotif} >
             <Text style={styles.TextSmallNotif}  >Masuk</Text>
-        </TouchableOpacity>
-          <Text  style={styles.TextTitle}>Absensi Hari Ini: &nbsp;
+        </TouchableOpacity  >
+          <Text   style={styles.TextTitle}>Absensi Hari Ini: &nbsp;
           </Text>
 
           <Text style={styles.TextBody}>{ this.state.TanggalNow }</Text>
@@ -309,6 +311,7 @@ export default class MyComponent extends Component {
           <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>
           <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: {this.state.MasukState.pesan}</Text>
           <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: {this.state.PulangState.pesan}</Text>
+          <Text style={styles.TextBody}>Server &nbsp;&nbsp;&nbsp;: {IPSERVER}</Text>
         </View>
     );
   }
