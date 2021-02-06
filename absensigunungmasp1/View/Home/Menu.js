@@ -24,14 +24,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment-timezone';
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance, getPreciseDistance} from 'geolib';
-  var IPSERVER ="---";
-
-
+  var IPSERVER =null;
 const getData = async (e) => {
     try {
       const value = await AsyncStorage.getItem(e)
       if(value !== null) {
-        console.log("Ip Server addresss--->");
+        // console.log("Ip Server addresss--->"+IPSERVER);
         IPSERVER=value;
       }else {
         console.log("Ip Null");
@@ -40,6 +38,7 @@ const getData = async (e) => {
       Alert.alert(e);
     }
   }
+
 
 
 // End----Compoonet KOndisition
@@ -55,7 +54,7 @@ let Menu=(props)=>{
     code.push(
       <TouchableOpacity disabled={disable} style={styles.menuCard} onPress={buttonactions}>
           <View style={styles.icon}>
-          <Svgicon key={2} name={props.icon} color={props.color} opacity={opasisi} />
+          <Svgicon key={170} name={props.icon} color={props.color} opacity={opasisi} />
           <Text style={styles.labelIcon}>{props.label}</Text>
           </View>
       </TouchableOpacity >
@@ -68,6 +67,8 @@ let Menu=(props)=>{
    constructor (props) {
      super(props)
      this.state = {
+       LoadingState:true,
+       TanggalNow:'-',
        Jarak:'',
        Pjarak:'',
        tanggal:'',
@@ -87,20 +88,230 @@ let Menu=(props)=>{
 
        jamNow:'',
        jamData:'',
-       MasukState:{pesan:'',state: false},
-       PulangState:{pesan:'',state: true},
+       MasukState:'',
+       PulangState:'',
 
 
      }
+     //--TimeScheduleConfigurasi
+     const getDataLoginJson = async () => {
+       try {
+         const jsonValue = await AsyncStorage.getItem('Json_Login');
+         const data =JSON.parse(jsonValue);
+         this.setState({user:data});
+         } catch(e) {
+           Alert.alert(e);
+         }
+       }
+       if (this.state.LoadingState) {
+         getDataLoginJson();
+         getData('IPSERVER');
+         }else{
+         }
+   }
+
+   componentDidUpdate(){
+
+
+           if(IPSERVER != null){
+               if (this.state.LoadingState) {
+                     const tanggalSekarang=()=>{
+                       var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                       var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+                       var date = new Date();
+                       var month = date.getMonth();
+                       var day = date.getDate();
+                       var thisDay = date.getDay(),
+                       thisDay = myDays[thisDay];
+                       var yy = date.getYear();
+                       var year = (yy < 1000) ? yy + 1900 : yy;
+                       let   tgl=thisDay + ', ' + day + ' ' + months[month] + ' ' + year;
+                       this.setState({TanggalNow:tgl});
+                     }
+                     let Getlokas=()=>{
+
+                       Geolocation.getCurrentPosition(info =>{
+                         var dis = getDistance(
+                           {latitude: info.coords.latitude, longitude: info.coords.longitude},//kordinat sekarang
+                           {latitude: this.state.JKordinat.la, longitude: this.state.JKordinat.lo},  //kordinat SET
+                           );
+                           this.setState({Jarak:dis});
+                           var disP = getPreciseDistance(
+                             {latitude: info.coords.latitude, longitude: info.coords.longitude},
+                             {latitude: this.state.JKordinat.la, longitude: this.state.JKordinat.lo},
+
+                             );
+                             this.setState({Pjarak:disP});
+                             } );
+                           }
+                           const Formula_Jam=(e)=>{
+                             //NOW------
+                             let now=moment().tz("Asia/Jakarta").format('HH:mm');
+                             this.setState({jamNow: JSON.stringify(now)});
+                             let H_now=0;
+                             let M_now=0;
+                             H_now=this.state.jamNow.split(":")[0];
+                             M_now=this.state.jamNow.split(":")[1];
+                             //From Base------
+                             let Get_timefrombase =moment(e, 'hh:mm:ss', false).tz("Asia/Jakarta").format('HH:mm');
+                             this.setState({jamData: JSON.stringify(Get_timefrombase)});
+                             let H_Get=0;
+                             let M_Get=0;
+                             H_Get=this.state.jamData.split(":")[0];
+                             M_Get=this.state.jamData.split(":")[1];
+
+                             if (H_now <= H_Get) {
+                               if(H_now == H_Get){
+                                 // console.log("Jam sama"+H_Get);
+                                 if (M_now < M_Get) return true;
+                                 else return false;
+                                 }else{
+                                   return true;
+                                 }
+                               }
+                               else{
+                                 return false;
+                               }
+
+                             }
+                             const Formula_Jadwal_masuk=()=>{
+                               let masuk=this.state.JmasukState;
+                               let masukEnd=this.state.JmasukEndState;
+                               let toler=this.state.ToleransiState;
+                               let val="Log";
+                               if(masuk){
+                                 val="Jam Absen Belum Masuk ";
+                                 this.setState({MasukState:{
+                                   pesan:val,
+                                   state: false
+                                   }});
+                                   }else{
+                                     if(masukEnd){
+                                       val="Silahkan Ambil Absen Masuk Pada Jam Ini";
+                                       this.setState({MasukState:{
+                                         pesan:val,
+                                         state: true
+                                         }});
+
+                                         }else{
+                                           if(toler){
+                                             val="Terlambat";
+                                             this.setState({MasukState:{
+                                               pesan:val,
+                                               state: true
+                                               }});
+                                               }else{
+                                                 val="Anda Masuk Diluar Jam Ketentuan";
+                                                 this.setState({MasukState:{
+                                                   pesan:val,
+                                                   state: false
+                                                   }});
+                                                 }
+
+                                               }
+                                             }
+
+                                             Formula_Jadwal_Pulang();
+
+                                           }
+                                           const Formula_Jadwal_Pulang=()=>{
+                                             let pulang=this.state.JpulangState;
+                                             let pulangEnd=this.state.JpulangEndState;
+                                             let val="Log";
+                                             if(pulang){
+                                               val="Jam Absen Belum Pulang ";
+                                               this.setState({PulangState:{
+                                                 pesan:val,
+                                                 state: false
+                                                 }});
+                                                 }else{
+                                                   if(pulangEnd){
+                                                     val="Silahkan Ambil Absen PULANG Pada Jam Ini";
+                                                     this.setState({PulangState:{
+                                                       pesan:val,
+                                                       state: true
+                                                       }});
+
+                                                       }else{
+                                                         val="Anda Pulang Diluar Jam Ketentuan";
+                                                         this.setState({PulangState:{
+                                                           pesan:val,
+                                                           state: false
+                                                           }});
+                                                         }
+                                                       }
+
+                                                     }
+                                                     let GetDataFromDB= async ()=>{
+                                                        fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
+                                                         method: "POST",
+                                                         headers: {
+                                                           Accept: "application/json",
+                                                           "Content-Type": "application/json",
+                                                           'Cache-Control': 'no-cache'
+                                                           },
+                                                           body: JSON.stringify({
+                                                             IDkaryawan:  this.state.user.IDkaryawan,
+                                                             })
+                                                             }).then(response => response.json()).then(responseJson => {
+                                                               if (responseJson.respond) {
+                                                                 this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
+                                                                 this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});
+                                                                 //Getlokas();
+                                                                // tanggalSekarang();
+                                                                 //---Masuk
+                                                                 this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
+                                                                 this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
+                                                                 //---Berakhirmasuk
+                                                                 this.setState({JmasukEnd:responseJson.data.waktu_selesai_masuk});
+                                                                 this.setState({JmasukEndState: Formula_Jam(responseJson.data.waktu_selesai_masuk)});
+                                                                 //---BatasTerlambat
+                                                                 this.setState({Toleransi:responseJson.data.toleransi});
+                                                                 this.setState({ToleransiState: Formula_Jam(responseJson.data.toleransi)});
+
+                                                                 this.setState({Jpulang:responseJson.data.waktu_mulai_keluar});
+                                                                 this.setState({JpulangState: Formula_Jam(responseJson.data.waktu_mulai_keluar)});
+
+                                                                 this.setState({JpulangEnd:responseJson.data.waktu_selesai_keluar});
+                                                                 this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
+
+                                                                 Formula_Jadwal_masuk();
+                                                                 this.setState({LoadingState:false});
+
+                                                                 }else{
+
+                                                                   console.log("Jadwal Anda Belum di SET");
+                                                                 }
+                                                                 }).catch(error => {
+                                                                   console.log("Gagal cek jadwal !!!!")
+                                                                   console.error(error);
+                                                                   });
+                                                                 }
+                     GetDataFromDB();
+                     console.log("Data Sedang Reload - - ->");
+                 }
+                 }else{
+                   console.log("Loading......");
+                 }
    }
   render() {
+
         let code=[];
               const listOBJ ={
-                0:{nama:'Absen Masuk',icon:'Enter',status: true, color:'',dest:"Capture"},
-                1:{nama:'Absen Pulang',icon:'Exit',status: true, color:'',dest:"AfterCapture"},
-                2:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
-                3:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
+                99:{nama:'Absen Masuk',icon:'Enter',status: this.state.MasukState.state, color:'',dest:"Capture"},
+                100:{nama:'Absen Pulang',icon:'Exit',status: this.state.PulangState.state, color:'',dest:"Pulang"},
+                101:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
+                102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
               };
+              // const todoItems = listOBJ.map((todo, index) =>
+              // code.push(
+              //
+              //   <View>
+              //         <Text>{todo.name}</Text>
+              //         <Text>{index}</Text>
+              //   </View>
+              // )
+              // );
               for (var key in listOBJ) {
                   if (listOBJ.hasOwnProperty(key)) {
                     code.push(

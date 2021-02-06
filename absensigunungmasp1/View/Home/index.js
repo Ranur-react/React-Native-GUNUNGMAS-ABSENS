@@ -13,7 +13,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
-  Button
+  Button,YellowBox
 } from 'react-native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
@@ -66,8 +66,8 @@ onScrollLayout=(e)=>{
 }
 
   render() {
-console.disableYellowBox = true;
-
+// console.disableYellowBox = true;
+// YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
     return (
       <View  style={styles.Backcontainer}>
       <View  style={styles.container}>
@@ -86,7 +86,10 @@ console.disableYellowBox = true;
         <View style={styles.container}>
               <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
               <View style={styles.menuContainer}>
+              {
+
                 <Menuabsen key={2} props={this.props} />
+              }
               </View>
           </View>
           <View style={styles.container}>

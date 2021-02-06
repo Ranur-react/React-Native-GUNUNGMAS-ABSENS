@@ -49,7 +49,7 @@ class ClassHIstory extends Component{
 
 let HistoryLoop=()=>{
 let code=[];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 20; i < 30; i++) {
     code.push(<ClassHIstory key={i} />)
   }
   return code;

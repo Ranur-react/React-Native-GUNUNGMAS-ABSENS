@@ -12,21 +12,21 @@ import Exit from './../../assets/icons/exit';
 let Svgicon=(prop)=>{
   let ikon=[];
       if(prop.name == 'Enter'){
-        ikon.push(<Enter op={prop.opacity} Color={prop.color} />)
+        ikon.push(<Enter op={prop.opacity} key={0} Color={prop.color} />)
       }else if(prop.name == 'Mata'){
-        ikon.push(<Mata op={prop.opacity} Color={prop.color} />)
+        ikon.push(<Mata op={prop.opacity} key={1} Color={prop.color} />)
       }else if(prop.name == 'User'){
-        ikon.push(<User op={prop.opacity} Color={prop.color}  />)
+        ikon.push(<User op={prop.opacity} key={2} Color={prop.color}  />)
       }else if(prop.name == 'Back'){
-        ikon.push(<Back op={prop.opacity} Color={prop.color}  />)
+        ikon.push(<Back op={prop.opacity} key={3} Color={prop.color}  />)
       }else if(prop.name == 'Camera'){
-        ikon.push(<Camera op={prop.opacity} Color={prop.color}  />)
+        ikon.push(<Camera op={prop.opacity} key={4} Color={prop.color}  />)
       }else if(prop.name == 'Kalender'){
-        ikon.push(<Calenders op={prop.opacity} Color={prop.color}  />)
+        ikon.push(<Calenders op={prop.opacity} key={5} Color={prop.color}  />)
       }else if(prop.name == 'Upload'){
-        ikon.push(<Upload op={prop.opacity} Color={prop.color}  />)
+        ikon.push(<Upload op={prop.opacity} key={6} Color={prop.color}  />)
       }else if(prop.name == 'Exit'){
-        ikon.push(<Exit Color={prop.color} op={prop.opacity}  />)
+        ikon.push(<Exit Color={prop.color} key={7} op={prop.opacity}  />)
       }
   return ikon;
 }

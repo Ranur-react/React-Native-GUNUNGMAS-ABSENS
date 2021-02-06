@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //page-----------
 import AfterCapture from './../AfterCapture';
 import Capture from './../Capture';
+import Pulang from './../Pulang/Capture';
+import PulangAfterCapture from './../Pulang/AfterCapture';
 import Home from './../Home';
 import Login from './../Login';
 import Sakit from './../Izinsakit';
@@ -48,8 +50,11 @@ function App() {
       <Stack.Screen   options={{ headerShown:false, }}  name="HomeScreen" component={HomeScreen} />
       <Stack.Screen   options={{ headerShown:false, }}  name="AfterCapture" component={AfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Capture" component={Capture} />
-      <Stack.Screen   options={{ headerShown:false, }}  name="Home" component={Home} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Login" component={Login} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="Home" component={Home} />
+
+      <Stack.Screen   options={{ headerShown:false, }}  name="Pulang" component={Pulang} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="PulangAfterCapture" component={PulangAfterCapture} />
       </Stack.Navigator>
     </NavigationContainer>
   );
