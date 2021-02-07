@@ -29,7 +29,7 @@ export default class MyComponent extends Component {
     }
     return (
         <View >
-          <Text onPress={testCall} style={styles.TextTitle}>Hasil Foto Selfie Kamu Untuk Pulang</Text>
+          <Text onPress={testCall} style={styles.TextTitle}>Hasil Foto Selfie Masuk Mu</Text>
         </View>
     );
   }

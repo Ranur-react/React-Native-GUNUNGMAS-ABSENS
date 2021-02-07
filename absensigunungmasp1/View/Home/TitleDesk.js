@@ -91,12 +91,12 @@ export default class MyComponent extends Component {
   }
 
   componentDidUpdate(){
-console.log("ada perubahan");
+// console.log("ada perubahan");
 const getData = async (e) => {
     try {
       const value = await AsyncStorage.getItem(e)
       if(value !== null) {
-        console.log("Ip Server addresss--->"+IPSERVER);
+        // console.log("Ip Server addresss--->"+IPSERVER);
         IPSERVER=value;
         if (IPSERVER != null) {
             Call()
@@ -329,11 +329,11 @@ getData('IPSERVER');
                   onRequestClose = {() => { console.log("Modal has been closed.") } }>
 
                   <View style = {styles.modal}>
-                     <Text style = {styles.TextBody}>Modal is open!</Text>
+                     <Text style = {styles.labelmodal}>Load . . .</Text>
 
                      <TouchableHighlight onPress = {() => {this.setState({LoadingState:!this.state.LoadingState})}}>
 
-                        <Text style = {styles.TextBody}>Close Modal</Text>
+                        <Text style = {styles.labelmodal}>X</Text>
                      </TouchableHighlight>
                   </View>
                </Modal>
@@ -353,10 +353,15 @@ const styles = StyleSheet.create({
   modal: {
       flex: 1,
       alignItems: 'center',
-      // opacity:0.1,
-      backgroundColor: 'rgba(0, 162, 117, 0.9)',
+      justifyContent:'center',
+      backgroundColor: 'rgba(76,169,255,0.6)',
       padding: 100
-   },
+   },  labelmodal:{
+       textAlign:'center',
+       fontFamily:'Raleway-Bold',
+       fontSize: 20,
+       color:'rgba(255,255,255,1)'
+     },
   TextTitle:{
     fontFamily:'Raleway-Bold',
     fontSize: 20,

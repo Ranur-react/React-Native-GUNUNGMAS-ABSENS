@@ -117,12 +117,12 @@ let Menu=(props)=>{
     });
    }
    componentDidUpdate(){
- console.log("ada perubahan");
+ // console.log("ada perubahan");
  const getData = async (e) => {
      try {
        const value = await AsyncStorage.getItem(e)
        if(value !== null) {
-         console.log("Ip Server addresss--->"+IPSERVER);
+         // console.log("Ip Server addresss--->"+IPSERVER);
          IPSERVER=value;
          if (IPSERVER != null) {
              Call()
@@ -335,15 +335,7 @@ let Menu=(props)=>{
                 101:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
                 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
               };
-              // const todoItems = listOBJ.map((todo, index) =>
-              // code.push(
-              //
-              //   <View>
-              //         <Text>{todo.name}</Text>
-              //         <Text>{index}</Text>
-              //   </View>
-              // )
-              // );
+
               for (var key in listOBJ) {
                   if (listOBJ.hasOwnProperty(key)) {
                     code.push(

@@ -53,6 +53,9 @@ onScrollLayout=(e)=>{
       if(bfore <= x){
             i=i-0.04;
             this.setState({TpScroll:'rgba(255,255,255,'+i+')'})
+            console.log("Nilai Scrool: "+i);
+            // if (i <= 0) {
+            // }
       }
       else{
         i=i+0.04;
@@ -66,7 +69,7 @@ onScrollLayout=(e)=>{
 }
 
   render() {
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 // YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
     return (
       <View  style={styles.Backcontainer}>

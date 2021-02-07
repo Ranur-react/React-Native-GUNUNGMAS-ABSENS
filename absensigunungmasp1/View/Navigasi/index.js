@@ -12,6 +12,7 @@ import Capture from './../Capture';
 import Pulang from './../Pulang/Capture';
 import Masuk from './../Masuk/Capture';
 import PulangAfterCapture from './../Pulang/AfterCapture';
+import MasukAfterCapture from './../Masuk/AfterCapture';
 import Home from './../Home';
 import Login from './../Login';
 import Sakit from './../Izinsakit';
@@ -57,6 +58,7 @@ function App() {
       <Stack.Screen   options={{ headerShown:false, }}  name="Pulang" component={Pulang} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Masuk" component={Masuk} />
       <Stack.Screen   options={{ headerShown:false, }}  name="PulangAfterCapture" component={PulangAfterCapture} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="MasukAfterCapture" component={MasukAfterCapture} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -13,7 +13,9 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
-  Button
+  Button,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 
 
@@ -44,6 +46,7 @@ export default class MyComponent extends Component {
     super(props)
     this.state = {
       LoadingState:true,
+      LoadingUpload:false,
       TanggalNow:'-',
       Jarak:'',
       Pjarak:'',
@@ -203,6 +206,7 @@ const Call=async()=>{
                         val="Silahkan Ambil Absen Masuk Pada Jam Ini";
                         this.setState({MasukState:{
                           pesan:val,
+                          Displin:"1",
                           state: true
                           }});
 
@@ -211,11 +215,13 @@ const Call=async()=>{
                               val="Terlambat";
                               this.setState({MasukState:{
                                 pesan:val,
+                                Displin:"0",
                                 state: true
                                 }});
                                 }else{
                                   val="Anda Masuk Diluar Jam Ketentuan";
                                   this.setState({MasukState:{
+                                    Displin:"0",
                                     pesan:val,
                                     state: false
                                     }});
@@ -328,9 +334,10 @@ getData('IPSERVER');
                         { name: 'imagos', filename: this.state.dataImage.fileName, type: 'image/jpeg', data: this.state.dataImage.base64 }, //PPOST FILE dengan "name" sebagai variabel utama
                         { name: 'ID', data: this.state.user.IDkaryawan },
                         { name: 'NamaKaryawan', data: this.state.user.namakaryawan },
-                        { name: 'StatusAbsen', data: "Keluar" },
+                        { name: 'StatusAbsen', data: "Masuk" },
                         { name: 'id_jadwal', data: this.state.jadwalJSON.id_jadwal },
-                        { name: 'jam_keluar', data: this.state.jamNowID },
+                        { name: 'jam_Capture', data: this.state.jamNowID },
+                        { name: 'Displin', data: this.state.MasukState.Displin },
                         { name: 'la', data: this.state.la.toString() },
                         { name: 'lo', data: this.state.lo.toString() },
 
@@ -338,7 +345,12 @@ getData('IPSERVER');
                          const r =JSON.parse(response.data);
                         if (r.Respond == true) {
                           console.log("Bisa");
-                          this.props.navigation.navigate('Home');
+                          this.setState({LoadingUpload:true})
+                          setTimeout(()=>{
+                            this.setState({LoadingUpload:!this.state.LoadingUpload})
+                            this.props.navigation.navigate('Home');
+                          }
+                          ,5000);
                           console.log(r );
 
                         }else{
@@ -392,13 +404,50 @@ getData('IPSERVER');
             </TouchableOpacity>
           </View>
         </View>
+        {
+                            <Modal animationType = {"slide"} transparent = {true}
+                          visible = {this.state.LoadingState}
+                          onRequestClose = {() => { console.log("Modal has been closed.") } }>
+
+                          <View style = {styles.modal}>
+                             <Text style = {styles.labelmodal}>Load . . .</Text>
+
+                             <TouchableHighlight onPress = {() => {this.setState({LoadingState:!this.state.LoadingState})}}>
+
+                                <Text style = {styles.labelmodal}>X</Text>
+                             </TouchableHighlight>
+                          </View>
+                       </Modal>
+                     }
+                     {
+                                         <Modal animationType = {"slide"} transparent = {true}
+                                       visible = {this.state.LoadingUpload}
+                                       onRequestClose = {() => { console.log("Modal has been closed.") } }>
+
+                                       <View style = {styles.modal}>
+                                          <Text style = {styles.labelmodal}>Upload Foto . . .</Text>
+                                       </View>
+                                    </Modal>
+                                  }
         </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  Backcontainer: {
+  modal: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent:'center',
+      backgroundColor: 'rgba(76,169,255,0.6)',
+      padding: 100
+   },  labelmodal:{
+       textAlign:'center',
+       fontFamily:'Raleway-Bold',
+       fontSize: 20,
+       color:'rgba(255,255,255,1)'
+     },
+   Backcontainer: {
     flex: 1,
     alignItems: 'center',
   },backButton:{

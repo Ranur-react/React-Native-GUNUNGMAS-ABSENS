@@ -73,7 +73,7 @@ export default class MyComponent extends Component {
         storeDataString('Ft',res.uri);
         const jsonValue = JSON.stringify(res);
         storeDataJson(jsonValue);
-        this.props.navigation.navigate('PulangAfterCapture');
+        this.props.navigation.navigate('MasukAfterCapture');
       }
     });
   };
