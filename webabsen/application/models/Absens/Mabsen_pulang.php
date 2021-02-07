@@ -17,4 +17,9 @@ class Mabsen_pulang extends CI_Model
 	{
 		return $this->db->simple_query("DELETE FROM " . $this->tabel . " WHERE id_absen_keluar='$kode'");
 	}
+	public function insert($parm)
+	{
+		
+		$this->db->query("INSERT INTO `db_pklabsensi`.`absen_keluar` VALUES ('idkeluar', 'K001', 'J001','jam',NOW(),'la','lo','fot'); ");
+	}
 }
