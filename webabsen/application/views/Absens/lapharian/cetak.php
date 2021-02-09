@@ -50,7 +50,7 @@
 								<td><img class="foto" src="<?= $d['foto_masuk'] ?>"></td>
 								<td><?= $d['jam_keluar'] ?></td>
 								<td><img class="foto" src="<?= $d['foto_keluar'] ?>"></td>
-								<td><?= $d['ket'] ?></td>
+								<td><?= $d['status_kehadiran'] ?></td>
 							</tr>
 						<?php $no++;
 						} ?>
