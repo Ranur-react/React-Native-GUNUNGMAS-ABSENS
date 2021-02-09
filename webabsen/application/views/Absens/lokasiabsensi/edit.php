@@ -39,6 +39,12 @@
 				</div>
 
 				<div class="form-group">
+					<label>Range</label>
+					<input type="text" name="range" class="form-control"  value="<?= $data['range'] ?>">
+					<span class="error range text-red"></span>
+				</div>
+
+				<div class="form-group">
 					<label>Lokasi</label>
 					<textarea name="lokasi" class="form-control" ><?= $data['lokasi'] ?></textarea>
 					<span class="error lokasi text-red"></span>

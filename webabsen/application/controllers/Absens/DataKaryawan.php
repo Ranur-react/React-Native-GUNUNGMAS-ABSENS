@@ -91,4 +91,15 @@ class DataKaryawan extends CI_Controller
 		}
 		redirect('dk');
 	}
+
+	public function cetak()
+	{
+		$a = $this->uri->segment(4);
+		$data = [
+			'data'  => $this->Mdata_karyawan->tampildata($a),
+			
+		];
+		$this->load->view('Absens/datakaryawan/cetak',$data);
+
+	}
 }

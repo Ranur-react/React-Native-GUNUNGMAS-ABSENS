@@ -22,6 +22,12 @@
 								$iduser = null;
 								$nama = 'Administrator';
 							} else if ($d['level_user'] == '2') {
+								$iduser = null;
+								$nama = 'Administrator';
+							}else if ($d['level_user'] == '3') {
+								$iduser = null;
+								$nama = 'Administrator';
+							} else if ($d['level_user'] == '4') {
 								$row = $this->db->where('id_karyawan', $kode)->get('karyawan')->row_array();
 								$iduser = $row['id_karyawan'] . ' | ';
 								$nama = $row['nama_karyawan'];
@@ -34,8 +40,13 @@
 								<td>
 									<?php if ($d['level_user'] == '1')
 										echo 'Administrator';
-									else if ($d['level_user'] == '2')
+										else if ($d['level_user'] == '2')
+										echo 'Pemilik Toko';
+									 	else if ($d['level_user'] == '3')
+										echo 'Kepala Toko';
+										else if ($d['level_user'] == '4')
 										echo 'Karyawan'; ?>
+
 								</td>
 								<td class="text-center">
 									<div class="status_layout">

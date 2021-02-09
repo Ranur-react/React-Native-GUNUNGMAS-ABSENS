@@ -34,6 +34,7 @@ class LokasiAbsensi extends CI_Controller
 			$this->form_validation->set_rules('idlokasi', 'Id Set Lokasi', 'required|is_unique[set_lokasi.id_set_lokasi]');
 			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
 			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('range', 'Longitude', 'required');
 			$this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
 			$this->form_validation->set_message('required', '%s tidak boleh kosong.');
 			$this->form_validation->set_message('is_unique', '%s sudah digunakan.');
@@ -63,6 +64,7 @@ class LokasiAbsensi extends CI_Controller
 			$this->form_validation->set_rules('idlokasi', 'Id Set Lokasi', 'required');
 			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
 			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('range', 'Longitude', 'required');
 			$this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
 			$this->form_validation->set_message('required', '%s tidak boleh kosong.');
 			$this->form_validation->set_message('is_unique', '%s sudah digunakan.');

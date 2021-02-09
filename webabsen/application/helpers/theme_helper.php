@@ -42,11 +42,12 @@ if (!function_exists('user')) {
 		if ($data->level_user == 1) {
 			$user = 'Administrator';
 		} else if ($data->level_user == 2) {
-			$query = $ci->db->where('idguru', $data->kode_user)->get('guru')->row();
-			$user = $query->namaguru;
+			$user = 'Administrator';
 		} else if ($data->level_user == 3) {
-			$query = $ci->db->where('id_siswa', $data->kode_user)->get('siswa')->row();
-			$user = $query->nama_siswa;
+			$user = 'Administrator';
+		}else if ($data->level_user == 4) {
+			$query = $ci->db->where('id_karyawan', $data->kode_user)->get('karyawan')->row();
+			$user = $query->nama_karyawan;
 		}
 		return $user;
 	}
@@ -80,9 +81,9 @@ if (!function_exists('role')) {
 		if ($data->level_user == 1) {
 			$role = 'Administrator';
 		} else if ($data->level_user == 2) {
-			$role = 'Guru';
+			$role = 'Pemilik Toko';
 		} else if ($data->level_user == 3) {
-			$role = 'Siswa';
+			$role = 'Kepala Toko';
 		}
 		return $role;
 	}

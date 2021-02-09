@@ -18,7 +18,9 @@ class Muser extends CI_Model
 	{
 		$data = array(
 			'1' => 'Admin',
-			'2' => 'Karywan'
+			'2' => 'Pemilik Toko',
+			'3' => 'Kepala Toko',
+			'4' => 'Karyawan'
 		);
 		return $data;
 	}
@@ -48,6 +50,10 @@ class Muser extends CI_Model
 		if ($data['level_user'] == '1') {
 			$nama = 'Admin';
 		} else if ($data['level_user'] == '2') {
+			$nama = 'Admin';
+		} else if ($data['level_user'] == '3') {
+			$nama = 'Admin';
+		} else if ($data['level_user'] == '4') {
 			$query = $this->db->where('id_karyawan', $data['kode_user'])->get('karyawan')->row_array();
 			$nama = $query['nama_karyawan'];
 		} 

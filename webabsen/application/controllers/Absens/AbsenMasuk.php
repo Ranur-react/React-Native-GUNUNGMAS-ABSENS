@@ -23,11 +23,6 @@ class AbsenMasuk extends CI_Controller
 		];
 		$this->template->display('Absens/absenmasuk/index', $data);
 	}
-	public function create()
-	{
-
-		$this->load->view('Absens/absenmasuk/create','');
-	}
 	
 	
 	public function destroy($kode)

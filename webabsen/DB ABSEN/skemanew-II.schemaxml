@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="latin1" collation="latin1_swedish_ci">pklabsensi</database>
+<database charset="latin1" collation="latin1_swedish_ci">db_pklabsensi</database>
 </source>
-<canvas zoom="70">
+<canvas zoom="90">
 <tables>
 <table name="detail_jadwal" view="colnames">
-<left>405</left>
-<top>287</top>
-<width>110</width>
-<height>114</height>
+<left>389</left>
+<top>12</top>
+<width>164</width>
+<height>122</height>
 <sql_create_table>CREATE TABLE `detail_jadwal` (
   `id_jadwal_detail` char(50) DEFAULT NULL,
   `id_karyawan_detail` char(50) DEFAULT NULL,
@@ -23,10 +23,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="jadwal_absen_karyawan" view="colnames">
-<left>543</left>
-<top>128</top>
-<width>102</width>
-<height>102</height>
+<left>577</left>
+<top>175</top>
+<width>131</width>
+<height>131</height>
 <sql_create_table>CREATE TABLE `jadwal_absen_karyawan` (
   `id_jadwal` char(30) NOT NULL,
   `rentangSet` varchar(250) DEFAULT NULL,
@@ -40,10 +40,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="karyawan" view="colnames">
-<left>200</left>
-<top>34</top>
-<width>99</width>
-<height>114</height>
+<left>239</left>
+<top>367</top>
+<width>119</width>
+<height>146</height>
 <sql_create_table>CREATE TABLE `karyawan` (
   `id_karyawan` char(10) NOT NULL,
   `nama_karyawan` varchar(50) DEFAULT NULL,
@@ -54,27 +54,28 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="set_lokasi" view="colnames">
-<left>839</left>
-<top>245</top>
-<width>84</width>
-<height>102</height>
+<left>734</left>
+<top>230</top>
+<width>158</width>
+<height>126</height>
 <sql_create_table>CREATE TABLE `set_lokasi` (
   `id_set_lokasi` char(30) NOT NULL,
   `latitude` varchar(50) DEFAULT NULL,
   `longitude` varchar(50) DEFAULT NULL,
+  `range` int(11) DEFAULT NULL,
   `lokasi` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_set_lokasi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="absen_keluar" view="colnames">
-<left>1</left>
-<top>0</top>
-<width>131</width>
-<height>150</height>
+<left>9</left>
+<top>8</top>
+<width>179</width>
+<height>189</height>
 <sql_create_table>CREATE TABLE `absen_keluar` (
   `id_absen_keluar` char(30) NOT NULL,
   `id_karyawan_keluar` char(30) DEFAULT NULL,
-  `id_set_waktu_keluar` char(30) DEFAULT NULL,
+  `id_set_jadwal_keluar` char(30) DEFAULT NULL,
   `jam_keluar` time DEFAULT NULL,
   `tanggal_keluar` date DEFAULT NULL,
   `latitude_keluar` varchar(50) DEFAULT NULL,
@@ -82,20 +83,20 @@
   `foto_keluar` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id_absen_keluar`),
   KEY `id_karyawan_keluar` (`id_karyawan_keluar`),
-  KEY `id_set_waktu_keluar` (`id_set_waktu_keluar`),
+  KEY `id_set_waktu_keluar` (`id_set_jadwal_keluar`),
   CONSTRAINT `absen_keluar_ibfk_1` FOREIGN KEY (`id_karyawan_keluar`) REFERENCES `karyawan` (`id_karyawan`) ON UPDATE CASCADE,
-  CONSTRAINT `absen_keluar_ibfk_2` FOREIGN KEY (`id_set_waktu_keluar`) REFERENCES `set_waktu_absens` (`id_waktu`) ON UPDATE CASCADE
+  CONSTRAINT `absen_keluar_ibfk_2` FOREIGN KEY (`id_set_jadwal_keluar`) REFERENCES `jadwal_absen_karyawan` (`id_jadwal`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="absen_masuk" view="colnames">
-<left>2</left>
-<top>137</top>
-<width>116</width>
-<height>150</height>
+<left>390</left>
+<top>309</top>
+<width>162</width>
+<height>208</height>
 <sql_create_table>CREATE TABLE `absen_masuk` (
   `id_absen_masuk` char(30) NOT NULL,
   `id_karyawan_masuk` char(30) DEFAULT NULL,
-  `id_set_waktu_masuk` char(30) DEFAULT NULL,
+  `id_set_jadwal_Masuk` char(30) DEFAULT NULL,
   `jam_masuk` time DEFAULT NULL,
   `tanggal_masuk` date DEFAULT NULL,
   `latitude_masuk` varchar(50) DEFAULT NULL,
@@ -104,16 +105,16 @@
   `ket` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id_absen_masuk`),
   KEY `id_karyawan_masuk` (`id_karyawan_masuk`),
-  KEY `id_set_waktu_masuk` (`id_set_waktu_masuk`),
+  KEY `id_set_waktu_masuk` (`id_set_jadwal_Masuk`),
   CONSTRAINT `absen_masuk_ibfk_1` FOREIGN KEY (`id_karyawan_masuk`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `absen_masuk_ibfk_2` FOREIGN KEY (`id_set_waktu_masuk`) REFERENCES `set_waktu_absens` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `absen_masuk_ibfk_2` FOREIGN KEY (`id_set_jadwal_Masuk`) REFERENCES `jadwal_absen_karyawan` (`id_jadwal`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="set_waktu_absens" view="colnames">
-<left>839</left>
+<left>733</left>
 <top>8</top>
-<width>143</width>
-<height>138</height>
+<width>159</width>
+<height>177</height>
 <sql_create_table>CREATE TABLE `set_waktu_absens` (
   `id_waktu` char(30) NOT NULL,
   `ket_waktu` varchar(50) DEFAULT NULL,
@@ -126,10 +127,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="user" view="colnames">
-<left>200</left>
-<top>171</top>
-<width>78</width>
-<height>138</height>
+<left>577</left>
+<top>327</top>
+<width>128</width>
+<height>189</height>
 <sql_create_table>CREATE TABLE `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `kode_user` char(10) DEFAULT NULL,
@@ -139,13 +140,13 @@
   `status_user` char(1) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="surat_sakit" view="colnames">
-<left>2</left>
-<top>281</top>
-<width>107</width>
-<height>114</height>
+<left>10</left>
+<top>215</top>
+<width>180</width>
+<height>144</height>
 <sql_create_table>CREATE TABLE `surat_sakit` (
   `id_surat_sakit` char(30) NOT NULL,
   `id_karyawan_sakit` char(30) DEFAULT NULL,
@@ -158,10 +159,10 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="surat_izin" view="colnames">
-<left>2</left>
-<top>387</top>
-<width>102</width>
-<height>114</height>
+<left>10</left>
+<top>374</top>
+<width>179</width>
+<height>144</height>
 <sql_create_table>CREATE TABLE `surat_izin` (
   `id_surat_izin` char(30) NOT NULL,
   `id_karyawan_izin` char(30) DEFAULT NULL,
@@ -171,6 +172,20 @@
   PRIMARY KEY (`id_surat_izin`),
   KEY `id_karyawan_izin` (`id_karyawan_izin`),
   CONSTRAINT `surat_izin_ibfk_1` FOREIGN KEY (`id_karyawan_izin`) REFERENCES `karyawan` (`id_karyawan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tmp_karyawan" view="colnames">
+<left>737</left>
+<top>372</top>
+<width>157</width>
+<height>147</height>
+<sql_create_table>CREATE TABLE `tmp_karyawan` (
+  `id_karyawan_tmp` char(50) NOT NULL,
+  `nama_karyawan_tmp` varchar(100) DEFAULT NULL,
+  `email_tmp` varchar(100) DEFAULT NULL,
+  `nohp_tmp` varchar(13) DEFAULT NULL,
+  `alamat_tmp` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id_karyawan_tmp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 </tables>
