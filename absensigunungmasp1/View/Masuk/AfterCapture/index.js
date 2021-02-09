@@ -323,7 +323,7 @@ getData('IPSERVER');
 
       console.log(this.state.user);
       // const data = new FormData();
-      const locaLurl="http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/";
+      const locaLurl=IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/";
           let KirimBlob= async()=>{
 
                   await  RNFetchBlob.fetch('POST', locaLurl, {

@@ -78,6 +78,7 @@ export default class MyComponent extends Component {
 
     }
     //--TimeScheduleConfigurasi
+
     const getDataLoginJson = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('Json_Login');
@@ -127,8 +128,9 @@ const getData = async (e) => {
       Alert.alert(e);
     }
   }
-const Call=async()=>{
+getData('IPSERVER');
 
+const Call=async()=>{
   if (this.state.LoadingState) {
       const tanggalSekarang=()=>{
         var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -311,7 +313,7 @@ const Call=async()=>{
   }
 
 }
-getData('IPSERVER');
+
 
   }
 
@@ -321,7 +323,7 @@ getData('IPSERVER');
 
       console.log(this.state.user);
       // const data = new FormData();
-      const locaLurl="http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/";
+      const locaLurl=IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/";
           let KirimBlob= async()=>{
 
                   await  RNFetchBlob.fetch('POST', locaLurl, {

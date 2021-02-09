@@ -163,13 +163,24 @@ const styles = StyleSheet.create({
   },
   Frontcontainer: {
       flex: 1,
-      backgroundColor: 'rgba(53,158,255,1)',
+      backgroundColor: 'rgba(53,158,255,0.9)',
+
+      shadowColor: "#000",
+      shadowOffset: {
+      	width: 0,
+      	height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+
+      elevation: 2,
+
       alignItems: 'center',
       width:WIDTH,
       height:1346,
       borderTopLeftRadius:40,
       borderTopRightRadius:40,
-      borderColor: 'rgba(0, 0, 0, 0.25)',
+      borderColor: 'rgba(0, 0, 0, 0.0)',
       borderTopWidth:4
     },
   menuContainer:{

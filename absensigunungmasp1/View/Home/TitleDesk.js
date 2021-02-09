@@ -15,8 +15,12 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
-  Button,Modal
+  Button,
+  Modal,
+  Image
+
 } from 'react-native';
+import PulseLoader from 'react-native-pulse-loader';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
 
@@ -46,6 +50,10 @@ export default class MyComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      Notifikasi:{
+          state:false,
+          pesan:''
+        },
       LoadingState:true,
       TanggalNow:'-',
       Jarak:'',
@@ -74,20 +82,7 @@ export default class MyComponent extends Component {
     }
 
     //--TimeScheduleConfigurasi
-    const getDataLoginJson = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem('Json_Login');
-        const data =JSON.parse(jsonValue);
-        this.setState({user:data});
-        } catch(e) {
-          Alert.alert(e);
-        }
-      }
-      if (this.state.LoadingState) {
-        getDataLoginJson();
-        // getData('IPSERVER');
-        }else{
-        }
+
   }
 
   componentDidUpdate(){
@@ -114,8 +109,19 @@ const getData = async (e) => {
     }
   }
 const Call=async()=>{
-
+  const getDataLoginJson = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('Json_Login');
+      const data =JSON.parse(jsonValue);
+      this.setState({user:data});
+      } catch(e) {
+        Alert.alert(e);
+      }
+    }
   if (this.state.LoadingState) {
+
+    getDataLoginJson();
+
       const tanggalSekarang=()=>{
         var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
@@ -129,9 +135,9 @@ const Call=async()=>{
         let   tgl=thisDay + ', ' + day + ' ' + months[month] + ' ' + year;
         this.setState({TanggalNow:tgl});
       }
-      let Getlokas= async ()=>{
+      let Getlokas=  async ()=>{
 
-        Geolocation.getCurrentPosition(info =>{
+        await Geolocation.getCurrentPosition(info =>{
           var dis = getDistance(
             {latitude: info.coords.latitude, longitude: info.coords.longitude},//kordinat sekarang
             {latitude: this.state.JKordinat.la, longitude: this.state.JKordinat.lo},  //kordinat SET
@@ -146,7 +152,7 @@ const Call=async()=>{
               this.setState({Pjarak:disP});
               } );
             }
-            const Formula_Jam=(e)=>{
+            const Formula_Jam= (e)=>{
               //NOW------
               let now=moment().tz("Asia/Jakarta").format('HH:mm');
               this.setState({jamNow: JSON.stringify(now)});
@@ -176,11 +182,13 @@ const Call=async()=>{
                 }
 
               }
-              const Formula_Jadwal_masuk=()=>{
+              const Formula_Jadwal_masuk=async()=>{
                 let masuk=this.state.JmasukState;
                 let masukEnd=this.state.JmasukEndState;
                 let toler=this.state.ToleransiState;
                 let val="Log";
+                Getlokas();
+
                 if(masuk){
                   val="Jam Absen Belum Masuk ";
                   this.setState({MasukState:{
@@ -189,19 +197,37 @@ const Call=async()=>{
                     }});
                     }else{
                       if(masukEnd){
-                        val="Silahkan Ambil Absen Masuk Pada Jam Ini";
-                        this.setState({MasukState:{
-                          pesan:val,
-                          state: true
-                          }});
-
+                              if (this.state.Jarak < 100) {
+                                val="Silahkan Ambil Absen Masuk Pada Jam Ini";
+                                this.setState({MasukState:{
+                                  pesan:val,
+                                  state: true
+                                  }});
+                              }else{
+                                val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Jangan sampe Terlambat";
+                                this.setState({MasukState:{
+                                  pesan:val,
+                                  state: false
+                                  }});
+                              }
                           }else{
                             if(toler){
-                              val="Terlambat";
-                              this.setState({MasukState:{
-                                pesan:val,
-                                state: true
-                                }});
+                              console.log("Pjarak");
+                              console.log(this.state.Jarak);
+                                    if (this.state.Jarak < 100) {
+                                      val="Terlambat";
+                                      this.setState({MasukState:{
+                                        pesan:val,
+                                        state: true
+                                        }});
+                                    }else{
+                                      val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Anda Terlambat Gak ada waktu lagi.. cepetan!!!";
+                                      this.setState({MasukState:{
+                                        pesan:val,
+                                        state: false
+                                        }});
+                                    }
+
                                 }else{
                                   val="Anda Masuk Diluar Jam Ketentuan";
                                   this.setState({MasukState:{
@@ -216,10 +242,11 @@ const Call=async()=>{
                               Formula_Jadwal_Pulang();
 
                             }
-                            const Formula_Jadwal_Pulang=()=>{
+                            const Formula_Jadwal_Pulang= async()=>{
                               let pulang=this.state.JpulangState;
                               let pulangEnd=this.state.JpulangEndState;
                               let val="Log";
+                                Getlokas();
                               if(pulang){
                                 val="Jam Absen Belum Pulang ";
                                 this.setState({PulangState:{
@@ -259,8 +286,7 @@ const Call=async()=>{
                                                 if (responseJson.respond) {
                                                   this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
                                                   this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});
-                                                  Getlokas();
-                                                  tanggalSekarang();
+                                                   tanggalSekarang();
                                                   //---Masuk
                                                   this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
                                                   //---Berakhirmasuk
@@ -277,7 +303,7 @@ const Call=async()=>{
                                                   this.setState({JpulangState: Formula_Jam(responseJson.data.waktu_mulai_keluar)});
                                                   this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
                                                   this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
-                                                  Formula_Jadwal_masuk();
+                                                   Formula_Jadwal_masuk();
                                                   console.log("Kondisi Pulang");
                                                   console.log(this.state.PulangState);
                                                   this.setState({LoadingState:false});
@@ -285,6 +311,8 @@ const Call=async()=>{
                                                   }else{
 
                                                     console.log("Jadwal Anda Belum di SET");
+                                                    this.setState({Notifikasi:{state:true,pesan:responseJson.Pesan}});
+
                                                   }
                                                   }).catch(error => {
                                                     console.log("Gagal cek jadwal !!!!")
@@ -329,8 +357,14 @@ getData('IPSERVER');
                   onRequestClose = {() => { console.log("Modal has been closed.") } }>
 
                   <View style = {styles.modal}>
-                     <Text style = {styles.labelmodal}>Load . . .</Text>
+                  <View style={{position:'absolute'}}>
 
+                  </View>
+                     <Text style = {styles.labelmodal}>Load . . .</Text>
+                     <Image
+     source={{uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/45a2a353042777.5925c70c0cb86.gif'}}
+     style={{width: 100, height:100 }}
+ />
                      <TouchableHighlight onPress = {() => {this.setState({LoadingState:!this.state.LoadingState})}}>
 
                         <Text style = {styles.labelmodal}>X</Text>
@@ -338,6 +372,27 @@ getData('IPSERVER');
                   </View>
                </Modal>
              }
+             {
+                                 <Modal animationType = {"slide"} transparent = {false}
+                               visible = {this.state.Notifikasi.state}
+                               onRequestClose = {() => { console.log("Modal has been closed.") } }>
+
+                               <View style = {styles.modalEror}>
+                               <View style={{position:'absolute'}}>
+
+                               </View>
+                                  <Text style = {styles.labelmodalEror}>{this.state.Notifikasi.pesan}</Text>
+                                  <Image
+                  source={{uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/45a2a353042777.5925c70c0cb86.gif'}}
+                  style={{width: 100, height:100 }}
+              />
+                                  <TouchableHighlight onPress = {() => {this.setState({LoadingState:!this.state.LoadingState})}}>
+
+                                     <Text style = {styles.labelmodal}>X</Text>
+                                  </TouchableHighlight>
+                               </View>
+                            </Modal>
+                          }
           </View>
           <TouchableOpacity onPress={()=>console.log("tesss")}  style={styles.SmallNotif} >
               <Text style={styles.TextSmallNotif}  >Masuk</Text>
@@ -362,6 +417,18 @@ const styles = StyleSheet.create({
        fontSize: 20,
        color:'rgba(255,255,255,1)'
      },
+     modalEror: {
+         flex: 1,
+         alignItems: 'center',
+         justifyContent:'center',
+         backgroundColor: 'rgba(255,255,255,1)',
+         padding: 100
+      },  labelmodalEror:{
+          textAlign:'center',
+          fontFamily:'Raleway-Bold',
+          fontSize: 20,
+        color:'rgba(0,0,0,1)',
+        },
   TextTitle:{
     fontFamily:'Raleway-Bold',
     fontSize: 20,

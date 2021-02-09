@@ -122,7 +122,6 @@ let Menu=(props)=>{
      try {
        const value = await AsyncStorage.getItem(e)
        if(value !== null) {
-         // console.log("Ip Server addresss--->"+IPSERVER);
          IPSERVER=value;
          if (IPSERVER != null) {
              Call()
@@ -139,6 +138,8 @@ let Menu=(props)=>{
        Alert.alert(e);
      }
    }
+
+ getData('IPSERVER');
  const Call=async()=>{
 
    if (this.state.LoadingState) {
@@ -155,9 +156,9 @@ let Menu=(props)=>{
          let   tgl=thisDay + ', ' + day + ' ' + months[month] + ' ' + year;
          this.setState({TanggalNow:tgl});
        }
-       let Getlokas= async ()=>{
+       let Getlokas=  async ()=>{
 
-         Geolocation.getCurrentPosition(info =>{
+         await Geolocation.getCurrentPosition(info =>{
            var dis = getDistance(
              {latitude: info.coords.latitude, longitude: info.coords.longitude},//kordinat sekarang
              {latitude: this.state.JKordinat.la, longitude: this.state.JKordinat.lo},  //kordinat SET
@@ -172,7 +173,7 @@ let Menu=(props)=>{
                this.setState({Pjarak:disP});
                } );
              }
-             const Formula_Jam=(e)=>{
+             const Formula_Jam= (e)=>{
                //NOW------
                let now=moment().tz("Asia/Jakarta").format('HH:mm');
                this.setState({jamNow: JSON.stringify(now)});
@@ -202,11 +203,13 @@ let Menu=(props)=>{
                  }
 
                }
-               const Formula_Jadwal_masuk=()=>{
+               const Formula_Jadwal_masuk=async()=>{
                  let masuk=this.state.JmasukState;
                  let masukEnd=this.state.JmasukEndState;
                  let toler=this.state.ToleransiState;
                  let val="Log";
+                 await Getlokas();
+
                  if(masuk){
                    val="Jam Absen Belum Masuk ";
                    this.setState({MasukState:{
@@ -215,19 +218,37 @@ let Menu=(props)=>{
                      }});
                      }else{
                        if(masukEnd){
-                         val="Silahkan Ambil Absen Masuk Pada Jam Ini";
-                         this.setState({MasukState:{
-                           pesan:val,
-                           state: true
-                           }});
-
+                               if (this.state.Jarak < 100) {
+                                 val="Silahkan Ambil Absen Masuk Pada Jam Ini";
+                                 this.setState({MasukState:{
+                                   pesan:val,
+                                   state: true
+                                   }});
+                               }else{
+                                 val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Jangan sampe Terlambat";
+                                 this.setState({MasukState:{
+                                   pesan:val,
+                                   state: false
+                                   }});
+                               }
                            }else{
                              if(toler){
-                               val="Terlambat";
-                               this.setState({MasukState:{
-                                 pesan:val,
-                                 state: true
-                                 }});
+                               console.log("Pjarak");
+                               console.log(this.state.Jarak);
+                                     if (this.state.Jarak < 100) {
+                                       val="Terlambat";
+                                       this.setState({MasukState:{
+                                         pesan:val,
+                                         state: true
+                                         }});
+                                     }else{
+                                       val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Anda Terlambat Gak ada waktu lagi.. cepetan!!!";
+                                       this.setState({MasukState:{
+                                         pesan:val,
+                                         state: false
+                                         }});
+                                     }
+
                                  }else{
                                    val="Anda Masuk Diluar Jam Ketentuan";
                                    this.setState({MasukState:{
@@ -242,10 +263,11 @@ let Menu=(props)=>{
                                Formula_Jadwal_Pulang();
 
                              }
-                             const Formula_Jadwal_Pulang=()=>{
+                             const Formula_Jadwal_Pulang= async()=>{
                                let pulang=this.state.JpulangState;
                                let pulangEnd=this.state.JpulangEndState;
                                let val="Log";
+                                 Getlokas();
                                if(pulang){
                                  val="Jam Absen Belum Pulang ";
                                  this.setState({PulangState:{
@@ -285,8 +307,7 @@ let Menu=(props)=>{
                                                  if (responseJson.respond) {
                                                    this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
                                                    this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});
-                                                   Getlokas();
-                                                   tanggalSekarang();
+                                                    tanggalSekarang();
                                                    //---Masuk
                                                    this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
                                                    //---Berakhirmasuk
@@ -303,7 +324,7 @@ let Menu=(props)=>{
                                                    this.setState({JpulangState: Formula_Jam(responseJson.data.waktu_mulai_keluar)});
                                                    this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
                                                    this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
-                                                   Formula_Jadwal_masuk();
+                                                    Formula_Jadwal_masuk();
                                                    console.log("Kondisi Pulang");
                                                    console.log(this.state.PulangState);
                                                    this.setState({LoadingState:false});
@@ -322,8 +343,6 @@ let Menu=(props)=>{
    }
 
  }
- getData('IPSERVER');
-
    }
   render() {
 
@@ -335,13 +354,17 @@ let Menu=(props)=>{
                 101:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
                 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
               };
-
               for (var key in listOBJ) {
                   if (listOBJ.hasOwnProperty(key)) {
                     code.push(
                       <View>
-
-                        <Menu key={key} props={this.props} Destinations={listOBJ[key].dest}  icon={listOBJ[key].icon} label={listOBJ[key].nama} status={listOBJ[key].status} klik={listOBJ[key].exex}  />
+                        <Menu key={key}
+                          props={this.props}
+                          Destinations={listOBJ[key].dest}
+                          icon={listOBJ[key].icon}
+                          label={listOBJ[key].nama}
+                          status={listOBJ[key].status}
+                          klik={listOBJ[key].exex}  />
                       </View>
                       )
                   }
