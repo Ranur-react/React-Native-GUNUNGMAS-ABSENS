@@ -79,6 +79,7 @@ class AuthApp extends CI_Controller
                 }else{
                     $json['respond'] = false;
                     $json['data'] = null;
+                    $json['Pesan'] = "Jadwal Belum di set, Mohon hubungi Administrator";
                     $json['Jumlah Rows'] = $qry->num_rows();
 
                 }
