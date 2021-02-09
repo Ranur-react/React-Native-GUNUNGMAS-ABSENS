@@ -13,6 +13,7 @@ class Mlokasi_absensi extends CI_Model
 			'id_set_lokasi' => $params['idlokasi'],
 			'latitude' => $params['latitude'],
 			'longitude' => $params['longitude'],
+			'range' => $params['range'],
 			'lokasi' => $params['lokasi'],
 		];
 		return $this->db->insert($this->tabel, $data);
@@ -28,6 +29,7 @@ class Mlokasi_absensi extends CI_Model
 			'id_set_lokasi' => $params['idlokasi'],
 			'latitude' => $params['latitude'],
 			'longitude' => $params['longitude'],
+			'range' => $params['range'],
 			'lokasi' => $params['lokasi'],
 		];
 		return $this->db->where('id_set_lokasi', $kode)->update($this->tabel, $data);

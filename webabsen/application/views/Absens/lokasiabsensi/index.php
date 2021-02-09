@@ -13,6 +13,7 @@
 							<th>Id Set Lokasi</th>
 							<th>Latitude</th>
 							<th>Longitude</th>
+							<th>Range</th>
 							<th>Lokasi</th>
 							<th class="text-center">Aksi</th>
 						</tr>
@@ -25,6 +26,7 @@
 								<td><?= $d['id_set_lokasi'] ?></td>
 								<td><?= $d['latitude'] ?></td>
 								<td><?= $d['longitude'] ?></td>
+								<td><?= $d['range'] ?> Meter</td>
 								<td><?= $d['lokasi'] ?></td>
 								<td class="text-center" width="60px">
 									<a href="javascript:void(0)" onclick="edit('<?= $d['id_set_lokasi'] ?>')"><i class="icon-pencil7 text-green" data-toggle="tooltip" data-original-title="Edit Data"></i></a>

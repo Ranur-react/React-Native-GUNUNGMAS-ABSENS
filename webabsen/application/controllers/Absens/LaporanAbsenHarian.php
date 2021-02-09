@@ -23,4 +23,26 @@ class LaporanAbsenHarian extends CI_Controller
 		];
 		$this->template->display('Absens/lapharian/index', $data);
 	}
+
+	public function cetak()
+	{
+		$all['awal']= $awal = $this->uri->segment(4);
+
+		$data = [
+			'data'  => $data['dataVar'] = $this->Mlap_harian->shows($all),
+			'awal'  => date("Y-m-d", strtotime($all['awal'])),
+		];
+		$this->load->view('Absens/lapharian/cetak',$data);
+
+
+	}
+
+	public function TabelPeriode()
+	{
+		$all = $this->input->post(null, TRUE);
+		$data['dataVar'] = $this->Mlap_harian->shows($all);
+
+		$this->load->view('Absens/lapharian/tabel',$data);
+		
+	}
 }

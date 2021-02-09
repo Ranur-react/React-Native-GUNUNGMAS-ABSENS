@@ -3,13 +3,14 @@
 <source>
 <database charset="latin1" collation="latin1_swedish_ci">db_pklabsensi</database>
 </source>
-<canvas zoom="110">
+
+<canvas zoom="90">
 <tables>
 <table name="detail_jadwal" view="colnames">
-<left>571</left>
-<top>9</top>
-<width>173</width>
-<height>179</height>
+<left>389</left>
+<top>12</top>
+<width>164</width>
+<height>122</height>
 <sql_create_table>CREATE TABLE `detail_jadwal` (
   `id_jadwal_detail` char(50) DEFAULT NULL,
   `id_karyawan_detail` char(50) DEFAULT NULL,
@@ -23,10 +24,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="jadwal_absen_karyawan" view="colnames">
-<left>854</left>
-<top>201</top>
-<width>247</width>
-<height>275</height>
+
+<left>577</left>
+<top>175</top>
+<width>131</width>
+<height>131</height>
 <sql_create_table>CREATE TABLE `jadwal_absen_karyawan` (
   `id_jadwal` char(30) NOT NULL,
   `rentangSet` varchar(250) DEFAULT NULL,
@@ -40,10 +42,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="karyawan" view="colnames">
-<left>294</left>
-<top>520</top>
-<width>155</width>
-<height>179</height>
+
+<left>239</left>
+<top>367</top>
+<width>119</width>
+<height>146</height>
 <sql_create_table>CREATE TABLE `karyawan` (
   `id_karyawan` char(10) NOT NULL,
   `nama_karyawan` varchar(50) DEFAULT NULL,
@@ -54,23 +57,27 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="set_lokasi" view="colnames">
-<left>1319</left>
-<top>385</top>
-<width>132</width>
-<height>161</height>
+
+<left>734</left>
+<top>230</top>
+<width>158</width>
+<height>126</height>
 <sql_create_table>CREATE TABLE `set_lokasi` (
   `id_set_lokasi` char(30) NOT NULL,
   `latitude` varchar(50) DEFAULT NULL,
   `longitude` varchar(50) DEFAULT NULL,
+
+  `range` int(11) DEFAULT NULL,
   `lokasi` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_set_lokasi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="absen_keluar" view="colnames">
-<left>4</left>
-<top>0</top>
-<width>178</width>
-<height>209</height>
+
+<left>9</left>
+<top>8</top>
+<width>179</width>
+<height>189</height>
 <sql_create_table>CREATE TABLE `absen_keluar` (
   `id_absen_keluar` char(30) NOT NULL,
   `id_karyawan_keluar` char(30) DEFAULT NULL,
@@ -88,10 +95,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="absen_masuk" view="colnames">
-<left>630</left>
-<top>587</top>
-<width>183</width>
-<height>254</height>
+
+<left>390</left>
+<top>309</top>
+<width>162</width>
+<height>208</height>
 <sql_create_table>CREATE TABLE `absen_masuk` (
   `id_absen_masuk` char(30) NOT NULL,
   `id_karyawan_masuk` char(30) DEFAULT NULL,
@@ -110,10 +118,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="set_waktu_absens" view="colnames">
-<left>1319</left>
-<top>12</top>
-<width>188</width>
-<height>217</height>
+
+<left>733</left>
+<top>8</top>
+<width>159</width>
+<height>177</height>
 <sql_create_table>CREATE TABLE `set_waktu_absens` (
   `id_waktu` char(30) NOT NULL,
   `ket_waktu` varchar(50) DEFAULT NULL,
@@ -126,10 +135,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="user" view="colnames">
-<left>279</left>
-<top>229</top>
-<width>123</width>
-<height>217</height>
+
+<left>577</left>
+<top>327</top>
+<width>128</width>
+<height>189</height>
 <sql_create_table>CREATE TABLE `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `kode_user` char(10) DEFAULT NULL,
@@ -139,13 +149,14 @@
   `status_user` char(1) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1</sql_create_table>
+
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="surat_sakit" view="colnames">
-<left>0</left>
-<top>358</top>
-<width>168</width>
-<height>179</height>
+<left>10</left>
+<top>215</top>
+<width>180</width>
+<height>144</height>
 <sql_create_table>CREATE TABLE `surat_sakit` (
   `id_surat_sakit` char(30) NOT NULL,
   `id_karyawan_sakit` char(30) DEFAULT NULL,
@@ -158,10 +169,11 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 <table name="surat_izin" view="colnames">
-<left>3</left>
-<top>608</top>
-<width>160</width>
-<height>179</height>
+
+<left>10</left>
+<top>374</top>
+<width>179</width>
+<height>144</height>
 <sql_create_table>CREATE TABLE `surat_izin` (
   `id_surat_izin` char(30) NOT NULL,
   `id_karyawan_izin` char(30) DEFAULT NULL,
@@ -171,6 +183,20 @@
   PRIMARY KEY (`id_surat_izin`),
   KEY `id_karyawan_izin` (`id_karyawan_izin`),
   CONSTRAINT `surat_izin_ibfk_1` FOREIGN KEY (`id_karyawan_izin`) REFERENCES `karyawan` (`id_karyawan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tmp_karyawan" view="colnames">
+<left>737</left>
+<top>372</top>
+<width>157</width>
+<height>147</height>
+<sql_create_table>CREATE TABLE `tmp_karyawan` (
+  `id_karyawan_tmp` char(50) NOT NULL,
+  `nama_karyawan_tmp` varchar(100) DEFAULT NULL,
+  `email_tmp` varchar(100) DEFAULT NULL,
+  `nohp_tmp` varchar(13) DEFAULT NULL,
+  `alamat_tmp` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id_karyawan_tmp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
 </table>
 </tables>

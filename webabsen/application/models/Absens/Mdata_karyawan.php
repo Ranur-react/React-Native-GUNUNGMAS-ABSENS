@@ -23,7 +23,7 @@ class Mdata_karyawan extends CI_Model
 			'kode_user' => $params['idkaryawan'],
 			'email' => $params['email'],
 			'password' => md5('123'),
-			'level_user' => '2',
+			'level_user' => '4',
 			'status_user' => '1',
 		];
 		$this->db->set('created_at', 'NOW()', FALSE);
@@ -52,5 +52,10 @@ class Mdata_karyawan extends CI_Model
 
 		return $this->db->simple_query("DELETE FROM " . $this->tabel . " WHERE id_karyawan='$kode'");
 	
+	}
+
+	public function tampildata()
+	{
+		return $this->db->query("SELECT * FROM karyawan;")->result_array();
 	}
 }

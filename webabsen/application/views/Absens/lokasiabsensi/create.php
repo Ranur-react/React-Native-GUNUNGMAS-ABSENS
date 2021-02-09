@@ -27,11 +27,6 @@
 				</div>
 
 				<div class="form-group">
-					<label>Map</label>
-					<textarea type="text"  class="form-control" placeholder="Disini Petanya" rows="10"></textarea>
-				</div>
-
-				<div class="form-group">
 					<label>Latitude</label>
 					<input type="text" name="latitude" class="form-control" placeholder="Latitude">
 					<span class="error latitude text-red"></span>
@@ -41,6 +36,12 @@
 					<label>Longitude</label>
 					<input type="text" name="longitude" class="form-control" placeholder="Longitude">
 					<span class="error longitude text-red"></span>
+				</div>
+
+				<div class="form-group">
+					<label>Range</label>
+					<input type="text" name="range" class="form-control" placeholder="Range">
+					<span class="error range text-red"></span>
 				</div>
 
 				<div class="form-group">

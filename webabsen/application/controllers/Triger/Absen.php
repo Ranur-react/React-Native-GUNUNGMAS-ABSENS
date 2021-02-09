@@ -64,26 +64,7 @@ class Absen extends CI_Controller
 
                         }
 
-                        // if ($_POST['StatusAbsen'] =="Pulang") {
-                        //     $this->db->query("INSERT INTO `absen_keluar` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
-                        //     # code...
-                        //                         $MESSAGE['Pesan']="Sukses !! Upload Foto Masuk Berhasil";
-                        //                         $MESSAGE['kode']=1;
-                        //                         $MESSAGE['Respond']=true;
-                        // }elseif ($_POST['StatusAbsen'] =="Masuk") {
-                        //     //Input Data Masuk-----------
-                        //     $this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
-                        //     //Input data kehadiran dan displin
-                        //     $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` = '1' , `status_displin` = '$Displin' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
-                        //     $MESSAGE['Pesan']="Sukses !! Upload Foto Pulang Berhasil";
-                        //                         $MESSAGE['kode']=1;
-                        //                         $MESSAGE['Respond']=true;
-                        // }else{
-                        //                         $MESSAGE['Pesan']="Gagal !! Periksa Jadwal mu lebih baik lagi";
-                        //                         $MESSAGE['kode']=0;
-                        //                         $MESSAGE['Respond']=false;
-                        // }
-
+          
 
 
 
