@@ -73,6 +73,8 @@ let Menu=(props)=>{
        Pjarak:'',
        tanggal:'',
 
+       StatusPulang:'false',
+       StatusMasuk:'false',
        Jmasuk:'',
          JmasukState:'',
        JmasukEnd:'',
@@ -88,8 +90,12 @@ let Menu=(props)=>{
 
        jamNow:'',
        jamData:'',
-       MasukState:'',
-       PulangState:'',
+       MasukState:{
+         pesan:'',
+          state: false},
+       PulangState:{
+         pesan:'',
+          state: false},
 
 
      }
@@ -109,13 +115,7 @@ let Menu=(props)=>{
          }else{
          }
    }
-   componentWillMount(){
-          this.props.props.navigation.addListener('focus', () => {
-            this.setState({
-              LoadingState:true
-            });
-    });
-   }
+
    componentDidUpdate(){
  // console.log("ada perubahan");
  const getData = async (e) => {
@@ -208,90 +208,104 @@ let Menu=(props)=>{
                  let masukEnd=this.state.JmasukEndState;
                  let toler=this.state.ToleransiState;
                  let val="Log";
-                 await Getlokas();
-
-                 if(masuk){
-                   val="Jam Absen Belum Masuk ";
-                   this.setState({MasukState:{
-                     pesan:val,
-                     state: false
-                     }});
-                     }else{
-                       if(masukEnd){
-                               if (this.state.Jarak < 100) {
-                                 val="Silahkan Ambil Absen Masuk Pada Jam Ini";
-                                 this.setState({MasukState:{
-                                   pesan:val,
-                                   state: true
-                                   }});
-                               }else{
-                                 val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Jangan sampe Terlambat";
-                                 this.setState({MasukState:{
-                                   pesan:val,
-                                   state: false
-                                   }});
-                               }
-                           }else{
-                             if(toler){
-                               console.log("Pjarak");
-                               console.log(this.state.Jarak);
-                                     if (this.state.Jarak < 100) {
-                                       val="Terlambat";
-                                       this.setState({MasukState:{
-                                         pesan:val,
-                                         state: true
-                                         }});
-                                     }else{
-                                       val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Anda Terlambat Gak ada waktu lagi.. cepetan!!!";
-                                       this.setState({MasukState:{
-                                         pesan:val,
-                                         state: false
-                                         }});
-                                     }
-
+                 if (this.state.StatusMasuk ) {
+                   await Getlokas();
+                   if(masuk){
+                     val="Jam Absen Belum Masuk ";
+                     this.setState({MasukState:{
+                       pesan:val,
+                       state: false
+                       }});
+                       }else{
+                         if(masukEnd){
+                                 if (this.state.Jarak < 100) {
+                                   val="Silahkan Ambil Absen Masuk Pada Jam Ini";
+                                   this.setState({MasukState:{
+                                     pesan:val,
+                                     state: true
+                                     }});
                                  }else{
-                                   val="Anda Masuk Diluar Jam Ketentuan";
+                                   val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Jangan sampe Terlambat";
                                    this.setState({MasukState:{
                                      pesan:val,
                                      state: false
                                      }});
-                                   }
-
                                  }
-                               }
+                             }else{
+                               if(toler){
+                                 console.log("Pjarak");
+                                 console.log(this.state.Jarak);
+                                       if (this.state.Jarak < 100) {
+                                         val="Terlambat";
+                                         this.setState({MasukState:{
+                                           pesan:val,
+                                           state: true
+                                           }});
+                                       }else{
+                                         val="Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Anda Terlambat Gak ada waktu lagi.. cepetan!!!";
+                                         this.setState({MasukState:{
+                                           pesan:val,
+                                           state: false
+                                           }});
+                                       }
+
+                                   }else{
+                                     val="Anda Masuk Diluar Jam Ketentuan";
+                                     this.setState({MasukState:{
+                                       pesan:val,
+                                       state: false
+                                       }});
+                                     }
+
+                                   }
+                                 }
+                 }else {
+                   val="Anda Masuk Diluar Jam Ketentuan";
+                   this.setState({MasukState:{
+                     pesan:val,
+                     state: false
+                     }});
+                 }
+
 
                                Formula_Jadwal_Pulang();
 
                              }
+
+
                              const Formula_Jadwal_Pulang= async()=>{
                                let pulang=this.state.JpulangState;
                                let pulangEnd=this.state.JpulangEndState;
                                let val="Log";
+                               if (this.state.StatusPulang) {
                                  Getlokas();
-                               if(pulang){
-                                 val="Jam Absen Belum Pulang ";
-                                 this.setState({PulangState:{
-                                   pesan:val,
-                                   state: false
+                                 if(pulang){
+                                   val="Jam Absen Belum Pulang ";
+                                   this.setState({PulangState:{
+                                     pesan:val,
+                                     state: false
                                    }});
-                                   }else{
-                                     if(pulangEnd){
-                                       val="Silahkan Ambil Absen PULANG Pada Jam Ini";
-                                       this.setState({PulangState:{
-                                         pesan:val,
-                                         state: true
-                                         }});
+                                 }else{
+                                   if(pulangEnd){
+                                     val="Silahkan Ambil Absen PULANG Pada Jam Ini";
+                                     this.setState({PulangState:{
+                                       pesan:val,
+                                       state: true
+                                     }});
 
-                                         }else{
-                                           val="Anda Pulang Diluar Jam Ketentuan";
-                                           this.setState({PulangState:{
-                                             pesan:val,
-                                             state: false
-                                             }});
-                                           }
-                                         }
+                                   }else{
+                                     val="Anda Pulang Diluar Jam Ketentuan";
+                                     this.setState({PulangState:{
+                                       pesan:val,
+                                       state: false
+                                     }});
+                                   }
+                                 }
+
+                               }
 
                                        }
+
                                        let GetDataFromDB= async ()=>{
                                         fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
                                            method: "POST",
@@ -324,12 +338,50 @@ let Menu=(props)=>{
                                                    this.setState({JpulangState: Formula_Jam(responseJson.data.waktu_mulai_keluar)});
                                                    this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
                                                    this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
+
+
+                                                    let d=responseJson.data.status_kehadiran;
+                                                    if ( d !=0 & d !=null ) {
+                                                      if ( d == "m"  ) {
+                                                        this.setState({StatusKehadiran:"Masuk" });
+                                                        this.setState({StatusMasuk: false });
+                                                        this.setState({StatusPulang: true });
+                                                      }
+                                                      else if ( d == "i"  ) {
+                                                        this.setState({StatusKehadiran:"Izin Tidak Masuk" });
+                                                        this.setState({StatusMasuk: false });
+                                                        this.setState({StatusPulang: false });
+
+                                                      }
+                                                      else if ( d == "s"  ) {
+                                                        this.setState({StatusKehadiran:"Sakit" });
+                                                        this.setState({StatusMasuk: false });
+                                                        this.setState({StatusPulang: false });
+
+                                                      }else{
+                                                        this.setState({StatusKehadiran:"Hadir" });
+                                                        this.setState({StatusMasuk: true });
+                                                        this.setState({StatusPulang: false });
+
+                                                      }
+
+                                                    }else{
+                                                      this.setState({StatusKehadiran:"Alfa" });
+                                                      this.setState({StatusMasuk: true });
+                                                      this.setState({StatusPulang: false });
+
+                                                    }
+                                                    console.log("Status Tombol Masuk");
+                                                    console.log(this.state.StatusMasuk);
+
                                                     Formula_Jadwal_masuk();
+
                                                    console.log("Kondisi Pulang");
                                                    console.log(this.state.PulangState);
                                                    this.setState({LoadingState:false});
 
                                                    }else{
+                                                     this.setState({LoadingState:false});
 
                                                      console.log("Jadwal Anda Belum di SET");
                                                    }

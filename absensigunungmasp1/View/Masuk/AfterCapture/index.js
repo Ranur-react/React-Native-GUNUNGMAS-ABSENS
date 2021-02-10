@@ -340,7 +340,6 @@ getData('IPSERVER');
                         { name: 'Displin', data: this.state.MasukState.Displin },
                         { name: 'la', data: this.state.la.toString() },
                         { name: 'lo', data: this.state.lo.toString() },
-
                       ]).then(response  => {
                          const r =JSON.parse(response.data);
                         if (r.Respond == true) {

@@ -13,7 +13,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
-  Button,YellowBox
+  Button,YellowBox,RefreshControl
 } from 'react-native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
@@ -28,7 +28,42 @@ const {height:HEIGHT} =Dimensions.get('window');
 
 let i=0;
 let bfore=0;
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
+
+const DESK=(props)=>{
+  if (props.actions) {
+    return (
+      <View >
+      <Svgicon key={1} color="rgba(50,50,50,0.5)" name="Refresh-M" />
+      </View>
+      )
+  }else{
+    return (
+      <View>
+      <Deskripsiabsen   />
+      </View>
+      )
+  }
+
+}
+
+const Menu=(props)=>{
+  if (props.actions) {
+    return (
+      <View >
+      <Svgicon key={1} color="rgba(255,255,255,0.5)" name="Refresh-M" />
+      </View>
+      )
+  }else{
+    return (
+      <Menuabsen key={2} color="black" props={props.props} />
+
+      )
+  }
+}
 export default class Home extends Component {
   constructor (props) {
     super(props)
@@ -38,13 +73,34 @@ export default class Home extends Component {
       arrayytest:['1','2'],
       Jarak:'',
       Pjarak:'',
-      tes:300
+      tes:300,
+      refreshing:false,
+      DESK:true,
     }
   }
-
+  componentWillMount(){
+         this.props.navigation.addListener('focus', () => {
+           this.setState({refreshing:true})
+           wait(2000).then(() => this.setState({refreshing:false}));
+           });
+  }
 onLayoutHEAD = event => {
     this.setState({tinggiHEAD:event.nativeEvent.layout.height+20});
 
+  }
+  Refresh=()=>{
+    // const [refreshing, setRefreshing] = React.useState(false);
+      console.log('Sedang Refresh-------');
+            this.setState({refreshing:true})
+            wait(2000).then(() => this.setState({refreshing:false}));
+  }
+
+  onRefresh=()=>{
+    // const [refreshing, setRefreshing] = React.useState(false);
+    console.log('Selesai Refresh-------');
+    this.setState({
+          refreshing:false
+          });
   }
 onScrollLayout=(e)=>{
         let y=e.nativeEvent.contentOffset.y;
@@ -68,22 +124,31 @@ onScrollLayout=(e)=>{
       }
 }
 
+
+
+
   render() {
 console.disableYellowBox = true;
 // YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
+
+
+
     return (
       <View  style={styles.Backcontainer}>
       <View  style={styles.container}>
         <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
               {
-               <Deskripsiabsen   />
+               <DESK actions={this.state.refreshing} />
               }
-                <View  style={styles.IconBox}>
-                    <Svgicon key={1} name="User" />
-              </View>
+
           </View>
         </View>
-        <ScrollView onScroll={this.onScrollLayout} style={[styles.ScrollFrontContainer,{backgroundColor:this.state.TpScroll}]}>
+        <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.Refresh}
+          />
+        } onScroll={this.onScrollLayout} style={[styles.ScrollFrontContainer,{backgroundColor:this.state.TpScroll}]}>
 
         <View   style={[styles.Frontcontainer,{top:this.state.tinggiHEAD}]}>
         <View style={styles.container}>
@@ -91,7 +156,7 @@ console.disableYellowBox = true;
               <View style={styles.menuContainer}>
               {
 
-                <Menuabsen key={2} props={this.props} />
+                <Menu props={this.props} actions={this.state.refreshing}/>
               }
               </View>
           </View>
@@ -102,6 +167,9 @@ console.disableYellowBox = true;
                 </View>
             </View>
         </View>
+        <TouchableOpacity onPress={this.Refresh}  style={styles.IconBox}>
+            <Svgicon key={1} color="rgba(76,169,255,0.5)" name="Refresh-M" />
+      </TouchableOpacity>
         </ScrollView>
       </View>
     );
@@ -150,6 +218,7 @@ const styles = StyleSheet.create({
     width:50,
     height:50,
     right:0,
+    margin:20,
 
 
   },

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
   CameraBox:{
     width:WIDTH-30,
-    height:566,
+    height:HEIGHT-(0.35*HEIGHT),
     backgroundColor:'rgba(132,196,255,1)',
     borderRadius:20,
     marginTop:20,

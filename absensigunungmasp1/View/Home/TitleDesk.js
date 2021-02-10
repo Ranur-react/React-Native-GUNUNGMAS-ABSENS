@@ -31,19 +31,6 @@ import moment from 'moment-timezone';
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance, getPreciseDistance} from 'geolib';
   var IPSERVER =null;
-// const getData = async (e) => {
-//     try {
-//       const value = await AsyncStorage.getItem(e)
-//       if(value !== null) {
-//         // console.log("Ip Server addresss--->"+IPSERVER);
-//         IPSERVER=value;
-//       }else {
-//         console.log("Ip Null");
-//       }
-//     } catch(e) {
-//       Alert.alert(e);
-//     }
-//   }
 
 
 export default class MyComponent extends Component {
@@ -57,9 +44,11 @@ export default class MyComponent extends Component {
       LoadingState:true,
       TanggalNow:'-',
       Jarak:'',
+      Range:'',
       Pjarak:'',
       tanggal:'',
 
+      JSift:'',
       Jmasuk:'',
         JmasukState:'',
       JmasukEnd:'',
@@ -77,9 +66,20 @@ export default class MyComponent extends Component {
       jamData:'',
       MasukState:'',
       PulangState:'',
+      StatusKehadiran:'',
 
 
     }
+    const getDataLoginJson = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('Json_Login');
+        const data =JSON.parse(jsonValue);
+        this.setState({user:data});
+        } catch(e) {
+          Alert.alert(e);
+        }
+      }
+        getDataLoginJson();
 
     //--TimeScheduleConfigurasi
 
@@ -109,18 +109,10 @@ const getData = async (e) => {
     }
   }
 const Call=async()=>{
-  const getDataLoginJson = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('Json_Login');
-      const data =JSON.parse(jsonValue);
-      this.setState({user:data});
-      } catch(e) {
-        Alert.alert(e);
-      }
-    }
+
   if (this.state.LoadingState) {
 
-    getDataLoginJson();
+
 
       const tanggalSekarang=()=>{
         var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -154,7 +146,7 @@ const Call=async()=>{
             }
             const Formula_Jam= (e)=>{
               //NOW------
-              let now=moment().tz("Asia/Jakarta").format('HH:mm');
+              let now=moment().tz("Asia/Jakarta").format('HH:mm:ss');
               this.setState({jamNow: JSON.stringify(now)});
               let H_now=0;
               let M_now=0;
@@ -286,6 +278,7 @@ const Call=async()=>{
                                                 if (responseJson.respond) {
                                                   this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
                                                   this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});
+                                                  this.setState({Range:responseJson.data.range});
                                                    tanggalSekarang();
                                                   //---Masuk
                                                   this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
@@ -304,6 +297,27 @@ const Call=async()=>{
                                                   this.setState({JpulangEndState: Formula_Jam(responseJson.data.waktu_selesai_keluar)});
                                                   this.setState({JmasukState: Formula_Jam(responseJson.data.waktu_mulai_masuk)});
                                                    Formula_Jadwal_masuk();
+
+                                                   let d=responseJson.data.status_kehadiran;
+                                                   if ( d !=0 & d !=null ) {
+                                                     if ( d == "m"  ) {
+                                                       this.setState({StatusKehadiran:"Masuk (Belum Pulang)" });
+                                                     }
+                                                     else if ( d == "i"  ) {
+                                                       this.setState({StatusKehadiran:"Izin Tidak Masuk" });
+                                                     }
+                                                     else if ( d == "s"  ) {
+                                                       this.setState({StatusKehadiran:"Sakit" });
+
+                                                     }else{
+                                                       this.setState({StatusKehadiran:"Hadir (Sudah Pulang)" });
+
+                                                     }
+
+                                                   }else{
+                                                     this.setState({StatusKehadiran:"Alfa" });
+
+                                                   }
                                                   console.log("Kondisi Pulang");
                                                   console.log(this.state.PulangState);
                                                   this.setState({LoadingState:false});
@@ -311,6 +325,8 @@ const Call=async()=>{
                                                   }else{
 
                                                     console.log("Jadwal Anda Belum di SET");
+                                                    this.setState({LoadingState:false});
+
                                                     this.setState({Notifikasi:{state:true,pesan:responseJson.Pesan}});
 
                                                   }
@@ -343,13 +359,14 @@ getData('IPSERVER');
           <Text style={styles.TextTitle}>Lokasi Absensi : </Text>
           <Text style={styles.TextBody}>
           {this.state.Jlokasi}</Text>
+          <Text style={styles.TextBody}>Jarak :{this.state.Range}  m lagi ke lokasi</Text>
+          <Text style={styles.TextBody}>Range :{this.state.Jarak}  m di dalam lokasi</Text>
           <Text style={styles.TextBody}>
           </Text>
-          <Text style={styles.TextBody}>Jarak :{this.state.Jarak}  m lagi</Text>
           <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>
           <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: {this.state.MasukState.pesan}</Text>
           <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: {this.state.PulangState.pesan}</Text>
-          <Text style={styles.TextBody}>Server &nbsp;&nbsp;&nbsp;: {IPSERVER}</Text>
+          <Text style={styles.TextBody}>Status Kehadiran &nbsp;&nbsp;&nbsp;: {this.state.StatusKehadiran}</Text>
           <View>
 {
                     <Modal animationType = {"slide"} transparent = {true}

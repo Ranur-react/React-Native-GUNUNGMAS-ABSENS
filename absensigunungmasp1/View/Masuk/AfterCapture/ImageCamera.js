@@ -31,6 +31,14 @@ export default class MyComponent extends Component {
       Time: this.props.ShootTime
     }
   }
+  componentDidUpdate(){
+    ()=>{
+      this.setState({
+        Time:this.props.ShootTime
+        });      
+    }
+
+  }
   render() {
 const getData = async () => {
     try {
@@ -44,13 +52,14 @@ const getData = async () => {
       Alert.alert(e);
     }
   }
+
     return (
         <TouchableOpacity onLayout={getData} style={styles.CameraBox}>
+        <Text style={styles.TextBody}> Foto Jam {this.state.Time} berhasil diambil</Text>
         <Image style={styles.Image}
         source={{uri: this.state.Foto}}
 
           />
-        <Text style={styles.TextBody}> Foto Jam {this.state.Time} berhasil diambil</Text>
         </TouchableOpacity>
     );
   }
@@ -62,7 +71,7 @@ const styles = StyleSheet.create({
 
   CameraBox:{
     width:WIDTH-30,
-    height:566,
+    height:HEIGHT-(0.45*HEIGHT),
     backgroundColor:'rgba(132,196,255,0)',
     marginTop:20,
     borderRadius:20,
@@ -72,7 +81,7 @@ const styles = StyleSheet.create({
 Image:{
   marginTop:20,
   width: WIDTH-40,
-  height: 500,
+  height: HEIGHT-(0.5*HEIGHT),
   borderRadius:30,
   backgroundColor:'rgba(255,255,255,1)',
 

@@ -8,6 +8,8 @@ import Camera from './../../assets/icons/Camera';
 import Calenders from './../../assets/icons/Calenders';
 import Upload from './../../assets/icons/Upload';
 import Exit from './../../assets/icons/exit';
+import Refresh from './../../assets/icons/Refresh';
+import RefresM from './../../assets/icons/Refres-MaterialIcon';
 
 let Svgicon=(prop)=>{
   let ikon=[];
@@ -27,6 +29,10 @@ let Svgicon=(prop)=>{
         ikon.push(<Upload op={prop.opacity} key={6} Color={prop.color}  />)
       }else if(prop.name == 'Exit'){
         ikon.push(<Exit Color={prop.color} key={7} op={prop.opacity}  />)
+      }else if(prop.name == 'Refresh'){
+        ikon.push(<Refresh Color={prop.color} key={7} op={prop.opacity}  />)
+      }else if(prop.name == 'Refresh-M'){
+        ikon.push(<RefresM Color={prop.color} key={7} op={prop.opacity}  />)
       }
   return ikon;
 }
