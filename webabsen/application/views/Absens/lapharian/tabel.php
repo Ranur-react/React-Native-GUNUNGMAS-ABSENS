@@ -8,7 +8,33 @@
 								<td><img class="foto" src="<?= $d['foto_masuk'] ?>"></td>
 								<td><?= $d['jam_keluar'] ?></td>
 								<td><img class="foto" src="<?= $d['foto_keluar'] ?>"></td>
-								<td><?= $d['status_kehadiran'] ?></td>
+								<td>
+									<?php
+										$c=$d['status_kehadiran'];
+									if ($c !==0 & $c !== null){
+										if ($c == "m") {
+										echo "Masuk";
+											# code...
+										}else if ($c == "i") {
+										echo "Izin Tidak Masuk";
+											# code...
+										}else if ($c == "s") {
+										echo "Sakit Tidak Masuk";
+											# code...
+										}
+
+
+										else{
+										echo "Hadir";
+
+										}
+									}
+									else {
+										echo "Alpa";
+									}
+
+									 ?>
+								</td>
 							</tr>
 						<?php $no++;
 						} ?>

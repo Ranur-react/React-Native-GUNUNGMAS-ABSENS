@@ -46,7 +46,7 @@ JOIN `detail_jadwal` ON `detail_jadwal`.`id_jadwal_detail`=`jadwal_absen_karyawa
 JOIN  `set_waktu_absens` ON `set_waktu_absens`.`id_waktu` = `jadwal_absen_karyawan`.`id_shift_absensi` 
 JOIN `set_lokasi` ON `set_lokasi`.`id_set_lokasi` = `jadwal_absen_karyawan`.`id_lokasi_absensi` 
 JOIN `karyawan` ON `karyawan`.`id_karyawan`=`detail_jadwal`.`id_karyawan_detail` 
-WHERE `detail_jadwal`.`tanggal`='$d' AND `detail_jadwal`.`id_karyawan_detail` LIKE '$p' ORDER BY `detail_jadwal`.`tanggal` ASC");
+WHERE `detail_jadwal`.`tanggal`='$d' AND `detail_jadwal`.`id_karyawan_detail` = '$p' ORDER BY `detail_jadwal`.`tanggal` ASC");
 }
 
 	// public function store($params)

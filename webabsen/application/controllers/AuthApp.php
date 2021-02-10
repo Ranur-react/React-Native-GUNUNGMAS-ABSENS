@@ -73,7 +73,7 @@ class AuthApp extends CI_Controller
         $qry= $this->Mjadwal_absen_karyawan->getCustomeID($ID);
         $dj= $qry->row_array();
         $json['Request--->'] = $ID;
-                if ($qry->num_rows() !=0) {
+                if ($qry->num_rows() >= 1) {
                     $json['respond'] = true;
                     $json['data'] = $dj;
                 }else{

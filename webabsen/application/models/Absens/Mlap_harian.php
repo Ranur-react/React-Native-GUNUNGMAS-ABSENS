@@ -19,19 +19,19 @@ class Mlap_harian extends CI_Model
 
 
 (
-SELECT `jam_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND tanggal_masuk ='$dateStart'
+SELECT `jam_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND `id_karyawan_detail`=id_karyawan_masuk AND tanggal_masuk ='$dateStart'
 )AS jam_masuk,
 
 (
-SELECT `foto_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND tanggal_masuk ='$dateStart'
+SELECT `foto_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND `id_karyawan_detail`=id_karyawan_masuk AND tanggal_masuk ='$dateStart'
 )AS foto_masuk,
  
  (
-SELECT `jam_keluar` FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND tanggal_keluar ='$dateStart'
+SELECT `jam_keluar` FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND `id_karyawan_detail`=id_karyawan_keluar AND tanggal_keluar ='$dateStart'
 )AS jam_keluar,
 
  (
-SELECT foto_keluar FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND tanggal_keluar ='$dateStart'
+SELECT foto_keluar FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND `id_karyawan_detail`=id_karyawan_keluar AND tanggal_keluar ='$dateStart'
 )AS foto_keluar, 
 
 
