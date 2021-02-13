@@ -13,6 +13,8 @@ import {
   Image,Dimensions,Svg
 } from 'react-native';
 import Svgicon from './../../assets/icons/Svgicon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNFetchBlob from 'rn-fetch-blob'; //Libarary Untuk mengirim File dengan API
 
 // Import Document Picker
 import DocumentPicker from 'react-native-document-picker';
@@ -31,17 +33,17 @@ const App = () => {
     //Opening Document Picker for selection of one file
     try {
       const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-        //There can me more options as well
-        // DocumentPicker.types.allFiles
-        // DocumentPicker.types.images
-        // DocumentPicker.types.plainText
-        // DocumentPicker.types.audio
-        // DocumentPicker.types.pdf
+        type: [DocumentPicker.types.pdf],
+        // //There can me more options as well
+        // // DocumentPicker.types.allFiles
+        // // DocumentPicker.types.images
+        // // DocumentPicker.types.plainText
+
+        // // DocumentPicker.types.audio
       });
       //Printing the log realted to the file
       // console.log('res : ' + JSON.stringify(res));
-      // console.log('URI : ' + res.uri);
+      console.log('URI : ' + res.uri);
       // console.log('Type : ' + res.type);
       // console.log('File Name : ' + res.name);
       // console.log('File Size : ' + res.size);
@@ -64,8 +66,8 @@ const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
                 <View style={styles.Form}>
-                    <Text style={styles.Label}>Upload Surat</Text>
-                    <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]} onPress={selectOneFile}  > {singleFile.name ? singleFile.name : 'Klik Untuk Upload Dokumen Bukti'}  </Text>
+                    <Text style={styles.Label}>Upload Surat (.Pdf)</Text>
+                    <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]}   > {singleFile.name ? singleFile.name : 'Klik Untuk Upload Dokumen Bukti'}  </Text>
                        <Text style={styles.NotofikasiInput}>
                    </Text>
                    <View style={[styles.Icon]}>

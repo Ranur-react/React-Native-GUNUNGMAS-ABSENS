@@ -79,10 +79,14 @@ export default class Home extends Component {
     }
   }
   componentWillMount(){
-         this.props.navigation.addListener('focus', () => {
-           this.setState({refreshing:true})
-           wait(2000).then(() => this.setState({refreshing:false}));
-           });
+    // if (!this.state.refreshing) {
+    //
+    // }
+    this.props.navigation.addListener('focus', () => {
+
+      this.setState({refreshing:true})
+      wait(2000).then(() => this.setState({refreshing:false}));
+      });
   }
 onLayoutHEAD = event => {
     this.setState({tinggiHEAD:event.nativeEvent.layout.height+20});

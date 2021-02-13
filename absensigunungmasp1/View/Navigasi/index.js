@@ -59,6 +59,7 @@ function App() {
       <Stack.Screen   options={{ headerShown:false, }}  name="Masuk" component={Masuk} />
       <Stack.Screen   options={{ headerShown:false, }}  name="PulangAfterCapture" component={PulangAfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="MasukAfterCapture" component={MasukAfterCapture} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="Sakit" component={Sakit} />
       </Stack.Navigator>
     </NavigationContainer>
   );

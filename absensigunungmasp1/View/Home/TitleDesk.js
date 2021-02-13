@@ -189,7 +189,7 @@ const Call=async()=>{
                     }});
                     }else{
                       if(masukEnd){
-                              if (this.state.Jarak < 100) {
+                              if (this.state.Jarak < this.state.Range) {
                                 val="Silahkan Ambil Absen Masuk Pada Jam Ini";
                                 this.setState({MasukState:{
                                   pesan:val,
@@ -206,7 +206,7 @@ const Call=async()=>{
                             if(toler){
                               console.log("Pjarak");
                               console.log(this.state.Jarak);
-                                    if (this.state.Jarak < 100) {
+                                    if (this.state.Jarak < this.state.Range) {
                                       val="Terlambat";
                                       this.setState({MasukState:{
                                         pesan:val,
@@ -221,7 +221,7 @@ const Call=async()=>{
                                     }
 
                                 }else{
-                                  val="Anda Masuk Diluar Jam Ketentuan";
+                                  val="Jam Masuk Diluar Jam Ketentuan";
                                   this.setState({MasukState:{
                                     pesan:val,
                                     state: false
@@ -359,8 +359,8 @@ getData('IPSERVER');
           <Text style={styles.TextTitle}>Lokasi Absensi : </Text>
           <Text style={styles.TextBody}>
           {this.state.Jlokasi}</Text>
-          <Text style={styles.TextBody}>Jarak :{this.state.Range}  m lagi ke lokasi</Text>
-          <Text style={styles.TextBody}>Range :{this.state.Jarak}  m di dalam lokasi</Text>
+          <Text style={styles.TextBody}>Range :{this.state.Range}  m di dalam lokasi</Text>
+          <Text style={styles.TextBody}>Jarak :{this.state.Jarak}  m  lagi ke lokasi</Text>
           <Text style={styles.TextBody}>
           </Text>
           <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>

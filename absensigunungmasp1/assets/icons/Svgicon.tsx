@@ -10,6 +10,7 @@ import Upload from './../../assets/icons/Upload';
 import Exit from './../../assets/icons/exit';
 import Refresh from './../../assets/icons/Refresh';
 import RefresM from './../../assets/icons/Refres-MaterialIcon';
+import Sakit from './../../assets/icons/Sakit';
 
 let Svgicon=(prop)=>{
   let ikon=[];
@@ -33,6 +34,8 @@ let Svgicon=(prop)=>{
         ikon.push(<Refresh Color={prop.color} key={7} op={prop.opacity}  />)
       }else if(prop.name == 'Refresh-M'){
         ikon.push(<RefresM Color={prop.color} key={7} op={prop.opacity}  />)
+      }else if(prop.name == 'Sakit'){
+        ikon.push(<Sakit Color={prop.color} key={7} op={prop.opacity}  />)
       }
   return ikon;
 }

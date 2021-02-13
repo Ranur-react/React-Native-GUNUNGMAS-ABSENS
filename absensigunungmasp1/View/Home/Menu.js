@@ -218,7 +218,7 @@ let Menu=(props)=>{
                        }});
                        }else{
                          if(masukEnd){
-                                 if (this.state.Jarak < 100) {
+                                 if (this.state.Jarak < this.state.Range) {
                                    val="Silahkan Ambil Absen Masuk Pada Jam Ini";
                                    this.setState({MasukState:{
                                      pesan:val,
@@ -235,7 +235,7 @@ let Menu=(props)=>{
                                if(toler){
                                  console.log("Pjarak");
                                  console.log(this.state.Jarak);
-                                       if (this.state.Jarak < 100) {
+                                       if (this.state.Jarak < this.state.Range) {
                                          val="Terlambat";
                                          this.setState({MasukState:{
                                            pesan:val,
@@ -321,6 +321,8 @@ let Menu=(props)=>{
                                                  if (responseJson.respond) {
                                                    this.setState({jadwalJSON:responseJson.data});this.setState({Jsift:responseJson.data.ket_waktu});this.setState({Jlokasi:responseJson.data.lokasi});
                                                    this.setState({JKordinat:{la:responseJson.data.latitude,lo:responseJson.data.longitude,}});
+                                                   this.setState({Range:responseJson.data.range});
+
                                                     tanggalSekarang();
                                                    //---Masuk
                                                    this.setState({Jmasuk:responseJson.data.waktu_mulai_masuk});
@@ -403,7 +405,7 @@ let Menu=(props)=>{
               const listOBJ ={
                 99:{nama:'Absen Masuk',icon:'Enter',status: this.state.MasukState.state, color:'',dest:"Masuk"},
                 100:{nama:'Absen Pulang',icon:'Exit',status: this.state.PulangState.state, color:'',dest:"Pulang"},
-                101:{nama:'Surat Sakit',icon:'Exit',status:false,color:''},
+                101:{nama:'Surat Sakit',icon:'Sakit',status:true,color:'',dest:"Sakit"},
                 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
               };
               for (var key in listOBJ) {
