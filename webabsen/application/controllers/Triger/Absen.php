@@ -81,4 +81,14 @@ $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` 
 
         echo json_encode($MESSAGE);
     }
+    public function Sakit()
+    {
+         $MESSAGE['Respon-------------Awal>']="..........................";
+        $obj=file_get_contents('php://input');
+        $objSon=json_decode($obj,true);
+        $MESSAGE['POST>']=$_POST;
+        $MESSAGE['FILE>']=$_FILES;
+        echo json_encode($MESSAGE);
+        
+    }
 }
