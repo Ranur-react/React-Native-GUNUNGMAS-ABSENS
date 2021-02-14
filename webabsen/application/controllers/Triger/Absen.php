@@ -88,6 +88,48 @@ $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` 
         $objSon=json_decode($obj,true);
         $MESSAGE['POST>']=$_POST;
         $MESSAGE['FILE>']=$_FILES;
+
+
+
+        $target_dir = "AsetKaryawan_DOKUMEN/SuratAbsen".$_POST['StatusAbsen']."/".$_POST['NamaKaryawan'];
+         $RANDO_val=rand();
+        $URI= $target_dir."/".$RANDO_val."-".$_POST['StatusAbsen']."_".date('Y-m-d').".pdf";
+
+
+
+            $ID="DOC-".$_POST['ID']."-".$RANDO_val;
+            $IDKARYAWAN=$_POST['ID'];
+            $Status=$_POST['StatusAbsen'];
+            $id_jadwal=$_POST['id_jadwal'];
+            $URL=base_url().$URI;
+
+
+
+
+
+
+            if (!file_exists($target_dir)) {mkdir($target_dir,777,true); }
+
+
+            if(move_uploaded_file($_FILES['Suratos']['tmp_name'],$URI)){
+                        if ($_POST['StatusAbsen'] == "Sakit") {
+            $this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+
+                            $MESSAGE['Respond']=true;   
+                        }else if ($_POST['StatusAbsen'] == "Izin"){
+                            $MESSAGE['Respond']=true;   
+
+                        }else{
+                            $MESSAGE['Respond']=false;   
+
+                        }
+
+                }
+                else{
+                    $MESSAGE['Respond']=false;
+                    $MESSAGE['GAGAL']="Sorry !! Upload Foto GAGAL";
+                    $MESSAGE['kode']=0;
+                }
         echo json_encode($MESSAGE);
         
     }
