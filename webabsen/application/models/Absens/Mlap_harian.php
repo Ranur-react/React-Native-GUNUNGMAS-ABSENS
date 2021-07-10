@@ -34,8 +34,17 @@ SELECT `jam_keluar` FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal A
 SELECT foto_keluar FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND `id_karyawan_detail`=id_karyawan_keluar AND tanggal_keluar ='$dateStart'
 )AS foto_keluar, 
 
+status_kehadiran,
 
-status_kehadiran
+(
+SELECT surat_izinnya FROM `surat_izin` WHERE  `id_karyawan_detail`=id_karyawan_izin AND tanggal_izin ='$dateStart'
+)AS surat_izinnya,
+
+(
+SELECT surat_sakitnya FROM `surat_sakit` WHERE  `id_karyawan_detail`=id_karyawan_sakit AND tanggal_sakit ='$dateStart'
+)AS surat_sakitnya
+
+
 
 FROM `jadwal_absen_karyawan` 
 				JOIN  `detail_jadwal` ON `id_jadwal_detail`=`id_jadwal`

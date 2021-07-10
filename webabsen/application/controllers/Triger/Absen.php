@@ -100,7 +100,7 @@ $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` 
             $ID="DOC-".$_POST['ID']."-".$RANDO_val;
             $IDKARYAWAN=$_POST['ID'];
             $Status=$_POST['StatusAbsen'];
-            $id_jadwal=$_POST['id_jadwal'];
+            $IDJADWAL=$_POST['id_jadwal'];
             $URL=base_url().$URI;
 
 
@@ -113,10 +113,17 @@ $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` 
 
             if(move_uploaded_file($_FILES['Suratos']['tmp_name'],$URI)){
                         if ($_POST['StatusAbsen'] == "Sakit") {
-            $this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+            $this->db->query("INSERT INTO `surat_sakit` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+
+
+            $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` = 's' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
                             $MESSAGE['Respond']=true;   
                         }else if ($_POST['StatusAbsen'] == "Izin"){
+                             $this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+
+
+            $this->db->query("UPDATE `db_pklabsensi`.`detail_jadwal` SET `status_kehadiran` = 'i' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
                             $MESSAGE['Respond']=true;   
 
                         }else{
