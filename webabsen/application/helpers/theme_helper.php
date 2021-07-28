@@ -21,7 +21,7 @@ if (!function_exists('cek_user')) {
 if (!function_exists('title')) {
 	function title()
 	{
-		return $value = 'Sistem Absensi Gunung Mas';
+		return $value = 'Sistem Absensi Lorus Celluer';
 	}
 }
 

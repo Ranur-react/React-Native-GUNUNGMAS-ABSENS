@@ -185,7 +185,7 @@
     <div class="login-box" style="margin-top: 0px">
         <br><br>
         <div class="login-logo">
-            <img src="<?= theme() ?>dist/img/Gunungmas/logo.jpeg" width="320px" height="180px"><br>
+            <!-- <img src="<?= theme() ?>dist/img/Gunungmas/logo.jpeg" width="320px" height="180px"><br> -->
             <a style="font-size: 20pt;" href="<?= site_url() ?>"><b>Login</b>Admin</a>
         </div>
         <div class="login-box-body rdbox">

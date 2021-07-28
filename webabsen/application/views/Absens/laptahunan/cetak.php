@@ -15,7 +15,7 @@
 </head>
 <body onload="window.print()">
 	<h1 align="center">Laporan Data Absensi Tahunan
-		 <br>Konter Gunung Mas Cellular</h1>
+		 <br>Konter Lorus Cellular</h1>
 	<h3 align="center">Kota Padang</h3>
 	<table align="center" width="60%" border="0">
 	
