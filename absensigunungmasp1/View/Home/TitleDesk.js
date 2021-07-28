@@ -23,6 +23,7 @@ import {
 import PulseLoader from 'react-native-pulse-loader';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
+import {APISERVER} from './../../assets/constant/';
 
 
 /* @flow */
@@ -264,7 +265,7 @@ const Call=async()=>{
 
                                       }
                                       let GetDataFromDB= async ()=>{
-                                       fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
+                                       fetch(APISERVER+"/webabsen/index.php/AuthApp/JadwalCek", {
                                           method: "POST",
                                           headers: {
                                             Accept: "application/json",

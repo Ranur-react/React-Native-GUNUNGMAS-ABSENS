@@ -16,6 +16,7 @@ import MasukAfterCapture from './../Masuk/AfterCapture';
 import Home from './../Home';
 import Login from './../Login';
 import Sakit from './../Izinsakit';
+import IzinFormal from './../Izin';
 ///class
 
 function HomeScreen({ navigation }) {
@@ -60,6 +61,7 @@ function App() {
       <Stack.Screen   options={{ headerShown:false, }}  name="PulangAfterCapture" component={PulangAfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="MasukAfterCapture" component={MasukAfterCapture} />
       <Stack.Screen   options={{ headerShown:false, }}  name="Sakit" component={Sakit} />
+      <Stack.Screen   options={{ headerShown:false, }}  name="IzinFormal" component={IzinFormal} />
       </Stack.Navigator>
     </NavigationContainer>
   );

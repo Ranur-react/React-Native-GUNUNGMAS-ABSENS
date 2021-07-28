@@ -47,7 +47,7 @@ export default class MyComponent extends Component {
 
       console.log(this.state.user);
       const data = new FormData();
-      const locaLurl="http://192.168.18.13/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/"
+      const locaLurl="http://192.168.18.13/webabsen/index.php/Triger/Absen/"
 
       await  RNFetchBlob.fetch('POST', locaLurl, {
             Authorization: "Bearer access-token",

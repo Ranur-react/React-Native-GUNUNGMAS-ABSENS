@@ -9,6 +9,7 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance, getPreciseDistance} from 'geolib';
 const IPSERVER="http://192.168.18.13";
+import {APISERVER} from './../../assets/constant/';
 
 export default class MyComponent extends Component {
   constructor (props) {
@@ -27,7 +28,7 @@ componentDidUpdate(){
 
 
     let InserttoSQL=()=>{
-      fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
+      fetch(APISERVER+"/webabsen/index.php/AuthApp/JadwalCek", {
           method: "POST",
           headers: {
             Accept: "application/json",

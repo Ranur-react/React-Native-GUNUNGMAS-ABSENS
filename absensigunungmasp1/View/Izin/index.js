@@ -48,7 +48,7 @@ export default class Sakit extends Component {
     LoadingState:true,
     LoadingUpload:false,
     refreshing:false,
-    singleFile:{name:''}
+
 
 
   }
@@ -140,7 +140,7 @@ InserttoSQL= async()=>{
                     { name: 'Suratos', filename: this.state.DocName,  data: this.state.DocUri }, //PPOST FILE dengan "name" sebagai variabel utama
                     { name: 'ID', data: this.state.user.IDkaryawan },
                     { name: 'NamaKaryawan', data: this.state.user.namakaryawan },
-                    { name: 'StatusAbsen', data: "Sakit" },
+                    { name: 'StatusAbsen', data: "Izin" },
                     { name: 'id_jadwal', data: this.state.jadwalJSON.id_jadwal },
                   ]).then(response  => {
                      const r =JSON.parse(response.data);
@@ -224,7 +224,7 @@ InserttoSQL= async()=>{
           <Svgicon    name="Back" color="black" />
         </TouchableOpacity>
               <View style={styles.Title}>
-                <Text onPress={() => Keyboard.dismiss()} style={styles.JudulBld}>Izin Sakit</Text>
+                <Text onPress={() => Keyboard.dismiss()} style={styles.JudulBld}>Izin Formal</Text>
               </View>
 
               <View  style={styles.FormBox}>
@@ -270,12 +270,12 @@ InserttoSQL= async()=>{
                      </View>
                      <View style={styles.Form}>
                          <Text style={styles.Label}>Keterangan</Text>
-                         <TextInput style={styles.FormInput}  placeholder="Tulis keterangan sakit mu disini "/>
+                         <TextInput style={styles.FormInput}  placeholder="Tulis keterangan Izin mu disini "/>
                             <Text style={styles.NotofikasiInput}>
                         </Text>
                       </View>
                       <TouchableOpacity onPress={selectOneFile}>
-                          <BOxFile actions={this.state.refreshing}/>
+                      <BOxFile actions={this.state.refreshing}/>
                       </TouchableOpacity>
                      <TouchableOpacity onPress={this.InserttoSQL}
                        style={styles.FormButton} >

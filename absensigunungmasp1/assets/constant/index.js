@@ -1,0 +1,1 @@
+export const APISERVER="http://192.168.43.106";

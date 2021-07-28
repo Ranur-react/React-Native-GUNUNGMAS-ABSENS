@@ -26,6 +26,7 @@ import User from './../../../assets/icons/user';
 import Svgicon from './../../../assets/icons/Svgicon';
 import Deskripsiabsen from './TitleDesk';
 import ImageCamera from './ImageCamera';
+import {APISERVER} from './../../../assets/constant/';
 
 const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
@@ -262,7 +263,7 @@ const Call=async()=>{
 
                                       }
                                       let GetDataFromDB= async ()=>{
-                                       fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
+                                       fetch(APISERVER+"/webabsen/index.php/AuthApp/JadwalCek", {
                                           method: "POST",
                                           headers: {
                                             Accept: "application/json",
@@ -323,7 +324,7 @@ getData('IPSERVER');
 
       console.log(this.state.user);
       // const data = new FormData();
-      const locaLurl=IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/Triger/Absen/";
+      const locaLurl=APISERVER+"/webabsen/index.php/Triger/Absen/";
           let KirimBlob= async()=>{
 
                   await  RNFetchBlob.fetch('POST', locaLurl, {

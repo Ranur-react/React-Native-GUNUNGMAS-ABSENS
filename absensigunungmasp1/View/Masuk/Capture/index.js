@@ -61,21 +61,22 @@ export default class MyComponent extends Component {
     super(props);
   }
   selectFile = () => {
-    var options = {
-      mediaType: 'photo',
-      maxWidth:1000,
-      maxHeight:1000,
-      saveToPhotos:true,
-      includeBase64:true
-    };
-  launchCamera(options, res => {
-      if (!res.didCancel){
-        storeDataString('Ft',res.uri);
-        const jsonValue = JSON.stringify(res);
-        storeDataJson(jsonValue);
-        this.props.navigation.navigate('MasukAfterCapture');
-      }
-    });
+    console.log("Kamera diklik");
+  //   var options = {
+  //     mediaType: 'photo',
+  //     maxWidth:1000,
+  //     maxHeight:1000,
+  //     saveToPhotos:true,
+  //     includeBase64:true
+  //   };
+  // launchCamera(options, res => {
+  //     if (!res.didCancel){
+  //       storeDataString('Ft',res.uri);
+  //       const jsonValue = JSON.stringify(res);
+  //       storeDataJson(jsonValue);
+  //       this.props.navigation.navigate('MasukAfterCapture');
+  //     }
+  //   });
   };
 
   render() {
@@ -85,11 +86,11 @@ export default class MyComponent extends Component {
         <View  style={styles.container}>
         <View  style={styles.Textcontainer}>
             <TouchableOpacity style={styles.backButton} onPress={() =>this.props.navigation.goBack()} >
-              <Svgicon name="Back" color="black" />
+              <Svgicon key="32" name="Back" color="black" />
             </TouchableOpacity>
-            <Deskripsiabsen />
+            <Deskripsiabsen key="33" />
             <TouchableOpacity onPress={this.selectFile}>
-              <Camera />
+              <Camera key="34" />
             </TouchableOpacity>
         </View>
         </View>

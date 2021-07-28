@@ -18,6 +18,7 @@ import {
 
 import { CommonActions } from '@react-navigation/native';
 import User from './../../assets/icons/user';
+import {APISERVER} from './../../assets/constant/';
 import Svgicon from './../../assets/icons/Svgicon';
 //-----Conditions
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -307,7 +308,7 @@ let Menu=(props)=>{
                                        }
 
                                        let GetDataFromDB= async ()=>{
-                                        fetch(IPSERVER+"/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/JadwalCek", {
+                                        fetch(APISERVER+"/webabsen/index.php/AuthApp/JadwalCek", {
                                            method: "POST",
                                            headers: {
                                              Accept: "application/json",
@@ -406,7 +407,7 @@ let Menu=(props)=>{
                 99:{nama:'Absen Masuk',icon:'Enter',status: this.state.MasukState.state, color:'',dest:"Masuk"},
                 100:{nama:'Absen Pulang',icon:'Exit',status: this.state.PulangState.state, color:'',dest:"Pulang"},
                 101:{nama:'Surat Sakit',icon:'Sakit',status:true,color:'',dest:"Sakit"},
-                102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
+                102:{nama:'Surat Izin',icon:'IzinFormal',status:true,color:'',dest:"IzinFormal"},
               };
               for (var key in listOBJ) {
                   if (listOBJ.hasOwnProperty(key)) {

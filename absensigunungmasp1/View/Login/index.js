@@ -16,9 +16,9 @@ import {
 import SvgComponent from './../../assets/icons/show';
 const {width:WIDTH} =Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const IPSERVER="http://192.168.18.21";
-// const IPSERVER="http://192.168.43.2";
-const URI="/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/Passwordcek";
+// const IPSERVER="http://192.168.18.21";
+const IPSERVER="http://192.168.43.106";
+const URI="/webabsen/index.php/AuthApp/Passwordcek";
 const storeDataString = async (key,value) => {
   try {
     await AsyncStorage.setItem(key, value);
