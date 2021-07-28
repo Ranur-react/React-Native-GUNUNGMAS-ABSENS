@@ -60,9 +60,8 @@ class JadwalAbsenKaryawan extends CI_Controller
 	}
 	public function TabelJadwal()
 	{
-				$all = $this->input->post(null, TRUE);
+		$all = $this->input->post(null, TRUE);
 		$data['dataJadwal'] = $this->Mjadwal_absen_karyawan->getCustome($all);
-
 		$this->load->view('Absens/jadwalabsenkaryawan/tabelJdwal',$data);
 		
 	}

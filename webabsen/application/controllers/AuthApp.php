@@ -9,7 +9,31 @@ class AuthApp extends CI_Controller
         $this->load->model('Mauth');
         $this->load->model('Absens/Mdata_karyawan');
         $this->load->model('Absens/Mjadwal_absen_karyawan');
+        $this->load->model('Absens/Mabsen_masuk');
     }
+	public function histoMasuk()
+	{
+		$js = file_get_contents('php://input');
+         $obj = json_decode($js,true);
+         $ID = $obj['IDkaryawan'];
+		$qry=$this->Mabsen_masuk->getallHistoryMasuk($ID);
+		
+		if ($qry) {
+			$database = [];
+			// foreach ($variable as $key ) {
+			// 	$database[]=$variable;
+			// }
+			$data['data'] = $qry;
+		
+			$data['pesan'] = "";
+			$data['status'] = true;
+		}else{
+			$data['data'] = "";
+			$data['pesan'] = "Data gagal diambil dari database";
+			$data['status'] = false;
+		}
+		echo json_encode($data);
+	}
     public function index()
     {
         if ($this->session->userdata('status_login') == TRUE) {

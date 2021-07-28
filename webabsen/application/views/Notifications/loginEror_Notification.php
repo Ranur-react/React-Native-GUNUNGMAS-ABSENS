@@ -7,7 +7,7 @@
                 </div> -->
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="box box-primary box-solid " style="border-radius: 5px">
+                <div class="box box-primary  " style="border-radius: 5px">
                     <!-- /.box-header -->
                     <div class="box-body ">
                         <h3 align="center" class="box-title ">
