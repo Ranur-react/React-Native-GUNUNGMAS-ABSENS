@@ -85,11 +85,11 @@ export default class MyComponent extends Component {
         <View  style={styles.container}>
         <View  style={styles.Textcontainer}>
             <TouchableOpacity style={styles.backButton} onPress={() =>this.props.navigation.goBack()} >
-              <Svgicon name="Back" color="black" />
+              <Svgicon key={999} name="Back" color="black" />
             </TouchableOpacity>
             <Deskripsiabsen />
             <TouchableOpacity onPress={this.selectFile}>
-              <Camera />
+              <Camera key={99} />
             </TouchableOpacity>
         </View>
         </View>

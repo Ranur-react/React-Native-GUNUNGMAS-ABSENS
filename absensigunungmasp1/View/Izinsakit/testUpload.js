@@ -25,7 +25,7 @@ const {width:WIDTH} =Dimensions.get('window');
 const {height:HEIGHT} =Dimensions.get('window');
 
 
-const App = () => {
+const App = (props) => {
   const [singleFile, setSingleFile] = useState('');
   const [multipleFile, setMultipleFile] = useState([]);
 
@@ -67,7 +67,11 @@ const App = () => {
     <SafeAreaView style={{flex: 1}}>
                 <View style={styles.Form}>
                     <Text style={styles.Label}>Upload Surat (.Pdf)</Text>
-                    <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]}   > {singleFile.name ? singleFile.name : 'Klik Untuk Upload Dokumen Bukti'}  </Text>
+                    {
+                      // <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]}   > {props.namefile}  </Text>
+                      
+                    }
+                    <Text style={[styles.FormInput,{paddingLeft:80,color:'rgba(50,50,50,0.5)',paddingTop:12}]}   > {!props.filename ?  'Klik Untuk Upload Dokumen Bukti':props.filename}  </Text>
                        <Text style={styles.NotofikasiInput}>
                    </Text>
                    <View style={[styles.Icon]}>

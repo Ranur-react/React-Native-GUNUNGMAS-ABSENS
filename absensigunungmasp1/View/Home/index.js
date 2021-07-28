@@ -78,7 +78,8 @@ export default class Home extends Component {
       DESK:true,
     }
   }
-  componentWillMount(){
+  
+  UNSAFE_componentWillMount(){
     // if (!this.state.refreshing) {
     //
     // }
@@ -132,7 +133,7 @@ onScrollLayout=(e)=>{
 
 
   render() {
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 // YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
 
 
@@ -142,7 +143,7 @@ console.disableYellowBox = true;
       <View  style={styles.container}>
         <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
               {
-               <DESK actions={this.state.refreshing} />
+               <DESK key={891} actions={this.state.refreshing} />
               }
 
           </View>
@@ -160,14 +161,14 @@ console.disableYellowBox = true;
               <View style={styles.menuContainer}>
               {
 
-                <Menu props={this.props} actions={this.state.refreshing}/>
+                <Menu key={8921} props={this.props} actions={this.state.refreshing}/>
               }
               </View>
           </View>
           <View style={styles.container}>
                 <Text  style={styles.TextTitleWhite}>History Absen</Text>
                 <View style={styles.menuContainer}>
-                      <HistoryAbsen key={3} />
+                      <HistoryAbsen key={9893} />
                 </View>
             </View>
         </View>

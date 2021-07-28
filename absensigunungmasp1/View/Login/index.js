@@ -14,11 +14,12 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import SvgComponent from './../../assets/icons/show';
+import {APIDOMAINWEB} from './../../assets/containt';
 const {width:WIDTH} =Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const IPSERVER="http://192.168.18.21";
 // const IPSERVER="http://192.168.43.2";
-const URI="/React-Native-GUNUNGMAS-ABSENS/webabsen/index.php/AuthApp/Passwordcek";
+const URI=APIDOMAINWEB+"/AuthApp/Passwordcek";
 const storeDataString = async (key,value) => {
   try {
     await AsyncStorage.setItem(key, value);
@@ -96,7 +97,7 @@ let onPressLogin=()=>{
 }
 let InserttoSQL=()=>{
   storeDataString('IPSERVER',IPSERVER);
-  fetch(IPSERVER+URI, {
+  fetch(URI, {
       method: "POST",
       headers: {
         Accept: "application/json",
