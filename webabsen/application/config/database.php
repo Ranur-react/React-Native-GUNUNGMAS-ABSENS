@@ -79,7 +79,7 @@ $db['default'] = array(
 	'username' => 'gunn1374_root',
 	'password' => 'Padri0@@@',
 
-	'database' => 'gunn1374_root',
+	'database' => 'gunn1374_wezidatabse',
 	// 'database' => 'db_pklabsensi',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
