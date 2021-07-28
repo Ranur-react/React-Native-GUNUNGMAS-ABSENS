@@ -78,6 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'gunn1374_root',
 	'password' => 'Padri0@@@',
+
 	'database' => 'gunn1374_root',
 	// 'database' => 'db_pklabsensi',
 	'dbdriver' => 'mysqli',
