@@ -1,0 +1,1 @@
+[28-Nov-2021 18:59:22 Asia/Jakarta] PHP Fatal error:  Cannot redeclare AuthApp::index() in /home/gunn1374/public_html/React-Native-GUNUNGMAS-ABSENS/webabsen/application/controllers/AuthApp.php on line 43

@@ -11,6 +11,12 @@ class AuthApp extends CI_Controller
         $this->load->model('Absens/Mjadwal_absen_karyawan');
         $this->load->model('Absens/Mabsen_masuk');
     }
+    	public function index()
+	{
+	    
+	    echo "bisa di akses";
+	}
+    
 	public function histoMasuk()
 	{
 		$js = file_get_contents('php://input');
@@ -34,14 +40,14 @@ class AuthApp extends CI_Controller
 		}
 		echo json_encode($data);
 	}
-    public function index()
-    {
-        if ($this->session->userdata('status_login') == TRUE) {
-            redirect('Home');
-        } else {
-            $this->load->view('login');
-        }
-    }
+    // public function index()
+    // {
+    //     if ($this->session->userdata('status_login') == TRUE) {
+    //         redirect('Home');
+    //     } else {
+    //         $this->load->view('login');
+    //     }
+    // }
 
     public function Usernamecek()
     {
