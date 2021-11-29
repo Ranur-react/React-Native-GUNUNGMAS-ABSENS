@@ -32,18 +32,18 @@ class GajiKaryawan extends CI_Controller
     public function store()
     {
         if ($this->input->is_ajax_request() == TRUE) {
-            $this->form_validation->set_rules('idkaryawan', 'Id Karyawan', 'required|is_unique[karyawan.id_karyawan]');
-            $this->form_validation->set_rules('namakaryawan', 'Nama Karyawan', 'required');
-            $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('nohp', 'Nomor Handphone', 'required');
-            $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+            $this->form_validation->set_rules('id', 'Id Jabatan', 'required|is_unique[tb_jabatan.id_jabatan]');
+            $this->form_validation->set_rules('nama', 'Nama Jabatan', 'required');
+            $this->form_validation->set_rules('gapok', 'Gaji Pokok', 'required');
+            $this->form_validation->set_rules('tunjangan', 'Tunjangan Disiplin', 'required');
+            $this->form_validation->set_rules('potongan', 'Potongan Disiplin', 'required');
             $this->form_validation->set_message('required', '%s tidak boleh kosong.');
             $this->form_validation->set_message('is_unique', '%s sudah digunakan.');
             if ($this->form_validation->run() == TRUE) {
                 $params = $this->input->post(null, TRUE);
-                $this->Mdata_karyawan->store($params);
+                $this->Mdata_jabatan->store($params);
                 $json['status'] = true;
-                $this->session->set_flashdata('pesan', sukses('data karyawan berhasil di simpan'));
+                $this->session->set_flashdata('pesan', sukses('data Jabatan berhasil di simpan'));
             } else {
                 $json['status'] = false;
                 $json['pesan']  = $this->form_validation->error_array();

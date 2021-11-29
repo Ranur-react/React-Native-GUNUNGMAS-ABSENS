@@ -17,4 +17,16 @@ class Mdata_jabatan extends CI_Model
     {
         return $this->db->query("SELECT * FROM tb_jabatan;")->result_array();
     }
+    public function store($params)
+    {
+        $data = [
+            'id_jabatan' => $params['id'],
+            'nama_jabatan' => $params['namakaryawan'],
+            'gapok' => $params['gapok'],
+            'tunjangan_disiplin' => $params['tunjangan'],
+            'potongan_disiplin' => $params['potongan'],
+        ];
+        $jabatan = $this->db->insert($this->tabel, $data);
+        return array($jabatan);
+    }
 }
