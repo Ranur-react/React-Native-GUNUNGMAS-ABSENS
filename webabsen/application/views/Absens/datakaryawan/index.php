@@ -31,7 +31,7 @@
 								<td><?= $d['nohp'] ?></td>
 								<td><?= $d['alamat'] ?></td>
 								<td><?= $d['nama_jabatan'] ?></td>
-								<td><?= rupiah($d['gapok']) ?></td>
+								<td><?= 'Rp. ' . rupiah($d['gapok']) ?></td>
 								<td class="text-center" width="60px">
 									<a href="javascript:void(0)" onclick="edit('<?= $d['id_karyawan'] ?>')"><i class="icon-pencil7 text-green" data-toggle="tooltip" data-original-title="Edit Data"></i></a>
 									<a href="<?= site_url('Absens/DataKaryawan/destroy/' . $d['id_karyawan']) ?>" onclick="return confirm('Yakin akan hapus data ini ?');"><i class="icon-trash text-red" data-toggle="tooltip" data-original-title="Hapus Data"></i></a>

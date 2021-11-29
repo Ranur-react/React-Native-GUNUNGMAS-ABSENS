@@ -54,7 +54,7 @@
 					<select class="form-control pilihsift" name="jabatan">
 						<option value="">-- Pilih --</option>
 						<?php foreach ($dJabatan as $d) : ?>
-							<option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d['nama_jabatan'] . '(' . $d['gapok'] . ')'; ?></option>
+							<option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d['nama_jabatan'] . '(' . 'Rp. ' . rupiah($d['gapok']) . ')'; ?></option>
 						<?php endforeach; ?>
 					</select>
 					<span class="error shift text-red"></span>
