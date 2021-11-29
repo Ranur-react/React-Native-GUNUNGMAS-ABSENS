@@ -20,7 +20,7 @@ class DataKaryawan extends CI_Controller
 			'page'  => 'Data Karyawan',
 			'small' => '',
 			'urls'  => '<li class="active">Data Karyawan</li>',
-			'data'  => $this->Mdata_karyawan->getall()
+			'data'  => $this->Mdata_karyawan->tampildata()
 		];
 		$this->template->display('Absens/datakaryawan/index', $data);
 	}
