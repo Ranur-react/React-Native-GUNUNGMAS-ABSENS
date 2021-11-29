@@ -51,7 +51,7 @@
 				</div>
 				<div class="form-group">
 					<label>Jabatan Karyawan</label>
-					<select class="form-control pilihsift" name="shift">
+					<select class="form-control pilihsift" name="jabatan">
 						<option value="">-- Pilih --</option>
 						<?php foreach ($dJabatan as $d) : ?>
 							<option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d['nama_jabatan'] . '(' . $d['gapok'] . ')'; ?></option>

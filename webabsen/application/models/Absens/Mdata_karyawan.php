@@ -16,8 +16,9 @@ class Mdata_karyawan extends CI_Model
 			'email' => $params['email'],
 			'nohp' => $params['nohp'],
 			'alamat' => $params['alamat'],
+			'jabatan_id' => $params['jabatan'],
 		];
-		$karyawan= $this->db->insert($this->tabel, $data);
+		$karyawan = $this->db->insert($this->tabel, $data);
 
 		$data_user = [
 			'kode_user' => $params['idkaryawan'],
@@ -27,8 +28,8 @@ class Mdata_karyawan extends CI_Model
 			'status_user' => '1',
 		];
 		$this->db->set('created_at', 'NOW()', FALSE);
-		$user= $this->db->insert('user',$data_user);
-		return array($karyawan,$user);
+		$user = $this->db->insert('user', $data_user);
+		return array($karyawan, $user);
 	}
 	public function shows($kode)
 	{
@@ -48,10 +49,9 @@ class Mdata_karyawan extends CI_Model
 	}
 	public function destroy($kode)
 	{
-		 $this->db->simple_query("DELETE FROM " . $this->tabeluser . " WHERE kode_user='$kode'");
+		$this->db->simple_query("DELETE FROM " . $this->tabeluser . " WHERE kode_user='$kode'");
 
 		return $this->db->simple_query("DELETE FROM " . $this->tabel . " WHERE id_karyawan='$kode'");
-	
 	}
 
 	public function tampildata()
