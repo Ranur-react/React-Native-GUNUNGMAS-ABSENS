@@ -9,6 +9,13 @@ if (!function_exists('idtahun')) {
         return $data;
     }
 }
+if (!function_exists('rupiah')) {
+    function rupiah($uang)
+    {
+        $format = number_format($uang, 0, ",", ".");
+        return $format;
+    }
+}
 if (!function_exists('tahun_aktif')) {
     function tahun_aktif()
     {
