@@ -29,8 +29,8 @@
 								<td><?= 'Rp. ' . rupiah($d['tunjangan_disiplin']) . ' / bulan (gross)' ?></td>
 								<td><?= 'Rp. ' . rupiah($d['potongan_disiplin']) . ' / hari' ?></td>
 								<td class="text-center" width="60px">
-									<a href="javascript:void(0)" onclick="edit('<?= $d['id_karyawan'] ?>')"><i class="icon-pencil7 text-green" data-toggle="tooltip" data-original-title="Edit Data"></i></a>
-									<a href="<?= site_url('Absens/DataKaryawan/destroy/' . $d['id_karyawan']) ?>" onclick="return confirm('Yakin akan hapus data ini ?');"><i class="icon-trash text-red" data-toggle="tooltip" data-original-title="Hapus Data"></i></a>
+									<a href="javascript:void(0)" onclick="edit('<?= $d['id_jabatan'] ?>')"><i class="icon-pencil7 text-green" data-toggle="tooltip" data-original-title="Edit Data"></i></a>
+									<a href="<?= site_url('Absens/GajiKaryawan/destroy/' . $d['id_jabatan']) ?>" onclick="return confirm('Yakin akan hapus data ini ?');"><i class="icon-trash text-red" data-toggle="tooltip" data-original-title="Hapus Data"></i></a>
 								</td>
 							</tr>
 						<?php $no++;
@@ -46,7 +46,7 @@
 <script>
 	$(document).on('click', '.btntambah', function(e) {
 		$.ajax({
-			url: "<?= site_url('Absens/DataKaryawan/create') ?>",
+			url: "<?= site_url('Absens/GajiKaryawan/create') ?>",
 			success: function(data) {
 				$('#tampil_modal').html(data);
 				$('#modal_tambah').modal('show');
@@ -57,7 +57,7 @@
 	function edit(kode) {
 		$.ajax({
 			type: "post",
-			url: "<?= site_url('Absens/DataKaryawan/edit') ?>",
+			url: "<?= site_url('Absens/GajiKaryawan/edit') ?>",
 			data: "&kode=" + kode,
 			cache: false,
 			success: function(response) {
