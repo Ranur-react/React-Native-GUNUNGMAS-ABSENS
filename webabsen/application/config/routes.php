@@ -12,6 +12,9 @@ $route['Passwordcek'] = 'auth/Passwordcek';
 $route['Home'] = 'Absens/HalamaUtama';
 $route['wa'] = 'Absens/WaktuAbsensi';
 $route['dk'] = 'Absens/DataKaryawan';
+$route['gaj'] = 'Absens/GajiKaryawan';
+
+
 $route['la'] = 'Absens/LokasiAbsensi';
 $route['am'] = 'Absens/AbsenMasuk';
 $route['ap'] = 'Absens/AbsenPulang';
