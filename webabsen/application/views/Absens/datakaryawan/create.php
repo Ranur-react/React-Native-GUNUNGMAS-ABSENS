@@ -31,7 +31,7 @@
 					<input type="text" name="namakaryawan" class="form-control" placeholder="Nama Karyawan">
 					<span class="error namakaryawan text-red"></span>
 				</div>
-				
+
 				<div class="form-group">
 					<label>Email</label>
 					<input type="text" name="email" class="form-control" placeholder="Email">
@@ -49,7 +49,16 @@
 					<textarea type="text" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 					<span class="error alamat text-red"></span>
 				</div>
-				
+				<div class="form-group">
+					<label>Jabatan Karyawan</label>
+					<select class="form-control pilihsift" name="shift">
+						<option value="">-- Pilih --</option>
+						<?php foreach ($dJabatan as $d) : ?>
+							<option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d['nama_jabatan'] . '(' . $d['gapok'] . ')'; ?></option>
+						<?php endforeach; ?>
+					</select>
+					<span class="error shift text-red"></span>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary btnStore"><i class="icon-floppy-disk"></i> Simpan</button>

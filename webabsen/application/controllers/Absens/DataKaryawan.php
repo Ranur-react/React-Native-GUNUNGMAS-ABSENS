@@ -10,6 +10,7 @@ class DataKaryawan extends CI_Controller
 			cek_user();
 		else
 			redirect('logout');
+		$this->load->model('Absens/Mdata_jabatan');
 		$this->load->model('Absens/Mdata_karyawan');
 	}
 	public function index()
@@ -25,8 +26,8 @@ class DataKaryawan extends CI_Controller
 	}
 	public function create()
 	{
-
-		$this->load->view('Absens/datakaryawan/create','');
+		$d['dJabatan'] = $this->Mdata_jabatan->getall();
+		$this->load->view('Absens/datakaryawan/create', $d);
 	}
 	public function store()
 	{
@@ -97,9 +98,8 @@ class DataKaryawan extends CI_Controller
 		$a = $this->uri->segment(4);
 		$data = [
 			'data'  => $this->Mdata_karyawan->tampildata($a),
-			
-		];
-		$this->load->view('Absens/datakaryawan/cetak',$data);
 
+		];
+		$this->load->view('Absens/datakaryawan/cetak', $data);
 	}
 }
