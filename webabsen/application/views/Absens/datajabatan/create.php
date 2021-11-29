@@ -17,48 +17,39 @@
 					<span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">Tambah Data</h4>
 			</div>
-			<?= form_open('Absens/DataKaryawan/store', ['class' => 'form_create']) ?>
+			<?= form_open('Absens/GajiKaryawan/store', ['class' => 'form_create']) ?>
 			<div class="modal-body">
 
 				<div class="form-group">
-					<label>Id Karyawan</label>
-					<input type="text" name="idkaryawan" class="form-control" placeholder="Id Karyawan">
-					<span class="error idkaryawan text-red"></span>
+					<label>Id Jabatan</label>
+					<input type="text" name="id" class="form-control" placeholder="Id Jabatan">
+					<span class="error id text-red"></span>
 				</div>
 
 				<div class="form-group">
-					<label>Nama Karyawan</label>
-					<input type="text" name="namakaryawan" class="form-control" placeholder="Nama Karyawan">
-					<span class="error namakaryawan text-red"></span>
+					<label>Nama Jabatan</label>
+					<input type="text" name="nama" class="form-control" placeholder="Nama Jabatan">
+					<span class="error nama text-red"></span>
 				</div>
 
 				<div class="form-group">
-					<label>Email</label>
-					<input type="text" name="email" class="form-control" placeholder="Email">
-					<span class="error email text-red"></span>
+					<label>Gaji Pokok / bulan</label>
+					<input type="text" name="gapok" class="form-control" placeholder="900000">
+					<span class="error gapok text-red"></span>
 				</div>
 
 				<div class="form-group">
-					<label>Nomor Handphone</label>
-					<input type="text" name="nohp" class="form-control" placeholder="Nomor Handphone">
+					<label>Tunjangan Disiplin</label>
+					<input type="text" name="tunjangan" class="form-control" placeholder="500000">
 					<span class="error nohp text-red"></span>
 				</div>
 
 				<div class="form-group">
-					<label>Alamat</label>
-					<textarea type="text" name="alamat" class="form-control" placeholder="Alamat"></textarea>
-					<span class="error alamat text-red"></span>
+					<label>Potongan Disiplin /hari</label>
+					<textarea type="text" name="potongan" class="form-control" placeholder="10000"></textarea>
+					<span class="error potongan text-red"></span>
 				</div>
-				<div class="form-group">
-					<label>Jabatan Karyawan</label>
-					<select class="form-control pilihsift" name="jabatan">
-						<option value="">-- Pilih --</option>
-						<?php foreach ($dJabatan as $d) : ?>
-							<option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d['nama_jabatan'] . '(' . 'Rp. ' . rupiah($d['gapok']) . ')'; ?></option>
-						<?php endforeach; ?>
-					</select>
-					<span class="error shift text-red"></span>
-				</div>
+
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary btnStore"><i class="icon-floppy-disk"></i> Simpan</button>

@@ -27,8 +27,7 @@ class GajiKaryawan extends CI_Controller
     }
     public function create()
     {
-        $d['dJabatan'] = $this->Mdata_jabatan->getall();
-        $this->load->view('Absens/datakaryawan/create', $d);
+        $this->load->view('Absens/datajabatan/create', '');
     }
     public function store()
     {
