@@ -46,7 +46,8 @@
 
 				<div class="form-group">
 					<label>Potongan Disiplin /hari</label>
-					<textarea type="text" name="potongan" class="form-control" placeholder="10000"></textarea>
+					<input type="text" name="potongan" class="form-control" placeholder="500000">
+
 					<span class="error potongan text-red"></span>
 				</div>
 
