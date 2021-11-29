@@ -21,7 +21,7 @@ class Mdata_jabatan extends CI_Model
     {
         $data = [
             'id_jabatan' => $params['id'],
-            'nama_jabatan' => $params['namakaryawan'],
+            'nama_jabatan' => $params['nama'],
             'gapok' => $params['gapok'],
             'tunjangan_disiplin' => $params['tunjangan'],
             'potongan_disiplin' => $params['potongan'],
