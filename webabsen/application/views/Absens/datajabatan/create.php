@@ -79,7 +79,7 @@
 						$('.' + i).text(m);
 					});
 				} else {
-					window.location.href = "<?= site_url('dk') ?>";
+					window.location.href = "<?= site_url('gaj') ?>";
 				}
 			},
 			complete: function() {
