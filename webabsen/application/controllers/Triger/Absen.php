@@ -79,7 +79,7 @@ class Absen extends CI_Controller
 
 
 
-
+			$MESSAGE['GAGAL'] = "Mantap Upload Foto berhasil";
 		} else {
 			$MESSAGE['Respond'] = false;
 			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
