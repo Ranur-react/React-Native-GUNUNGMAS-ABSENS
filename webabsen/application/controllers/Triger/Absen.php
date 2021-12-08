@@ -22,30 +22,37 @@ class Absen extends CI_Controller
         $objSon = json_decode($obj, true);
         $MESSAGE['POST>'] = $_POST;
 
-        //         $target_dir = "AsetKaryawan_Foto/FotoAbsen".$_POST['StatusAbsen']."/".$_POST['NamaKaryawan'];
-        //         $RANDO_val=rand();
-        //         $URI= $target_dir."/".$RANDO_val."-".$_POST['StatusAbsen']."_".date('Y-m-d').".jpeg";
+                $target_dir = "AsetKaryawan_Foto/FotoAbsen".$_POST['StatusAbsen']."/".$_POST['NamaKaryawan'];
+                $RANDO_val=rand();
+                $URI= $target_dir."/".$RANDO_val."-".$_POST['StatusAbsen']."_".date('Y-m-d').".jpeg";
 
 
-        //         //REVERAL ENROLMENT FOR INSERT
-        //             $ID="ABK-".$_POST['ID']."-".$RANDO_val;
-        //             $IDKARYAWAN=$_POST['ID'];
-        //             $IDJADWAL=$_POST['id_jadwal'];
-        //             $JAM=$_POST['jam_Capture'];
-        //             $LA=$_POST['la'];
-        //             $LO=$_POST['lo'];
-        //             $Displin=$_POST['Displin'];
-        //             $FOTO=base_url().$URI;
+                //REVERAL ENROLMENT FOR INSERT
+                    $ID="ABK-".$_POST['ID']."-".$RANDO_val;
+                    $IDKARYAWAN=$_POST['ID'];
+                    $IDJADWAL=$_POST['id_jadwal'];
+                    $JAM=$_POST['jam_Capture'];
+                    $LA=$_POST['la'];
+                    $LO=$_POST['lo'];
+                    $Displin=$_POST['Displin'];
+                    $FOTO=base_url().$URI;
 
 
-        //         //
+                //
 
 
 
 
-        //             if (!file_exists($target_dir)) {
-        //                 mkdir($target_dir,777,true);
-        //             }
+                    if (!file_exists($target_dir)) {
+                        
+						if(mkdir($target_dir, 777, true)){
+							$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
+						}else{
+							$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
+						}
+                    }else{
+						$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
+					}
         //                 if(move_uploaded_file($_FILES['imagos']['tmp_name'],$URI)){
         //                         if ($_POST['StatusAbsen'] == "Masuk") {
         //                                         //Input Data Absen Masuk-----------
