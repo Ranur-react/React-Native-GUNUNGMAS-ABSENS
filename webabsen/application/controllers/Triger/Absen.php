@@ -60,7 +60,7 @@ class Absen extends CI_Controller
 
 				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'm' , `status_displin` = '$Displin' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-				// $MESSAGE['Respond'] = true;
+				$MESSAGE['Respond'] = true;
 			} else {
 				//                                         //Input Data Absen Pulang-----------
 
