@@ -64,10 +64,10 @@ class Absen extends CI_Controller
 			} else {
 				//                                         //Input Data Absen Pulang-----------
 
-				// $this->db->query("INSERT INTO `absen_keluar` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
-				// $this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = '1'  WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+				$this->db->query("INSERT INTO `absen_keluar` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
+				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = '1'  WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-				// $MESSAGE['Respond'] = true;
+				$MESSAGE['Respond'] = true;
 			}
 
 
