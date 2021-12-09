@@ -56,7 +56,7 @@ class Absen extends CI_Controller
 		if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
 			if ($_POST['StatusAbsen'] == "Masuk") {
 				//Input Data Absen Masuk-----------
-				// $this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
+				$this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
 
 				// $this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'm' , `status_displin` = '$Displin' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
