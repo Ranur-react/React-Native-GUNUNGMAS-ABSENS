@@ -113,8 +113,12 @@ export default class Login extends Component {
         console.log(responseJson.status);
         if (responseJson.status) {
           const jsonValue = JSON.stringify(responseJson);
-          setTimeout(() => storeDataJson(jsonValue), 1000);
-          this.props.navigation.navigate('Home');
+          setTimeout(async () => {
+            await storeDataJson(jsonValue);
+            await this.props.navigation.navigate('Home');
+          }
+            , 1000);
+
           // storeDataString('ID',responseJson.IDkaryawan);
           // storeDataString('NamaKaryawan',responseJson.namakaryawan);
           // storeDataString('username',this.state.email);

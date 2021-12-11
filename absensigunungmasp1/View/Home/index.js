@@ -133,8 +133,8 @@ onScrollLayout=(e)=>{
 
 
   render() {
-// console.disableYellowBox = true;
-// YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
+console.disableYellowBox = true;
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
 
 
 
