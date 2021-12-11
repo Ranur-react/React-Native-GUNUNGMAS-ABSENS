@@ -72,7 +72,7 @@ export default class MyComponent extends Component {
 
     }
   }
-  ProseJadwal=()=>{
+  ProseJadwal = () => {
     const tanggalSekarang = () => {
       var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
       var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
@@ -253,6 +253,9 @@ export default class MyComponent extends Component {
         })
       }).then(response => response.json()).then(responseJson => {
         if (responseJson.respond) {
+          console.log("===========Cek Jadwal From API===================");
+          console.log(responseJson);
+          console.log("==============================");
           this.setState({ jadwalJSON: responseJson.data }); this.setState({ Jsift: responseJson.data.ket_waktu }); this.setState({ Jlokasi: responseJson.data.lokasi });
           this.setState({ JKordinat: { la: responseJson.data.latitude, lo: responseJson.data.longitude, } });
           this.setState({ Range: responseJson.data.range });
@@ -320,10 +323,13 @@ export default class MyComponent extends Component {
         const jsonValue = await AsyncStorage.getItem('Json_Login');
         const data = JSON.parse(jsonValue);
         this.setState({ user: data });
+        console.log("=========================");
+        console.log(data);
+        console.log("=========================");
         console.log(!data.status);
-        if(!data.status){
+        if (!data.status) {
           console.log("Gk Ada User");
-        }else{
+        } else {
           console.log("Ada User");
           this.ProseJadwal()
         }
@@ -333,12 +339,6 @@ export default class MyComponent extends Component {
       }
     }
     getDataLoginJson();
-
-    //
-    if (this.state.LoadingState) {
-      console.log("Loading State Dipanggil");
-    }
-    
   }
 
   render() {
@@ -346,7 +346,11 @@ export default class MyComponent extends Component {
     return (
 
       <View onLayout={this.newStateFun}>
-
+        <View>
+          <TouchableOpacity onPress={() => console.log("tesss")} style={styles.SmallNotif} >
+            <Text style={styles.TextSmallNotif}  >Masuk {!this.state.jadwalJSON ? '' : this.state.jadwalJSON.ket_waktu}</Text>
+          </TouchableOpacity  >
+        </View>
         <Text style={styles.TextTitle}>Absensi Hari Ini: &nbsp;
         </Text>
 
@@ -361,8 +365,18 @@ export default class MyComponent extends Component {
         <Text style={styles.TextBody}>
         </Text>
         <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>
-        <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: {this.state.MasukState.pesan}</Text>
-        <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: {this.state.PulangState.pesan}</Text>
+        <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: 
+        { !this.state.jadwalJSON?'':
+        this.state.jadwalJSON.status_kehadiran == 'm'? 
+        `Sudah Datang ${this.state.jadwalJSON.status_displin == '1'?'Disiplin':'Tidak Disiplin'}` 
+        : this.state.jadwalJSON.status_kehadiran=='i'?'Izin':this.state.jadwalJSON.status_kehadiran=='s'?'Izin Sakit':
+        this.state.jadwalJSON.status_kehadiran == '1'?'':this.state.MasukState.pesan}</Text>
+        <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: 
+        { !this.state.jadwalJSON?'':
+        this.state.jadwalJSON.status_kehadiran == '1'? 
+        `Sudah Pulang ${this.state.jadwalJSON.status_displin == '1'?'Disiplin':'Tidak Disiplin'}` 
+        : this.state.jadwalJSON.status_kehadiran=='i'?'Izin':this.state.jadwalJSON.status_kehadiran=='s'?'Izin Sakit':this.state.PulangState.pesan}
+        </Text>
         <Text style={styles.TextBody}>Status Kehadiran &nbsp;&nbsp;&nbsp;: {this.state.StatusKehadiran}</Text>
         <View>
           {
@@ -401,16 +415,12 @@ export default class MyComponent extends Component {
                   style={{ width: 100, height: 100 }}
                 />
                 <TouchableHighlight onPress={() => { this.setState({ LoadingState: !this.state.LoadingState }) }}>
-
                   <Text style={styles.labelmodal}>X</Text>
                 </TouchableHighlight>
               </View>
             </Modal>
           }
         </View>
-        <TouchableOpacity onPress={() => console.log("tesss")} style={styles.SmallNotif} >
-          <Text style={styles.TextSmallNotif}  >Masuk</Text>
-        </TouchableOpacity  >
       </View>
     );
   }
@@ -457,16 +467,22 @@ const styles = StyleSheet.create({
   }, TextSmallNotif: {
     fontFamily: 'Raleway-Light',
     fontSize: 12,
+    fontWeight: "bold",
     color: 'rgba(255,255,255,1)',
     lineHeight: 10,
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 5
   }, SmallNotif: {
-    position: 'absolute',
-    // borderWidth:1,
-    // borderColor: 'red',
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+
+    top: 8,
+    position: 'relative',
     borderRadius: 10,
     backgroundColor: 'rgba(0, 162, 117, 0.9)',
+    // backgroundColor: 'rgba(76,169,255,1)',
     shadowColor: "rgba(0,0,0,1)",
     shadowOffset: {
       width: 3,
@@ -475,11 +491,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 8.30,
     elevation: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-    top: 8,
-    left: 150,
-    width: 70,
+
   },
 });

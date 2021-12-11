@@ -365,8 +365,17 @@ let Menu=(props)=>{
 
         let code=[];
               const listOBJ ={
-                99:{nama:'Absen MasukX',icon:'Enter',status: this.state.MasukState.state, color:'',dest:"Masuk"},
-                100:{nama:'Absen Pulang',icon:'Exit',status: this.state.PulangState.state, color:'',dest:"Pulang"},
+                99:{nama:'Absen Masuk',icon:'Enter',status:
+                !this.state.jadwalJSON?'':
+                  this.state.jadwalJSON.status_kehadiran == 'm'?true: 
+                  this.state.MasukState.state,
+                 color:'',dest:"Masuk"},
+                100:{nama:'Absen Pulang',icon:'Exit',status: 
+                !this.state.jadwalJSON?'':
+                  this.state.jadwalJSON.status_kehadiran == 'm'?this.state.PulangState.state:
+                  this.state.jadwalJSON.status_kehadiran == '1'?false:
+                  false
+                , color:'',dest:"Pulang"},
                 101:{nama:'Surat Sakit',icon:'Sakit',status:true,color:'',dest:"Sakit"},
                 // 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
               };
