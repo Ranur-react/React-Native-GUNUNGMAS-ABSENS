@@ -44,16 +44,18 @@ class Absen extends CI_Controller
 
 
 
-		// if (!file_exists($target_dir)) {
+		if (!file_exists($target_dir)) {
 
-		// 	if (mkdir($target_dir, 667, true)) {
-		// 		$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
-		// 	} else {
-		// 		$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
-		// 	}
-		// } else {
-		// 	$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
-		// }
+			// 	if (mkdir($target_dir, 667, true)) {
+			// 		$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
+			// 	} else {
+			// 		$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
+			// 	}
+			$MESSAGE['dirCreateInfo'] = "Folder Belum ada";
+
+		} else {
+			$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
+		}
 		// if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
 		// 	// if ($_POST['StatusAbsen'] == "Masuk") {
 		// 	// 	//Input Data Absen Masuk-----------
