@@ -53,7 +53,7 @@ class Absen extends CI_Controller
 		} else {
 			$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
 		}
-		// if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
+		if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
 		// 	// if ($_POST['StatusAbsen'] == "Masuk") {
 		// 	// 	//Input Data Absen Masuk-----------
 		// 	// 	$this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
@@ -73,12 +73,12 @@ class Absen extends CI_Controller
 
 
 
-		// 	// $MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
-		// } else {
-		// 	$MESSAGE['pesan'] = false;
-		// 	$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
-		// 	$MESSAGE['kode'] = 0;
-		// }
+			$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
+		} else {
+			$MESSAGE['pesan'] = false;
+			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
+			$MESSAGE['kode'] = 0;
+		}
 
 		echo json_encode($MESSAGE);
 	}
