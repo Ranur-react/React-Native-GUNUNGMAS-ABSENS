@@ -22,7 +22,7 @@ class Absen extends CI_Controller
 		$objSon = json_decode($obj, true);
 		
 
-		$target_dir = "AsetKaryawan_Foto/FotoAbsenTES" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
+		$target_dir = "AsetKaryawan_Foto/FotoAbsen" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
 		$RANDO_val = rand();
 		$URI = $target_dir . "/" . $RANDO_val . "-" . $_POST['StatusAbsen'] . "_" . date('Y-m-d') . ".jpeg";
 
@@ -45,13 +45,12 @@ class Absen extends CI_Controller
 
 
 		if (!file_exists($target_dir)) {
-			mkdir($target_dir, 0777, true);
-			chmod($target_dir, 0777);
-			// 	if (mkdir($target_dir, 667, true)) {
-			// 		$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
-			// 	} else {
-			// 		$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
-			// 	}
+				if (mkdir($target_dir, 7777, true)) {
+				chmod($target_dir, 7777);
+					$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
+				} else {
+					$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
+				}
 			$MESSAGE['dirCreateInfo'] = "Folder Belum ada";
 
 		} else {
