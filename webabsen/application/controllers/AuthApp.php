@@ -21,7 +21,7 @@ class AuthApp extends CI_Controller
 	{
 		$js = file_get_contents('php://input');
          $obj = json_decode($js,true);
-         $ID = $obj['IDkaryawan'];
+         $ID = $obj['IDkaryawan']; 
 		$qry=$this->Mabsen_masuk->getallHistoryMasuk($ID);
 		
 		if ($qry) {
@@ -34,6 +34,7 @@ class AuthApp extends CI_Controller
 			$data['pesan'] = "";
 			$data['status'] = true;
 		}else{
+			$data['from'] = $obj;
 			$data['data'] = "";
 			$data['pesan'] = "Data gagal diambil dari database";
 			$data['status'] = false;
