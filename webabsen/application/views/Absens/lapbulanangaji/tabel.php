@@ -11,7 +11,7 @@ foreach ($dataVar as $d) { ?>
 		<?php
 		$persentasHadir = ($d['hadir'] / 30) * 100;
 		?>
-		<td><?= 'Persentasi Kehadiran'.$persentasHadir.'% '.$d['tdisplin'] ?></td>
+		<td><?= 'Persentasi Kehadiran'. number_format($persentasHadir,0).'% '.$d['tdisplin'] ?></td>
 
 		<td><?= $d['pdisplin'] ?></td>
 		<td><?= $d['izin'] ?></td>
