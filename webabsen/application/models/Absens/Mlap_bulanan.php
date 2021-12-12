@@ -40,9 +40,9 @@ class Mlap_bulanan extends CI_Model
 				 
 				  (SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` = 'i' AND tanggal LIKE '%$d%')
 				 AS izin,
- `tb_jabatan`.`gapok`,
- `tb_jabatan`.`tunjangan_disiplin`,
- `tb_jabatan`.`potongan_disiplin`
+ `tb_jabatan`.`gapok` as gapok,
+ `tb_jabatan`.`tunjangan_disiplin` as tdisplin,
+ `tb_jabatan`.`potongan_disiplin` as pdisplin
  FROM `jadwal_absen_karyawan` 
 JOIN  `detail_jadwal` ON `id_jadwal_detail`=`id_jadwal`
 JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`

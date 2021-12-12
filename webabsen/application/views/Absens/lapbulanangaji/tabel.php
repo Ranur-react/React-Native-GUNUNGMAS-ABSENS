@@ -7,9 +7,9 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['izin'] ?></td>
-		<td><?= $d['izin'] ?></td>
-		<td><?= $d['izin'] ?></td>
-		<td><?= $d['izin'] ?></td>
+		<td><?= $d['gapok'] ?></td>
+		<td><?= $d['tdisplin'] ?></td>
+		<td><?= $d['displin'] ?></td>
 		<td><?= $d['izin'] ?></td>
 	</tr>
 <?php $no++;
