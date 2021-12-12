@@ -21,7 +21,7 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 			'urls'  => '<li class="active">Laporan Absensi Bulanan</li>',
 			'data'  => $this->Mlap_bulanan->getall()
 		];
-		$this->template->display('Absens/lapbulanan/index', $data);
+		$this->template->display('Absens/lapbulanangaji/index', $data);
 	}
 
 	public function cetak()
@@ -33,7 +33,7 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 			'bulan' => $a,
 			
 		];
-		$this->load->view('Absens/lapbulanan/cetak',$data);
+		$this->load->view('Absens/lapbulanangaji/cetak',$data);
 
 	}
 
@@ -42,7 +42,7 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 		$all = $this->input->post(null, TRUE);
 		$data['dataVar'] = $this->Mlap_bulanan->shows($all);
 
-		$this->load->view('Absens/lapbulanan/tabel',$data);
+		$this->load->view('Absens/lapbulanangaji/tabel',$data);
 		
 	}
 }
