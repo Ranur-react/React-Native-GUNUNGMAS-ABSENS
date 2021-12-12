@@ -22,7 +22,7 @@ class Absen extends CI_Controller
 		$objSon = json_decode($obj, true);
 		$MESSAGE['POST>'] = $_POST;
 
-		$target_dir = "AsetKaryawan_Foto/FotoAbsen" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
+		$target_dir = "AsetKaryawan_Foto/FotoAbsenX" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
 		$RANDO_val = rand();
 		$URI = $target_dir . "/" . $RANDO_val . "-" . $_POST['StatusAbsen'] . "_" . date('Y-m-d') . ".jpeg";
 
@@ -53,7 +53,7 @@ class Absen extends CI_Controller
 		} else {
 			$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
 		}
-		if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
+		// if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
 		// 	// if ($_POST['StatusAbsen'] == "Masuk") {
 		// 	// 	//Input Data Absen Masuk-----------
 		// 	// 	$this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
@@ -73,8 +73,8 @@ class Absen extends CI_Controller
 
 
 
-			$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
-		} 
+		// 	$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
+		// } 
 		// else {
 		// 	$MESSAGE['pesan'] = false;
 		// 	$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
