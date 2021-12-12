@@ -45,7 +45,7 @@ class Absen extends CI_Controller
 
 
 		if (!file_exists($target_dir)) {
-
+			mkdir('asas', 777, true);
 			// 	if (mkdir($target_dir, 667, true)) {
 			// 		$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
 			// 	} else {
