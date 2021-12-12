@@ -20,7 +20,7 @@ class Absen extends CI_Controller
 		$MESSAGE['Respon-------------Awal>'] = "..........................";
 		$obj = file_get_contents('php://input');
 		$objSon = json_decode($obj, true);
-		$MESSAGE['POST>'] = $_POST;
+		
 
 		$target_dir = "AsetKaryawan_Foto/FotoAbsenX" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
 		$RANDO_val = rand();
@@ -81,7 +81,7 @@ class Absen extends CI_Controller
 		// 	$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
 		// 	$MESSAGE['kode'] = 0;
 		// }
-
+		$MESSAGE['POST>'] = $_POST;
 		echo json_encode($MESSAGE);
 	}
 	public function Sakit()
