@@ -11,7 +11,22 @@ foreach ($dataVar as $d) { ?>
 		<?php
 		$persentasHadir = ($d['hadir'] / 30) * 100;
 		?>
-		<td><?= 'Persentasi Kehadiran'. number_format($persentasHadir,0).'% '.$d['tdisplin'] ?></td>
+		<td>
+			<table>
+				<tr>
+					<td><?= 'Persentasi Kehadiran' ?></td>
+					<td>
+						<?= number_format($persentasHadir, 0) . '% ' ?>
+					</td>
+				</tr>
+				<tr>
+					<td><?= 'Tunjangan Kehadiran' ?></td>
+					<td>
+						<?= 'Rp. ' . rupiah($d['tdisplin']) ?>
+					</td>
+				</tr>
+			</table>
+		</td>
 
 		<td><?= $d['pdisplin'] ?></td>
 		<td><?= $d['izin'] ?></td>
