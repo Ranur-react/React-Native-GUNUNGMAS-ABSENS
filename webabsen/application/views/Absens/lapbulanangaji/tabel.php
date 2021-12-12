@@ -14,15 +14,15 @@ foreach ($dataVar as $d) { ?>
 		<td>
 			<table>
 				<tr>
-					<td><?= 'Persentasi Kehadiran' ?></td>
+					<td><?= 'Persentasi Kehadiran: ' ?></td>
 					<td>
 						<?= number_format($persentasHadir, 0) . '% ' ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'Tunjangan Kehadiran' ?></td>
+					<td><?= 'Tunjangan Kehadiran: ' ?></td>
 					<td>
-						<?= 'Rp. ' . rupiah($d['tdisplin']) ?>
+						<?= $persentasHadir<80?'~ kehadiran belum cukup ~ Belum Mendapat Tukin':'Rp. ' . rupiah($d['tdisplin']) ?>
 					</td>
 				</tr>
 			</table>
