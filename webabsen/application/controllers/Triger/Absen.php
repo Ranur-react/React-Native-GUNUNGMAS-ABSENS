@@ -45,13 +45,13 @@ class Absen extends CI_Controller
 
 
 		if (!file_exists($target_dir)) {
-				if (mkdir($target_dir, 7777, true)) {
-				chmod($target_dir, 7777);
+				if (mkdir($target_dir, 0777, true)) {
+				   chmod($target_dir, 0777);
 					$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
 				} else {
 					$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
 				}
-			$MESSAGE['dirCreateInfo'] = "Folder Belum ada";
+			// $MESSAGE['dirCreateInfo'] = "Folder Belum ada";
 
 		} else {
 			$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
