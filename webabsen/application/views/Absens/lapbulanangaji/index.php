@@ -58,7 +58,7 @@
 	function IsiTabel() {
 		$.ajax({
 			type: "post",
-			url: "<?= site_url('Absens/LaporanAbsenBulanan/TabelPeriode') ?>",
+			url: "<?= site_url('Absens/LaporanAbsenGajiBulanan/TabelPeriode') ?>",
 			data: "&PilBulan=" + $('.pilBulan').val(),
 			cache: false,
 			success: function(data) {
@@ -72,7 +72,7 @@
 	$(document).on('click', '.btncetak', function(e) {
 		let kode = "/" + $('.pilBulan').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenBulanan/cetak') ?>' + kode;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode;
 		}, 100);
 
 	});

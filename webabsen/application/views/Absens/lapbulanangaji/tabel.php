@@ -11,7 +11,6 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['izin'] ?></td>
 		<td><?= $d['izin'] ?></td>
 		<td><?= $d['izin'] ?></td>
-		<!-- <td><?= number_format(($d['hadir'] / 30) * 100, 0) . "%"; ?></td>  -->
 	</tr>
 <?php $no++;
 } ?>
