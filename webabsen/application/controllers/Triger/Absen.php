@@ -116,18 +116,18 @@ class Absen extends CI_Controller
 
 		if (move_uploaded_file($_FILES['Suratos']['tmp_name'], $URI)) {
 			if ($_POST['StatusAbsen'] == "Sakit") {
-				// $this->db->query("INSERT INTO `surat_sakit` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+				$this->db->query("INSERT INTO `surat_sakit` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
 
 
-				// $this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 's' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 's' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-				// $MESSAGE['Respond'] = true;
+				$MESSAGE['Respond'] = true;
 			} else if ($_POST['StatusAbsen'] == "Izin") {
-				// $this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+				$this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
 
 
-				// $this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'i' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
-				// $MESSAGE['Respond'] = true;
+				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'i' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+				$MESSAGE['Respond'] = true;
 			} else {
 				$MESSAGE['Respond'] = false;
 			}
