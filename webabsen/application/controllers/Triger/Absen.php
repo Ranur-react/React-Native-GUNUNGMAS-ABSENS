@@ -54,26 +54,26 @@ class Absen extends CI_Controller
 			$MESSAGE['dirCreateInfo'] = "Folder sudah ada";
 		}
 		if (move_uploaded_file($_FILES['imagos']['tmp_name'], $URI)) {
-			if ($_POST['StatusAbsen'] == "Masuk") {
-				//Input Data Absen Masuk-----------
-				$this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
+			// if ($_POST['StatusAbsen'] == "Masuk") {
+			// 	//Input Data Absen Masuk-----------
+			// 	$this->db->query("INSERT INTO `absen_masuk` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO','HADIR'); ");
 
-				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'm' , `status_displin` = '$Displin' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+			// 	$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'm' , `status_displin` = '$Displin' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-				$MESSAGE['Respond'] = true;
-			} else {
-				//                                         //Input Data Absen Pulang-----------
+			// 	$MESSAGE['Respond'] = true;
+			// } else {
+			// 	//                                         //Input Data Absen Pulang-----------
 
-				$this->db->query("INSERT INTO `absen_keluar` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
-				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = '1'  WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+			// 	$this->db->query("INSERT INTO `absen_keluar` VALUES ('$ID', '$IDKARYAWAN', '$IDJADWAL','$JAM',NOW(),'$LA','$LO','$FOTO'); ");
+			// 	$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = '1'  WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-				$MESSAGE['Respond'] = true;
-			}
-
-
+			// 	$MESSAGE['Respond'] = true;
+			// }
 
 
-			$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
+
+
+			// $MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
 		} else {
 			$MESSAGE['pesan'] = false;
 			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
@@ -115,22 +115,22 @@ class Absen extends CI_Controller
 
 
 		if (move_uploaded_file($_FILES['Suratos']['tmp_name'], $URI)) {
-			// if ($_POST['StatusAbsen'] == "Sakit") {
-			// 	$this->db->query("INSERT INTO `surat_sakit` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+			if ($_POST['StatusAbsen'] == "Sakit") {
+				$this->db->query("INSERT INTO `surat_sakit` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
 
 
-			// 	$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 's' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 's' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
 
-			// 	$MESSAGE['Respond'] = true;
-			// } else if ($_POST['StatusAbsen'] == "Izin") {
-			// 	$this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
+				$MESSAGE['Respond'] = true;
+			} else if ($_POST['StatusAbsen'] == "Izin") {
+				$this->db->query("INSERT INTO `surat_izin` VALUES ('$ID', '$IDKARYAWAN',NOW(),'$Status','$URL'); ");
 
 
-			// 	$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'i' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
-			// 	$MESSAGE['Respond'] = true;
-			// } else {
-			// 	$MESSAGE['Respond'] = false;
-			// }
+				$this->db->query("UPDATE `detail_jadwal` SET `status_kehadiran` = 'i' WHERE `id_jadwal_detail` = '$IDJADWAL' AND `id_karyawan_detail` = '$IDKARYAWAN' AND `tanggal` = DATE_FORMAT(NOW(), '%Y-%m-%d');");
+				$MESSAGE['Respond'] = true;
+			} else {
+				$MESSAGE['Respond'] = false;
+			}
 		} else {
 			$MESSAGE['Respond'] = false;
 			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
