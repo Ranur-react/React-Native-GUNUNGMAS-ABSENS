@@ -74,11 +74,12 @@ class Absen extends CI_Controller
 
 
 			$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
-		} else {
-			$MESSAGE['pesan'] = false;
-			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
-			$MESSAGE['kode'] = 0;
-		}
+		} 
+		// else {
+		// 	$MESSAGE['pesan'] = false;
+		// 	$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
+		// 	$MESSAGE['kode'] = 0;
+		// }
 
 		echo json_encode($MESSAGE);
 	}
