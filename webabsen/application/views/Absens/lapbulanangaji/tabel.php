@@ -8,8 +8,12 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['izin'] ?></td>
 		<td><?= $d['gapok'] ?></td>
-		<td><?= $d['tdisplin'] ?></td>
-		<td><?= $d['displin'] ?></td>
+		<?php
+		$persentasHadir = ($d['hadir'] / 30) * 100;
+		?>
+		<td><?= 'Persentasi Kehadiran'.$persentasHadir.'% '.$d['tdisplin'] ?></td>
+
+		<td><?= $d['pdisplin'] ?></td>
 		<td><?= $d['izin'] ?></td>
 	</tr>
 <?php $no++;
