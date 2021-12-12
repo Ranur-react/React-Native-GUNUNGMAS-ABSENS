@@ -36,6 +36,7 @@ class Absen extends CI_Controller
 		$LO = $_POST['lo'];
 		$Displin = $_POST['Displin'];
 		$FOTO = base_url() . $URI;
+		$_POST['uridest']=$URI;
 
 
 		//
