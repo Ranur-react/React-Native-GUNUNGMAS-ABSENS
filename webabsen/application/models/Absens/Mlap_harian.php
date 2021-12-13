@@ -18,7 +18,7 @@ GROUP BY `id_absen_masuk`
 		$dateStart = date("Y-m-d", strtotime($param['awal']));
 
 
-		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,jam_keluar,foto_keluar,status_kehadiran,`surat_izinnya`
+		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,jam_keluar,foto_masuk,foto_keluar,status_kehadiran,`surat_izinnya`
 FROM karyawan
 JOIN absen_masuk ON id_karyawan=id_karyawan_masuk
 LEFT JOIN `absen_keluar` ON id_karyawan=`id_karyawan_keluar`
