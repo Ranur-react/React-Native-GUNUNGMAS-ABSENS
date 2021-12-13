@@ -349,7 +349,7 @@ export default class MyComponent extends Component {
         <View>
           <TouchableOpacity onPress={() => console.log("tesss")} style={styles.SmallNotif} >
             <Text style={styles.TextSmallNotif}  >Masuk {!this.state.jadwalJSON ? '' : this.state.jadwalJSON.ket_waktu}</Text>
-          </TouchableOpacity  >
+          </TouchableOpacity>
         </View>
         <Text style={styles.TextTitle}>Absensi Hari Ini: &nbsp;
         </Text>
@@ -365,17 +365,17 @@ export default class MyComponent extends Component {
         <Text style={styles.TextBody}>
         </Text>
         <Text style={styles.TextTitle}>Jam Sekarng : {this.state.jamNow}</Text>
-        <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;: 
-        { !this.state.jadwalJSON?'':
-        this.state.jadwalJSON.status_kehadiran == 'm'? 
-        `Sudah Datang ${this.state.jadwalJSON.status_displin == '1'?'Disiplin':'Tidak Disiplin'}` 
-        : this.state.jadwalJSON.status_kehadiran=='i'?'Izin':this.state.jadwalJSON.status_kehadiran=='s'?'Izin Sakit':
-        this.state.jadwalJSON.status_kehadiran == '1'?'':this.state.MasukState.pesan}</Text>
-        <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;: 
-        { !this.state.jadwalJSON?'':
-        this.state.jadwalJSON.status_kehadiran == '1'? 
-        `Sudah Pulang ${this.state.jadwalJSON.status_displin == '1'?'Disiplin':'Tidak Disiplin'}` 
-        : this.state.jadwalJSON.status_kehadiran=='i'?'Izin':this.state.jadwalJSON.status_kehadiran=='s'?'Izin Sakit':this.state.PulangState.pesan}
+        <Text style={styles.TextBody}>Kondisi Masuk &nbsp;&nbsp;&nbsp;:
+          {!this.state.jadwalJSON ? '' :
+            this.state.jadwalJSON.status_kehadiran == 'm' ?
+              `Sudah Datang ${this.state.jadwalJSON.status_displin == '1' ? 'Disiplin' : 'Tidak Disiplin'}`
+              : this.state.jadwalJSON.status_kehadiran == 'i' ? 'Izin' : this.state.jadwalJSON.status_kehadiran == 's' ? 'Izin Sakit' :
+                this.state.jadwalJSON.status_kehadiran == '1' ? '' : this.state.MasukState.pesan}</Text>
+        <Text style={styles.TextBody}>Kondisi Pulang&nbsp;&nbsp;&nbsp;:
+          {!this.state.jadwalJSON ? '' :
+            this.state.jadwalJSON.status_kehadiran == '1' ?
+              `Sudah Pulang ${this.state.jadwalJSON.status_displin == '1' ? 'Disiplin' : 'Tidak Disiplin'}`
+              : this.state.jadwalJSON.status_kehadiran == 'i' ? 'Izin' : this.state.jadwalJSON.status_kehadiran == 's' ? 'Izin Sakit' : this.state.PulangState.pesan}
         </Text>
         <Text style={styles.TextBody}>Status Kehadiran &nbsp;&nbsp;&nbsp;: {this.state.StatusKehadiran}</Text>
         <View>

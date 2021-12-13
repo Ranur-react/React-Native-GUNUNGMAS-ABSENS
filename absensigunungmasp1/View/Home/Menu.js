@@ -1,6 +1,6 @@
 
 
-import React, { Component,useState  } from 'react';
+import React, { Component, useState } from 'react';
 import {
   View,
   Text,
@@ -23,7 +23,7 @@ import Svgicon from '../../assets/icons/Svgicon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment-timezone';
 import Geolocation from '@react-native-community/geolocation';
-import {getDistance, getPreciseDistance} from 'geolib';
+import { getDistance, getPreciseDistance } from 'geolib';
 import { APIDOMAINWEB } from '../../assets/containt';
 import { showToastWithGravityAndOffset } from '../../assets/_Toasview'
 
@@ -31,67 +31,69 @@ import { showToastWithGravityAndOffset } from '../../assets/_Toasview'
 
 
 // End----Compoonet KOndisition
-let Menu=(props)=>{
-    let code=[];
-    let opasisi=1;
-    let disable=false;
-    const Navigation=props.props.props.navigation;
-        let buttonactions=()=>{
-          Navigation.navigate(props.Destinations);
-        }
-    if (props.status) {disable=false;opasisi="1";}else{disable=true;opasisi="0.5"}
-    code.push(
-      <TouchableOpacity disabled={disable} style={styles.menuCard} onPress={buttonactions}>
-          <View style={styles.icon}>
-          <Svgicon key={170} name={props.icon} color={props.color} opacity={opasisi} />
-          <Text style={styles.labelIcon}>{props.label}</Text>
-          </View>
-      </TouchableOpacity >
-      )
-    return code;
+let Menu = (props) => {
+  let code = [];
+  let opasisi = 1;
+  let disable = false;
+  const Navigation = props.props.props.navigation;
+  let buttonactions = () => {
+    Navigation.navigate(props.Destinations);
+  }
+  if (props.status) { disable = false; opasisi = "1"; } else { disable = true; opasisi = "0.5" }
+  code.push(
+    <TouchableOpacity disabled={disable} style={styles.menuCard} onPress={buttonactions}>
+      <View style={styles.icon}>
+        <Svgicon key={170} name={props.icon} color={props.color} opacity={opasisi} />
+        <Text style={styles.labelIcon}>{props.label}</Text>
+      </View>
+    </TouchableOpacity >
+  )
+  return code;
 }
 
 
- class MenuLoop extends Component {
-   constructor (props) {
-     super(props)
-     this.state = {
-       LoadingState:true,
-       TanggalNow:'-',
-       Jarak:'',
-       Pjarak:'',
-       tanggal:'',
+class MenuLoop extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      LoadingState: true,
+      TanggalNow: '-',
+      Jarak: '',
+      Pjarak: '',
+      tanggal: '',
 
-       StatusPulang:'false',
-       StatusMasuk:'false',
-       Jmasuk:'',
-         JmasukState:'',
-       JmasukEnd:'',
-         JmasukEndState:'',
-       Toleransi:'',
-         ToleransiState:'',
+      StatusPulang: 'false',
+      StatusMasuk: 'false',
+      Jmasuk: '',
+      JmasukState: '',
+      JmasukEnd: '',
+      JmasukEndState: '',
+      Toleransi: '',
+      ToleransiState: '',
 
-       Jpulang:'',
-         JpulangState:'',
+      Jpulang: '',
+      JpulangState: '',
 
-       JpulangEnd:'',
-         JpulangEndState:'',
+      JpulangEnd: '',
+      JpulangEndState: '',
 
-       jamNow:'',
-       jamData:'',
-       MasukState:{
-         pesan:'',
-          state: false},
-       PulangState:{
-         pesan:'',
-          state: false},
+      jamNow: '',
+      jamData: '',
+      MasukState: {
+        pesan: '',
+        state: false
+      },
+      PulangState: {
+        pesan: '',
+        state: false
+      },
 
 
-     }
-     //--TimeScheduleConfigurasi
+    }
+    //--TimeScheduleConfigurasi
 
-   }
-   ProseJadwal=()=>{
+  }
+  ProseJadwal = () => {
     const tanggalSekarang = () => {
       var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
       var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
@@ -340,9 +342,9 @@ let Menu=(props)=>{
         const data = JSON.parse(jsonValue);
         this.setState({ user: data });
         console.log(!data.status);
-        if(!data.status){
+        if (!data.status) {
           console.log("Gk Ada User");
-        }else{
+        } else {
           console.log("Ada User");
           this.ProseJadwal()
         }
@@ -357,44 +359,49 @@ let Menu=(props)=>{
     if (this.state.LoadingState) {
       console.log("Loading State Dipanggil");
     }
-    
+
   }
- 
+
   render() {
 
 
-        let code=[];
-              const listOBJ ={
-                99:{nama:'Absen Masuk',icon:'Enter',status:
-                !this.state.jadwalJSON?'':
-                  this.state.jadwalJSON.status_kehadiran == 'm'?true: 
-                  this.state.MasukState.state,
-                 color:'',dest:"Masuk"},
-                100:{nama:'Absen Pulang',icon:'Exit',status: 
-                !this.state.jadwalJSON?'':
-                  this.state.jadwalJSON.status_kehadiran == 'm'?this.state.PulangState.state:
-                  this.state.jadwalJSON.status_kehadiran == '1'?false:
-                  false
-                , color:'',dest:"Pulang"},
-                101:{nama:'Surat Sakit',icon:'Sakit',status:true,color:'',dest:"Sakit"},
-                // 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
-              };
-              for (var key in listOBJ) {
-                  if (listOBJ.hasOwnProperty(key)) {
-                    code.push(
-                      <View key={key*2}>
-                        <Menu key={key*3}
-                          props={this.props}
-                          Destinations={listOBJ[key].dest}
-                          icon={listOBJ[key].icon}
-                          label={listOBJ[key].nama}
-                          status={listOBJ[key].status}
-                          klik={listOBJ[key].exex}  />
-                      </View>
-                      )
-                  }
-              }
-  return code;
+    let code = [];
+    const listOBJ = {
+      99: {
+        nama: 'Absen Masuk', icon: 'Enter', status:
+          !this.state.jadwalJSON ? '' :
+            this.state.jadwalJSON.status_kehadiran == 'm' ? false :
+              this.state.jadwalJSON.status_kehadiran == '1' ? false :
+                this.state.MasukState.state,
+        color: '', dest: "Masuk"
+      },
+      100: {
+        nama: 'Absen Pulang', icon: 'Exit', status:
+          !this.state.jadwalJSON ? '' :
+            this.state.jadwalJSON.status_kehadiran == 'm' ? false :
+              this.state.jadwalJSON.status_kehadiran == '1' ? false :
+                this.state.PulangState.state
+        , color: '', dest: "Pulang"
+      },
+      101: { nama: 'Surat Sakit', icon: 'Sakit', status: true, color: '', dest: "Sakit" },
+      // 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
+    };
+    for (var key in listOBJ) {
+      if (listOBJ.hasOwnProperty(key)) {
+        code.push(
+          <View key={key * 2}>
+            <Menu key={key * 3}
+              props={this.props}
+              Destinations={listOBJ[key].dest}
+              icon={listOBJ[key].icon}
+              label={listOBJ[key].nama}
+              status={listOBJ[key].status}
+              klik={listOBJ[key].exex} />
+          </View>
+        )
+      }
+    }
+    return code;
 
   }
 }
@@ -408,34 +415,34 @@ export default MenuLoop;
 
 
 const styles = StyleSheet.create({
-  menuCard:{
-    backgroundColor:'rgba(76,169,255,1)',
-    width:120,
-    height:120,
-    margin:20,
-    padding:20,
-    borderRadius:20,
+  menuCard: {
+    backgroundColor: 'rgba(76,169,255,1)',
+    width: 120,
+    height: 120,
+    margin: 20,
+    padding: 20,
+    borderRadius: 20,
     shadowColor: "rgba(0,0,0,0.15)",
     shadowOffset: {
-      	width: 3,
-      	height: 10,
+      width: 3,
+      height: 10,
     },
     shadowOpacity: 0.39,
     shadowRadius: 8.30,
     elevation: 10,
     justifyContent: 'flex-start',
-    alignItems:'center',
-    textAlign:'center'
+    alignItems: 'center',
+    textAlign: 'center'
   },
-  icon:{
-    width:50,
-    height:50,
+  icon: {
+    width: 50,
+    height: 50,
   },
-  labelIcon:{
-    textAlign:'center',
-    fontFamily:'Raleway-Bold',
+  labelIcon: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Bold',
     fontSize: 12,
-    color:'rgba(255,255,255,1)'
+    color: 'rgba(255,255,255,1)'
   }
 
 });

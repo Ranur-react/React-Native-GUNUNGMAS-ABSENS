@@ -36,7 +36,7 @@ class ClassHIstory extends Component {
   }
   UNSAFE_componentWillMount() {
     let GetDataFromDB = async () => {
-      fetch(APIDOMAINWEB + "/AuthApp/histoMasuk", {
+      await fetch(APIDOMAINWEB + "/AuthApp/histoMasuk", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -91,32 +91,32 @@ class ClassHIstory extends Component {
     } else {
       return (
         <View>
-           {
-         
-         this.state.datamasuk.map((value, i) => {
-          return (
-            <View key={i}>
-              <TouchableOpacity style={styles.HistoryCard}>
-                <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
-                <View style={{
-                  display:'flex',
-                  flexDirection:'column'
-                }}>
-                <Text style={styles.Title}> Berhasil  Masuk </Text>
-                <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
-                <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
-                <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
-                <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
+          {
+
+            this.state.datamasuk.map((value, i) => {
+              return (
+                <View key={i}>
+                  <TouchableOpacity style={styles.HistoryCard}>
+                    <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
+                    <View style={{
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}>
+                      <Text style={styles.Title}> Berhasil  Masuk </Text>
+                      <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
+                      <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
+                      <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
+                      <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
+                    </View>
+                  </TouchableOpacity >
                 </View>
-              </TouchableOpacity >
-            </View>
-          )
-  
-        })
-      
+              )
+
+            })
 
 
-       }
+
+          }
         </View>
       )
 
@@ -128,49 +128,49 @@ class ClassHIstory extends Component {
 
 
 
-  export default ClassHIstory;
+export default ClassHIstory;
 
-  const styles = StyleSheet.create({
-    HistoryCard: {
-      backgroundColor: 'rgba(92,177,255,1)',
-      width: 370,
-      height: 200,
-      // margin:20,
-      marginBottom: 10,
-      padding: 15.5,
-      borderRadius: 20,
-      shadowColor: "rgba(0,0,0,0.05)",
-      shadowOffset: {
-        width: 0.1,
-        height: 0.1,
-      },
-      shadowOpacity: 0,
-      shadowRadius: 1.30,
-      elevation: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      textAlign: 'center',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
+const styles = StyleSheet.create({
+  HistoryCard: {
+    backgroundColor: 'rgba(92,177,255,1)',
+    width: 370,
+    height: 200,
+    // margin:20,
+    marginBottom: 10,
+    padding: 15.5,
+    borderRadius: 20,
+    shadowColor: "rgba(0,0,0,0.05)",
+    shadowOffset: {
+      width: 0.1,
+      height: 0.1,
     },
-    ImageCapture: {
-      height: 60,
-      width: 60,
-      borderRadius: 10,
-      marginRight: 16
-    },
+    shadowOpacity: 0,
+    shadowRadius: 1.30,
+    elevation: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    textAlign: 'center',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  ImageCapture: {
+    height: 60,
+    width: 60,
+    borderRadius: 10,
+    marginRight: 16
+  },
 
-    Title: {
-      textAlign: 'center',
-      fontFamily: 'Raleway-Bold',
-      fontSize: 18,
-      color: 'rgba(255,255,255,1)'
-    }, label: {
-      textAlign: 'center',
-      fontFamily: 'Raleway',
-      fontSize: 13,
-      fontWeight: '500',
-      color: 'rgba(255,255,255,1)'
-    }
+  Title: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Bold',
+    fontSize: 18,
+    color: 'rgba(255,255,255,1)'
+  }, label: {
+    textAlign: 'center',
+    fontFamily: 'Raleway',
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,1)'
+  }
 
-  });
+});
