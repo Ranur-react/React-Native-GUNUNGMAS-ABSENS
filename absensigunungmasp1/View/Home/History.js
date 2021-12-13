@@ -85,7 +85,7 @@ class ClassHIstory extends Component {
             <Text style={styles.Title}> Absensi  Masuk </Text>
             <Text style={styles.label}> 06 November 2020 </Text>
             <Text style={styles.label}> 08.33 </Text>
-          </TouchableOpacity >
+          </TouchableOpacity>
         </View>
       )
     } else {
@@ -102,13 +102,14 @@ class ClassHIstory extends Component {
                       display: 'flex',
                       flexDirection: 'column'
                     }}>
-                      <Text style={styles.Title}> Berhasil  Masuk </Text>
+                      <Text style={styles.Title}> Berhasil  {value.absenHadir} </Text>
                       <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
                       <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
+                      <Text style={styles.label}> Jam Pulang : {value.absenHadir == 'pulang' ? value.jam_keluar : '-'} </Text>
                       <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
                       <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
                     </View>
-                  </TouchableOpacity >
+                  </TouchableOpacity>
                 </View>
               )
 

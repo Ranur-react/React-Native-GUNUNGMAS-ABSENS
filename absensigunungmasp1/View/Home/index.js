@@ -13,7 +13,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ScrollView,
-  Button,YellowBox,RefreshControl
+  Button, YellowBox, RefreshControl
 } from 'react-native';
 import User from './../../assets/icons/user';
 import Svgicon from './../../assets/icons/Svgicon';
@@ -23,128 +23,144 @@ import HistoryAbsen from './History';
 
 
 
-const {width:WIDTH} =Dimensions.get('window');
-const {height:HEIGHT} =Dimensions.get('window');
+const { width: WIDTH } = Dimensions.get('window');
+const { height: HEIGHT } = Dimensions.get('window');
 
-let i=0;
-let bfore=0;
+let i = 0;
+let bfore = 0;
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 
-const DESK=(props)=>{
+const DESK = (props) => {
   if (props.actions) {
     return (
       <View >
-      <Svgicon key={1} color="rgba(50,50,50,0.5)" name="Refresh-M" />
+        <Svgicon key={1} color="rgba(50,50,50,0.5)" name="Refresh-M" />
       </View>
-      )
-  }else{
+    )
+  } else {
     return (
       <View>
-      <Deskripsiabsen   />
+        <Deskripsiabsen />
       </View>
-      )
+    )
+  }
+
+}
+const HISTODESK = (props) => {
+  if (props.actions) {
+    return (
+      <View >
+        <Svgicon key={1} color="rgba(50,50,50,0.5)" name="Refresh-M" />
+      </View>
+    )
+  } else {
+    return (
+      <View>
+        <HistoryAbsen key={9893} />
+      </View>
+    )
   }
 
 }
 
-const Menu=(props)=>{
+const Menu = (props) => {
   if (props.actions) {
     return (
       <View >
-      <Svgicon key={1} color="rgba(255,255,255,0.5)" name="Refresh-M" />
+        <Svgicon key={1} color="rgba(255,255,255,0.5)" name="Refresh-M" />
       </View>
-      )
-  }else{
+    )
+  } else {
     return (
       <Menuabsen key={2} color="black" props={props.props} />
 
-      )
+    )
   }
 }
 export default class Home extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      data:undefined,
-      TpScroll:'',
-      arrayytest:['1','2'],
-      Jarak:'',
-      Pjarak:'',
-      tes:300,
-      refreshing:false,
-      DESK:true,
+      data: undefined,
+      TpScroll: '',
+      arrayytest: ['1', '2'],
+      Jarak: '',
+      Pjarak: '',
+      tes: 300,
+      refreshing: false,
+      DESK: true,
     }
   }
-  
-  UNSAFE_componentWillMount(){
+
+  UNSAFE_componentWillMount() {
     // if (!this.state.refreshing) {
     //
     // }
     this.props.navigation.addListener('focus', () => {
 
-      this.setState({refreshing:true})
-      wait(2000).then(() => this.setState({refreshing:false}));
-      });
+      this.setState({ refreshing: true })
+      wait(2000).then(() => this.setState({ refreshing: false }));
+    });
   }
-onLayoutHEAD = event => {
-    this.setState({tinggiHEAD:event.nativeEvent.layout.height+20});
+  onLayoutHEAD = event => {
+    this.setState({ tinggiHEAD: event.nativeEvent.layout.height + 20 });
 
   }
-  Refresh=()=>{
+  Refresh = () => {
     // const [refreshing, setRefreshing] = React.useState(false);
-      console.log('Sedang Refresh-------');
-            this.setState({refreshing:true})
-            wait(2000).then(() => this.setState({refreshing:false}));
+    console.log('Sedang Refresh-------');
+    this.setState({ refreshing: true })
+    wait(2000).then(() => this.setState({ refreshing: false }));
   }
 
-  onRefresh=()=>{
+  onRefresh = () => {
     // const [refreshing, setRefreshing] = React.useState(false);
     console.log('Selesai Refresh-------');
     this.setState({
-          refreshing:false
-          });
+      refreshing: false
+    });
   }
-onScrollLayout=(e)=>{
-        let y=e.nativeEvent.contentOffset.y;
-        let t=this.state.tinggiHEAD;
-        let x=t/y;
-      if(bfore <= x){
-            i=i-0.04;
-            this.setState({TpScroll:'rgba(255,255,255,'+i+')'})
-            console.log("Nilai Scrool: "+i);
-            // if (i <= 0) {
-            // }
-      }
-      else{
-        i=i+0.04;
-            this.setState({TpScroll:'rgba(255,255,255,'+i+')'})
-      }
-      bfore=x;
-      if(y==0){
-        i=0;
-          this.setState({TpScroll:'rgba(255,255,255,0)'})
-      }
-}
+  onScrollLayout = (e) => {
+    let y = e.nativeEvent.contentOffset.y;
+    let t = this.state.tinggiHEAD;
+    let x = t / y;
+    if (bfore <= x) {
+      i = i - 0.04;
+      this.setState({ TpScroll: 'rgba(255,255,255,' + i + ')' })
+      console.log("Nilai Scrool: " + i);
+      // if (i <= 0) {
+      // }
+    }
+    else {
+      i = i + 0.04;
+      this.setState({ TpScroll: 'rgba(255,255,255,' + i + ')' })
+    }
+    bfore = x;
+    if (y == 0) {
+      i = 0;
+      this.setState({ TpScroll: 'rgba(255,255,255,0)' })
+    }
+  }
 
 
 
 
   render() {
-console.disableYellowBox = true;
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
+    console.disableYellowBox = true;
+    YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'RNDeviceInfo', 'Warning: An update']);
 
 
 
     return (
-      <View  style={styles.Backcontainer}>
-      <View  style={styles.container}>
-        <View onLayout={this.onLayoutHEAD}  style={styles.Textcontainer}>
-              {
-               <DESK key={891} actions={this.state.refreshing} />
-              }
+      <View style={styles.Backcontainer}>
+        <View style={styles.container}>
+          <View onLayout={this.onLayoutHEAD} style={styles.Textcontainer}>
+            {
+              <DESK key={891} actions={this.state.refreshing} />
+            }
 
           </View>
         </View>
@@ -153,28 +169,29 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
             refreshing={this.state.refreshing}
             onRefresh={this.Refresh}
           />
-        } onScroll={this.onScrollLayout} style={[styles.ScrollFrontContainer,{backgroundColor:this.state.TpScroll}]}>
+        } onScroll={this.onScrollLayout} style={[styles.ScrollFrontContainer, { backgroundColor: this.state.TpScroll }]}>
 
-        <View   style={[styles.Frontcontainer,{top:this.state.tinggiHEAD}]}>
-        <View style={styles.container}>
+          <View style={[styles.Frontcontainer, { top: this.state.tinggiHEAD }]}>
+            <View style={styles.container}>
               <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
               <View style={styles.menuContainer}>
-              {
+                {
 
-                <Menu key={8921} props={this.props} actions={this.state.refreshing}/>
-              }
+                  <Menu key={8921} props={this.props} actions={this.state.refreshing} />
+                }
               </View>
-          </View>
-          <View style={styles.container}>
-                <Text  style={styles.TextTitleWhite}>History Absen</Text>
-                <View style={styles.menuContainer}>
-                      <HistoryAbsen key={9893} />
-                </View>
             </View>
-        </View>
-        <TouchableOpacity onPress={this.Refresh}  style={styles.IconBox}>
+            <View style={styles.container}>
+              <Text style={styles.TextTitleWhite}>History Absen</Text>
+              <View style={styles.menuContainer}>
+
+                <HISTODESK key={9893} actions={this.state.refreshing} />
+              </View>
+            </View>
+          </View>
+          <TouchableOpacity onPress={this.Refresh} style={styles.IconBox}>
             <Svgicon key={1} color="rgba(76,169,255,0.5)" name="Refresh-M" />
-      </TouchableOpacity>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     );
@@ -188,82 +205,82 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    top:20,
-    width:WIDTH-30,
-    alignItems:'flex-start',
+    top: 20,
+    width: WIDTH - 30,
+    alignItems: 'flex-start',
     // // backgroundColor:'grey',
     // borderColor:'black',
     // borderWidth:1,
   },
-  Textcontainer:{
-    width:'100%',
-    paddingBottom:20
+  Textcontainer: {
+    width: '100%',
+    paddingBottom: 20
     // backgroundColor:'grey'
   },
-  TextTitle:{
-    fontFamily:'Raleway-Bold',
+  TextTitle: {
+    fontFamily: 'Raleway-Bold',
     fontSize: 20,
     lineHeight: 40,
-    color:'rgba(0,0,0,1)'
+    color: 'rgba(0,0,0,1)'
   },
-  TextTitleWhite:{
-    fontFamily:'Raleway-Bold',
+  TextTitleWhite: {
+    fontFamily: 'Raleway-Bold',
     fontSize: 20,
     lineHeight: 40,
-    color:'rgba(255,255,255,1)'
+    color: 'rgba(255,255,255,1)'
   }
-  ,TextBody:{
-    fontFamily:'Raleway',
+  , TextBody: {
+    fontFamily: 'Raleway',
     fontSize: 15,
     lineHeight: 20,
-    color:'rgba(0,0,0,5)'
+    color: 'rgba(0,0,0,5)'
   },
-  IconBox:{
-    position:'absolute',
-    width:50,
-    height:50,
-    right:0,
-    margin:20,
+  IconBox: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    right: 0,
+    margin: 20,
 
 
   },
-  ScrollFrontContainer:{
-    flex:1,
-    position:'absolute',
-    flexDirection:'column',
-    width:WIDTH,
-    height:HEIGHT,
+  ScrollFrontContainer: {
+    flex: 1,
+    position: 'absolute',
+    flexDirection: 'column',
+    width: WIDTH,
+    height: HEIGHT,
     // opacity:0.9
   },
   Frontcontainer: {
-      flex: 1,
-      backgroundColor: 'rgba(53,158,255,0.9)',
+    flex: 1,
+    backgroundColor: 'rgba(53,158,255,0.9)',
 
-      shadowColor: "#000",
-      shadowOffset: {
-      	width: 0,
-      	height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-
-      elevation: 2,
-
-      alignItems: 'center',
-      width:WIDTH,
-      height:1346,
-      borderTopLeftRadius:40,
-      borderTopRightRadius:40,
-      borderColor: 'rgba(0, 0, 0, 0.0)',
-      borderTopWidth:4
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-  menuContainer:{
-    flexDirection:'row',
-    flexWrap:'wrap',
-    marginTop:40,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 2,
+
+    alignItems: 'center',
+    width: WIDTH,
+    height: 1346,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderColor: 'rgba(0, 0, 0, 0.0)',
+    borderTopWidth: 4
+  },
+  menuContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 40,
     // backgroundColor:'yellow',
-    width:'100%',
-    justifyContent:'center',
+    width: '100%',
+    justifyContent: 'center',
   },
 
 });
