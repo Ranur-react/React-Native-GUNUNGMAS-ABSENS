@@ -29,7 +29,9 @@ JOIN jadwal_absen_karyawan ON id_jadwal=id_set_jadwal_masuk
 JOIN set_waktu_absens ON id_waktu=id_shift_absensi
 JOIN set_lokasi ON id_lokasi_absensi=id_set_lokasi 
 WHERE  `status_kehadiran`='1' OR `status_kehadiran`='m' AND id_karyawan='$id'
-GROUP BY `tanggal`")->result_array();
+GROUP BY `tanggal`
+ORDER BY `jam_masuk` DESC
+")->result_array();
 	}
 
 	public function shows($kode)

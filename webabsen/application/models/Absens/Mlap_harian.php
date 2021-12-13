@@ -4,15 +4,18 @@ class Mlap_harian extends CI_Model
 	protected $tabel = 'karyawan';
 	public function getall()
 	{
-		$this->db->from($this->tabel);
-		$this->db->join('absen_masuk', 'id_karyawan=id_karyawan_masuk');
-		$this->db->join('absen_keluar', 'id_karyawan=id_karyawan_keluar');
-		return $this->db->get()->result_array();
+
+		return $this->db->query("SELECT *
+FROM karyawan
+JOIN absen_masuk ON id_karyawan=id_karyawan_masuk
+LEFT JOIN  absen_keluar ON id_karyawan=id_karyawan_keluar
+GROUP BY `id_absen_masuk`
+		")->result_array();
 	}
-	
+
 	public function shows($param)
 	{
-			$dateStart=date("Y-m-d", strtotime($param['awal']));
+		$dateStart = date("Y-m-d", strtotime($param['awal']));
 
 
 		return $this->db->query("SELECT `nama_karyawan`,tanggal,
