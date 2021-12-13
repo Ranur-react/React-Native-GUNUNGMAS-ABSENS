@@ -26,7 +26,9 @@ JOIN `detail_jadwal` ON `absen_masuk`.`id_set_jadwal_Masuk` =detail_jadwal.`id_j
 LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
 LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
 WHERE `tanggal_masuk` ='$dateStart'
-GROUP BY `id_set_jadwal_Masuk`")->result_array();
+GROUP BY `id_set_jadwal_Masuk`
+ORDER BY jam_masuk DESC
+")->result_array();
 	}
 
 	public function tampildata()
