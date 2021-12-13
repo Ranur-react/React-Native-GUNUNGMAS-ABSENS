@@ -47,7 +47,9 @@ class ClassHIstory extends Component {
           IDkaryawan: this.state.user.IDkaryawan,
         })
       }).then(response => response.json()).then(responseJson => {
-
+        console.log("=========Data Masuk==========");
+        console.log(responseJson);
+        console.log("========================");
         this.setState({ datamasuk: responseJson.data })
         console.log(this.state.datamasuk);
         showToastWithGravityAndOffset("History Masuk Di Dapatkan")
@@ -96,11 +98,16 @@ class ClassHIstory extends Component {
             <View key={i}>
               <TouchableOpacity style={styles.HistoryCard}>
                 <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
+                <View style={{
+                  display:'flex',
+                  flexDirection:'column'
+                }}>
                 <Text style={styles.Title}> Berhasil  Masuk </Text>
                 <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
                 <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
                 <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
                 <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
+                </View>
               </TouchableOpacity >
             </View>
           )
@@ -127,7 +134,7 @@ class ClassHIstory extends Component {
     HistoryCard: {
       backgroundColor: 'rgba(92,177,255,1)',
       width: 370,
-      height: 91,
+      height: 200,
       // margin:20,
       marginBottom: 10,
       padding: 15.5,
