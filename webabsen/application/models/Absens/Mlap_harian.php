@@ -18,42 +18,15 @@ GROUP BY `id_absen_masuk`
 		$dateStart = date("Y-m-d", strtotime($param['awal']));
 
 
-		return $this->db->query("SELECT `nama_karyawan`,tanggal,
-
-
-(
-SELECT `jam_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND `id_karyawan_detail`=id_karyawan_masuk AND tanggal_masuk ='$dateStart'
-)AS jam_masuk,
-
-(
-SELECT `foto_masuk` FROM `absen_masuk` WHERE `id_set_jadwal_Masuk`=id_jadwal AND `id_karyawan_detail`=id_karyawan_masuk AND tanggal_masuk ='$dateStart'
-)AS foto_masuk,
- 
- (
-SELECT `jam_keluar` FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND `id_karyawan_detail`=id_karyawan_keluar AND tanggal_keluar ='$dateStart'
-)AS jam_keluar,
-
- (
-SELECT foto_keluar FROM `absen_keluar` WHERE `id_set_jadwal_keluar`=id_jadwal AND `id_karyawan_detail`=id_karyawan_keluar AND tanggal_keluar ='$dateStart'
-)AS foto_keluar, 
-
-status_kehadiran,
-
-(
-SELECT surat_izinnya FROM `surat_izin` WHERE  `id_karyawan_detail`=id_karyawan_izin AND tanggal_izin ='$dateStart'
-)AS surat_izinnya,
-
-(
-SELECT surat_sakitnya FROM `surat_sakit` WHERE  `id_karyawan_detail`=id_karyawan_sakit AND tanggal_sakit ='$dateStart'
-)AS surat_sakitnya
-
-
-
-FROM `jadwal_absen_karyawan` 
-				JOIN  `detail_jadwal` ON `id_jadwal_detail`=`id_jadwal`
-				JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
-				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi` WHERE tanggal='$dateStart'
-				GROUP BY `id_karyawan`;")->result_array();
+		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,jam_keluar,foto_keluar,status_kehadiran,`surat_izinnya`
+FROM karyawan
+JOIN absen_masuk ON id_karyawan=id_karyawan_masuk
+LEFT JOIN `absen_keluar` ON id_karyawan=`id_karyawan_keluar`
+JOIN `detail_jadwal` ON `absen_masuk`.`id_set_jadwal_Masuk` =detail_jadwal.`id_jadwal_detail`
+LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
+LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
+WHERE `tanggal_masuk` ='$dateStart'
+GROUP BY `id_set_jadwal_Masuk`")->result_array();
 	}
 
 	public function tampildata()
