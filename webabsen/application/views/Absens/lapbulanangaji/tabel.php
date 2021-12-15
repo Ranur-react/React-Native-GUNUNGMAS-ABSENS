@@ -38,7 +38,7 @@ foreach ($dataVar as $d) { ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'Nilai Potongan (TD X ' . 'Rp.'.($d['pdisplin']) . '): ' ?></td>
+					<td><?= 'Nilai Potongan (TD X ' . 'Rp.'.rupiah($d['pdisplin']) . '): ' ?></td>
 					<td>
 						<?= 'Rp.'.rupiah($d['status_displin'] * $d['pdisplin']) ?>
 					</td>
