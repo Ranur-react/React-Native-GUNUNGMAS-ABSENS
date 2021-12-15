@@ -14,13 +14,13 @@ foreach ($dataVar as $d) { ?>
 		<td>
 			<table>
 				<tr>
-					<td><?= 'Persentasi Kehadiran: ' ?></td>
+					<td><?= 'PH = ' ?></td>
 					<td>
 						<?= number_format($persentasHadir, 0) . '% ' ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'Tunjangan Kehadiran: ' ?></td>
+					<td><?= 'TUK = ' ?></td>
 					<td>
 						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ~ Belum Mendapat Tukin' : 'Rp. ' . rupiah($d['tdisplin']) ?>
 					</td>
@@ -38,7 +38,7 @@ foreach ($dataVar as $d) { ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'Nilai Potongan (TD X ' . 'Rp.'.rupiah($d['pdisplin']) . '): ' ?></td>
+					<td><?= 'NP: (TD X ' . 'Rp.'.rupiah($d['pdisplin']) . ') = ' ?></td>
 					<td>
 						<?= 'Rp.'.rupiah($d['status_displin'] * $d['pdisplin']) ?>
 					</td>
