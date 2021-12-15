@@ -52,7 +52,7 @@ class Mlap_bulanan extends CI_Model
 				JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
 				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 				JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
-				WHERE  MONTH(tanggal)='$d'
+				WHERE  MONTH(tanggal)='$v'
 				GROUP BY `id_karyawan`")->result_array();
 	}
 
