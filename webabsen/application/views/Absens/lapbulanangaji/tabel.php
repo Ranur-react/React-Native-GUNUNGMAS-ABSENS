@@ -7,7 +7,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['izin'] ?></td>
-		<td><?= $d['gapok'] ?></td>
+		<td><?= rupiah($d['gapok']) ?></td>
 		<?php
 		$persentasHadir = ($d['hadir'] / 30) * 100;
 		?>
@@ -22,14 +22,41 @@ foreach ($dataVar as $d) { ?>
 				<tr>
 					<td><?= 'Tunjangan Kehadiran: ' ?></td>
 					<td>
-						<?= $persentasHadir<80?'~ kehadiran belum cukup ~ Belum Mendapat Tukin':'Rp. ' . rupiah($d['tdisplin']) ?>
+						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ~ Belum Mendapat Tukin' : 'Rp. ' . rupiah($d['tdisplin']) ?>
 					</td>
 				</tr>
 			</table>
 		</td>
 
-		<td><?= $d['pdisplin'] ?></td>
-		<td><?= $d['izin'] ?></td>
+		<td>
+			<table>
+				<tr>
+					<td><?= 'TD' ?></td>
+					<td>
+						<?= $d['pdisplin'] . " X" ?>
+
+					</td>
+				</tr>
+				<tr>
+					<td><?= 'Nilai Potongan (TD X ' . $d['pdisplin'] . '): ' ?></td>
+					<td>
+						<?= rupiah($d['status_displin'] * $d['pdisplin']) ?>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td><?= 'Diterima (Hadir X ('. $d['gapok'].' /30): ' ?></td>
+					<td>
+						<?= rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
+					</td>
+				</tr>
+			</table>
+
+		</td>
 	</tr>
 <?php $no++;
 } ?>
