@@ -49,7 +49,7 @@ foreach ($dataVar as $d) { ?>
 		<td>
 			<table>
 				<tr>
-					<td><?= 'Diterima (Hadir X ('. 'Rp.'.rupiah($d['gapok']).' /30) = ' ?></td>
+					<td><?= ' (Hadir X ('. 'Rp.'.rupiah($d['gapok']).' /30) = ' ?></td>
 					<td>
 						<?= 'Rp.'.rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
 					</td>
