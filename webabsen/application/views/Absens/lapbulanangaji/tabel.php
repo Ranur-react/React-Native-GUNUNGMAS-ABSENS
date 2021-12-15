@@ -7,7 +7,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['izin'] ?></td>
-		<td><?= rupiah($d['gapok']) ?></td>
+		<td><?= 'Rp.'.rupiah($d['gapok']) ?></td>
 		<?php
 		$persentasHadir = ($d['hadir'] / 30) * 100;
 		?>
