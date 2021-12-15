@@ -33,14 +33,14 @@ foreach ($dataVar as $d) { ?>
 				<tr>
 					<td><?= 'TD' ?></td>
 					<td>
-						<?= $d['pdisplin'] . " X" ?>
+						<?= 'Rp.'.($d['pdisplin']) . " X" ?>
 
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'Nilai Potongan (TD X ' . $d['pdisplin'] . '): ' ?></td>
+					<td><?= 'Nilai Potongan (TD X ' . 'Rp.'.($d['pdisplin']) . '): ' ?></td>
 					<td>
-						<?= rupiah($d['status_displin'] * $d['pdisplin']) ?>
+						<?= 'Rp.'.rupiah($d['status_displin'] * $d['pdisplin']) ?>
 					</td>
 				</tr>
 			</table>
@@ -49,9 +49,9 @@ foreach ($dataVar as $d) { ?>
 		<td>
 			<table>
 				<tr>
-					<td><?= 'Diterima (Hadir X ('. $d['gapok'].' /30): ' ?></td>
+					<td><?= 'Diterima (Hadir X ('. 'Rp.'.rupiah($d['gapok']).' /30) = ' ?></td>
 					<td>
-						<?= rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
+						<?= 'Rp.'.rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
 					</td>
 				</tr>
 			</table>
