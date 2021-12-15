@@ -30,7 +30,7 @@ class Mlap_bulanan extends CI_Model
 	$a=$v.' month';
 	$date = date_create('2020-12-01');
 	date_add($date, date_interval_create_from_date_string($a));
-	$d=date_format($date, 'Y-m');
+	$d=date_format($date, 'm');
 		return $this->db->query("SELECT `id_karyawan`,`nama_karyawan`, `lokasi`,
 				 
 				(SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` != 'null'AND `status_kehadiran` != '0' )
