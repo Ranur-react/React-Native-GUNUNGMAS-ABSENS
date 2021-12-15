@@ -20,7 +20,7 @@ foreach ($dataVar as $d) { ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?= 'TUK = ' ?></td>
+					<td><?= 'TUK (>80%) = ' ?></td>
 					<td>
 						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>
 					</td>
@@ -33,7 +33,7 @@ foreach ($dataVar as $d) { ?>
 				<tr>
 					<td><?= 'TD' ?></td>
 					<td>
-						<?= 'Rp.'.($d['pdisplin']) . " X" ?>
+						<?= 'Rp.'.rupiah($d['pdisplin']) . " X" ?>
 
 					</td>
 				</tr>
