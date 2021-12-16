@@ -27,7 +27,7 @@ const { width: WIDTH } = Dimensions.get('window');
 const { height: HEIGHT } = Dimensions.get('window');
 
 let i = 0;
-let bfore = 0;
+let bfore = 0; ''
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -58,9 +58,7 @@ const HISTODESK = (props) => {
     )
   } else {
     return (
-      <View>
-        <HistoryAbsen key={9893} />
-      </View>
+      <HistoryAbsen key={9893} />
     )
   }
 
@@ -169,29 +167,38 @@ export default class Home extends Component {
             refreshing={this.state.refreshing}
             onRefresh={this.Refresh}
           />
-        } onScroll={this.onScrollLayout} style={[styles.ScrollFrontContainer, { backgroundColor: this.state.TpScroll }]}>
+        }
+          style={[styles.ScrollFrontContainer, { backgroundColor: this.state.TpScroll }]}
+          onScroll={this.onScrollLayout} >
+          <View
 
-          <View style={[styles.Frontcontainer, { top: this.state.tinggiHEAD }]}>
-            <View style={styles.container}>
-              <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
-              <View style={styles.menuContainer}>
-                {
+          >
 
-                  <Menu key={8921} props={this.props} actions={this.state.refreshing} />
-                }
+            <View style={[styles.Frontcontainer, { top: this.state.tinggiHEAD }]}>
+              <View style={styles.container}>
+                <Text style={styles.TextTitleWhite}>Ayo isi absennya!</Text>
+                <View style={styles.menuContainer}>
+                  {
+
+                    <Menu key={8921} props={this.props} actions={this.state.refreshing} />
+                  }
+                </View>
+              </View>
+              <View style={styles.container}>
+                <Text style={styles.TextTitleWhite}>History Absen</Text>
+                <View style={styles.menuContainer}>
+
+
+                  <View style={{ width: 400, height: 300 }}>
+                    <HISTODESK actions={this.state.refreshing} />
+                  </View>
+                </View>
               </View>
             </View>
-            <View style={styles.container}>
-              <Text style={styles.TextTitleWhite}>History Absen</Text>
-              <View style={styles.menuContainer}>
-
-                <HISTODESK key={9893} actions={this.state.refreshing} />
-              </View>
-            </View>
+            <TouchableOpacity onPress={this.Refresh} style={styles.IconBox}>
+              <Svgicon key={1} color="rgba(76,169,255,0.5)" name="Refresh-M" />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={this.Refresh} style={styles.IconBox}>
-            <Svgicon key={1} color="rgba(76,169,255,0.5)" name="Refresh-M" />
-          </TouchableOpacity>
         </ScrollView>
       </View>
     );

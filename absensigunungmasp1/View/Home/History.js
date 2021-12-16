@@ -90,35 +90,40 @@ class ClassHIstory extends Component {
       )
     } else {
       return (
-        <View>
-          {
+        <ScrollView horizontal={true} style={{ width: 400, height: 300 }}>
+          <View style={{ margin: 10, height: 280, display: 'flex', flexWrap: 'wrap-reverse' }}>
+            {
+              this.state.datamasuk.map((value, i) => {
+                return (
+                  <View key={i}>
+                    <TouchableOpacity style={styles.HistoryCard}>
+                      <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
+                      <View style={{
+                        display: 'flex',
+                        flexDirection: 'column'
+                      }}>
+                        <Text style={styles.Title}> Berhasil  {value.absenHadir} </Text>
+                        <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
+                        <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
+                        <Text style={styles.label}> Jam Pulang : {value.absenHadir == 'pulang' ? value.jam_keluar : '-'} </Text>
+                        <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
+                        <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                )
 
-            this.state.datamasuk.map((value, i) => {
-              return (
-                <View key={i}>
-                  <TouchableOpacity style={styles.HistoryCard}>
-                    <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
-                    <View style={{
-                      display: 'flex',
-                      flexDirection: 'column'
-                    }}>
-                      <Text style={styles.Title}> Berhasil  {value.absenHadir} </Text>
-                      <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
-                      <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
-                      <Text style={styles.label}> Jam Pulang : {value.absenHadir == 'pulang' ? value.jam_keluar : '-'} </Text>
-                      <Text style={styles.label}> Lokasi  :{value.lokasi} </Text>
-                      <Text style={styles.label}> Jenis Sift :{value.ket_waktu} </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              )
-
-            })
+              })
+            }
+          </View>
 
 
 
-          }
-        </View>
+
+          {/* <View style={{ backgroundColor: 'blue', margin: 10, width: 180, height: 280, display: 'flex', flexWrap: 'wrap' }}></View>
+          <View style={{ backgroundColor: 'blue', margin: 10, width: 180, height: 280, display: 'flex', flexWrap: 'wrap' }}></View>
+          <View style={{ backgroundColor: 'blue', margin: 10, width: 180, height: 280, display: 'flex', flexWrap: 'wrap' }}></View> */}
+        </ScrollView>
       )
 
 
@@ -138,6 +143,7 @@ const styles = StyleSheet.create({
     height: 200,
     // margin:20,
     marginBottom: 10,
+    marginHorizontal: 10,
     padding: 15.5,
     borderRadius: 20,
     shadowColor: "rgba(0,0,0,0.05)",
