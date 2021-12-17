@@ -377,8 +377,8 @@ class MenuLoop extends Component {
       },
       100: {
         nama: 'Absen Pulang', icon: 'Exit', status:
-          !this.state.jadwalJSON ? '' :
-            this.state.jadwalJSON.status_kehadiran == 'm' ? false :
+          !this.state.jadwalJSON ? this.state.PulangState.state :
+            this.state.jadwalJSON.status_kehadiran == 'm' ? true :
               this.state.jadwalJSON.status_kehadiran == '1' ? false :
                 this.state.PulangState.state
         , color: '', dest: "Pulang"
