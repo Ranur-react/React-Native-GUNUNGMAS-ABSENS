@@ -22,13 +22,12 @@ class Mabsen_masuk extends CI_Model
 		return $this->db->query("SELECT*,
 IF (status_kehadiran='1','pulang',IF(status_kehadiran='m','masuk',NULL)) AS absenHadir
 FROM karyawan
-JOIN absen_masuk ON id_karyawan=id_karyawan_masuk
 JOIN `detail_jadwal` ON `id_karyawan_detail`=`id_karyawan`
-JOIN `absen_keluar` ON `id_karyawan_keluar`=`id_karyawan_keluar`
-JOIN jadwal_absen_karyawan ON id_jadwal=id_set_jadwal_masuk
-JOIN set_waktu_absens ON id_waktu=id_shift_absensi
+JOIN jadwal_absen_karyawan ON id_jadwal=`id_jadwal_detail`
 JOIN set_lokasi ON id_lokasi_absensi=id_set_lokasi 
-WHERE  AND status_kehadiran!='0' id_karyawan='$id'
+JOIN absen_masuk ON `id_set_jadwal_Masuk`=`id_jadwal_detail`
+JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_jadwal`
+WHERE   id_karyawan='$id' AND status_kehadiran!='0'
 GROUP BY `tanggal`
 ORDER BY `jam_masuk` DESC
 ")->result_array();
