@@ -97,12 +97,12 @@ class ClassHIstory extends Component {
                 return (
                   <View key={i}>
                     <TouchableOpacity style={styles.HistoryCard}>
-                      <Image style={styles.ImageCapture} source={{ uri: value.foto_masuk }} />
+                      <Image style={styles.ImageCapture} source={{ uri: value.status_kehadiran == 's' ? 'https://media.istockphoto.com/vectors/sick-vector-icon-sick-editable-stroke-sick-linear-symbol-for-use-on-vector-id1249694558' : value.absenHadir == 'pulang' ? value.foto_keluar : value.foto_masuk }} />
                       <View style={{
                         display: 'flex',
                         flexDirection: 'column'
                       }}>
-                        <Text style={styles.Title}> Berhasil  {value.absenHadir} </Text>
+                        <Text style={styles.Title}>{value.status_kehadiran == 's' ? 'Tidak Masuk  (Sakit)' : 'Berhasil ' + value.absenHadir}  </Text>
                         <Text style={styles.label}> Tanggal  : {value.tanggal_masuk} </Text>
                         <Text style={styles.label}> Jam Masuk : {value.jam_masuk} </Text>
                         <Text style={styles.label}> Jam Pulang : {value.absenHadir == 'pulang' ? value.jam_keluar : '-'} </Text>

@@ -364,7 +364,22 @@ class MenuLoop extends Component {
 
   render() {
 
+    const ProsesTimePulang = () => {
+      if (this.state.PulangState.state) {
+        if (!this.state.jadwalJSON) {
+          return false;
+        } else {
+          if (this.state.jadwalJSON.status_kehadiran == 'm') {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      } else {
+        return false;
+      }
 
+    }
     let code = [];
     const listOBJ = {
       99: {
@@ -376,12 +391,7 @@ class MenuLoop extends Component {
         color: '', dest: "Masuk"
       },
       100: {
-        nama: 'Absen Pulang', icon: 'Exit', status:
-          !this.state.jadwalJSON ? this.state.PulangState.state :
-            this.state.jadwalJSON.status_kehadiran == 'm' ? true :
-              this.state.jadwalJSON.status_kehadiran == '1' ? false :
-                this.state.PulangState.state
-        , color: '', dest: "Pulang"
+        nama: 'Absen Pulang', icon: 'Exit', status: ProsesTimePulang(), color: '', dest: "Pulang"
       },
       101: { nama: 'Surat Sakit', icon: 'Sakit', status: true, color: '', dest: "Sakit" },
       // 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
