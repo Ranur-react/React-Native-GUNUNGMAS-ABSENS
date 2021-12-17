@@ -20,7 +20,7 @@ class Absen extends CI_Controller
 		$MESSAGE['Respon-------------Awal>'] = "..........................";
 		$obj = file_get_contents('php://input');
 		$objSon = json_decode($obj, true);
-		
+
 
 		$target_dir = "AsetKaryawan_Foto/FotoAbsen" . $_POST['StatusAbsen'] . "/" . $_POST['NamaKaryawan'];
 		$RANDO_val = rand();
@@ -36,7 +36,7 @@ class Absen extends CI_Controller
 		$LO = $_POST['lo'];
 		$Displin = $_POST['Displin'];
 		$FOTO = base_url() . $URI;
-		$_POST['uridest']=$URI;
+		$_POST['uridest'] = $URI;
 
 
 		//
@@ -45,12 +45,12 @@ class Absen extends CI_Controller
 
 
 		if (!file_exists($target_dir)) {
-				if (mkdir($target_dir, 0777, true)) {
-				   chmod($target_dir, 0777);
-					$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
-				} else {
-					$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
-				}
+			if (mkdir($target_dir, 0777, true)) {
+				chmod($target_dir, 0777);
+				$MESSAGE['dirCreateInfo'] = "berhasil Membuat Folder Baru";
+			} else {
+				$MESSAGE['dirCreateInfo'] = "Gagal Membuat Folder Baru";
+			}
 			// $MESSAGE['dirCreateInfo'] = "Folder Belum ada";
 
 		} else {
@@ -77,8 +77,7 @@ class Absen extends CI_Controller
 
 
 			$MESSAGE['pesan'] = "Mantap Upload Foto berhasil";
-		} 
-		else {
+		} else {
 			$MESSAGE['pesan'] = false;
 			$MESSAGE['GAGAL'] = "Sorry !! Upload Foto GAGAL";
 			$MESSAGE['kode'] = 0;
@@ -114,7 +113,7 @@ class Absen extends CI_Controller
 
 
 		if (!file_exists($target_dir)) {
-			mkdir($target_dir, 777, true);
+			mkdir($target_dir, 0777, true);
 		}
 
 
