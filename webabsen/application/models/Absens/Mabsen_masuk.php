@@ -28,7 +28,7 @@ JOIN `absen_keluar` ON `id_karyawan_keluar`=`id_karyawan_keluar`
 JOIN jadwal_absen_karyawan ON id_jadwal=id_set_jadwal_masuk
 JOIN set_waktu_absens ON id_waktu=id_shift_absensi
 JOIN set_lokasi ON id_lokasi_absensi=id_set_lokasi 
-WHERE  `status_kehadiran`='1' OR `status_kehadiran`='m' AND id_karyawan='$id'
+WHERE  AND status_kehadiran!='0' id_karyawan='$id'
 GROUP BY `tanggal`
 ORDER BY `jam_masuk` DESC
 ")->result_array();
