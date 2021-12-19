@@ -29,7 +29,7 @@ JOIN absen_masuk ON `id_set_jadwal_Masuk`=`id_jadwal_detail`
 LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_jadwal`
 WHERE   id_karyawan='$id' AND status_kehadiran!='0'
 GROUP BY `tanggal`
-ORDER BY `jam_masuk` DESC
+ORDER BY `tanggal` DESC
 ")->result_array();
 	}
 
