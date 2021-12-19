@@ -18,16 +18,16 @@ GROUP BY `id_absen_masuk`
 		$dateStart = date("Y-m-d", strtotime($param['awal']));
 
 
-		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,jam_keluar,foto_masuk,foto_keluar,status_kehadiran,`surat_izinnya`
+		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,jam_keluar,foto_masuk,foto_keluar,status_kehadiran,`surat_izinnya`,`surat_sakitnya`
 FROM karyawan
-JOIN absen_masuk ON id_karyawan=id_karyawan_masuk
-LEFT JOIN `absen_keluar` ON id_karyawan=`id_karyawan_keluar`
-JOIN `detail_jadwal` ON `absen_masuk`.`id_set_jadwal_Masuk` =detail_jadwal.`id_jadwal_detail`
+JOIN `detail_jadwal` ON `id_karyawan_detail`=`id_karyawan` 
+LEFT JOIN absen_masuk ON `id_set_jadwal_Masuk`=`id_jadwal_detail`
+LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_karyawan_detail`
 LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
 LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
-WHERE `tanggal_masuk` ='$dateStart'
+WHERE tanggal ='$dateStart'
 GROUP BY `id_set_jadwal_Masuk`
-ORDER BY jam_masuk DESC
+ORDER BY jam_masuk DESC;
 ")->result_array();
 	}
 
