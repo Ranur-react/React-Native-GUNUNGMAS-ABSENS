@@ -8,26 +8,26 @@
 					</div>
 					<div class="col-xs-2">
 						<div class="form-group">
-									<label>Lokasi Absensi</label>
-									<select onchange="IsiTabel()" class="form-control pilLokasi" name="lokasi">
-										<?php foreach ($dlokasi as $d) : ?>
-											<option  value="<?php echo $d['id_set_lokasi']; ?>"><?php echo $d['lokasi']; ?></option>
-										<?php endforeach; ?>
-									</select>
-									<span class="error lokasi text-red"></span>
+							<label>Lokasi Absensi</label>
+							<select onchange="IsiTabel()" class="form-control pilLokasi" name="lokasi">
+								<?php foreach ($dlokasi as $d) : ?>
+									<option value="<?php echo $d['id_set_lokasi']; ?>"><?php echo $d['lokasi']; ?></option>
+								<?php endforeach; ?>
+							</select>
+							<span class="error lokasi text-red"></span>
 						</div>
 					</div>
 					<div class="col-xs-2">
-						
+
 
 						<div class="form-group">
 							<label>Bulan</label>
 							<select onchange="IsiTabel()" class="form-control pilBulan">
-								<?php 
-								$i = 0; 
-								$months = array( "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-								for($i = 0; $i <= 11; $i++){?>
-								<option value="<?= $i+1 ?>" <?= date('m')== $i+1 ? "selected" : null ?> ><?= $months[$i] . "\n" ?></option>
+								<?php
+								$i = 0;
+								$months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+								for ($i = 0; $i <= 11; $i++) { ?>
+									<option value="<?= $i + 1 ?>" <?= date('m') == $i + 1 ? "selected" : null ?>><?= $months[$i] . "\n" ?></option>
 								<?php  } ?>
 
 							</select>
@@ -39,7 +39,7 @@
 			</div>
 			<div class="box-body table-responsive">
 				<?= $this->session->flashdata('pesan'); ?>
-				<table class="table table-bordered table-striped data-tabel">
+				<table class="table table-bordered table-striped data-tabelJadwal">
 					<thead>
 						<tr>
 							<th class="text-center">No.</th>
@@ -61,21 +61,27 @@
 </div>
 <div id="tampil_modal"></div>
 <script>
+	$(function() {
+		$('.data-tabelJadwal').DataTable({
+			'ordering': false,
+		})
+	})
+
 	function IsiTabel() {
-			$.ajax({
+		$.ajax({
 			type: "post",
 			url: "<?= site_url('Absens/JadwalAbsenKaryawan/TabelJadwal') ?>",
-			data: "&PilBulan="+ $('.pilBulan').val()+"&pilLokasi=" + $('.pilLokasi').val(),
+			data: "&PilBulan=" + $('.pilBulan').val() + "&pilLokasi=" + $('.pilLokasi').val(),
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
 
 			}
 		});
-}
-IsiTabel();
+	}
+	IsiTabel();
 	$(document).on('click', '.btntambah', function(e) {
-		window.location=("<?= site_url('Absens/JadwalAbsenKaryawan/HalamanCreate') ?>")
+		window.location = ("<?= site_url('Absens/JadwalAbsenKaryawan/HalamanCreate') ?>")
 	});
 
 	function edit(kode) {
