@@ -25,9 +25,8 @@ LEFT JOIN absen_masuk ON `id_set_jadwal_Masuk`=`id_jadwal_detail`
 LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_karyawan_detail`
 LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
 LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
-WHERE tanggal ='$dateStart'
-GROUP BY `id_karyawan`
-ORDER BY jam_masuk DESC;
+WHERE tanggal ='$dateStart' AND status_kehadiran!='0'
+ORDER BY tanggal DESC
 ")->result_array();
 	}
 
