@@ -26,6 +26,7 @@ LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_karyawan_detail`
 LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
 LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
 WHERE tanggal ='$dateStart' AND status_kehadiran!='0'
+GROUP BY id_karyawan_detail
 ORDER BY tanggal DESC
 ")->result_array();
 	}
