@@ -29,8 +29,8 @@
 	<table align="center" width="60%" border="0">
 		<tr>
 			<td width="15%">NO.ID KARYAWAN :</td>
-			<td align="right" width="85%"> <?= $months[$bulan - 1]; ?>
-		</td>
+			<td align="right" width="85%"> </td>
+		</tr>
 	</table>
 	<table align="center" border="1">
 		<thead>
