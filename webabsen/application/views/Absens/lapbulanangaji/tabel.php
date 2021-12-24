@@ -22,6 +22,9 @@ foreach ($dataVar as $d) { ?>
 					</td>
 				</tr>
 				<tr>
+					<td><? 'Rp. ' . rupiah($d['tdisplin']) ?></td>
+				</tr>
+				<tr>
 					<td><?= 'TUK (>80%) = ' ?></td>
 					<td>
 						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>

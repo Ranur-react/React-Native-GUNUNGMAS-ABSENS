@@ -40,7 +40,8 @@
 							<th>Izin</th>
 							<th>Terlambat</th>
 							<th>Gaji Pokok</th>
-							<th>Tunjangan</th>
+							<th>Nilai Tunjangan</th>
+							<th>Tunjangan Dipatkan</th>
 							<th>Potongan</th>
 							<th>Gaji Diterima</th>
 						</tr>
