@@ -35,8 +35,10 @@
 							<th>Nama Karyawan</th>
 							<th>Lokasi</th>
 							<th>Hadir</th>
+							<th>Alfa</th>
 							<th>Sakit</th>
 							<th>Izin</th>
+							<th>Terlambat</th>
 							<th>Gaji Pokok</th>
 							<th>Tunjangan</th>
 							<th>Potongan</th>
