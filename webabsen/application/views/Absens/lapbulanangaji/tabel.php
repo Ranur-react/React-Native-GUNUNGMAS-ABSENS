@@ -25,12 +25,11 @@ foreach ($dataVar as $d) { ?>
 				</tr>
 				<tr>
 					<?php
-					$tuk=0;
-					if($persentasHadir < 80){
+					$tuk = 0;
+					if ($persentasHadir < 80) {
 						$tuk = 0;
-					}else{
+					} else {
 						$tuk = $d['tdisplin'];
-
 					}
 					?>
 					<td>
@@ -54,7 +53,10 @@ foreach ($dataVar as $d) { ?>
 
 		</td>
 		<td>
-			<?= 'Rp.' . rupiah($d['gapok']-($d['status_displin'] * $d['pdisplin'])+ $tuk)  ?>
+			<?= 'Rp.' . rupiah($d['gapok'] - ($d['status_displin'] * $d['pdisplin']) + $tuk)  ?>
+		</td>
+		<td>
+			<button class="btn btn-primary btncetak"><i class="fa fa-print"></i> Cetak Laporan</button>
 		</td>
 	</tr>
 <?php $no++;

@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header with-border">
-				<button class="btn btn-primary btncetak"><i class="fa fa-print"></i> Cetak Laporan</button>
+				
 				<div class="row">
 					<div class="col-xs-8">
 					</div>
@@ -45,6 +45,7 @@
 							<th>Nilai Potongan Terlambat</th>
 							<th>Terpotong </th>
 							<th>Gaji Diterima</th>
+							<th>Slip Gaji Print</th>
 						</tr>
 					</thead>
 					<tbody class="isiTabel">
