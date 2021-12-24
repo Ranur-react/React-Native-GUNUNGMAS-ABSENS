@@ -32,15 +32,39 @@
 				<table align="center" width="100%" border="0">
 					<tr>
 						<td width="50%">NO.ID KARYAWAN :</td>
-						<td align="right" width="85%"> 1300056</td>
+						<td align="right" width="50%"> 1300056</td>
+					</tr>
+					<tr>
+						<td width="50%">NAMA KARYAWAN :</td>
+						<td align="right" width="50%"> IMAM</td>
+					</tr>
+					<tr>
+						<td width="50%">JABATAN/td>
+						<td align="right" width="50%"> CS</td>
 					</tr>
 				</table>
 			</td>
 			<td width="50%">
 				<table align="center" width="100%" border="0">
 					<tr>
-						<td width="50%">NO.ID KARYAWAN :</td>
-						<td align="right" width="85%"> 1300056</td>
+						<td width="50%">HADIR /ALFA :</td>
+						<td align="right" width="50%"> 28/2</td>
+					</tr>
+					<tr>
+						<td width="50%">PERSENTASI HADIR :</td>
+						<td align="right" width="50%"> 96%</td>
+					</tr>
+					<tr>
+						<td width="50%">TUNJANGAN </td>
+						<td align="right" width="50%">: Rp. 300.000</td>
+					</tr>
+					<tr>
+						<td width="50%">TERLMABTA :</td>
+						<td align="right" width="50%"> 10 X</td>
+					</tr>
+					<tr>
+						<td width="50%">POTONGAN :</td>
+						<td align="right" width="50%"> Rp. 100.000</td>
 					</tr>
 				</table>
 			</td>
