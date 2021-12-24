@@ -10,58 +10,57 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['izin'] ?></td>
 		<td><?= $d['status_displin'] ?></td>
 		<td><?= 'Rp.' . rupiah($d['gapok']) ?></td>
-		<?php
-		$persentasHadir = ($d['hadir'] / 30) * 100;
-		?>
-		<td>
-			<table>
-				<tr>
-					<td><?= 'PH = ' ?></td>
-					<td>
-						<?= number_format($persentasHadir, 0) . '% ' ?>
-					</td>
-				</tr>
-				<tr>
-					<td><? 'Rp. ' . rupiah($d['tdisplin']) ?></td>
-				</tr>
-				<tr>
-					<td><?= 'TUK (>80%) = ' ?></td>
-					<td>
-						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>
-					</td>
-				</tr>
-			</table>
-		</td>
+		<td><? 'Rp. ' . rupiah($d['tdisplin']) ?></td>
+	
+	<?php
+	$persentasHadir = ($d['hadir'] / 30) * 100;
+	?>
+	<td>
+		<table>
+			<tr>
+				<td><?= 'PH = ' ?></td>
+				<td>
+					<?= number_format($persentasHadir, 0) . '% ' ?>
+				</td>
+			</tr>
+			<tr>
+				<td><?= 'TUK (>80%) = ' ?></td>
+				<td>
+					<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>
+				</td>
+			</tr>
+		</table>
+	</td>
 
-		<td>
-			<table>
-				<tr>
-					<td><?= 'TD' ?></td>
-					<td>
-						<?= 'Rp.' . rupiah($d['pdisplin']) . " X" ?>
+	<td>
+		<table>
+			<tr>
+				<td><?= 'TD' ?></td>
+				<td>
+					<?= 'Rp.' . rupiah($d['pdisplin']) . " X" ?>
 
-					</td>
-				</tr>
-				<tr>
-					<td><?= 'NP: (TD X ' . 'Rp.' . rupiah($d['pdisplin']) . ') = ' ?></td>
-					<td>
-						<?= 'Rp.' . rupiah($d['status_displin'] * $d['pdisplin']) ?>
-					</td>
-				</tr>
-			</table>
+				</td>
+			</tr>
+			<tr>
+				<td><?= 'NP: (TD X ' . 'Rp.' . rupiah($d['pdisplin']) . ') = ' ?></td>
+				<td>
+					<?= 'Rp.' . rupiah($d['status_displin'] * $d['pdisplin']) ?>
+				</td>
+			</tr>
+		</table>
 
-		</td>
-		<td>
-			<table>
-				<tr>
-					<td><?= ' (Hadir X (' . 'Rp.' . rupiah($d['gapok']) . ' /30) = ' ?></td>
-					<td>
-						<?= 'Rp.' . rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
-					</td>
-				</tr>
-			</table>
+	</td>
+	<td>
+		<table>
+			<tr>
+				<td><?= ' (Hadir X (' . 'Rp.' . rupiah($d['gapok']) . ' /30) = ' ?></td>
+				<td>
+					<?= 'Rp.' . rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
+				</td>
+			</tr>
+		</table>
 
-		</td>
+	</td>
 	</tr>
 <?php $no++;
 } ?>
