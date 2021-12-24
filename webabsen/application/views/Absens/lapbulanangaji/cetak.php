@@ -26,10 +26,24 @@
 		<br>LORUS CELULER
 	</h1>
 	<h3 align="center">PERIODE : <?= '1 ' . date('M Y') . ' - ' . '30 ' . date('M Y') ?></h3>
-	<table align="center" width="60%" border="0">
+	<table align="center" width="100%" border="0">
 		<tr>
-			<td width="15%">NO.ID KARYAWAN :</td>
-			<td align="right" width="85%"> 1300056</td>
+			<td width="50%">
+				<table align="center" width="100%" border="0">
+					<tr>
+						<td width="50%">NO.ID KARYAWAN :</td>
+						<td align="right" width="85%"> 1300056</td>
+					</tr>
+				</table>
+			</td>
+			<td width="50%">
+				<table align="center" width="100%" border="0">
+					<tr>
+						<td width="50%">NO.ID KARYAWAN :</td>
+						<td align="right" width="85%"> 1300056</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
 	</table>
 	<table align="center" border="1">
