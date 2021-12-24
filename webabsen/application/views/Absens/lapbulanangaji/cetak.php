@@ -29,13 +29,13 @@
 	<table align="center" width="60%" border="0">
 		<tr>
 			<td width="15%">NO.ID KARYAWAN :</td>
-			<td align="right" width="85%"> </td>
+			<td align="right" width="85%"> 1300056</td>
 		</tr>
 	</table>
 	<table align="center" border="1">
 		<thead>
 			<tr>
-				<th class="text-center" width="5%">No.</th>
+				<th class="text-center" width="20%">No.</th>
 				<th>Nama Karyawan</th>
 				<th>Lokasi</th>
 				<th>Hadir</th>
