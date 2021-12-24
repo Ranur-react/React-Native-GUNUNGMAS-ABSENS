@@ -56,7 +56,7 @@ foreach ($dataVar as $d) { ?>
 			<?= 'Rp.' . rupiah($d['gapok'] - ($d['status_displin'] * $d['pdisplin']) + $tuk)  ?>
 		</td>
 		<td>
-			<button class="btn btn-primary btncetak"><i class="fa fa-print"></i> Cetak Laporan</button>
+			<button class="btn btn-primary btncetak"><i class="fa fa-print"></i> PaySlip Print</button>
 		</td>
 	</tr>
 <?php $no++;
