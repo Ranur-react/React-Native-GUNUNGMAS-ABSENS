@@ -24,6 +24,15 @@ foreach ($dataVar as $d) { ?>
 					</td>
 				</tr>
 				<tr>
+					<?php
+					$tuk=0;
+					if($persentasHadir < 80){
+						$tuk = 0;
+					}else{
+						$tuk = $d['tdisplin'];
+
+					}
+					?>
 					<td>
 						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>
 					</td>
@@ -32,7 +41,7 @@ foreach ($dataVar as $d) { ?>
 		</td>
 
 		<td>
-			<?= 'Rp.' . rupiah($d['pdisplin']) . " X" ?>
+			<?= 'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
 		</td>
 		<td>
 			<table>
@@ -45,15 +54,7 @@ foreach ($dataVar as $d) { ?>
 
 		</td>
 		<td>
-			<table>
-				<tr>
-					<td><?= ' (Hadir X (' . 'Rp.' . rupiah($d['gapok']) . ' /30) = ' ?></td>
-					<td>
-						<?= 'Rp.' . rupiah($d['hadir'] * ($d['gapok'] / 30) - ($d['status_displin'] * $d['pdisplin'])) ?>
-					</td>
-				</tr>
-			</table>
-
+			<?= 'Rp.' . rupiah($d['gapok']-($d['status_displin'] * $d['pdisplin'])+ $tuk)  ?>
 		</td>
 	</tr>
 <?php $no++;
