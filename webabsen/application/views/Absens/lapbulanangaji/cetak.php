@@ -14,9 +14,9 @@
  </style>
 </head>
 <body onload="window.print()">
-	<h1 align="center">Laporan Data Absensi Bulanan
-		 <br>Lorus Cellular</h1>
-	<h3 align="center">Kota Padang</h3>
+	<h1 align="center">SLIP PEMBAYARAN GAJI
+		 <br>LORUS CELULER</h1>
+	<h3 align="center">PERIODE :   <?= '1 '.date('M Y').' - ' . '30 ' . date('M Y') ?></h3>
 	<table align="center" width="60%" border="0">
 
 		<?php $months = array( "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"); ?>
