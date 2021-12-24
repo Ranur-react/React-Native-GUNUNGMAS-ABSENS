@@ -22,7 +22,7 @@ GROUP BY `id_absen_masuk`
 FROM karyawan
 JOIN `detail_jadwal` ON `id_karyawan_detail`=`id_karyawan` 
 LEFT JOIN absen_masuk ON `id_set_jadwal_Masuk`=`id_jadwal_detail`
-LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_karyawan_detail`
+LEFT JOIN `absen_keluar` ON `id_set_jadwal_keluar`=`id_set_jadwal_keluar`
 LEFT JOIN `surat_izin` ON `id_karyawan_izin`=`id_karyawan_detail`
 LEFT JOIN `surat_sakit` ON `id_karyawan_sakit`=`id_karyawan_detail`
 WHERE tanggal ='$dateStart' AND status_kehadiran!='0'
