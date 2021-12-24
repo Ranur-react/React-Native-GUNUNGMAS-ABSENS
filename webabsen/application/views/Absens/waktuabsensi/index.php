@@ -15,8 +15,8 @@
 							<th class="text-center">No.</th>
 							<th>Keterangan Waktu</th>
 							<th>Waktu Mulai Masuk</th>
-							<th>Waktu Selesai Masuk</th>
 							<th>Toleransi Keterlambatan</th>
+							<th>Waktu Selesai Masuk</th>
 							<th>Waktu Mulai Pulang</th>
 							<th>Waktu Selesai Pulang</th>
 							<th class="text-center">Aksi</th>

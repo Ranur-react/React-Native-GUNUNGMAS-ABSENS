@@ -11,14 +11,14 @@
 </script>
 
 <script>
-  $(function () {
-    //Timepicker
-    $('.timepickerX').timepicker({
-      showInputs: false,
-      showMeridian: false
-    })
+	$(function() {
+		//Timepicker
+		$('.timepickerX').timepicker({
+			showInputs: false,
+			showMeridian: false
+		})
 
-  })
+	})
 </script>
 
 
@@ -38,100 +38,100 @@
 					<span class="error idwaktu text-red"></span>
 				</div>
 
-        <div class="form-group">
-          <label>Keterangan Waktu</label>
-          <input type="text" name="ketwaktu" class="form-control"  value="<?= $data['ket_waktu'] ?>">
-          <span class="error ketwaktu text-red"></span>
-        </div>
+				<div class="form-group">
+					<label>Keterangan Waktu</label>
+					<input type="text" name="ketwaktu" class="form-control" value="<?= $data['ket_waktu'] ?>">
+					<span class="error ketwaktu text-red"></span>
+				</div>
 
 				<div class="modal-header">
-				<h4 class="modal-title">Jam Masuk</h4>
-			</div>
-				<div class="bootstrap-timepicker">
-                <div class="form-group">
-                  <label>Waktu Mulai</label>
-                  <div class="input-group">
-                    <input type="text" name="waktumulaimasuk" class="form-control timepickerX" value="<?= $data['waktu_mulai_masuk'] ?>">
-                    <span class="error waktumulaimasuk text-red"></span>
-                    <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
-
-				<div class="bootstrap-timepicker">
-                <div class="form-group">
-                  <label>Waktu Selesai</label>
-                  <div class="input-group">
-                    <input type="text" name="waktuselesaimasuk" class="form-control timepickerX" value="<?= $data['waktu_selesai_masuk'] ?>">
-                    <span class="error waktuselesaimasuk text-red"></span>
-                    <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
-
-              <div class="bootstrap-timepicker">
-                <div class="form-group">
-                  <label>Toleransi Keterlambatan</label>
-                  <div class="input-group">
-                    <input type="text" name="toleransi" class="form-control timepickerX" value="<?= $data['toleransi'] ?>">
-                    <span class="error toleransi text-red"></span>
-                    <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
-
-
-
-				<div class="modal-header">
-				<h4 class="modal-title">Jam Pulang</h4>
+					<h4 class="modal-title">Jam Masuk</h4>
 				</div>
 				<div class="bootstrap-timepicker">
-                <div class="form-group">
-                  <label>Waktu Mulai</label>
-                  <div class="input-group">
-                    <input type="text" name="waktumulaikeluar" class="form-control timepickerX" value="<?= $data['waktu_mulai_keluar'] ?>">
-                    <span class="error waktumulaikeluar text-red"></span>
-                    <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
+					<div class="form-group">
+						<label>Waktu Mulai</label>
+						<div class="input-group">
+							<input type="text" name="waktumulaimasuk" class="form-control timepickerX" value="<?= $data['waktu_mulai_masuk'] ?>">
+							<span class="error waktumulaimasuk text-red"></span>
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+				</div>
+
+				<div class="bootstrap-timepicker">
+					<div class="form-group">
+						<label>Waktu Mulai Toleransi Keterlambatan</label>
+						<div class="input-group">
+							<input type="text" name="waktuselesaimasuk" class="form-control timepickerX" value="<?= $data['waktu_selesai_masuk'] ?>">
+							<span class="error waktuselesaimasuk text-red"></span>
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+				</div>
+
+				<div class="bootstrap-timepicker">
+					<div class="form-group">
+						<label>Waktu Selesai Masuk</label>
+						<div class="input-group">
+							<input type="text" name="toleransi" class="form-control timepickerX" value="<?= $data['toleransi'] ?>">
+							<span class="error toleransi text-red"></span>
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+				</div>
+
+
+
+				<div class="modal-header">
+					<h4 class="modal-title">Jam Pulang</h4>
+				</div>
+				<div class="bootstrap-timepicker">
+					<div class="form-group">
+						<label>Waktu Mulai</label>
+						<div class="input-group">
+							<input type="text" name="waktumulaikeluar" class="form-control timepickerX" value="<?= $data['waktu_mulai_keluar'] ?>">
+							<span class="error waktumulaikeluar text-red"></span>
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+				</div>
 
 
 
 				<div class="bootstrap-timepicker">
-                <div class="form-group">
-                  <label>Waktu Selesai</label>
-                  <div class="input-group">
-                    <input type="text" name="waktuselesaikeluar" class="form-control timepickerX" value="<?= $data['waktu_selesai_keluar'] ?>">
-                    <span class="error waktuselesaikeluar text-red"></span>
-                    <div class="input-group-addon">
-                      <i class="fa fa-clock-o"></i>
-                    </div>
-                  </div>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div>
+					<div class="form-group">
+						<label>Waktu Selesai</label>
+						<div class="input-group">
+							<input type="text" name="waktuselesaikeluar" class="form-control timepickerX" value="<?= $data['waktu_selesai_keluar'] ?>">
+							<span class="error waktuselesaikeluar text-red"></span>
+							<div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							</div>
+						</div>
+						<!-- /.input group -->
+					</div>
+					<!-- /.form group -->
+				</div>
 
 
 
-				
+
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary btnUpdate"><i class="icon-floppy-disk"></i> Update</button>
