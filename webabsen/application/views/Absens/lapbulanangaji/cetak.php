@@ -67,8 +67,8 @@
 						<td align="right" width="50%">: Rp. 100.000</td>
 					</tr>
 					<tr>
-						<td width="50%">----------</td>
-						<td align="right" width="50%">-----------</td>
+						<td width="50%"></td>
+						<td align="right" width="50%">---------------------</td>
 					</tr>
 					<tr>
 						<td width="50%">GAJI DITERIMA :</td>
