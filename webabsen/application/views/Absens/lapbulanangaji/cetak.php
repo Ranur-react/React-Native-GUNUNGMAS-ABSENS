@@ -94,42 +94,12 @@
 			</td>
 		</tr>
 	</table>
-	<table align="center" border="1">
-		<thead>
-			<tr>
-				<th class="text-center" width="20%">No.</th>
-				<th>Nama Karyawan</th>
-				<th>Lokasi</th>
-				<th>Hadir</th>
-				<th>Sakit</th>
-				<th>Izin</th>
-				<th>Persentase Kehadiran</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php $no = 1;
-			foreach ($data as $d) { ?>
-				<tr>
-					<td class="text-center" width="40px"><?= $no . '.'; ?></td>
-					<td><?= $d['nama_karyawan'] ?></td>
-					<td><?= $d['lokasi'] ?></td>
-					<td><?= $d['hadir'] ?></td>
-					<td><?= $d['sakit'] ?></td>
-					<td><?= $d['izin'] ?></td>
-					<td><?= number_format(($d['hadir'] / 30) * 100, 0) . "%"; ?></td>
-				</tr>
-			<?php $no++;
-			} ?>
-		</tbody>
-		<tfoot>
-
-		</tfoot>
-	</table>
+	
 	<center><br>Padang,
 		<?php echo date('d-M-y') ?>
 		<br><br><br><br>
 		<u>(......................................)</u><br>
-		<b>Pemilik Toko</b>
+		<b>Owner Toko</b>
 	</center>
 </body>
 
