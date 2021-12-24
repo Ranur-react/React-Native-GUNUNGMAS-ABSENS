@@ -59,12 +59,20 @@
 						<td align="right" width="50%">: Rp. 300.000</td>
 					</tr>
 					<tr>
-						<td width="50%">TERLMABTA </td>
+						<td width="50%">TERLAMBAT </td>
 						<td align="right" width="50%">: 10 X</td>
 					</tr>
 					<tr>
 						<td width="50%">POTONGAN :</td>
-						<td align="right" width="50%"> Rp. 100.000</td>
+						<td align="right" width="50%">: Rp. 100.000</td>
+					</tr>
+					<tr>
+						<td width="50%">----------</td>
+						<td align="right" width="50%">-----------</td>
+					</tr>
+					<tr>
+						<td width="50%">GAJI DITERIMA :</td>
+						<td align="right" width="50%">: Rp. 3.2500.000</td>
 					</tr>
 				</table>
 			</td>
