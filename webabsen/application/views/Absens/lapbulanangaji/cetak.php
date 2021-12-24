@@ -42,6 +42,22 @@
 						<td width="50%">JABATAN</td>
 						<td align="right" width="50%">: CS</td>
 					</tr>
+					<tr>
+						<td width="50%">BANK TRANSFER</td>
+						<td align="right" width="50%">MANDIRI</td>
+					</tr>
+					<tr>
+						<td width="50%">NOMOR REKENING</td>
+						<td align="right" width="50%">12312 123 312 </td>
+					</tr>
+					<tr>
+						<td width="50%">ATAS NAMA</td>
+						<td align="right" width="50%">IMAM</td>
+					</tr>
+					<tr>
+						<td width="50%">DIBAYARKAN TANGGAL</td>
+						<td align="right" width="50%"><?= date('D M Y')?></td>
+					</tr>
 				</table>
 			</td>
 			<td width="50%">
