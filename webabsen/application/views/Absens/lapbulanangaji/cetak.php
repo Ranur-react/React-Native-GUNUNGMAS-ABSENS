@@ -26,7 +26,7 @@
 		<br>LORUS CELULER
 	</h1>
 	<h3 align="center">PERIODE : <?= '1 ' . date('M Y') . ' - ' . '30 ' . date('M Y') ?></h3>
-	<table align="center" width="100%" border="0">
+	<table align="center" width="50%" border="0">
 		<tr>
 			<td width="50%">
 				<table align="center" width="100%" border="0">
@@ -36,8 +36,6 @@
 					</tr>
 				</table>
 			</td>
-		</tr>
-		<tr>
 			<td width="50%">
 				<table align="center" width="100%" border="0">
 					<tr>
