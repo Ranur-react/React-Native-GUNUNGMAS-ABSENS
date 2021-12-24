@@ -42,7 +42,8 @@
 							<th>Gaji Pokok</th>
 							<th>Nilai Tunjangan</th>
 							<th>Tunjangan Dipatkan</th>
-							<th>Potongan</th>
+							<th>Nilai Potongan Terlambat</th>
+							<th>Terpotong </th>
 							<th>Gaji Diterima</th>
 						</tr>
 					</thead>
