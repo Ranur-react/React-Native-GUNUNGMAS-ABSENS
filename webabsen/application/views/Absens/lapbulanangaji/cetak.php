@@ -116,5 +116,6 @@ foreach ($dataVar as $d) { ?>
 	</body>
 
 	</html>
-<?php $no++;
-} ?>
+<?php 
+} 
+?>
