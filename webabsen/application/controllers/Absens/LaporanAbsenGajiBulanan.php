@@ -29,7 +29,7 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 		$month = $this->uri->segment(4);
 		$emp = $this->uri->segment(5);
 		$data = [
-			'data'  => $this->Mlap_bulanan->shows($month,$emp),
+			'data'  => $this->Mlap_bulanan->showsSlips($month,$emp),
 			'bulan' => $month,
 			
 		];
