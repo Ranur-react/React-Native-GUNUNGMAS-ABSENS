@@ -55,7 +55,7 @@ class Mlap_bulanan extends CI_Model
 				WHERE  MONTH(tanggal)='$v' and id_karyawan='$empId'
 				GROUP BY `id_karyawan`")->result_array();
 	}
-	public function shows($kode, $empId)
+	public function shows($kode)
 
 	{
 		$v = $kode['PilBulan'];
