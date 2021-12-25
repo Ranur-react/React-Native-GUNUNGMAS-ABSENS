@@ -22,6 +22,9 @@ foreach ($dataVar as $d) { ?>
 		</style>
 	</head>
 	<?php
+	$persentasHadir = ($d['hadir'] / 30) * 100;
+	?>
+	<?php
 	$tuk = 0;
 	if ($persentasHadir < 80) {
 		$tuk = 0;
