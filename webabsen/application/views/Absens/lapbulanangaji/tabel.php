@@ -56,7 +56,7 @@ foreach ($dataVar as $d) { ?>
 			<?= 'Rp.' . rupiah($d['gapok'] - ($d['status_displin'] * $d['pdisplin']) + $tuk)  ?>
 		</td>
 		<td>
-			<a href="<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak/11') ?>" class="btn btn-primary">
+			<a href="#" onclick="printSlipPerMOnth(232)" class="btn btn-primary">
 				<i class="fa fa-print"></i> PaySlip Print
 			</a>
 

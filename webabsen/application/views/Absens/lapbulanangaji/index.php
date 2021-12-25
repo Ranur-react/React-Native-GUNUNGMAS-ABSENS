@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header with-border">
-				
+
 				<div class="row">
 					<div class="col-xs-8">
 					</div>
@@ -73,7 +73,12 @@
 		});
 	}
 
-
+	var printSlipPerMOnth = (employee) => {
+		let kode = "/" + $('.pilBulan').val();
+		setTimeout(function() {
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode + '/' + employee;
+		}, 100);
+	}
 	$(document).on('click', '.btncetak', function(e) {
 		let kode = "/" + $('.pilBulan').val();
 		setTimeout(function() {
