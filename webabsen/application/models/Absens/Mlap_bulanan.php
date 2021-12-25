@@ -31,7 +31,7 @@ class Mlap_bulanan extends CI_Model
 	$date = date_create('2020-12-01');
 	date_add($date, date_interval_create_from_date_string($a));
 	$d=date_format($date, 'Y-m');
-		return $this->db->query("SELECT `id_karyawan`,`nama_karyawan`, `lokasi`,
+		return $this->db->query("SELECT `id_karyawan`,`nama_karyawan`, `lokasi`,`nama_jabatan`,
 				 
 				(SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` != 'null'AND `status_kehadiran` != '0' )
 				 AS hadir,
