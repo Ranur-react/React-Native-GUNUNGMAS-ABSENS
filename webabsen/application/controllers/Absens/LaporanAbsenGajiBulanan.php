@@ -26,16 +26,17 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 
 	public function cetak()
 	{
-		$a = $this->uri->segment(4);
-		$d['PilBulan']=$a;
+		$month = $this->uri->segment(4);
+		$emp = $this->uri->segment(5);
 		$data = [
-			'data'  => $this->Mlap_bulanan->shows($d),
-			'bulan' => $a,
+			'data'  => $this->Mlap_bulanan->shows($month,$emp),
+			'bulan' => $month,
 			
 		];
 		$this->load->view('Absens/lapbulanangaji/cetak',$data);
 
 	}
+	
 
 	public function TabelPeriode()
 	{
