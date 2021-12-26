@@ -46,9 +46,9 @@ foreach ($dataVar as $d) { ?>
 		//logika hadir dengan remisi libur
 		$potongan=0;
 		$gajiDiterima= 'Rp.' . rupiah($d['gapok']  + $tuk);
-		if ($d['hadir'] < 28) {
+		if (($d['hadir']+ $d['sakit']) < 28) {
 			$potongan = $d['status_displin'] * $d['pdisplin'];
-			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / 30) * $d['hadir']) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / 30) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
 		}
 		?>
 		<td>

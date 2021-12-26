@@ -32,6 +32,15 @@ foreach ($dataVar as $d) { ?>
 		$tuk = $d['tdisplin'];
 	}
 	?>
+	<?php
+	//logika hadir dengan remisi libur
+	$potongan = 0;
+	$gajiDiterima = 'Rp.' . rupiah($d['gapok']  + $tuk);
+	if (($d['hadir'] + $d['sakit']) < 28) {
+		$potongan = $d['status_displin'] * $d['pdisplin'];
+		$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / 30) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+	}
+	?>
 
 	<body onload="window.print()">
 		<h1 align="center">SLIP PEMBAYARAN GAJI
@@ -91,8 +100,12 @@ foreach ($dataVar as $d) { ?>
 							<td align="right" width="50%">: <?= $d['status_displin'] ?> X</td>
 						</tr>
 						<tr>
+							<td width="50%">Sakit </td>
+							<td align="right" width="50%">: <?= $d['sakit'] ?> X</td>
+						</tr>
+						<tr>
 							<td width="50%">POTONGAN :</td>
-							<td align="right" width="50%">: <?= 'Rp.' . rupiah($d['status_displin'] * $d['pdisplin']) ?></td>
+							<td align="right" width="50%">: <?= 'Rp.' . rupiah($potongan) ?></td>
 						</tr>
 						<tr>
 							<td width="50%"></td>
@@ -100,7 +113,7 @@ foreach ($dataVar as $d) { ?>
 						</tr>
 						<tr>
 							<td width="50%">GAJI DITERIMA :</td>
-							<td align="right" width="50%">: <?= 'Rp.' . rupiah($d['gapok'] - ($d['status_displin'] * $d['pdisplin']) + $tuk)  ?></td>
+							<td align="right" width="50%">: <?= 'Rp.' . rupiah($gajiDiterima)  ?></td>
 						</tr>
 					</table>
 				</td>
@@ -116,6 +129,6 @@ foreach ($dataVar as $d) { ?>
 	</body>
 
 	</html>
-<?php 
-} 
+<?php
+}
 ?>
