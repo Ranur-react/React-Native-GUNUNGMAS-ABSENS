@@ -22,7 +22,7 @@ foreach ($dataVar as $d) { ?>
 		</style>
 	</head>
 	<?php
-	$persentasHadir = ($d['hadir'] + $d['sakit']) / 30) * 100;
+	$persentasHadir = (($d['hadir'] + $d['sakit']) / 30) * 100;
 	?>
 	<?php
 	$tuk = 0;
