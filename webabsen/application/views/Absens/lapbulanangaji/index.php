@@ -37,7 +37,6 @@
 							<th>Hadir</th>
 							<th>Alfa</th>
 							<th>Sakit</th>
-							<th>Izin</th>
 							<th>Terlambat</th>
 							<th>Gaji Pokok</th>
 							<th>Nilai Tunjangan</th>
