@@ -89,7 +89,7 @@ foreach ($dataVar as $d) { ?>
 						</tr>
 						<tr>
 							<td width="50%">PERSENTASI HADIR </td>
-							<td align="right" width="50%">: <?= number_format($persentasHadir, 0) . '% ' ?></td>
+							<td align="right" width="50%">: <?= number_format($persentasHadir, 0).'% ' ?></td>
 						</tr>
 						<tr>
 							<td width="50%">TUNJANGAN </td>
