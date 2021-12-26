@@ -7,7 +7,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= (30 - $d['hadir']) ?></td>
 		<td><?= $d['sakit'] ?></td>
-		<td><?= $d['izin'] ?></td>
+
 		<td><?= $d['status_displin'] ?></td>
 		<td><?= 'Rp.' . rupiah($d['gapok']) ?></td>
 		<td><?= 'TUK (PH>80%) = ' . 'Rp. ' . rupiah($d['tdisplin']) ?></td>
@@ -42,18 +42,28 @@ foreach ($dataVar as $d) { ?>
 		<td>
 			<?= 'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
 		</td>
+		<?php
+		//logika hadir dengan remisi libur
+		$potongan=0;
+		$gajiDiterima= 'Rp.' . rupiah($d['gapok']  + $tuk);
+		if ($d['hadir'] < 28) {
+			$potongan = $d['status_displin'] * $d['pdisplin'];
+			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / 30) * $d['hadir']) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+		}
+		?>
 		<td>
 			<table>
 				<tr>
 					<td>
-						<?= 'Rp.' . rupiah($d['status_displin'] * $d['pdisplin']) ?>
+						<?= 'Rp.' . rupiah($potongan) ?>
 					</td>
 				</tr>
 			</table>
 
 		</td>
+
 		<td>
-			<?= 'Rp.' . rupiah($d['gapok'] - ($d['status_displin'] * $d['pdisplin']) + $tuk)  ?>
+			<?= $gajiDiterima;  ?>
 		</td>
 		<td>
 			<a href="#" onclick="printSlipPerMOnth('<?= $d['id_karyawan'] ?>')" class="btn btn-primary">
