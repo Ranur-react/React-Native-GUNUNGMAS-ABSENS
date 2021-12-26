@@ -113,7 +113,7 @@ foreach ($dataVar as $d) { ?>
 						</tr>
 						<tr>
 							<td width="50%">GAJI DITERIMA :</td>
-							<td align="right" width="50%">: <?= 'Rp.'  ?></td>
+							<td align="right" width="50%">: <?= 'Rp. '  ?></td>
 						</tr>
 					</table>
 				</td>
