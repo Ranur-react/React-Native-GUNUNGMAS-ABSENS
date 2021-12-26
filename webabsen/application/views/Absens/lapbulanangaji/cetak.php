@@ -22,7 +22,7 @@ foreach ($dataVar as $d) { ?>
 		</style>
 	</head>
 	<?php
-	$persentasHadir = (($d['hadir'] ) / 30) * 100;
+	$persentasHadir = (($d['hadir']) / 30) * 100;
 	?>
 	<?php
 	$tuk = 0;
@@ -88,6 +88,10 @@ foreach ($dataVar as $d) { ?>
 							<td align="right" width="50%">: <?= $d['hadir'] ?>/<?= rupiah(30 - ($d['hadir'] + $d['sakit'])) ?></td>
 						</tr>
 						<tr>
+							<td width="50%">Sakit </td>
+							<td align="right" width="50%">: <?= $d['sakit'] ?> X</td>
+						</tr>
+						<tr>
 							<td width="50%">PERSENTASI HADIR </td>
 							<td align="right" width="50%">: <?= number_format($persentasHadir, 0) . '% ' ?></td>
 						</tr>
@@ -100,10 +104,6 @@ foreach ($dataVar as $d) { ?>
 							<td align="right" width="50%">: <?= $d['status_displin'] ?> X</td>
 						</tr>
 						<tr>
-							<td width="50%">Sakit </td>
-							<td align="right" width="50%">: <?= $d['sakit'] ?> X</td>
-						</tr>
-						<tr>
 							<td width="50%">POTONGAN :</td>
 							<td align="right" width="50%">: <?= 'Rp.' . rupiah($potongan) ?></td>
 						</tr>
@@ -113,7 +113,7 @@ foreach ($dataVar as $d) { ?>
 						</tr>
 						<tr>
 							<td width="50%">GAJI DITERIMA :</td>
-							<td align="right" width="50%">: <?=  $gajiDiterima  ?></td>
+							<td align="right" width="50%">: <?= $gajiDiterima  ?></td>
 						</tr>
 					</table>
 				</td>
