@@ -6,7 +6,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['lokasi'] ?></td>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
-		<td><?= 30 - ($d['sakit'] + $d['hadir']) ?></td>
+		<td><?= $hari - ($d['sakit'] + $d['hadir']) ?></td>
 		<td><?= $d['status_displin'] ?></td>
 	</tr>
 <?php $no++;

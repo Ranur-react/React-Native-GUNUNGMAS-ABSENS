@@ -41,6 +41,12 @@ class LaporanAbsenMingguan extends CI_Controller
 	{
 		$all = $this->input->post(null, TRUE);
 		$data['dataVar'] = $this->Mlap_mingguan->shows($all);
+		$dateStart = date("Y-m-d", strtotime($all['awal']));
+		$dateEnd = date("Y-m-d", strtotime($all['akhir']));
+		$date1 = new DateTime($dateStart);
+		$date2 = new DateTime($dateEnd);
+		$interval = $date1->diff($date2);
+		$data['hari'] = $interval->d;
 
 		$this->load->view('Absens/lapmingguan/tabel',$data);
 		

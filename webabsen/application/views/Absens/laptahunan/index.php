@@ -7,15 +7,15 @@
 					<div class="col-xs-8">
 					</div>
 					<div class="col-xs-2">
-						
+
 
 						<div class="form-group">
 							<label>Pilih Tahun</label>
 							<select onchange="IsiTabel()" class="form-control pilTahun">
-								<?php 
-								$i = 0; 
-								for($i = 2020; $i <= 2026; $i++){?>
-								<option value="<?= $i ?>" <?= date('m')== $i ? "selected" : null ?> ><?= $i . "\n" ?></option>
+								<?php
+								$i = 0;
+								for ($i = 2020; $i <= 2026; $i++) { ?>
+									<option value="<?= $i ?>" <?= date('m') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
 								<?php  } ?>
 
 							</select>
@@ -35,12 +35,13 @@
 							<th>Lokasi</th>
 							<th>Hadir</th>
 							<th>Sakit</th>
-							<th>Izin</th>
 							<th>Persentase Kehadiran</th>
+							<th>Alfa</th>
+							<th>Terlambat</th>
 						</tr>
 					</thead>
 					<tbody class="isiTabel">
-						
+
 					</tbody>
 				</table>
 			</div>
@@ -49,29 +50,27 @@
 </div>
 
 <script>
+	IsiTabel();
 
-IsiTabel();
-		function IsiTabel() {
-			$.ajax({
+	function IsiTabel() {
+		$.ajax({
 			type: "post",
 			url: "<?= site_url('Absens/LaporanAbsenTahunan/TabelPeriode') ?>",
-			data: "&PilTahun="+ $('.pilTahun').val(),
+			data: "&PilTahun=" + $('.pilTahun').val(),
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
 
 			}
 		});
-}
+	}
 
-	
+
 	$(document).on('click', '.btncetak', function(e) {
- 		let kode= "/" +$('.pilTahun').val();
-                    	    setTimeout(function() {
-                                window.location.href = '<?= site_url('Absens/LaporanAbsenTahunan/cetak')?>'+kode;
-                            }, 100);
+		let kode = "/" + $('.pilTahun').val();
+		setTimeout(function() {
+			window.location.href = '<?= site_url('Absens/LaporanAbsenTahunan/cetak') ?>' + kode;
+		}, 100);
 
 	});
-
 </script>
-
