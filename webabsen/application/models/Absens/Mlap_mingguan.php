@@ -35,7 +35,7 @@ class Mlap_mingguan extends CI_Model
 
 		return $this->db->query("
 					SELECT `id_karyawan`,`nama_karyawan`, `lokasi`,
-(SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` = '1' AND `tanggal` BETWEEN '$dateStart' AND '$dateEnd'  )
+(SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` != 'null'AND `status_kehadiran` != '0'  AND `tanggal` BETWEEN '$dateStart' AND '$dateEnd'  )
 				 AS hadir,
 (SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` = 's' AND `tanggal` BETWEEN '$dateStart' AND '$dateEnd' )
 				 AS sakit,
