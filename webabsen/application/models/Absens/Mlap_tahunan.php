@@ -52,7 +52,7 @@ class Mlap_tahunan extends CI_Model
 				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 				JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
 				WHERE  YEAR(tanggal)='$d' 
-				GROUP BY `id_karyawan")->result_array();
+				GROUP BY id_karyawan")->result_array();
 	}
 
 	public function tampildata()
