@@ -21,7 +21,7 @@
 // let i=0;
 
 		$(document).on('click', '.btnback', function(e) {
-		window.location=("<?= site_url('Absens/jadwalabsenkaryawan/index') ?>")
+		window.location=("<?= site_url('jak') ?>")
 	});
 
 		$(document).on('click', '.btntambah', function(e) {
