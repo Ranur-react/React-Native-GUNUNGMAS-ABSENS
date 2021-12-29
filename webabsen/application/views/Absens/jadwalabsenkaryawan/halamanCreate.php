@@ -186,7 +186,7 @@ IsiTabel() ;
 					</div>
 					<div class="col-xs-4">
 						<button type="submit" class="btn btn-primary btnStore"><i class="icon-floppy-disk"></i> Simpan</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon-cross2"></i> Close</button>
+
 							<?= form_close() ?>
 			
 					</div>
