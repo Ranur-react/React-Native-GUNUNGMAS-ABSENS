@@ -15,7 +15,7 @@ foreach ($dataVar as $d) {
 		<td><?= 'TUK (PH>80%) = ' . 'Rp. ' . rupiah($d['tdisplin']) ?></td>
 
 		<?php
-		$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotor) * 100;
+		$persentasHadir = (($d['hadir'] + $d['sakit']) / 30) * 100;
 		?>
 		<td>
 			<table>
