@@ -9,7 +9,7 @@ foreach ($dataVar as $d) {
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) < 0 ? 0 : ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])); ?></td>
-		<td><?= $jumlhaAlfaKotor ?></td>
+		<td><?= $jumlhaAlfaKotor.'---'. $dateMax ?></td>
 		<td><?= $d['status_displin'] ?></td>
 	</tr>
 <?php $no++;
