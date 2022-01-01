@@ -28,6 +28,7 @@ class LaporanAbsenBulanan extends CI_Controller
 	{
 		$a = $this->uri->segment(4);
 		$d['PilBulan']=$a;
+		$d['PilTahun']= $this->uri->segment(5);
 		$data = [
 			'data'  => $this->Mlap_bulanan->shows($d),
 			'bulan' => $a,
