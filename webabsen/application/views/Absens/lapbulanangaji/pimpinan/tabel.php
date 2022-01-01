@@ -4,7 +4,7 @@ foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
 	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
 	if($jumlhaAlfaKotorFull<1){
-		$jumlhaAlfaKotorFull=1;
+		$jumlhaAlfaKotorFull=30;
 	}
 ?>
 	<?php
