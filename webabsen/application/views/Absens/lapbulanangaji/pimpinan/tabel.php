@@ -33,11 +33,15 @@ foreach ($dataVar as $d) {
 		<?php
 		//logika hadir dengan remisi libur
 		$potongan = 0;
-		$gajiDiterima = 'Rp.' . rupiah($d['gapok']  + $tuk);
+		$formula = $d['gapok']  + $tuk;
+
 		if (($d['hadir'] + $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
 			$potongan = $d['status_displin'] * $d['pdisplin'];
-			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+			$formula = (($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk;
 		}
+		$gajiDiterima= 'Rp.' . rupiah($formula);
+		$totsal+= $formula;
+
 		?>
 		<td>
 			<table>
@@ -55,7 +59,7 @@ foreach ($dataVar as $d) {
 		</td>
 	</tr>
 <?php $no++;
-	$totsal += $gajiDiterima;
+	$totsal ;
 } ?>
 <tr>
 	<td colspan="5">
