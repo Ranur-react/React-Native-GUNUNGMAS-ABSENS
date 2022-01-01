@@ -42,7 +42,7 @@ class Mlap_mingguan extends CI_Model
 				 				 `rentangSet`,
 				 
 
-(SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` != 'null'AND `status_kehadiran` != '0' AND `tanggal` BETWEEN '$dateStart' AND '$dateEnd' ) AS status_displin
+(SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_displin` != 'null'AND `status_displin` = '0' AND `tanggal` BETWEEN '$dateStart' AND '$dateEnd' ) AS status_displin
 				 
 				 FROM `jadwal_absen_karyawan` 
 				JOIN  `detail_jadwal` ON `id_jadwal_detail`=`id_jadwal`
