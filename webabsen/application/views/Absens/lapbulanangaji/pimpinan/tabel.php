@@ -1,4 +1,5 @@
 <?php $no = 1;
+$totsal=0;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
 	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
@@ -10,22 +11,22 @@ foreach ($dataVar as $d) {
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 		<td><?= $d['nama_karyawan'] ?></td>
 		<td><?= number_format($persentasHadir, 0) . '% ' ?></td>
-		
+
 
 		<td><?= 'Rp.' . rupiah($d['gapok']) ?></td>
 
 
 		<td>
-			
-					<?php
-					$tuk = 0;
-					if ($persentasHadir < 80) {
-						$tuk = 0;
-					} else {
-						$tuk = $d['tdisplin'];
-					}
-					?>
-						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>				
+
+			<?php
+			$tuk = 0;
+			if ($persentasHadir < 80) {
+				$tuk = 0;
+			} else {
+				$tuk = $d['tdisplin'];
+			}
+			?>
+			<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>
 		</td>
 
 
@@ -54,4 +55,11 @@ foreach ($dataVar as $d) {
 		</td>
 	</tr>
 <?php $no++;
+	$totsal+=$gajiDiterima;
 } ?>
+<tfoot>
+	<tr>
+		<td colspan="6">Total Gaji Yang Dikeluarkan</td>
+		<td ><?= 'Rp.' . rupiah($totsal) ; ?></td>
+	</tr>
+</tfoot>
