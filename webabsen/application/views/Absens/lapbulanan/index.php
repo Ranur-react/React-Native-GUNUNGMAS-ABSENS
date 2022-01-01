@@ -26,8 +26,8 @@
 							<select onchange="IsiTabel()" class="form-control pilTahun">
 								<?php
 								$i = 0;
-								for ($i = 2020; $i <= 2026; $i++) { ?>
-									<option value="<?= $i ?>" <?= date('m') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
+								for ($i = 2021; $i <= 2026; $i++) { ?>
+									<option value="<?= $i ?>" <?= date('Y') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
 								<?php  } ?>
 							</select>
 						</div>
