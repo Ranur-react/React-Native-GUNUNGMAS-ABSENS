@@ -64,6 +64,7 @@
 							<th>Hadir</th>
 							<th>Sakit</th>
 							<th>Alfa</th>
+							<th>Kehadiran Seharunya</th>
 							<th>Terlambat</th>
 						</tr>
 					</thead>

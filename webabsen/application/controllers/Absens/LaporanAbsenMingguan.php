@@ -47,6 +47,7 @@ class LaporanAbsenMingguan extends CI_Controller
 		$date2 = new DateTime($dateEnd);
 		$interval = $date1->diff($date2);
 		$data['hari'] = ($interval->days);
+		$data['dateMax']= $all['akhir'];
 
 		$this->load->view('Absens/lapmingguan/tabel',$data);
 		
