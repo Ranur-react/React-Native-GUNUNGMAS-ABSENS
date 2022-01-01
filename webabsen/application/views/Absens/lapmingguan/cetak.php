@@ -50,7 +50,10 @@
 		</thead>
 		<tbody>
 			<?php $no = 1;
-			foreach ($data as $d) { ?>
+			foreach ($data as $d) {
+				$jumlhaAlfaKotor = alfaHitungMingguan($d['rentangSet'], $dateMax);
+				$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
+				?>
 				<tr>
 					<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 					<td><?= $d['nama_karyawan'] ?></td>
