@@ -64,9 +64,9 @@ foreach ($dataVar as $d) {
 			</table>
 
 		</td>
-
+			<td><?= "(" . ($jumlhaAlfaKotorFull) . ")  "  ?></td>
 		<td>
-			<?=  "(" . ($jumlhaAlfaKotorFull) . ")  " . $gajiDiterima;  ?>
+			<?=   $gajiDiterima;  ?>
 		</td>
 		<td>
 			<a href="#" onclick="printSlipPerMOnth('<?= $d['id_karyawan'] ?>')" class="btn btn-primary">

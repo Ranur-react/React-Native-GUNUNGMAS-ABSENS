@@ -52,6 +52,7 @@
 							<th>Tunjangan Dipatkan</th>
 							<th>Nilai Potongan Terlambat</th>
 							<th>Terpotong </th>
+							<th>Jummlah Hari Kerja</th>
 							<th>Gaji Diterima</th>
 							<th>Slip Gaji Print</th>
 						</tr>

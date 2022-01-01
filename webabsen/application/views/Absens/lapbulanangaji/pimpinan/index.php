@@ -46,6 +46,7 @@
 							<th>Gaji Pokok</th>
 							<th>Tunjangan Dipatkan</th>
 							<th>Terpotong </th>
+							<th>Jummlah Hari Kerja</th>
 							<th>Gaji Diterima</th>
 						</tr>
 					</thead>
