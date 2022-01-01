@@ -31,7 +31,7 @@ if (!function_exists('alfaHitungBulanan')) {
 		$date1 = new DateTime($dateStart);
 		$date2 = new DateTime($dateEnd);
 		$interval = $date1->diff($date2);
-		return $interval->days;
+		return $interval->days+1;
 	}
 }
 if (!function_exists('alfaHitung')) {
