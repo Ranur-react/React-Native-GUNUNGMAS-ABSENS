@@ -3,8 +3,8 @@ $totsal = 0;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
 	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
-	if($jumlhaAlfaKotorFull<1){
-		$jumlhaAlfaKotorFull=30;
+	if ($jumlhaAlfaKotorFull < 1) {
+		$jumlhaAlfaKotorFull = 30;
 	}
 ?>
 	<?php
@@ -42,8 +42,8 @@ foreach ($dataVar as $d) {
 			$potongan = $d['status_displin'] * $d['pdisplin'];
 			$formula = (($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk;
 		}
-		$gajiDiterima= 'Rp.' . rupiah($formula);
-		$totsal+= $formula;
+		$gajiDiterima = 'Rp.' . rupiah($formula);
+		$totsal += $formula;
 
 		?>
 		<td>
@@ -56,13 +56,13 @@ foreach ($dataVar as $d) {
 			</table>
 
 		</td>
-
+		<td><?= "(" . ($jumlhaAlfaKotorFull) . ")  "  ?></td>
 		<td>
 			<?= $gajiDiterima;  ?>
 		</td>
 	</tr>
 <?php $no++;
-	$totsal ;
+	$totsal;
 } ?>
 <tr>
 	<td colspan="5">
