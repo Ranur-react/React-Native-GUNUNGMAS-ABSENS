@@ -72,7 +72,7 @@
 		$.ajax({
 			type: "post",
 			url: "<?= site_url('Absens/LaporanAbsenGajiBulanan/TabelPeriode') ?>",
-			data: "&PilBulan=" + $('.pilBulan').val(),
+			data: "&PilBulan=" + $('.pilBulan').val() + "&PilTahun=" + $('.pilTahun').val(),
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
