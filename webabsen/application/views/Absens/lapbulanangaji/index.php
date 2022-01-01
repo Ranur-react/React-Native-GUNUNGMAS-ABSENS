@@ -21,16 +21,7 @@
 
 							</select>
 						</div>
-						<div class="form-group">
-							<label>Pilih Tahun</label>
-							<select onchange="IsiTabel()" class="form-control pilTahun">
-								<?php
-								$i = 0;
-								for ($i = 2021; $i <= 2026; $i++) { ?>
-									<option value="<?= $i ?>" <?= date('Y') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
-								<?php  } ?>
-							</select>
-						</div>
+
 					</div>
 
 				</div>
@@ -72,7 +63,7 @@
 		$.ajax({
 			type: "post",
 			url: "<?= site_url('Absens/LaporanAbsenGajiBulanan/TabelPeriode') ?>",
-			data: "&PilBulan=" + $('.pilBulan').val() + "&PilTahun=" + $('.pilTahun').val(),
+			data: "&PilBulan=" + $('.pilBulan').val(),
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
@@ -83,9 +74,8 @@
 
 	var printSlipPerMOnth = (employee) => {
 		let kode = "/" + $('.pilBulan').val();
-		let kodeTahun = "/" + $('.pilTahun').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode + '/' + employee + /kodeTahun;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode + '/' + employee;
 		}, 100);
 	}
 	$(document).on('click', '.btncetak', function(e) {
