@@ -4,8 +4,7 @@ class Mlap_karyawan extends CI_Model
 	protected $tabel = 'karyawan';
 	public function getall()
 	{
-		$this->db->from($this->tabel);
-		return $this->db->get()->result_array();
+		return $this->db->query("SELECT * FROM karyawan JOIN `tb_jabatan` ON `id_jabatan`=jabatan_id;")->result_array();
 	}
 	
 	public function shows($kode)
@@ -15,6 +14,6 @@ class Mlap_karyawan extends CI_Model
 
 	public function tampildata()
 	{
-		return $this->db->query("SELECT * FROM karyawan;")->result_array();
+		return $this->db->query("SELECT * FROM karyawan JOIN `tb_jabatan` ON `id_jabatan`=jabatan_id;")->result_array();
 	}
 }
