@@ -51,6 +51,7 @@
 		<tbody>
 			<?php $no = 1;
 			foreach ($data as $d) {
+				$dateMax= $akhir;
 				$jumlhaAlfaKotor = alfaHitungMingguan($d['rentangSet'], $dateMax);
 				$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
 				?>
