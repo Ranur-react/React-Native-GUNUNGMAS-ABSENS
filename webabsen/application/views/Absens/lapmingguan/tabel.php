@@ -1,6 +1,6 @@
 <?php $no = 1;
 foreach ($dataVar as $d) {
-	$jumlhaAlfaKotor = alfaHitungMingguan($d['rentangSet'], $dateMax);
+	$jumlhaAlfaKotor = alfaHitung($d['rentangSet'], $dateMax);
 ?>
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>

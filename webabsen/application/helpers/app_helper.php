@@ -19,7 +19,7 @@ if (!function_exists('rupiah')) {
 if (!function_exists('alfaHitungBulanan')) {
 	function alfaHitungBulanan($dateRange)
 	{
-		$dateStart = substr($dateRange, 12);
+
 		$dateStart = substr($dateRange, 0, 10);
 		$dateStart = date("Y-m-d", strtotime($dateStart));
 
@@ -37,7 +37,7 @@ if (!function_exists('alfaHitungBulanan')) {
 if (!function_exists('alfaHitung')) {
 	function alfaHitung($dateRange)
 	{
-		$dateStart = substr($dateRange, 12);
+	
 		$dateStart = substr($dateRange, 0, 10);
 		$dateStart = date("Y-m-d", strtotime($dateStart));
 
@@ -62,7 +62,6 @@ if (!function_exists('alfaHitung')) {
 if (!function_exists('alfaHitungMingguan')) {
 	function alfaHitungMingguan($dateRange,$dateMax)
 	{
-		$dateStart = substr($dateRange, 12);
 		$dateStart = substr($dateRange, 0, 10);
 		$dateStart = date("Y-m-d", strtotime($dateStart));
 
