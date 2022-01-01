@@ -60,7 +60,7 @@ class Mlap_bulanan extends CI_Model
 
 	{
 		$v = $kode['PilBulan'];
-		$thun=$kode['pilTahun'];
+		$thun=$kode['PilTahun'];
 		$a = $v . ' month';
 		$date = date_create('2020-12-01');
 		date_add($date, date_interval_create_from_date_string($a));
