@@ -64,7 +64,7 @@
 	function IsiTabel() {
 		$.ajax({
 			type: "post",
-			url: "<?= site_url('Absens/LaporanAbsenGajiBulanan/TabelPeriode') ?>",
+			url: "<?= site_url('Absens/LaporanAbsenGajiBulanan/TabelPeriodePimpinan') ?>",
 			data: "&PilBulan=" + $('.pilBulan').val() + "&PilTahun=" + $('.pilTahun').val(),
 			cache: false,
 			success: function(data) {
@@ -78,7 +78,7 @@
 		let bulan = "/" + $('.pilBulan').val();
 		let tahun = "/" + $('.pilTahun').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + bulan + '/' + employee + tahun;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetakPimpinan') ?>' + bulan + '/' + employee + tahun;
 		}, 100);
 	}
 	$(document).on('click', '.btncetak', function(e) {
