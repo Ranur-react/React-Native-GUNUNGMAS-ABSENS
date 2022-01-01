@@ -9,7 +9,7 @@ foreach ($dataVar as $d) {
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 		<td><?= $d['nama_karyawan'] ?></td>
-		<td><?= number_format($persentasHadir, 0) . '% ' ?>></td>
+		<td><?= number_format($persentasHadir, 0) . '% ' ?></td>
 		
 
 		<td><?= 'Rp.' . rupiah($d['gapok']) ?></td>
