@@ -78,9 +78,10 @@
 
 
 	$(document).on('click', '.btncetak', function(e) {
-		let kode = "/" + $('.pilBulan').val();
+		let bulan = "/" + $('.pilBulan').val();
+		let tahun = "/" + $('.pilTahun').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenBulanan/cetak') ?>' + kode;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenBulanan/cetak') ?>' + bulan + tahun;
 		}, 100);
 
 	});
