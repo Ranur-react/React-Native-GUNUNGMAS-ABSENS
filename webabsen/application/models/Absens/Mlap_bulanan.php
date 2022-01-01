@@ -76,6 +76,7 @@ class Mlap_bulanan extends CI_Model
 				 (SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` != 'null'AND `status_kehadiran` != '0')
 				 AS status_displin,
 				 tanggal,
+				`rentangSet`,
 				`tb_jabatan`.`gapok` AS gapok,
 				`tb_jabatan`.`tunjangan_disiplin` AS tdisplin,
 				`tb_jabatan`.`potongan_disiplin` AS pdisplin
