@@ -21,6 +21,16 @@
 
 							</select>
 						</div>
+						<div class="form-group">
+							<label>Pilih Tahun</label>
+							<select onchange="IsiTabel()" class="form-control pilTahun">
+								<?php
+								$i = 0;
+								for ($i = 2020; $i <= 2026; $i++) { ?>
+									<option value="<?= $i ?>" <?= date('m') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
+								<?php  } ?>
+							</select>
+						</div>
 
 					</div>
 
@@ -57,7 +67,7 @@
 		$.ajax({
 			type: "post",
 			url: "<?= site_url('Absens/LaporanAbsenBulanan/TabelPeriode') ?>",
-			data: "&PilBulan=" + $('.pilBulan').val(),
+			data: "&PilBulan=" + $('.pilBulan').val() + "&PilTahun=" + $('.pilTahun').val,
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
