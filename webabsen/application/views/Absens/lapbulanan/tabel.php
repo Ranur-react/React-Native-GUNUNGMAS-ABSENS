@@ -1,6 +1,9 @@
 <?php $no = 1;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitungBulanan($d['rentangSet']);
+	if($jumlhaAlfaKotor<1){
+		$jumlhaAlfaKotor=1;
+	}
 	?>
 
 	<tr>
