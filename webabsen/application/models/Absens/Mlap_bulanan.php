@@ -60,6 +60,7 @@ class Mlap_bulanan extends CI_Model
 
 	{
 		$v = $kode['PilBulan'];
+		$thun=$kode['pilTahun'];
 		$a = $v . ' month';
 		$date = date_create('2020-12-01');
 		date_add($date, date_interval_create_from_date_string($a));
@@ -86,7 +87,7 @@ class Mlap_bulanan extends CI_Model
 				JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
 				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 				JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
-				WHERE  MONTH(tanggal)='$v' 
+				WHERE  MONTH(tanggal)='$v' & MONTH(tanggal)='$thun' 
 				GROUP BY `id_karyawan`")->result_array();
 	}
 
