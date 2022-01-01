@@ -16,6 +16,31 @@ if (!function_exists('rupiah')) {
         return $format;
     }
 }
+if (!function_exists('alfaHitung')) {
+	function alfaHitung($dateRange)
+	{
+		$dateStart = substr($dateRange, 12);
+		$dateStart = substr($dateRange, 0, 10);
+		$dateStart = date("Y-m-d", strtotime($dateStart));
+
+		$dateEndSet = substr($dateRange, 12);
+		//echo (date("Y-m-d", strtotime($dateEndSet)) >  date("Y-m-d")) !=true; 
+		if ((date("Y-m-d", strtotime($dateEndSet)) <=  date("Y-m-d")) != true) {
+			$dateEnd = date("Y-m-d");
+			//echo "alfa sampai tanggal skerang";
+			//
+		} else {
+			//echo "alfa sampai tanggal terakhir";
+			$dateEnd = date("Y-m-d", strtotime($dateEndSet));
+		}
+		
+
+		$date1 = new DateTime($dateStart);
+		$date2 = new DateTime($dateEnd);
+		$interval = $date1->diff($date2);
+		return $interval->days+1;
+	}
+}
 if (!function_exists('tahun_aktif')) {
     function tahun_aktif()
     {

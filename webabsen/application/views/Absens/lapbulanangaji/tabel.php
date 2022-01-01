@@ -5,7 +5,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= $d['nama_karyawan'] ?></td>
 		<td><?= $d['lokasi'] ?></td>
 		<td><?= $d['hadir'] ?></td>
-		<td><?= (30 - ($d['hadir'] + $d['sakit'])) ?></td>
+		<td><?= (alfaHitung($d['rentangSet']) - ($d['hadir'] + $d['sakit'])) ?></td>
 		<td><?= $d['sakit'] ?></td>
 
 		<td><?= $d['status_displin'] ?></td>
