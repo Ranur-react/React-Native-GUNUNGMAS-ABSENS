@@ -43,7 +43,7 @@ foreach ($dataVar as $d) {
 		</td>
 
 		<td>
-			<?= 'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
+			<?= "(".($jumlhaAlfaKotorFull).")  ".'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
 		</td>
 		<?php
 		//logika hadir dengan remisi libur
