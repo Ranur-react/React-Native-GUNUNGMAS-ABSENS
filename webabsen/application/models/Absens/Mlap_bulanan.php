@@ -41,7 +41,7 @@ class Mlap_bulanan extends CI_Model
 				 
 				  (SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` = 'i')
 				 AS izin,
-				 (SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_displin` != 'null'AND `status_displin` = '0')
+				 (SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_displin` != 'null' AND `status_displin` = '0')
 				 AS status_displin,
 				 tanggal,
 				 `rentangSet`,
@@ -74,7 +74,7 @@ class Mlap_bulanan extends CI_Model
 				 
 				  (SELECT COUNT(`status_kehadiran`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_kehadiran` = 'i')
 				 AS izin,
-				 (SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_displin` != 'null'AND `status_kehadiran` != '0')
+				 (SELECT COUNT(`status_displin`) FROM `detail_jadwal` WHERE `id_karyawan`=`id_karyawan_detail` AND `status_displin` != 'null' AND `status_displin` = '0')
 				 AS status_displin,
 				 tanggal,
 				`rentangSet`,
