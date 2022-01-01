@@ -3,6 +3,9 @@ $totsal = 0;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
 	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
+	if($jumlhaAlfaKotorFull<1){
+		$jumlhaAlfaKotorFull=1;
+	}
 ?>
 	<?php
 	$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotorFull) * 100;
