@@ -26,7 +26,7 @@ public function getCustome($p)
 	$a=$v.' month';
 	$date = date_create('2020-12-01');
 	date_add($date, date_interval_create_from_date_string($a));
-	$d=date_format($a, 'Y-m');
+	$d=date_format($date, 'Y-m');
 	$lok=$p['pilLokasi'];
 	
 	$qry=$this->db->query("SELECT * FROM `jadwal_absen_karyawan` JOIN `detail_jadwal` ON `detail_jadwal`.`id_jadwal_detail`=`jadwal_absen_karyawan`.`id_jadwal` JOIN  `set_waktu_absens` ON `set_waktu_absens`.`id_waktu` = `jadwal_absen_karyawan`.`id_shift_absensi` JOIN `set_lokasi` ON `set_lokasi`.`id_set_lokasi` = `jadwal_absen_karyawan`.`id_lokasi_absensi` JOIN `karyawan` ON `karyawan`.`id_karyawan`=`detail_jadwal`.`id_karyawan_detail` WHERE MONTH(`detail_jadwal`.`tanggal`)='$v' AND id_set_lokasi LIKE '$lok' ORDER BY `detail_jadwal`.`tanggal` ASC")->result_array();
