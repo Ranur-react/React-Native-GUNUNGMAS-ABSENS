@@ -1,5 +1,8 @@
 <?php //ob_start(); 
-foreach ($dataVar as $d) { ?>
+foreach ($dataVar as $d) {
+	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
+	
+	?>
 	?>
 	<!DOCTYPE html>
 
@@ -85,7 +88,7 @@ foreach ($dataVar as $d) { ?>
 					<table align="center" width="100%" border="0">
 						<tr>
 							<td width="50%">HADIR /ALFA </td>
-							<td align="right" width="50%">: <?= $d['hadir'] ?>/<?= rupiah(30 - ($d['hadir'] + $d['sakit'])) ?></td>
+							<td align="right" width="50%">: <?= $d['hadir'] ?>/<?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) < 0?0 : ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit']));  ?></td>
 						</tr>
 						<tr>
 							<td width="50%">Sakit </td>
