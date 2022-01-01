@@ -23,7 +23,7 @@ class Mlap_bulanan extends CI_Model
 				GROUP BY `id_karyawan`;")->result_array();
 	}
 	
-	public function showsSlips($kode,$empId)
+	public function showsSlips($kode,$empId, $tahun)
 
 	{
 	$v=$kode;
@@ -53,7 +53,7 @@ class Mlap_bulanan extends CI_Model
 				JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
 				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 				JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
-				WHERE  MONTH(tanggal)='$v' and id_karyawan='$empId'
+				WHERE  MONTH(tanggal)='$v' and  YEAR(tanggal)='$tahun' and id_karyawan='$empId'
 				GROUP BY `id_karyawan`")->result_array();
 	}
 	public function shows($kode)

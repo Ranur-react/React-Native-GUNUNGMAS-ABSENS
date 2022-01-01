@@ -83,8 +83,9 @@
 
 	var printSlipPerMOnth = (employee) => {
 		let kode = "/" + $('.pilBulan').val();
+		let kodeTahun = "/" + $('.pilTahun').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode + '/' + employee;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode + '/' + employee + /kodeTahun;
 		}, 100);
 	}
 	$(document).on('click', '.btncetak', function(e) {

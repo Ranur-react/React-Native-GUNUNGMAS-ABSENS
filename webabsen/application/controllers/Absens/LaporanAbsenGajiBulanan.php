@@ -28,8 +28,9 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 	{
 		$month = $this->uri->segment(4);
 		$emp = $this->uri->segment(5);
+		$tahun = $this->uri->segment(6);
 		$data = [
-			'dataVar'  => $this->Mlap_bulanan->showsSlips($month,$emp),
+			'dataVar'  => $this->Mlap_bulanan->showsSlips($month,$emp, $tahun),
 			'bulan' => $month,
 			
 		];
