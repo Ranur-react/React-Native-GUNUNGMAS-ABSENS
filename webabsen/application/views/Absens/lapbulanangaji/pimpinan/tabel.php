@@ -57,9 +57,7 @@ foreach ($dataVar as $d) {
 <?php $no++;
 	$totsal+=$gajiDiterima;
 } ?>
-<tfoot>
 	<tr>
 		<td colspan="6">Total Gaji Yang Dikeluarkan</td>
 		<td ><?= 'Rp.' . rupiah($totsal) ; ?></td>
 	</tr>
-</tfoot>
