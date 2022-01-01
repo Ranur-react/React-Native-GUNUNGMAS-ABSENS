@@ -1,11 +1,13 @@
 <?php $no = 1;
-foreach ($dataVar as $d) { ?>
+foreach ($dataVar as $d) { 
+	$jumlhaAlfaKotor= alfaHitung($d['rentangSet']);
+	?>
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 		<td><?= $d['nama_karyawan'] ?></td>
 		<td><?= $d['lokasi'] ?></td>
 		<td><?= $d['hadir'] ?></td>
-		<td><?= (alfaHitung($d['rentangSet']) - ($d['hadir'] + $d['sakit'])) ?></td>
+		<td><?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) ?></td>
 		<td><?= $d['sakit'] ?></td>
 
 		<td><?= $d['status_displin'] ?></td>
@@ -13,7 +15,7 @@ foreach ($dataVar as $d) { ?>
 		<td><?= 'TUK (PH>80%) = ' . 'Rp. ' . rupiah($d['tdisplin']) ?></td>
 
 		<?php
-		$persentasHadir = (($d['hadir'] + $d['sakit']) / 30) * 100;
+		$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotor) * 100;
 		?>
 		<td>
 			<table>
