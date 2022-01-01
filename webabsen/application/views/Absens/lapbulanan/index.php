@@ -68,7 +68,6 @@
 			type: "post",
 			url: "<?= site_url('Absens/LaporanAbsenBulanan/TabelPeriode') ?>",
 			data: "&PilBulan=" + $('.pilBulan').val() + "&PilTahun=" + $('.pilTahun').val(),
-			,
 			cache: false,
 			success: function(data) {
 				$('.isiTabel').html(data);
