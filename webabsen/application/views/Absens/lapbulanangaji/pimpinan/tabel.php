@@ -1,5 +1,5 @@
 <?php $no = 1;
-$totsal=0;
+$totsal = 0;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
 	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
@@ -55,9 +55,17 @@ foreach ($dataVar as $d) {
 		</td>
 	</tr>
 <?php $no++;
-	$totsal+=$gajiDiterima;
+	$totsal += $gajiDiterima;
 } ?>
-	<tr>
-		<td colspan="6">Total Gaji Yang Dikeluarkan</td>
-		<td ><?= 'Rp.' . rupiah($totsal) ; ?></td>
-	</tr>
+<tr>
+	<td colspan="5">
+		<h3>
+			Total Gaji Yang Dikeluarkan
+		</h3>
+	</td>
+	<td>
+		<h3>
+			<?= 'Rp.' . rupiah($totsal); ?>
+		</h3>
+	</td>
+</tr>
