@@ -43,7 +43,7 @@ foreach ($dataVar as $d) {
 		</td>
 
 		<td>
-			<?= "(".($jumlhaAlfaKotorFull).")  ".'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
+			<?= 'Rp.' . rupiah($d['pdisplin']) . " / Telat" ?>
 		</td>
 		<?php
 		//logika hadir dengan remisi libur
@@ -66,7 +66,7 @@ foreach ($dataVar as $d) {
 		</td>
 
 		<td>
-			<?= $gajiDiterima;  ?>
+			<?=  "(" . ($jumlhaAlfaKotorFull) . ")  " . $gajiDiterima;  ?>
 		</td>
 		<td>
 			<a href="#" onclick="printSlipPerMOnth('<?= $d['id_karyawan'] ?>')" class="btn btn-primary">
