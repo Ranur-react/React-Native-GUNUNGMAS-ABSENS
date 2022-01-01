@@ -13,6 +13,8 @@
 							<th>Id Karyawan</th>
 							<th>Nama Karyawan</th>
 							<th>Email</th>
+							<th>Jabatan</th>
+							<th>Gaji Pokok</th>
 							<th>No Handphone</th>
 							<th>Alamat</th>
 						</tr>
@@ -25,6 +27,8 @@
 								<td><?= $d['id_karyawan'] ?></td>
 								<td><?= $d['nama_karyawan'] ?></td>
 								<td><?= $d['email'] ?></td>
+								<td><?= $d['nama_jabatan'] ?></td>
+								<td><?= 'Rp. ' . rupiah($d['gapok']) ?></td>
 								<td><?= $d['nohp'] ?></td>
 								<td><?= $d['alamat'] ?></td>
 							</tr>
@@ -38,14 +42,11 @@
 </div>
 
 <script>
-	
 	$(document).on('click', '.btncetak', function(e) {
- 		let kode= "/" +$('.pangkat').val();
-                    	    setTimeout(function() {
-                                window.location.href = '<?= site_url('Absens/LaporanKaryawan/cetak')?>'+kode;
-                            }, 100);
+		let kode = "/" + $('.pangkat').val();
+		setTimeout(function() {
+			window.location.href = '<?= site_url('Absens/LaporanKaryawan/cetak') ?>' + kode;
+		}, 100);
 
 	});
-
 </script>
-

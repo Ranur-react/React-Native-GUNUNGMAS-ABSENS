@@ -1,63 +1,78 @@
-<?php //ob_start(); ?>
+<?php //ob_start(); 
+?>
 <!DOCTYPE html>
 
 <html>
+
 <head>
 	<title>Laporan Absensi Karyawan</title>
 	<style>
+		table {
+			border-collapse: collapse;
+			table-layout: fixed;
+		}
 
- table {border-collapse:collapse; table-layout:fixed;}
- table td {word-wrap:break-word;text-align: left;}
-
- </style>
+		table td {
+			word-wrap: break-word;
+			text-align: left;
+		}
+	</style>
 </head>
+
 <body onload="window.print()">
 	<h1 align="center">Laporan Data Karyawan
-		 <br>Konter Lorus Cellular</h1>
+		<br>Konter Lorus Cellular
+	</h1>
 	<h3 align="center">Kota Padang</h3>
 	<table align="center" width="60%" border="0">
-	
-	<!-- 	<tr>
+
+		<!-- 	<tr>
 		<td width="20%">Status Pangkat</td>
 		<td align="right" width="20%">: <?= $a; ?></td>
 		<td align="right" width="60%"> </td>
 	</tr> -->
-</table>
-<table align="center"  border="1">
-	<thead>
-						<tr>
-							<th class="text-center" width="5%">No.</th>
-							<th>Id Karyawan</th>
-							<th>Nama Karyawan</th>
-							<th>Email</th>
-							<th>No Handphone</th>
-							<th>Alamat</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php $no = 1;
-						foreach ($data as $d) { ?>
-							<tr>
-								<td class="text-center" width="40px"><?= $no . '.'; ?></td>
-								<td><?= $d['id_karyawan'] ?></td>
-								<td><?= $d['nama_karyawan'] ?></td>
-								<td><?= $d['email'] ?></td>
-								<td><?= $d['nohp'] ?></td>
-								<td><?= $d['alamat'] ?></td>
-							</tr>
-						<?php $no++;
-						} ?>
-					</tbody>
-	<tfoot>
-						
-					</tfoot>
-</table>
-<center><br>Padang,
-<?php echo date('d-M-y') ?>
-<br><br><br><br>
-<u>(......................................)</u><br>
-<b>Pemilik Toko</b></center>
+	</table>
+	<table align="center" border="1">
+		<thead>
+			<tr>
+				<th class="text-center" width="5%">No.</th>
+				<th>Id Karyawan</th>
+				<th>Nama Karyawan</th>
+				<th>Email</th>
+				<th>Jabatan</th>
+				<th>Gaji Pokok</th>
+				<th>No Handphone</th>
+				<th>Alamat</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $no = 1;
+			foreach ($data as $d) { ?>
+				<tr>
+					<td class="text-center" width="40px"><?= $no . '.'; ?></td>
+					<td><?= $d['id_karyawan'] ?></td>
+					<td><?= $d['nama_karyawan'] ?></td>
+					<td><?= $d['email'] ?></td>
+					<td><?= $d['nama_jabatan'] ?></td>
+					<td><?= 'Rp. ' . rupiah($d['gapok']) ?></td>
+					<td><?= $d['nohp'] ?></td>
+					<td><?= $d['alamat'] ?></td>
+				</tr>
+			<?php $no++;
+			} ?>
+		</tbody>
+		<tfoot>
+
+		</tfoot>
+	</table>
+	<center><br>Padang,
+		<?php echo date('d-M-y') ?>
+		<br><br><br><br>
+		<u>(......................................)</u><br>
+		<b>Pemilik Toko</b>
+	</center>
 </body>
+
 </html>
 <?php
 // $html = ob_get_contents();
