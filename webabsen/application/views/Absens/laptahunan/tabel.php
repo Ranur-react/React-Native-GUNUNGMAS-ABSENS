@@ -8,8 +8,8 @@ foreach ($dataVar as $d) {
 		<td><?= $d['lokasi'] ?></td>
 		<td><?= $d['hadir'] ?></td>
 		<td><?= $d['sakit'] ?></td>
-		<td><?= number_format(($d['hadir'] / 365) * 100, 0) . "%"; ?></td>
-		<td></td>
+		<td><?= ($d['hadir'] < 1 ? 0 : number_format(($d['hadir'] / 365) * 100, 0)). "%"; ?></td>
+		<td><?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) < 0 ? 0 : ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit']));   ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['status_displin'] ?></td>
 	</tr>
