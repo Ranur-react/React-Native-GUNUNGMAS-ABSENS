@@ -1,6 +1,7 @@
 <?php $no = 1;
 foreach ($dataVar as $d) { 
 	$jumlhaAlfaKotor= alfaHitung($d['rentangSet']);
+	$jumlhaAlfaKotorFull= alfaHitungBulanan($d['rentangSet']);
 	?>
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
@@ -15,7 +16,7 @@ foreach ($dataVar as $d) {
 		<td><?= 'TUK (PH>80%) = ' . 'Rp. ' . rupiah($d['tdisplin']) ?></td>
 
 		<?php
-		$persentasHadir = (($d['hadir'] + $d['sakit']) / 30) * 100;
+		$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotorFull) * 100;
 		?>
 		<td>
 			<table>
@@ -48,9 +49,9 @@ foreach ($dataVar as $d) {
 		//logika hadir dengan remisi libur
 		$potongan=0;
 		$gajiDiterima= 'Rp.' . rupiah($d['gapok']  + $tuk);
-		if (($d['hadir']+ $d['sakit']) < 28) {
+		if (($d['hadir']+ $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
 			$potongan = $d['status_displin'] * $d['pdisplin'];
-			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / 30) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
 		}
 		?>
 		<td>
