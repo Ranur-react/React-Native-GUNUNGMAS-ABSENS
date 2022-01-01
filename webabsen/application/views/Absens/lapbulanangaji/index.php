@@ -21,7 +21,16 @@
 
 							</select>
 						</div>
-
+						<div class="form-group">
+							<label>Pilih Tahun</label>
+							<select onchange="IsiTabel()" class="form-control pilTahun">
+								<?php
+								$i = 0;
+								for ($i = 2021; $i <= 2026; $i++) { ?>
+									<option value="<?= $i ?>" <?= date('Y') == $i ? "selected" : null ?>><?= $i . "\n" ?></option>
+								<?php  } ?>
+							</select>
+						</div>
 					</div>
 
 				</div>
