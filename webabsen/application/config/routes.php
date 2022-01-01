@@ -23,6 +23,7 @@ $route['lah'] = 'Absens/LaporanAbsenHarian';
 $route['lam'] = 'Absens/LaporanAbsenMingguan';
 $route['lab'] = 'Absens/LaporanAbsenBulanan';
 $route['lag'] = 'Absens/LaporanAbsenGajiBulanan';
+$route['lagp'] = 'Absens/LaporanAbsenGajiBulanan/pimpinan';
 
 $route['lat'] = 'Absens/LaporanAbsenTahunan';
 $route['lk'] = 'Absens/LaporanKaryawan';

@@ -1,0 +1,57 @@
+<?php $no = 1;
+foreach ($dataVar as $d) {
+	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
+	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
+?>
+	<?php
+	$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotorFull) * 100;
+	?>
+	<tr>
+		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
+		<td><?= $d['nama_karyawan'] ?></td>
+		<td><?= number_format($persentasHadir, 0) . '% ' ?>></td>
+		
+
+		<td><?= 'Rp.' . rupiah($d['gapok']) ?></td>
+
+
+		<td>
+			
+					<?php
+					$tuk = 0;
+					if ($persentasHadir < 80) {
+						$tuk = 0;
+					} else {
+						$tuk = $d['tdisplin'];
+					}
+					?>
+						<?= $persentasHadir < 80 ? '~ kehadiran belum cukup ' : 'Rp. ' . rupiah($d['tdisplin']) ?>				
+		</td>
+
+
+		<?php
+		//logika hadir dengan remisi libur
+		$potongan = 0;
+		$gajiDiterima = 'Rp.' . rupiah($d['gapok']  + $tuk);
+		if (($d['hadir'] + $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
+			$potongan = $d['status_displin'] * $d['pdisplin'];
+			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+		}
+		?>
+		<td>
+			<table>
+				<tr>
+					<td>
+						<?= 'Rp.' . rupiah($potongan) ?>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+
+		<td>
+			<?= $gajiDiterima;  ?>
+		</td>
+	</tr>
+<?php $no++;
+} ?>

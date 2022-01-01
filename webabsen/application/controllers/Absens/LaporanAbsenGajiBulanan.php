@@ -23,7 +23,17 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 		];
 		$this->template->display('Absens/lapbulanangaji/index', $data);
 	}
-
+public function pimpinan()
+{
+		$data = [
+			'title' => 'Laporan Gaji  Bulanan Pimpinan',
+			'page'  => 'Laporan Gaji  Bulanan Pimpinan',
+			'small' => '',
+			'urls'  => '<li class="active">Laporan Gaji  Bulanan Pimpinan</li>',
+			'data'  => $this->Mlap_bulanan->getall()
+		];
+		$this->template->display('Absens/lapbulanangaji/pimpinan/index', $data);
+}
 	public function cetak()
 	{
 		$month = $this->uri->segment(4);
@@ -46,5 +56,12 @@ class LaporanAbsenGajiBulanan extends CI_Controller
 
 		$this->load->view('Absens/lapbulanangaji/tabel',$data);
 		
+	}
+	public function TabelPeriodePimpinan()
+	{
+		$all = $this->input->post(null, TRUE);
+		$data['dataVar'] = $this->Mlap_bulanan->shows($all);
+
+		$this->load->view('Absens/lapbulanangaji/pimpinan/tabel', $data);
 	}
 }
