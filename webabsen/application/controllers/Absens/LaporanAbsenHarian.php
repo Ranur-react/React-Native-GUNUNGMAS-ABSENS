@@ -40,7 +40,7 @@ class LaporanAbsenHarian extends CI_Controller
 	public function TabelPeriode()
 	{
 		$all = $this->input->post(null, TRUE);
-		$data['dataVar'] = $this->Mlap_harian->shows($all);
+		$data['dataVar'] = $this->Mlap_harian->shows($all); 
 
 		$this->load->view('Absens/lapharian/tabel',$data);
 		

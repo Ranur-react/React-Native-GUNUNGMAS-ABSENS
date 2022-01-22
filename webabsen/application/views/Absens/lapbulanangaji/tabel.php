@@ -47,10 +47,10 @@ foreach ($dataVar as $d) {
 		</td>
 		<?php
 		//logika hadir dengan remisi libur
-		$potongan=0;
+		//$potongan=0;
+		$potongan = $d['status_displin'] * $d['pdisplin'];
 		$gajiDiterima= 'Rp.' . rupiah($d['gapok']  + $tuk);
 		if (($d['hadir']+ $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
-			$potongan = $d['status_displin'] * $d['pdisplin'];
 			$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
 		}
 		?>
