@@ -58,6 +58,7 @@ FROM `jadwal_absen_karyawan`
 JOIN `absen_masuk` ON id_jadwal=id_set_jadwal_Masuk 
 JOIN `karyawan` ON `id_karyawan`=`id_karyawan_masuk`
 WHERE `tanggal_masuk`='$dateStart' 
+GROUP BY jam_masuk
 ;
 ")->result_array();
 	}
