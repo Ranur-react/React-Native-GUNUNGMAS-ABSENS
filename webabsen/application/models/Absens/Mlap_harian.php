@@ -28,7 +28,18 @@ GROUP BY `id_absen_masuk`
 // WHERE tanggal_masuk ='$dateStart' AND status_kehadiran!='0'
 // ORDER BY tanggal_masuk DESC
 // ")->result_array();
-		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk, jam_keluar,foto_masuk,foto_keluar,
+		return $this->db->query("SELECT `nama_karyawan`,`tanggal_masuk` AS tanggal,jam_masuk,foto_masuk, 
+(SELECT `jam_keluar` 
+	FROM `absen_keluar` 
+	WHERE `id_set_jadwal_keluar`=`id_jadwal` 
+	AND `tanggal_keluar`=tanggal_masuk  
+	AND `id_karyawan_keluar`=`id_karyawan`) 
+	AS jam_keluar,
+(SELECT foto_keluar 
+	FROM `absen_keluar` 
+	WHERE `id_set_jadwal_keluar`=`id_jadwal` 
+	AND `tanggal_keluar`=tanggal_masuk  
+	AND `id_karyawan_keluar`=`id_karyawan`) AS foto_keluar,
 (SELECT status_kehadiran 
 	FROM `detail_jadwal` 
 	WHERE `id_jadwal_detail`=`id_jadwal` 
@@ -46,8 +57,7 @@ GROUP BY `id_absen_masuk`
 FROM `jadwal_absen_karyawan`
 JOIN `absen_masuk` ON id_jadwal=id_set_jadwal_Masuk 
 JOIN `karyawan` ON `id_karyawan`=`id_karyawan_masuk`
-LEFT JOIN `absen_keluar` ON `id_karyawan_keluar`=id_karyawan
-WHERE `tanggal_masuk`='$dateStart' OR `tanggal_keluar`= '$dateStart'
+WHERE `tanggal_masuk`='$dateStart' 
 ;
 ")->result_array();
 	}
