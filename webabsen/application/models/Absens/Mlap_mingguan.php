@@ -50,7 +50,7 @@ class Mlap_mingguan extends CI_Model
 		// 				JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 		// 				GROUP BY `id_karyawan`;
 		// 			")->result_array();
-		return $this->db->query("SELECT nama_karyawan,attCount('1',$dateStart,$dateEnd,id_karyawan) AS hadir,
+		return $this->db->query("SELECT nama_karyawan,`lokasi`,attCount('1',$dateStart,$dateEnd,id_karyawan) AS hadir,
 attCount('s',$dateStart,$dateEnd,id_karyawan) AS sakit,
 `rentangSet`,
 attCountDisplin('1',$dateStart,$dateEnd,id_karyawan)  AS status_displin
