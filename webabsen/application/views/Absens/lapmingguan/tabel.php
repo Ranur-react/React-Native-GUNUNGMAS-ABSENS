@@ -7,7 +7,7 @@ foreach ($dataVar as $d) {
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 		<td><?= $d['nama_karyawan'] ?></td>
 		<td><?= $d['lokasi'] ?></td>
-		<td><?= $d['hadir'] ?></td>
+		<td><?= $d['hadir']+ $d['status_displin'] ?></td>
 		<td><?= $d['sakit'] ?></td>
 		<td><?= $d['alfa'] ?></td>
 		<td><?= $d['status_displin'] ?></td>
