@@ -87,9 +87,10 @@
 		}, 100);
 	}
 	$(document).on('click', '.btncetak', function(e) {
-		let kode = "/" + $('.pilBulan').val();
+		let bulan = "/" + $('.pilBulan').val();
+		let tahun = "/" + $('.pilTahun').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetakpimpinan/') ?>' + bulan + '/' +  tahun;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetakpimpinan/') ?>' + bulan + '/' + tahun;
 		}, 100);
 
 	});
