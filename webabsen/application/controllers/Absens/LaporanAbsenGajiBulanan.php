@@ -70,8 +70,8 @@ public function pimpinan()
 		$all['PilTahun'] = $this->uri->segment(6);
 		$data = [
 			'dataVar'  => $this->Mlap_bulanan->shows($all),
-			'bulan' => $all['PilBulan'],
-			'tahun' => $all['PilTahun'],
+			'bulan' => $this->uri->segment(4),
+			'tahun' => $this->uri->segment(6),
 
 		];
 		$this->load->view('Absens/lapbulanangaji/pimpinan/cetak', $data);

@@ -25,7 +25,7 @@
 		<h1 align="center">SLIP PEMBAYARAN GAJI
 			<br>LORUS CELULER
 		</h1>
-		<h3 align="center">PERIODE : <?= $bulan . ' - ' . $tahun ?></h3>
+		<h3 align="center">PERIODE : <?=  '1 - ' . $bulan . ' - ' . $tahun . ' - ' . '30 - '. $bulan.' - '.$tahun ?></h3>
 
 		<center><br>Padang,
 			<?php echo date('d-M-y') ?>
