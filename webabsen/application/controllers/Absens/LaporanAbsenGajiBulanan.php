@@ -71,7 +71,7 @@ public function pimpinan()
 		$data = [
 			'dataVar'  => $this->Mlap_bulanan->shows($all),
 			'bulan' => $this->uri->segment(4),
-			'tahun' => $this->uri->segment(6),
+			'tahun' => $this->uri->segment(5),
 
 		];
 		$this->load->view('Absens/lapbulanangaji/pimpinan/cetak', $data);
