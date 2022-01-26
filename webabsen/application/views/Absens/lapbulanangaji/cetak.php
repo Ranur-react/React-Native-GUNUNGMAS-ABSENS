@@ -1,6 +1,6 @@
 <?php //ob_start(); 
 foreach ($dataVar as $d) {
-	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
+	$jumlhaAlfaKotor = alfaHitungBulanan($d['rentangSet'])+1;
 	
 	?>
 	?>

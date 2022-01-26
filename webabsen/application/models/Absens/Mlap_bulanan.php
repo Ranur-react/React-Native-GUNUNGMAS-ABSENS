@@ -55,7 +55,7 @@ class Mlap_bulanan extends CI_Model
 		// 		JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
 		// 		WHERE  MONTH(tanggal)='$v' and  YEAR(tanggal)='$tahun' and id_karyawan='$empId'
 		// 		GROUP BY `id_karyawan`")->result_array();
-		return $this->db->query("SELECT `id_karyawan`,nama_karyawan,`lokasi`,
+		return $this->db->query("SELECT `id_karyawan`,nama_karyawan,`lokasi`,nama_jabatan,
 attCount('1',
 STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
 STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
