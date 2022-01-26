@@ -73,7 +73,6 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-database-menu"></i> Laporan Gaji <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="<?= site_url('lag') ?>">Laporan Slip</a></li>
 					<li><a href="<?= site_url('lagp') ?>">Laporan Gaji Karywan</a></li>
 				</ul>
 			</li>

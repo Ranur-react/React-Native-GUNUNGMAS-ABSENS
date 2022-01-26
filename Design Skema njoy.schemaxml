@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">gunn1374_wezidatabse</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="detail_jadwal" view="colnames">
+<left>233</left>
+<top>171</top>
+<width>157</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `detail_jadwal` (
+  `id_jadwal_detail` char(50) DEFAULT NULL,
+  `id_karyawan_detail` char(50) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `status_kehadiran` enum('1','0','i','s','m') DEFAULT '0',
+  `status_displin` enum('0','1') DEFAULT NULL,
+  KEY `id_jadwal_detail` (`id_jadwal_detail`),
+  KEY `detail_jadwal_ibfk_2` (`id_karyawan_detail`),
+  CONSTRAINT `detail_jadwal_ibfk_1` FOREIGN KEY (`id_jadwal_detail`) REFERENCES `jadwal_absen_karyawan` (`id_jadwal`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `detail_jadwal_ibfk_2` FOREIGN KEY (`id_karyawan_detail`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="absen_masuk" view="colnames">
+<left>681</left>
+<top>181</top>
+<width>167</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `absen_masuk` (
+  `id_absen_masuk` char(30) NOT NULL,
+  `id_karyawan_masuk` char(30) DEFAULT NULL,
+  `id_set_jadwal_Masuk` char(30) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `tanggal_masuk` date DEFAULT NULL,
+  `latitude_masuk` varchar(50) DEFAULT NULL,
+  `longitude_masuk` varchar(50) DEFAULT NULL,
+  `foto_masuk` varchar(250) DEFAULT NULL,
+  `ket` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_absen_masuk`),
+  KEY `id_karyawan_masuk` (`id_karyawan_masuk`),
+  KEY `id_set_waktu_masuk` (`id_set_jadwal_Masuk`),
+  CONSTRAINT `absen_masuk_ibfk_1` FOREIGN KEY (`id_karyawan_masuk`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `absen_masuk_ibfk_2` FOREIGN KEY (`id_set_jadwal_Masuk`) REFERENCES `jadwal_absen_karyawan` (`id_jadwal`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="karyawan" view="colnames">
+<left>470</left>
+<top>70</top>
+<width>141</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `karyawan` (
+  `id_karyawan` char(10) NOT NULL,
+  `nama_karyawan` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `nohp` varchar(15) DEFAULT NULL,
+  `alamat` varchar(50) DEFAULT NULL,
+  `jabatan_id` char(10) DEFAULT NULL,
+  PRIMARY KEY (`id_karyawan`),
+  KEY `jabatan_id` (`jabatan_id`),
+  CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`jabatan_id`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="jadwal_absen_karyawan" view="colnames">
+<left>481</left>
+<top>361</top>
+<width>146</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `jadwal_absen_karyawan` (
+  `id_jadwal` char(30) NOT NULL,
+  `rentangSet` varchar(250) DEFAULT NULL,
+  `id_shift_absensi` char(30) DEFAULT NULL,
+  `id_lokasi_absensi` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_jadwal`),
+  KEY `id_lokasi_absensi` (`id_lokasi_absensi`),
+  KEY `id_shift_absensi` (`id_shift_absensi`),
+  CONSTRAINT `jadwal_absen_karyawan_ibfk_1` FOREIGN KEY (`id_lokasi_absensi`) REFERENCES `set_lokasi` (`id_set_lokasi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `jadwal_absen_karyawan_ibfk_2` FOREIGN KEY (`id_shift_absensi`) REFERENCES `set_waktu_absens` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="absen_keluar" view="colnames">
+<left>997</left>
+<top>121</top>
+<width>167</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `absen_keluar` (
+  `id_absen_keluar` char(30) NOT NULL,
+  `id_karyawan_keluar` char(30) DEFAULT NULL,
+  `id_set_jadwal_keluar` char(30) DEFAULT NULL,
+  `jam_keluar` time DEFAULT NULL,
+  `tanggal_keluar` date DEFAULT NULL,
+  `latitude_keluar` varchar(50) DEFAULT NULL,
+  `longitude_keluar` varchar(50) DEFAULT NULL,
+  `foto_keluar` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_absen_keluar`),
+  KEY `id_karyawan_keluar` (`id_karyawan_keluar`),
+  KEY `id_set_waktu_keluar` (`id_set_jadwal_keluar`),
+  CONSTRAINT `absen_keluar_ibfk_1` FOREIGN KEY (`id_karyawan_keluar`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
