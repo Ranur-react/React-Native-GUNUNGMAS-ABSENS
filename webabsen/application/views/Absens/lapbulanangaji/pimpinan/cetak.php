@@ -106,7 +106,7 @@
 				$totsal;
 			} ?>
 			<tr>
-				<td colspan="5">
+				<td colspan="7">
 					<h3>
 						Total Gaji Yang Dikeluarkan
 					</h3>
