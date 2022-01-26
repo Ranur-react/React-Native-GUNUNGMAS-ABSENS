@@ -83,25 +83,25 @@ GROUP BY id_karyawan;
 ")->result_array();
 		return $this->db->query("SELECT `id_karyawan`,nama_karyawan,`lokasi`,
 attCount('1',
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
 id_karyawan) AS hadir,
 
 attCount('0',
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
 id_karyawan) AS alfa,
 
 attCount('s',
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
 
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
 id_karyawan) AS sakit,
 
 attCountDisplin('1',
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 1, 2),'-',SUBSTRING(`rentangSet`, 4, 2)),'%Y-%m-%d'),
 
-STR_TO_DATE(CONCAT('$thun-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
+STR_TO_DATE(CONCAT('2022-',SUBSTRING(`rentangSet`, 14, 2),'-',SUBSTRING(`rentangSet`, 17, 2)),'%Y-%m-%d'),
 id_karyawan)  AS status_displin,
 				 tanggal,
 				`rentangSet`,
