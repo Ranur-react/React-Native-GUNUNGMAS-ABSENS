@@ -2,7 +2,11 @@
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header with-border">
-
+				<div class="row">
+					<div class="col-xs-2">
+						<button class="btn btn-primary btncetak"><i class="fa fa-print"></i> Cetak Laporan</button>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-xs-8">
 					</div>
@@ -85,7 +89,7 @@
 	$(document).on('click', '.btncetak', function(e) {
 		let kode = "/" + $('.pilBulan').val();
 		setTimeout(function() {
-			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetak') ?>' + kode;
+			window.location.href = '<?= site_url('Absens/LaporanAbsenGajiBulanan/cetakpimpinan/') ?>' + bulan + '/' +  tahun;
 		}, 100);
 
 	});

@@ -64,4 +64,16 @@ public function pimpinan()
 
 		$this->load->view('Absens/lapbulanangaji/pimpinan/tabel', $data);
 	}
+	public function cetakpimpinan()
+	{
+		$all['PilBulan'] = $this->uri->segment(4);
+		$all['PilTahun'] = $this->uri->segment(6);
+		$data = [
+			'dataVar'  => $this->Mlap_bulanan->shows($all),
+			'bulan' => $all['PilBulan'],
+			'tahun' => $all['PilTahun'],
+
+		];
+		$this->load->view('Absens/lapbulanangaji/pimpinan/cetak', $data);
+	}
 }
