@@ -87,7 +87,7 @@ foreach ($dataVar as $d) {
 					<table align="center" width="100%" border="0">
 						<tr>
 							<td width="50%">HADIR /ALFA </td>
-							<td align="right" width="50%">: <?= $d['hadir'] ?>/<?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit']+ $d['status_displin'])) < 0?0 :$d['alfa'] ;  ?></td>
+							<td align="right" width="50%">: <?= $d['hadir']+ $d['status_displin'] ?>/<?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit']+ $d['status_displin'])) < 0?0 :$d['alfa'] ;  ?></td>
 						</tr>
 						<tr>
 							<td width="50%">Sakit </td>
