@@ -1,6 +1,6 @@
 <?php $no = 1;
 foreach ($dataVar as $d) {
-	$jumlhaAlfaKotor = alfaHitungBulanan($d['rentangSet']);
+	$jumlhaAlfaKotor = alfaHitungBulanan($d['rentangSet'])+1;
 	if($jumlhaAlfaKotor<1){
 		$jumlhaAlfaKotor=30;
 	}
@@ -10,10 +10,10 @@ foreach ($dataVar as $d) {
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
 		<td><?= $d['nama_karyawan'] ?></td>
 		<td><?= $d['lokasi'] ?></td>
-		<td><?= $d['hadir'] ?></td>
+		<td><?= $d['hadir']+ $d['status_disiplin'] ?></td>
 		<td><?= $d['sakit'] ?></td>
-		<td><?= number_format(($d['hadir'] / $jumlhaAlfaKotor) * 100, 0) . "%"; ?></td>
-		<td><?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) < 0 ? 0 : ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])); ?></td>
+		<td><?= number_format((($d['hadir']+ $d['sakit']+ $d['status_disiplin']) / $jumlhaAlfaKotor) * 100, 0) . "%"; ?></td>
+		<td><?= $d['alfa'] ?></td>
 		<td><?= $d['status_displin'] ?></td>
 
 	</tr>
