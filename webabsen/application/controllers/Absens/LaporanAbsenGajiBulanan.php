@@ -67,7 +67,7 @@ public function pimpinan()
 	public function cetakpimpinan()
 	{
 		$all['PilBulan'] = $this->uri->segment(4);
-		$all['PilTahun'] = $this->uri->segment(6);
+		$all['PilTahun'] = $this->uri->segment(5);
 		$data = [
 			'dataVar'  => $this->Mlap_bulanan->shows($all),
 			'bulan' => $this->uri->segment(4),
