@@ -2,13 +2,13 @@
 $totsal = 0;
 foreach ($dataVar as $d) {
 	$jumlhaAlfaKotor = alfaHitung($d['rentangSet']);
-	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet']);
+	$jumlhaAlfaKotorFull = alfaHitungBulanan($d['rentangSet'])+1;
 	if ($jumlhaAlfaKotorFull < 1) {
 		$jumlhaAlfaKotorFull = 30;
 	}
 ?>
 	<?php
-	$persentasHadir = (($d['hadir'] + $d['sakit']) / $jumlhaAlfaKotorFull) * 100;
+	$persentasHadir = (($d['hadir'] + $d['status_displin'] + $d['sakit']) / $jumlhaAlfaKotorFull) * 100;
 	?>
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
@@ -37,11 +37,12 @@ foreach ($dataVar as $d) {
 		//logika hadir dengan remisi libur
 		$potongan = 0;
 		$formula = $d['gapok']  + $tuk;
+		$potongan = $d['status_displin'] * $d['pdisplin'];
+	if (($d['hadir'] + $d['status_displin'] + $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
+		$formula = (($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['status_displin'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk;
 
-		if (($d['hadir'] + $d['sakit']) < $jumlhaAlfaKotorFull - 2) {
-			$potongan = $d['status_displin'] * $d['pdisplin'];
-			$formula = (($d['gapok'] / $jumlhaAlfaKotorFull) * ($d['hadir'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk;
-		}
+	}
+		
 		$gajiDiterima = 'Rp.' . rupiah($formula);
 		$totsal += $formula;
 

@@ -30,7 +30,7 @@ JOIN  `detail_jadwal` ON `id_jadwal_detail`=`id_jadwal`
 JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
 JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
-WHERE `rentangSet` LIKE '%01/%' AND `rentangSet` LIKE '%/2022%'
+WHERE `rentangSet` LIKE '%02/%' AND `rentangSet` LIKE '%/2022%'
 GROUP BY id_karyawan;
 
 SELECT `id_karyawan`,`nama_karyawan`, `lokasi`,`nama_jabatan`,
