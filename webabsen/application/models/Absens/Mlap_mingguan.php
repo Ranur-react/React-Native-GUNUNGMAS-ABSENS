@@ -51,7 +51,7 @@ class Mlap_mingguan extends CI_Model
 		// 				GROUP BY `id_karyawan`;
 		// 			")->result_array();
 		return $this->db->query("SELECT nama_karyawan,`lokasi`,attCount('1','$dateStart','$dateEnd',id_karyawan) AS hadir,
-		attCount('0','2022-01-07','2022-01-14',id_karyawan) AS alfa,
+		attCount('0','$dateStart','$dateEnd',id_karyawan) AS alfa,
 attCount('s','$dateStart','$dateEnd',id_karyawan) AS sakit,
 `rentangSet`,
 attCountDisplin('1','$dateStart','$dateEnd',id_karyawan)  AS status_displin
