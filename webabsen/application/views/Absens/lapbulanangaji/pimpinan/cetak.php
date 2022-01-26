@@ -25,7 +25,7 @@
 		<br>LORUS CELULER
 	</h1>
 	<h3 align="center">PERIODE : <?= '1- ' . $bulan . '-' . $tahun . ' s/d ' . '30-' . $bulan . '-' . $tahun ?></h3>
-	<table class="table table-bordered table-striped data-tabel">
+	<table align="center" border="1" class="table table-bordered table-striped data-tabel">
 		<thead>
 			<tr>
 				<th class="text-center">No.</th>
