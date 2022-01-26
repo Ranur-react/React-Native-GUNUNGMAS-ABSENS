@@ -1,7 +1,7 @@
 <?php $no = 1;
 foreach ($dataVar as $d) { 
 	$jumlhaAlfaKotor= alfaHitung($d['rentangSet']);
-	$jumlhaAlfaKotorFull= alfaHitungBulanan($d['rentangSet']);
+	$jumlhaAlfaKotorFull= $d['alfa']+$d['hadir'];;
 	?>
 	<tr>
 		<td class="text-center" width="40px"><?= $no . '.'; ?></td>
