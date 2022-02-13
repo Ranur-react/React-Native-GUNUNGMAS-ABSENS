@@ -149,7 +149,7 @@ JOIN `karyawan` ON `id_karyawan` =`id_karyawan_detail`
 JOIN `set_lokasi` ON `id_set_lokasi` =`id_lokasi_absensi`
 JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan`=karyawan.`jabatan_id`
 WHERE `rentangSet` LIKE '%$v/%' AND `rentangSet` LIKE '%/$thun%'
-GROUP BY id_karyawan;")->result_array();
+GROUP BY id_karyawan,rentangSet;")->result_array();
 // 				return $this->db->query("SELECT `id_karyawan`,nama_karyawan,`lokasi`,attCount('1','$thun-$v-1','$thun-$v-31',id_karyawan) AS hadir,
 // attCount('0','$thun-$v-1','$thun-$v-31',id_karyawan) AS alfa,
 // attCount('s','$thun-$v-1','$thun-$v-31',id_karyawan) AS sakit,
