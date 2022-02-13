@@ -25,7 +25,7 @@ foreach ($dataVar as $d) {
 		</style>
 	</head>
 	<?php
-	$persentasHadir = (($d['hadir'] + $d['status_displin'] + $d['sakit']) / $jumlhaAlfaKotor) * 100;
+	$persentasHadir = (($d['hadir']  + $d['sakit']) / $jumlhaAlfaKotor) * 100;
 	?>
 	<?php
 	$tuk = 0;
@@ -39,8 +39,8 @@ foreach ($dataVar as $d) {
 	//logika hadir dengan remisi libur
 	$potongan = $d['status_displin'] * $d['pdisplin'];
 	$gajiDiterima = 'Rp.' . rupiah($d['gapok'] - $potongan  + $tuk);
-	if (($d['hadir'] + $d['status_displin'] + $d['sakit']) < $jumlhaAlfaKotor - 2) {
-		$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotor) * ($d['hadir'] + $d['status_displin'] + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
+	if (($d['hadir']  + $d['sakit']) < $jumlhaAlfaKotor - 2) {
+		$gajiDiterima = 'Rp.' . rupiah((($d['gapok'] / $jumlhaAlfaKotor) * ($d['hadir']  + $d['sakit'])) - ($d['status_displin'] * $d['pdisplin']) + $tuk);
 	}
 	?>
 
@@ -87,7 +87,7 @@ foreach ($dataVar as $d) {
 					<table align="center" width="100%" border="0">
 						<tr>
 							<td width="50%">HADIR /ALFA </td>
-							<td align="right" width="50%">: <?= $d['hadir']+ $d['status_displin'] ?>/<?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit']+ $d['status_displin'])) < 0?0 :$d['alfa'] ;  ?></td>
+							<td align="right" width="50%">: <?= $d['hadir'] ?>/<?= ($jumlhaAlfaKotor - ($d['hadir'] + $d['sakit'])) < 0?0 :$d['alfa'] ;  ?></td>
 						</tr>
 						<tr>
 							<td width="50%">Sakit </td>
