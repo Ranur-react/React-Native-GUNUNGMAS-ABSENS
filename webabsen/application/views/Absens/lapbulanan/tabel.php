@@ -12,7 +12,7 @@ foreach ($dataVar as $d) {
 		<td><?= $d['lokasi'] ?></td>
 		<td><?= $d['hadir']+ $d['status_displin'] ?></td>
 		<td><?= $d['sakit'] ?></td>
-		<td><?= number_format((($d['hadir']+ $d['sakit']+ $d['status_displin']) / $jumlhaAlfaKotor) * 100, 0) . "%"; ?></td>
+		<td><?= number_format((($d['hadir']+ $d['sakit']) / $jumlhaAlfaKotor) * 100, 0) . "%"; ?></td>
 		<td><?= $d['alfa'] ?></td>
 		<td><?= $d['status_displin'] ?></td>
 
