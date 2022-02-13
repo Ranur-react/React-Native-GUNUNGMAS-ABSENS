@@ -34,7 +34,7 @@ class Absen extends CI_Controller
 		$JAM = $_POST['jam_Capture'];
 		$LA = $_POST['la'];
 		$LO = $_POST['lo'];
-		$Displin = $_POST['Displin'];
+		$Displin = $_POST['Displin']==1|| $_POST['Displin'] == '1'?0:1;
 		$FOTO = base_url() . $URI;
 		$_POST['uridest'] = $URI;
 

@@ -117,8 +117,6 @@
 					</h3>
 				</td>
 			</tr>
-
-
 		</tbody>
 	</table>
 	<center><br>Padang,
