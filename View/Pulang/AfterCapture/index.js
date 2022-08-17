@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, {Component, useState} from 'react';
 import {
   View,
@@ -12,66 +14,43 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Button,
+  Modal,
+  TouchableHighlight,
 } from 'react-native';
 
-import {CommonActions} from '@react-navigation/native';
-import User from '../../assets/icons/user';
-import Svgicon from '../../assets/icons/Svgicon';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNFetchBlob from 'rn-fetch-blob'; //Libarary Untuk mengirim File dengan API
+
+import User from './../../../assets/icons/user';
+import Svgicon from './../../../assets/icons/Svgicon';
+import Deskripsiabsen from './TitleDesk';
+import ImageCamera from './ImageCamera';
+
+const {width: WIDTH} = Dimensions.get('window');
+const {height: HEIGHT} = Dimensions.get('window');
+
 //-----Conditions
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment-timezone';
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance, getPreciseDistance} from 'geolib';
-import {APIDOMAINWEB} from '../../assets/containt';
-import {showToastWithGravityAndOffset} from '../../assets/_Toasview';
+import {APIDOMAINWEB} from './../../../assets/containt';
+import {showToastWithGravityAndOffset} from './../../../assets/_Toasview';
 
 // End----Compoonet KOndisition
-let Menu = props => {
-  let code = [];
-  let opasisi = 1;
-  let disable = false;
-  const Navigation = props.props.props.navigation;
-  let buttonactions = () => {
-    Navigation.navigate(props.Destinations);
-  };
-  if (props.status) {
-    disable = false;
-    opasisi = '1';
-  } else {
-    disable = true;
-    opasisi = '0.5';
-  }
-  code.push(
-    <TouchableOpacity
-      disabled={disable}
-      style={styles.menuCard}
-      onPress={buttonactions}>
-      <View style={styles.icon}>
-        <Svgicon
-          key={170}
-          name={props.icon}
-          color={props.color}
-          opacity={opasisi}
-        />
-        <Text style={styles.labelIcon}>{props.label}</Text>
-      </View>
-    </TouchableOpacity>,
-  );
-  return code;
-};
 
-class MenuLoop extends Component {
+export default class MyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       LoadingState: true,
+      LoadingUpload: false,
+
       TanggalNow: '-',
       Jarak: '',
       Pjarak: '',
       tanggal: '',
 
-      StatusPulang: 'false',
-      StatusMasuk: 'false',
       Jmasuk: '',
       JmasukState: '',
       JmasukEnd: '',
@@ -87,17 +66,16 @@ class MenuLoop extends Component {
 
       jamNow: '',
       jamData: '',
-      MasukState: {
-        pesan: '',
-        state: false,
-      },
-      PulangState: {
-        pesan: '',
-        state: false,
-      },
+      MasukState: '',
+      PulangState: '',
+
+      datareact: 86,
+      dataImage: '',
+      user: '',
     };
     //--TimeScheduleConfigurasi
   }
+
   ProseJadwal = () => {
     const tanggalSekarang = () => {
       var months = [
@@ -158,6 +136,8 @@ class MenuLoop extends Component {
       //NOW------
       let now = moment().tz('Asia/Jakarta').format('HH:mm:ss');
       this.setState({jamNow: JSON.stringify(now)});
+      this.setState({jamNowID: now});
+
       let H_now = 0;
       let M_now = 0;
       H_now = this.state.jamNow.split(':')[0];
@@ -184,13 +164,11 @@ class MenuLoop extends Component {
         return false;
       }
     };
-    const Formula_Jadwal_masuk = async () => {
+    const Formula_Jadwal_masuk = () => {
       let masuk = this.state.JmasukState;
       let masukEnd = this.state.JmasukEndState;
       let toler = this.state.ToleransiState;
       let val = 'Log';
-      Getlokas();
-
       if (masuk) {
         val = 'Jam Absen Belum Masuk ';
         this.setState({
@@ -201,50 +179,29 @@ class MenuLoop extends Component {
         });
       } else {
         if (masukEnd) {
-          if (this.state.Jarak < this.state.Range) {
-            val = 'Silahkan Ambil Absen Masuk Pada Jam Ini';
+          val = 'Silahkan Ambil Absen Masuk Pada Jam Ini';
+          this.setState({
+            MasukState: {
+              pesan: val,
+              Displin: '1',
+              state: true,
+            },
+          });
+        } else {
+          if (toler) {
+            val = 'Terlambat';
             this.setState({
               MasukState: {
                 pesan: val,
+                Displin: '0',
                 state: true,
               },
             });
           } else {
-            val =
-              'Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Jangan sampe Terlambat';
+            val = 'Anda Masuk Diluar Jam Ketentuan';
             this.setState({
               MasukState: {
-                pesan: val,
-                state: false,
-              },
-            });
-          }
-        } else {
-          if (toler) {
-            console.log('Pjarak');
-            console.log(this.state.Jarak);
-            if (this.state.Jarak < this.state.Range) {
-              val = 'Terlambat';
-              this.setState({
-                MasukState: {
-                  pesan: val,
-                  state: true,
-                },
-              });
-            } else {
-              val =
-                'Segera Menuju Kantor untuk mengaktifkan Tombol Masuk,Anda Terlambat Gak ada waktu lagi.. cepetan!!!';
-              this.setState({
-                MasukState: {
-                  pesan: val,
-                  state: false,
-                },
-              });
-            }
-          } else {
-            val = 'Jam Masuk Diluar Jam Ketentuan';
-            this.setState({
-              MasukState: {
+                Displin: '0',
                 pesan: val,
                 state: false,
               },
@@ -380,6 +337,15 @@ class MenuLoop extends Component {
     GetDataFromDB();
   };
   UNSAFE_componentWillMount() {
+    const getDataJson = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('Json_Storage');
+        const data = JSON.parse(jsonValue);
+        this.setState({dataImage: data});
+      } catch (e) {
+        Alert.alert(e);
+      }
+    };
     const getDataLoginJson = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('Json_Login');
@@ -390,6 +356,7 @@ class MenuLoop extends Component {
           console.log('Gk Ada User');
         } else {
           console.log('Ada User');
+          getDataJson();
           this.ProseJadwal();
         }
         showToastWithGravityAndOffset('data user didapatkan');
@@ -405,104 +372,228 @@ class MenuLoop extends Component {
     }
   }
 
-  render() {
-    const ProsesTimePulang = () => {
-      if (this.state.PulangState.state) {
-        if (!this.state.jadwalJSON) {
-          return false;
-        } else {
-          if (this.state.jadwalJSON.status_kehadiran == 'm') {
-            return true;
+  InserttoSQL = async () => {
+    console.log('mulai  upload');
+    console.log('mulai  cek session');
+
+    console.log(this.state.user);
+    // const data = new FormData();
+    const locaLurl = APIDOMAINWEB + '/Triger/Absen/';
+    let KirimBlob = async () => {
+      await RNFetchBlob.fetch(
+        'POST',
+        locaLurl,
+        {
+          Authorization: 'Bearer access-token',
+          otherHeader: 'foo',
+          'Content-Type': 'multipart/form-data',
+        },
+        [
+          {
+            name: 'imagos',
+            filename: this.state.dataImage.fileName,
+            type: 'image/jpeg',
+            data: this.state.dataImage.base64,
+          }, //PPOST FILE dengan "name" sebagai variabel utama
+          {name: 'ID', data: this.state.user.IDkaryawan},
+          {name: 'NamaKaryawan', data: this.state.user.namakaryawan},
+          {name: 'StatusAbsen', data: 'Pulang'},
+          {name: 'id_jadwal', data: this.state.jadwalJSON.id_jadwal},
+          {name: 'jam_Capture', data: this.state.jamNowID},
+          {name: 'Displin', data: 'null'},
+          {name: 'la', data: this.state.la.toString()},
+          {name: 'lo', data: this.state.lo.toString()},
+        ],
+      )
+        .then(response => {
+          const r = JSON.parse(response.data);
+          if (r.Respond == true) {
+            console.log('Bisa');
+            this.setState({LoadingUpload: true});
+            setTimeout(() => {
+              this.setState({LoadingUpload: !this.state.LoadingUpload});
+              this.props.navigation.navigate('Home');
+            }, 5000);
+            console.log(r);
           } else {
-            return false;
+            console.log('Gagal');
+            console.log(r);
           }
+        })
+        .catch(e => {
+          console.log('Terjadi Eror');
+          console.log(e);
+        });
+    };
+    KirimBlob();
+  };
+  GoBackAndReClickCamera = async () => {
+    this.props.navigation.goBack();
+  };
+
+  render() {
+    return (
+      <View style={styles.Backcontainer}>
+        <View style={styles.container}>
+          <View style={styles.Textcontainer}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => this.props.navigation.goBack()}>
+              <Svgicon name="Back" color="black" />
+            </TouchableOpacity>
+            <Deskripsiabsen />
+            {
+              // <Text> </Text>
+              <ImageCamera
+                ShootTime={this.state.jamNow + '' + this.state.TanggalNow}
+              />
+            }
+          </View>
+          <View style={styles.ButtonBox}>
+            <TouchableOpacity
+              onPress={this.InserttoSQL}
+              style={styles.FormButton}>
+              <Text style={styles.FormButtonLable}>Simpan</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.GoBackAndReClickCamera}
+              style={styles.FormButtonChancel}>
+              <Text style={styles.FormButtonLableChancel}>Ulangi</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {
+          <Modal
+            animationType={'slide'}
+            transparent={true}
+            visible={this.state.LoadingState}
+            onRequestClose={() => {
+              console.log('Modal has been closed.');
+            }}>
+            <View style={styles.modal}>
+              <Text style={styles.labelmodal}>Load . . .</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setState({LoadingState: !this.state.LoadingState});
+                }}>
+                <Text style={styles.labelmodal}>X</Text>
+              </TouchableHighlight>
+            </View>
+          </Modal>
         }
-      } else {
-        return false;
-      }
-    };
-    let code = [];
-    const listOBJ = {
-      99: {
-        nama: 'Absen Masuk',
-        icon: 'Enter',
-        status: !this.state.jadwalJSON
-          ? ''
-          : this.state.jadwalJSON.status_kehadiran == 'm'
-          ? false
-          : this.state.jadwalJSON.status_kehadiran == '1'
-          ? false
-          : this.state.MasukState.state,
-        color: '',
-        dest: 'Masuk',
-      },
-      100: {
-        nama: 'Absen Pulang',
-        icon: 'Exit',
-        status: ProsesTimePulang(),
-        color: '',
-        dest: 'Pulang',
-      },
-      101: {
-        nama: 'Surat Sakit',
-        icon: 'Sakit',
-        status: true,
-        color: '',
-        dest: 'Sakit',
-      },
-      // 102:{nama:'Surat Izin',icon:'Exit',status:false,color:''},
-    };
-    for (var key in listOBJ) {
-      if (listOBJ.hasOwnProperty(key)) {
-        code.push(
-          <View key={key * 2}>
-            <Menu
-              key={key * 3}
-              props={this.props}
-              Destinations={listOBJ[key].dest}
-              icon={listOBJ[key].icon}
-              label={listOBJ[key].nama}
-              status={listOBJ[key].status}
-              klik={listOBJ[key].exex}
-            />
-          </View>,
-        );
-      }
-    }
-    return code;
+        {
+          <Modal
+            animationType={'slide'}
+            transparent={true}
+            visible={this.state.LoadingUpload}
+            onRequestClose={() => {
+              console.log('Modal has been closed.');
+            }}>
+            <View style={styles.modal}>
+              <Text style={styles.labelmodal}>Upload Foto . . .</Text>
+            </View>
+          </Modal>
+        }
+      </View>
+    );
   }
 }
 
-export default MenuLoop;
-
 const styles = StyleSheet.create({
-  menuCard: {
-    backgroundColor: 'rgba(76,169,255,1)',
-    width: 120,
-    height: 120,
-    margin: 20,
-    padding: 20,
-    borderRadius: 20,
-    shadowColor: 'rgba(0,0,0,0.15)',
+  modal: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(76,169,255,0.6)',
+    padding: 100,
+  },
+  labelmodal: {
+    textAlign: 'center',
+    fontFamily: 'Raleway-Bold',
+    fontSize: 20,
+    color: 'rgba(255,255,255,1)',
+  },
+  Backcontainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  backButton: {
+    backgroundColor: 'rgba(50,50,50,0)',
+    borderRadius: 50,
+    top: -15,
+    left: -15,
+    width: 70,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container: {
+    top: 20,
+    width: WIDTH - 30,
+    alignItems: 'flex-start',
+    // backgroundColor:'grey',
+    // borderColor:'black',
+    // borderWidth:1,
+  },
+  Textcontainer: {
+    width: '100%',
+    paddingBottom: 20,
+    // backgroundColor:'grey'
+  },
+  FormButtonChancel: {
+    height: 50,
+    width: '40%',
+    marginRight: 60,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#359EFF',
+    borderWidth: 1,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'rgba(0,0,0,0.25)',
     shadowOffset: {
       width: 3,
       height: 10,
     },
-    shadowOpacity: 0.39,
-    shadowRadius: 8.3,
-    elevation: 10,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    textAlign: 'center',
+    shadowOpacity: 0.03,
+    shadowRadius: 50,
+    elevation: 2,
   },
-  icon: {
-    width: 50,
+  FormButton: {
     height: 50,
+    width: '40%',
+    marginRight: 60,
+    backgroundColor: '#359EFF',
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'rgba(0,0,0,0.25)',
+    shadowOffset: {
+      width: 3,
+      height: 10,
+    },
+    shadowOpacity: 0.03,
+    shadowRadius: 50,
+    elevation: 2,
   },
-  labelIcon: {
-    textAlign: 'center',
+  FormButtonLable: {
     fontFamily: 'Raleway-Bold',
-    fontSize: 12,
+    fontSize: 20,
     color: 'rgba(255,255,255,1)',
+  },
+  FormButtonLableChancel: {
+    fontFamily: 'Raleway-Bold',
+    fontSize: 20,
+    color: '#359EFF',
+  },
+  ButtonBox: {
+    // borderColor:'red',
+    padding: 20,
+    // borderWidth:1,
+    width: '100%',
+    height: 80,
+    flexWrap: 'wrap-reverse',
+    justifyContent: 'center',
   },
 });

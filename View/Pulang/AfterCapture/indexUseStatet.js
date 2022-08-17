@@ -475,10 +475,10 @@ const Index = props => {
           }, //PPOST FILE dengan "name" sebagai variabel utama
           {name: 'ID', data: state.user.IDkaryawan},
           {name: 'NamaKaryawan', data: state.user.namakaryawan},
-          {name: 'StatusAbsen', data: 'Masuk'},
+          {name: 'StatusAbsen', data: 'Pulang'},
           {name: 'id_jadwal', data: state.jadwalJSON.id_jadwal},
           {name: 'jam_Capture', data: state.jamNowID},
-          {name: 'Displin', data: state.MasukState.Displin},
+          {name: 'Displin', data: 'null'},
           {name: 'la', data: state.la.toString()},
           {name: 'lo', data: state.lo.toString()},
         ],
