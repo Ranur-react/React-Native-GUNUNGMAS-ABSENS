@@ -139,6 +139,7 @@ const Index = props => {
             ...state,
             MasukState: {
               pesan: val,
+              Displin: '0',
               state: false,
             },
           };
@@ -159,6 +160,7 @@ const Index = props => {
               ...state,
               MasukState: {
                 pesan: val,
+                Displin: '1',
                 state: false,
               },
             };
@@ -179,6 +181,7 @@ const Index = props => {
                 ...state,
                 MasukState: {
                   pesan: val,
+                  Displin: '0',
                   state: false,
                 },
               };
@@ -198,6 +201,7 @@ const Index = props => {
                 ...state,
                 MasukState: {
                   pesan: val,
+                  Displin: '0',
                   state: false,
                 },
               };
@@ -430,12 +434,7 @@ const Index = props => {
             console.log('Kondisi Pulang');
             console.log(state.PulangState);
             //this.setState({LoadingState: false});
-            setState(state => {
-              return {
-                ...state,
-                LoadingState: false,
-              };
-            });
+
             showToastWithGravityAndOffset('Jadwal Succes diambil :D ');
           } else {
             console.log('Jadwal Anda Belum di SET');
@@ -461,7 +460,20 @@ const Index = props => {
     };
 
     GetDataFromDB();
-    setLoadStatus(true);
+    //cange loas status before
+    if (!state.la && state.JKordinat) {
+      console.log('===============Aambil Lokasi=====================');
+      console.log(state.JKordinat);
+      console.log('====================================');
+      Getlokas();
+      setState(state => {
+        return {
+          ...state,
+          LoadingState: false,
+        };
+      });
+      setLoadStatus(true);
+    }
   };
   let InserttoSQL = async () => {
     console.log('mulai  upload');
@@ -530,6 +542,9 @@ const Index = props => {
     };
 
     KirimBlob();
+    console.log('=================check LA LO===================');
+    console.log(state.la);
+    console.log('====================================');
   };
   let Getlokas = async () => {
     await Geolocation.getCurrentPosition(info => {
@@ -582,9 +597,7 @@ const Index = props => {
     } else {
       if (!loadStatus) {
         ProseJadwal();
-        if (state.JKordinat) {
-          Getlokas();
-        }
+      } else {
       }
     }
   });
@@ -624,7 +637,7 @@ const Index = props => {
   };
   return (
     <View style={styles.Backcontainer}>
-      {<ReviewCapturePages />}
+      {<ReviewCapturePages key={765} />}
       {
         <Modal
           animationType={'slide'}

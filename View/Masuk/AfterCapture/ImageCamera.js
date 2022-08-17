@@ -61,6 +61,7 @@ export default class MyComponent extends Component {
           Foto Jam {this.state.Time} berhasil diambil
         </Text>
         <Image
+          key={9865}
           style={styles.Image}
           source={{
             uri: this.state.Foto,
