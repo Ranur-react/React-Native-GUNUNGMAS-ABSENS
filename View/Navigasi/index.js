@@ -14,7 +14,7 @@ import Masuk from './../Masuk/Capture';
 import PulangAfterCapture from './../Pulang/AfterCapture';
 import MasukAfterCapture from './../Masuk/AfterCapture';
 import Home from './../Home';
-// import Sakit from './../Izinsakit';
+import Sakit from './../Izinsakit';
 import Login from './../Login';
 ///class
 
@@ -81,9 +81,12 @@ function App() {
           name="PulangAfterCapture"
           component={PulangAfterCapture}
         />
-        {/* 
-      
-      <Stack.Screen   options={{ headerShown:false, }}  name="Sakit" component={Sakit} /> */}
+
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Sakit"
+          component={Sakit}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
