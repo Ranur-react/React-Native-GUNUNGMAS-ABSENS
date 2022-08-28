@@ -34,6 +34,7 @@ import {getDistance, getPreciseDistance} from 'geolib';
 const Index = props => {
   const [state, setState] = useState(false);
   const [loadStatus, setLoadStatus] = useState(false);
+  const [sincreonStatus, setSincreonStatus] = useState(false);
   const getUserData = async () => {
     let dataUser = JSON.parse(await AsyncStorage.getItem('Json_Login'));
     let dataImages = JSON.parse(await AsyncStorage.getItem('Json_Storage'));
@@ -44,6 +45,142 @@ const Index = props => {
         LoadingUpload: false,
       };
     });
+  };
+  const Formula_Jadwal_masuk = async () => {
+    let masuk = state.JmasukState;
+    let masukEnd = state.JmasukEndState;
+    let toler = state.ToleransiState;
+    let val = 'Log';
+    if (masuk) {
+      val = 'Jam Absen Belum Masuk ';
+      console.log('================Masuk State====================');
+      console.log('pesan' + val);
+      console.log('Displin:' + 0);
+      console.log('====================================');
+      setState(state => {
+        return {
+          ...state,
+          MasukState: {
+            pesan: val,
+            Displin: '0',
+            state: false,
+          },
+        };
+      });
+    } else {
+      if (masukEnd) {
+        val = 'Silahkan Ambil Absen Masuk Pada Jam Ini';
+        console.log('================Masuk State====================');
+        console.log('pesan' + val);
+        console.log('Displin:' + 1);
+        console.log('====================================');
+        setState(state => {
+          return {
+            ...state,
+            MasukState: {
+              pesan: val,
+              Displin: '1',
+              state: false,
+            },
+          };
+        });
+      } else {
+        if (toler) {
+          val = 'Terlambat';
+          console.log('================Masuk State====================');
+          console.log('pesan' + val);
+          console.log('Displin:' + 0);
+          console.log('====================================');
+          setState(state => {
+            return {
+              ...state,
+              MasukState: {
+                pesan: val,
+                Displin: '0',
+                state: false,
+              },
+            };
+          });
+        } else {
+          val = 'Anda Masuk Diluar Jam Ketentuan';
+          console.log('================Masuk State====================');
+          console.log('pesan' + val);
+          console.log('Displin:' + 0);
+          console.log('====================================');
+          setState(state => {
+            return {
+              ...state,
+              MasukState: {
+                pesan: val,
+                Displin: '0',
+                state: false,
+              },
+            };
+          });
+        }
+      }
+    }
+
+    Formula_Jadwal_Pulang();
+  };
+  const Formula_Jadwal_Pulang = async () => {
+    let pulang = state.JpulangState;
+    let pulangEnd = state.JpulangEndState;
+    let val = 'Log';
+    if (pulang) {
+      val = 'Jam Absen Belum Pulang ';
+      // this.setState({
+      //   PulangState: {
+      //     pesan: val,
+      //     state: false,
+      //   },
+      // });
+      setState(state => {
+        return {
+          ...state,
+          PulangState: {
+            pesan: val,
+            state: false,
+          },
+        };
+      });
+    } else {
+      if (pulangEnd) {
+        val = 'Silahkan Ambil Absen PULANG Pada Jam Ini';
+        // this.setState({
+        //   PulangState: {
+        //     pesan: val,
+        //     state: true,
+        //   },
+        // });
+        setState(state => {
+          return {
+            ...state,
+            PulangState: {
+              pesan: val,
+              state: false,
+            },
+          };
+        });
+      } else {
+        val = 'Anda Pulang Diluar Jam Ketentuan';
+        // this.setState({
+        //   PulangState: {
+        //     pesan: val,
+        //     state: false,
+        //   },
+        // });
+        setState(state => {
+          return {
+            ...state,
+            PulangState: {
+              pesan: val,
+              state: false,
+            },
+          };
+        });
+      }
+    }
   };
   const ProseJadwal = () => {
     const tanggalSekarang = () => {
@@ -123,130 +260,7 @@ const Index = props => {
         return false;
       }
     };
-    const Formula_Jadwal_masuk = () => {
-      let masuk = state.JmasukState;
-      let masukEnd = state.JmasukEndState;
-      let toler = state.ToleransiState;
-      let val = 'Log';
-      if (masuk) {
-        val = 'Jam Absen Belum Masuk ';
 
-        setState(state => {
-          return {
-            ...state,
-            MasukState: {
-              pesan: val,
-              Displin: '0',
-              state: false,
-            },
-          };
-        });
-      } else {
-        if (masukEnd) {
-          val = 'Silahkan Ambil Absen Masuk Pada Jam Ini';
-
-          setState(state => {
-            return {
-              ...state,
-              MasukState: {
-                pesan: val,
-                Displin: '1',
-                state: false,
-              },
-            };
-          });
-        } else {
-          if (toler) {
-            val = 'Terlambat';
-
-            setState(state => {
-              return {
-                ...state,
-                MasukState: {
-                  pesan: val,
-                  Displin: '0',
-                  state: false,
-                },
-              };
-            });
-          } else {
-            val = 'Anda Masuk Diluar Jam Ketentuan';
-
-            setState(state => {
-              return {
-                ...state,
-                MasukState: {
-                  pesan: val,
-                  Displin: '0',
-                  state: false,
-                },
-              };
-            });
-          }
-        }
-      }
-
-      Formula_Jadwal_Pulang();
-    };
-    const Formula_Jadwal_Pulang = async () => {
-      let pulang = state.JpulangState;
-      let pulangEnd = state.JpulangEndState;
-      let val = 'Log';
-      if (pulang) {
-        val = 'Jam Absen Belum Pulang ';
-        // this.setState({
-        //   PulangState: {
-        //     pesan: val,
-        //     state: false,
-        //   },
-        // });
-        setState(state => {
-          return {
-            ...state,
-            PulangState: {
-              pesan: val,
-              state: false,
-            },
-          };
-        });
-      } else {
-        if (pulangEnd) {
-          val = 'Silahkan Ambil Absen PULANG Pada Jam Ini';
-          // this.setState({
-          //   PulangState: {
-          //     pesan: val,
-          //     state: true,
-          //   },
-          // });
-          setState(state => {
-            return {
-              ...state,
-              PulangState: {
-                pesan: val,
-                state: false,
-              },
-            };
-          });
-        } else {
-          val = 'Anda Pulang Diluar Jam Ketentuan';
-          // this.setState({
-          //   PulangState: {
-          //     pesan: val,
-          //     state: false,
-          //   },
-          // });
-          setState(state => {
-            return {
-              ...state,
-              PulangState: {
-                pesan: val,
-                state: false,
-              },
-            };
-          });
-        }
-      }
-    };
     let GetDataFromDB = async () => {
       fetch(APIDOMAINWEB + '/AuthApp/JadwalCek', {
         method: 'POST',
@@ -320,16 +334,21 @@ const Index = props => {
                 JpulangEnd: responseJson.data.waktu_selesai_keluar,
               };
             });
-            let JmasukEndVar = Formula_Jam(
+            const kondisiMasuk = Formula_Jam(
               responseJson.data.waktu_selesai_masuk,
             );
-
+            console.log(
+              '==============Kondisi Selesai Masuk======================',
+            );
+            console.log('state: ' + kondisiMasuk);
+            console.log(
+              'Waktu Selesai Masuk: ' + responseJson.data.waktu_selesai_masuk,
+            );
+            console.log('====================================');
             setState(state => {
               return {
                 ...state,
-                JmasukEndState: Formula_Jam(
-                  responseJson.data.waktu_selesai_masuk,
-                ),
+                JmasukEndState: kondisiMasuk,
               };
             });
             //----
@@ -362,7 +381,6 @@ const Index = props => {
                 ToleransiState: Formula_Jam(responseJson.data.toleransi),
               };
             });
-            Formula_Jadwal_masuk();
             let d = responseJson.data.status_kehadiran;
             if ((d != 0) & (d != null)) {
               if (d == 'm') {
@@ -437,7 +455,7 @@ const Index = props => {
     GetDataFromDB();
     //cange loas status before
     if (!state.la && state.JKordinat) {
-      console.log('===============Aambil Lokasi=====================');
+      console.log('===============Aambil Lokasi X=====================');
       console.log(state.JKordinat);
       console.log('====================================');
       Getlokas();
@@ -450,73 +468,78 @@ const Index = props => {
       setLoadStatus(true);
     }
   };
-  let InserttoSQL = async () => {
-    console.log('mulai  upload');
-    console.log('mulai  cek session');
-
-    console.log(state.user);
-    // const data = new FormData();
+  let KirimBlob = async () => {
     const locaLurl = APIDOMAINWEB + '/Triger/Absen/';
-    let KirimBlob = async () => {
-      await RNFetchBlob.fetch(
-        'POST',
-        locaLurl,
-        {
-          Authorization: 'Bearer access-token',
-          otherHeader: 'foo',
-          'Content-Type': 'multipart/form-data',
-        },
-        [
-          {
-            name: 'imagos',
-            filename: state.dataImage.fileName,
-            type: 'image/jpeg',
-            data: state.dataImage.base64,
-          }, //PPOST FILE dengan "name" sebagai variabel utama
-          {name: 'ID', data: state.user.IDkaryawan},
-          {name: 'NamaKaryawan', data: state.user.namakaryawan},
-          {name: 'StatusAbsen', data: 'Masuk'},
-          {name: 'id_jadwal', data: state.jadwalJSON.id_jadwal},
-          {name: 'jam_Capture', data: state.jamNowID},
-          {name: 'Displin', data: state.MasukState.Displin},
-          {name: 'la', data: state.la.toString()},
-          {name: 'lo', data: state.lo.toString()},
-        ],
-      )
-        .then(response => {
-          const r = JSON.parse(response.data);
-          if (r.Respond == true) {
-            console.log('Bisa');
-            // this.setState({LoadingUpload: true});
+    const body = [
+      {
+        name: 'imagos',
+        filename: state.dataImage.fileName,
+        type: 'image/jpeg',
+        data: state.dataImage.base64,
+      }, //PPOST FILE dengan "name" sebagai variabel utama
+      {name: 'ID', data: state.user.IDkaryawan},
+      {name: 'NamaKaryawan', data: state.user.namakaryawan},
+      {name: 'StatusAbsen', data: 'Masuk'},
+      {name: 'id_jadwal', data: state.jadwalJSON.id_jadwal},
+      {name: 'jam_Capture', data: state.jamNowID},
+      {name: 'Displin', data: state.MasukState.Displin},
+      {name: 'la', data: state.la.toString()},
+      {name: 'lo', data: state.lo.toString()},
+    ];
+    console.log('=============Value Body=======================');
+    console.log(body);
+    console.log('====================================');
+    console.log('====================================');
+    console.log(state.MasukState);
+    console.log('====================================');
+    await RNFetchBlob.fetch(
+      'POST',
+      locaLurl,
+      {
+        Authorization: 'Bearer access-token',
+        otherHeader: 'foo',
+        'Content-Type': 'multipart/form-data',
+      },
+      body,
+    )
+      .then(response => {
+        const r = JSON.parse(response.data);
+        if (r.Respond == true) {
+          console.log('Bisa');
+          // this.setState({LoadingUpload: true});
+          setState(state => {
+            return {
+              ...state,
+              LoadingUpload: true,
+            };
+          });
+          setTimeout(() => {
+            // this.setState({LoadingUpload: !state.LoadingUpload});
             setState(state => {
               return {
                 ...state,
-                LoadingUpload: true,
+                LoadingUpload: !state.LoadingUpload,
               };
             });
-            setTimeout(() => {
-              // this.setState({LoadingUpload: !state.LoadingUpload});
-              setState(state => {
-                return {
-                  ...state,
-                  LoadingUpload: !state.LoadingUpload,
-                };
-              });
-              props.navigation.navigate('Home');
-            }, 5000);
-            console.log(r);
-          } else {
-            console.log('Gagal');
-            console.log(r);
-          }
-        })
-        .catch(e => {
-          console.log('Terjadi Eror');
-          console.log(e);
-        });
-    };
-
-    KirimBlob();
+            props.navigation.navigate('Home');
+          }, 5000);
+          console.log(r);
+        } else {
+          console.log('Gagal');
+          console.log(r);
+        }
+      })
+      .catch(e => {
+        console.log('Terjadi Eror');
+        console.log(e);
+      });
+  };
+  let InserttoSQL = async () => {
+    setTimeout(async () => {
+      await Formula_Jadwal_masuk();
+      await setSincreonStatus(true);
+      showToastWithGravityAndOffset('Gambar berhasil disimpan');
+    }, 2000);
   };
   let Getlokas = async () => {
     await Geolocation.getCurrentPosition(info => {
@@ -591,13 +614,25 @@ const Index = props => {
           </View>
           <View style={styles.ButtonBox}>
             <TouchableOpacity
-              onPress={() => InserttoSQL()}
+              onPress={() => {
+                if (sincreonStatus) {
+                  KirimBlob();
+                } else {
+                  InserttoSQL();
+                }
+              }}
               style={styles.FormButton}>
-              <Text style={styles.FormButtonLable}>Simpan</Text>
+              <Text style={styles.FormButtonLable}>
+                {sincreonStatus ? 'Masuk' : 'Simpan'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              disabled={sincreonStatus}
               onPress={() => GoBackAndReClickCamera()}
-              style={styles.FormButtonChancel}>
+              style={[
+                styles.FormButtonChancel,
+                {opacity: sincreonStatus ? 0.1 : 1},
+              ]}>
               <Text style={styles.FormButtonLableChancel}>Ulangi</Text>
             </TouchableOpacity>
           </View>
