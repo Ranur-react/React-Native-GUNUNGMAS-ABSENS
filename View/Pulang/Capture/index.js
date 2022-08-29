@@ -63,7 +63,14 @@ export default class MyComponent extends Component {
       includeBase64: true,
     };
     launchCamera(options, respond => {
-      let res = respond.assets[0];
+      let res = {};
+
+      if (!respond.assets) {
+        res = respond;
+      } else {
+        res = respond.assets[0];
+      }
+      // let res = respond.assets[0];
       if (!res.didCancel) {
         storeDataString('Ft', res.uri);
         const jsonValue = JSON.stringify(res);

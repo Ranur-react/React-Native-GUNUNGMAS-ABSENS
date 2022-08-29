@@ -63,6 +63,7 @@ export default class Login extends Component {
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           showToastWithGravityAndOffset('Aplikasi Dapat Membuka penyimpnan mu');
+          requestACCESS_FINE_LOCATIONPermission();
         } else {
           showToastWithGravityAndOffset(
             'Akses penyimpanan  ditolak,aplikasi mungkin tidak dapat digunakan dengan baik',
@@ -87,6 +88,7 @@ export default class Login extends Component {
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           showToastWithGravityAndOffset('Aplikasi Dapat Membuka Kamera mu');
+          requestStoragePermission();
         } else {
           showToastWithGravityAndOffset(
             'Akses Kamera  ditolak, aplikasi mungkin tidak dapat digunakan dengan baik',
@@ -119,9 +121,8 @@ export default class Login extends Component {
         showToastWithGravityAndOffset(err);
       }
     };
-    requestStoragePermission();
+
     requestCAMERAPermission();
-    requestACCESS_FINE_LOCATIONPermission();
   }
   UNSAFE_componentWillMount() {
     this.loadDevicePermissiosn();
