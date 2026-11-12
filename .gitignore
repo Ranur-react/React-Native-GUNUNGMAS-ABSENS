@@ -1,63 +1,50 @@
-# OSX
-#
-.DS_Store
-
-# Xcode
-#
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-ios/.xcode.env.local
-
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-
-# node.js
-#
+# Dependencies
 node_modules/
-npm-debug.log
-yarn-error.log
+vendor/
 
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
+# Runtime cache
+__pycache__/
+*.pyc
+.venv/
+venv/
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
+# Framework cache
+.next/
+.nuxt/
+.output/
+.cache/
+.parcel-cache/
+.turbo/
+bootstrap/cache/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
 
-**/fastlane/report.xml
-**/fastlane/Preview.html
-**/fastlane/screenshots
-**/fastlane/test_output
+# Package manager cache
+.yarn/
+.pnp.*
+.npm/
 
-# Bundle artifact
-*.jsbundle
+# IDE / Editor (exclude sftp.json)
+/.idea/
+/.vscode/*
+!/.vscode/sftp.json
+*.sublime-workspace
+*.sublime-project
+/nbproject/
+.vs/
+*.swp
+*.swo
+*~
 
-# Ruby / CocoaPods
-/ios/Pods/
-/vendor/bundle/
+# OS
+.DS_Store
+Thumbs.db
+
+# Binaries / compiled
+*.o
+*.a
+*.so
+*.dylib
+*.wasm
+*.class
